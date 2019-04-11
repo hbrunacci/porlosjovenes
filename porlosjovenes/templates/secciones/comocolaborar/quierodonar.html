@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+
+<section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- section title -->
+                    <div class="title">
+                        <h3>QUIERO DONAR</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <!-- Single news -->
+                    <p>El futuro se construye con educación y la educación la construimos entre todos. Los chicos y jóvenes tienen un sueño: una vida de inclusión y oportunidades. Con tu colaboración logramos que eso, además de su sueño, sea su realidad.</p>
+    <div class="text-center" style="margin: 2em 0;">
+
+
+                    <button class="botondonar seleccion" data-form="1">Quiero Colaborar</button> <button href="#" data-form="2" class="botondonar">Quiero aumentar mi colaboración</button>
+
+
+                    </div>
+                    <iframe src="{{ self.url_donar }}" style="height: 1000px; width: 100%; border:0;" id="frameI"></iframe>
+
+                    <iframe src="{{ self.url_aumentar }}" style="height: 1000px; width: 100%; border:0; display: none;" id="frameII"></iframe>
+
+                </div>
+                <div class="col-md-3">
+                     {% image self.imagen_principal original as img %}
+                    <img src='{{ img.url }}' style="width: 100%; ">
+                    <!-- Single news -->
+                    <div class="otrasformas">
+                        <h3 style="font-family: Raleway, sans-serif; font-weight: 700; color: rgb(58, 58, 58); margin: 1.5em 0px; text-align: center;">Otras formas de colaborar</h3><dl style="margin: 1.75em 0px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif; font-size: 14px;"><dt style="line-height: 1.42857; margin-bottom: 10px; margin-top: 20px;">Depósito o transferencia bancaria:</dt><dd style="line-height: 1.42857; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dotted rgb(221, 221, 221);">FRANCÉS&nbsp;<br>Cta. Cte. 165 6068-0&nbsp;<br>CBU 0170165020000000606806</dd><dd style="line-height: 1.42857; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dotted rgb(221, 221, 221);">GALICIA&nbsp;<br>Cta. Cte. 16309-5 007-0&nbsp;<br>CBU 00700078-20000016309504</dd><dd style="line-height: 1.42857; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dotted rgb(221, 221, 221);">SANTANDER RÍO&nbsp;<br>Cta. Cte. 055-016553-4&nbsp;<br>CBU 0720055720000001655340</dd><dt style="line-height: 1.42857; margin-bottom: 10px; margin-top: 20px;">Pago mis cuentas:</dt><dd style="line-height: 1.42857; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dotted rgb(221, 221, 221);">Rubro 'Donaciones'<br>Empresa 'ObraDonBosco'</dd></dl>
+                        <a href="https://www.pagomiscuentas.com/" target="_blank">
+                            <img src="https://pagomiscuentas.com/sites/all/themes/pmcbotondepagopublico_theme/logo.png" style="width: 100%; ">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{%  endblock %}

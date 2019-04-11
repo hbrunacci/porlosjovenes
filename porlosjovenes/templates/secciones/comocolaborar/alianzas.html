@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+
+  <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- section title -->
+                    <div class="title">
+                        <h3 >ALIANZAS POR LOS JÓVENES</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Single news -->
+
+                    <p><?php echo $texto; ?></p>
+
+                </div>
+              </div>
+      </div>
+            {% image self.imagen_principal original as img %}
+
+              <div style="width: 100%; height: 400px; display: block; margin: 2em 0; background: transparent url('{{ img.url }}') center center no-repeat; background-size: cover;"></div>
+
+<div class="container">
+<div class="row">
+                <div class="col-md-12">
+    <h2><?php echo $texto_2; ?></h2>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% for alianza in self.listado_alianzas.all %}
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading{{alianza.id}}">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{alianza.id}}" aria-expanded="true" aria-controls="collapseOne">
+          {{ alianza.titulo }}
+        </a>
+      </h4>
+    </div>
+    <div id="collapse{{alianza.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{alianza.id}}">
+      <div class="panel-body">
+          {{alianza.descripcion|richtext}}
+      </div>
+    </div>
+  </div>
+ {% endfor %}
+
+</div>
+
+
+<div class="recuadroceleste">
+    {{ self.nota_pie|richtext }}
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

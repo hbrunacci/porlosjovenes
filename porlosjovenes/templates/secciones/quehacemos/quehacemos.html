@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+
+        <section class="section-padding" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- section title -->
+                    <div class="title" >
+                        <h3 >QUÉ HACEMOS</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% image self.imagen_principal original as img_principal %}
+            <div class="sliderResponsive" style="width: 100%; display: block; margin: 2em 0;
+            background: transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;"></div>
+            <div class="container">
+                {% image self.educacion_imagen original as img_educacion %}
+                {% image self.trabajo_imagen original as img_trabajo %}
+                {% image self.comunitaria_imagen original as img_comunitaria %}
+                {% image self.acciones_imagen original as img_acciones %}
+
+                <div class="row">
+                    <div class="col-md-9">
+                        <!-- Single news -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="quehacemos t1"><div class="subtitulo"><img src="{{ img_educacion.url }}" /><br />Educación</div>
+                                    <p>{{ self.educacion_texto }}
+                                    <div class="boton"><a href="">Ver Proyectos</a></div></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="quehacemos t2"><div class="subtitulo"><img src="{{ img_trabajo.url }}" /><br />Formación para el trabajo</div>
+                                    <p>{{ self.trabajo_texto }}
+                                    <div class="boton"><a href="">Ver Proyectos</a></div></p></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="quehacemos t3"><div class="subtitulo"><img src="{{ img_comunitaria.url }}" /><br />Acciones Socio Comunitarias</div>
+                                    <p>{{ self.comunitaria_texto }}
+                                    <div class="boton"><a href="">Ver Proyectos</a></div></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="quehacemos t4"><div class="subtitulo"><img src="{{ img_acciones.url }}" /><br />Acciones Misioneras y Pastorales</div>
+                                    <p>{{ self.acciones_texto }}
+                                    <div class="boton"><a href="">Ver Proyectos</a></div></p></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% image selft.banner_imagen original as img_banner %}
+                    <div class="col-md-3">
+                        <!-- Single news -->
+                        <div style="display: block; width: 90%; margin: 0.4em 0 1em 10%; ">
+                            <a href="{{self.baner_url}}" target="_blank">
+                                <img src={{ img_banner.url }}" class="img-responsive" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

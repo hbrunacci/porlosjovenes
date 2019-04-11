@@ -1,0 +1,115 @@
+{% load static wagtailuserbar %}
+
+<!DOCTYPE html>
+<html lang="en" class="js sizes customelements history pointerevents postmessage webgl websockets cssanimations
+csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap
+csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth
+csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside flexbox picture
+srcset webworkers">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% with self.get_site.site_name as site_name %}
+                    {% if site_name %}- {{ site_name }}{% endif %}
+                {% endwith %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <!-- ======= titles ======= -->
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="themewarehouse">
+        <!-- ======= favicon ======= -->
+        <link rel="icon" type="image/png" href="favicon.png">
+        <!-- Lato+Raleway Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,800,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/porlosjovenes.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/lightbox.min.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/slicknav.min.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css?v=0.1' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/porlosjovenes.css' %}">
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+        {% block header %}
+          <!-- top header area -->
+            {% include "home/header.html" %}
+        {% endblock %}
+
+        {% block content %}
+
+        {% endblock %}
+
+        {% block footer %}
+            {% include "home/footer.html" %}
+
+        {% endblock %}
+
+        {# Global javascript #}
+        <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+        <script src="{% static 'js/vendor/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery.sticky.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/jarallax.min.js' %}"></script>
+        <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'js/jquery.barfiller.js' %}"></script>
+        <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+        <script src="{% static 'js/isotope.min.js' %}"></script>
+        <script src="{% static 'js/lightbox.min.js' %}"></script>
+        <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+        <script src="{% static 'js/slicknav.min.js' %}"></script>
+        <script src="{% static 'js/plugins.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/otros.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/porlosjovenes.js' %}"></script>
+        <script type="text/javascript">
+            $('#mc-embedded-subscribe-form').submit(function(){
+                if (! $('#acepto')[0].checked){
+                    alert('Por favor confirme que acepta los términos y condiciones.');
+                    return false;
+                }
+            });
+            $('document').ready(function(){
+                $('.botondonar').click(function(){
+                    var cual = $(this).data('form');
+                    $('.botondonar').removeClass('seleccion');
+                    $(this).addClass('seleccion');
+
+                    $('#frameI, #frameII').hide('fast', function(){
+                        if(cual == '2'){ $('#frameII').show('fast'); }
+                        if(cual == '1'){ $('#frameI').show('fast');  }
+                    });
+                });
+            });
+        </script>
+
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    </body>
+</html>

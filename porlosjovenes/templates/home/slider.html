@@ -1,0 +1,29 @@
+    <section class="slider-area">
+        <div class="slider-wraper owl-carousel">
+
+            <?php if($contenido['slider1']){
+                foreach($contenido['slider1'] as $con){
+                 ?>
+                <!-- single slider -->
+                <div class="single-slider slider-one" style="background: url('<?php echo base_url('uploads/principal/'.$con['imagen']); ?>');">
+                    <div class="slider-table">
+                        <div class="slider-table-cell">
+                            <div class="container">
+                                <!-- single slider content -->
+                                <div class="slider-info" style="height: 60vh; text-align: center;">
+                                    <?php echo $con['texto']; ?>
+
+                                    <?php if(isset($con['textoCTA']) && !empty($con['textoCTA'])){ ?>
+                                        <a href="<?php echo $con['linkCTA']; ?>" class="<?php echo $con['colorCTA']; ?>" style="opacity: 1;bottom: 30%; margin-left: -3.5em; position: absolute;"><?php echo $con['textoCTA']; ?></a>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php }
+            } ?>
+
+        </div>
+    </section>
+    <!-- ======= slider part end ======= -->

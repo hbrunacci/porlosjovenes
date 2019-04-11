@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+
+{% block content %}
+
+<div class="col-md-4">
+    <a href="{{ self.inscripcion_url }}">
+        <div class="recuadro2">
+            <span>{{ self.distancia }}</span>${{self.valor}}
+        </div>
+        <span class="titulinho"> {{ self.descripcion_categoria }}
+        </span>
+    </a>
+</div>
+
+{% endblock %}

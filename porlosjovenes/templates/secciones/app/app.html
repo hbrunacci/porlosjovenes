@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% block content %}
+
+
+
+<a href="<?php echo base_url('alianzas'); ?>" class="flotaAlianzas"><img src="{% static '/img/sumate.png' %}" /></a>
+
+    <!-- ======= slider part start ======= -->
+    <iframe width="100%" height="600" src="https://www.youtube.com/embed/{{ self.video_code }}?&autoplay=1&mute=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="hidden-sm hidden-xs" ></iframe>
+
+    <iframe width="100%" height="200" src="https://www.youtube.com/embed/{{ self.video_code}}?&autoplay=1&mute=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="hidden-md hidden-lg" ></iframe>
+
+    <!-- ======= slider part end ======= -->
+
+ {% comment %}   <pre><div class="”video-responsive”">
+    <iframe src="https://www.youtube.com/embed/{{ self.video_code}}?&autoplay=1&mute=1&rel=0"
+            frameborder="0"
+            allow="autoplay; encrypted-media" allowfullscreen>
+    </iframe>
+
+    </div>
+    </pre>{% endcomment %}
+    <!-- ======= blog part start ======= -->
+    <section class="app-descarga" style="position: relative;">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+
+                    <img src="{% static '/img/demo/stores.jpg' %}" />
+
+                    <!-- section title -->
+                    <div class="title text-center">
+                        <h2>Transformá tu <strong>Pasos</strong> en <strong>Educación</strong></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ======= blog part start ======= -->
+    <section class="app-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                   <div class="row">
+                       <div class="col-md-4">
+                           <p style="margin-top: 4em;"></p><p style="text-align: center; "><b>1K Por los Jóvenes</b> te propone llevar una vida saludable a la vez que se realiza una acción solidaria.</p><p style="text-align: center; "><b>Con tu actividad ayudás </b>a que miles de jóvenes puedan recibir educación de calidad y formación para el trabajo, a través de los proyectos socioeducativos impulsados por Don Bosco Argentina.</p><p></p>
+                       </div>
+                       <div class="col-md-4">
+                           <img src="{% static 'img/demo/app.jpg' %}" style="width: 80%; margin: 2em 10%;" /></div>
+                       <div class="col-md-4">
+                           <p style="margin-top: 4em;"></p><h2 style="margin-bottom: 15px; font-size: 24px; line-height: 30px; font-family: raleway, roboto, arial, serif; text-align: center;"></h2><p style="text-align: center; "><b>Activala cada vez que salgas a caminar, correr o andar en bicicleta.</b></p><p style="text-align: center; ">Por cada kilómetro que realices, una empresa comprometida por los jóvenes realizará una donación en función a la distancia recorrida.</p><div><h2 style="text-align: center; " helvetica="" neue",="" roboto,="" arial,="" "droid="" sans",="" sans-serif;="" color:="" rgb(0,="" 0,="" 0);="" text-align:="" center;"=""><br></h2></div><p style="text-align: center; "><span style="font-variant-numeric: normal; font-variant-east-asian: normal;"></span></p><p></p><p></p>
+                       </div>
+                   </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="app-informacion">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <!-- section title -->
+                    <div class="title text-center">
+                        <h2>TUS KM LO HACEN POSIBLE</h2>
+                    </div>
+                    <div class="content redondear">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="https://porlosjovenes.org/proyectos/categoria/educacion">
+                                    <img src="{% static 'img/demo/app1.jpg' %}" />
+                                    <h3 style="font-family: Raleway, sans-serif; font-weight: 700; color: rgb(58, 58, 58); margin: 30px 0px 20px; text-align: center;"><font color="#0097a4"><span style="transition-duration: 0.5s; transition-property: all;">Educación</span></font></h3><p style="margin-bottom: 15px; font-size: 16px; padding-top: 10px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif; text-align: center;">Educación integral de calidad en todos los niveles de enseñanza</p>                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="https://porlosjovenes.org/proyectos/categoria/formacion">
+                                    <img src="{% static 'img/demo/app2.jpg' %}" />
+                                    <h3 style="font-family: Raleway, sans-serif; font-weight: 700; color: rgb(58, 58, 58); margin: 30px 0px 20px; text-align: center;"><font color="#0097a4"><span style="transition-duration: 0.5s; transition-property: all;">Formación Laboral</span></font></h3><p style="text-align: center; margin-bottom: 15px; font-size: 16px; padding-top: 10px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif; font-weight: 400;">La capacitación es la puerta al trabajo. La formación como herramienta indispensable.</p>                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="https://porlosjovenes.org/proyectos/categoria/comunitarias">
+                                    <img src="{% static 'img/demo/app3.jpg' %}" />
+                                    <h3 style="font-family: Raleway, sans-serif; font-weight: 700; color: rgb(58, 58, 58); margin: 30px 0px 20px; text-align: center;"><font color="#0097a4"><span style="transition-duration: 0.5s; transition-property: all;">Acciones Socio Comunitarias</span></font></h3><p style="margin-bottom: 15px; font-size: 16px; padding-top: 10px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif; text-align: center;">Contención y educación para impulsar y acompañar la vida de cada chico</p>                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="https://porlosjovenes.org/proyectos/categoria/pastoral">
+                                    <img src="{% static 'img/demo/app4.jpg' %}" />
+                                    <h3 style="font-family: Raleway, sans-serif; font-weight: 700; color: rgb(58, 58, 58); margin: 30px 0px 20px; text-align: center;"><font color="#0097a4"><span style="transition-duration: 0.5s; transition-property: all;">Acciones Misioneras y Pastorales</span></font></h3><p style="margin-bottom: 15px; font-size: 16px; padding-top: 10px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif; text-align: center;">Para que ninguna familia queda aislada, excluida ni sin recursos materiales y afectivos</p>                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+            <div class="row" style="margin: 6em 0 4em 0;">
+                        <div class="sponsors owl-carousel" style="autoPlay: 3000">
+                            {% for sponsor in self.carousel_sponsor_app.all %}
+                                <div>
+                                {% image sponsor.imagen_sponsor fill-80x80 as tmp_photo %}
+                                <img src="{{ tmp_photo.url }}" class="img-responsive">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

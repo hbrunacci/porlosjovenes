@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- section title -->
+                <div class="title">
+                    <h3>QUIENES SOMOS</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Single news -->
+                <p style="text-align: justify;">Don Bosco Argentina es una organización social, educativa y pastoral con foco en el desarrollo de los jóvenes. Trabajamos para la promoción, protección, prevención y educación de los chicos y chicas del país, especialmente los más vulnerables. Buscamos educar de manera integral a través de una propuesta de calidad sostenida desde la prevención (pedagogía desarrollada por San Juan Bosco), donde el amor (un trato amable y respetuoso), la razón (el diálogo) y la transmisión de valores cristianos (evangelización) son los pilares.</p>
+            </div>
+        </div>
+    </div>
+    {% image self.imagen_principal original as img_principal %}
+    <div style="width: 100%; height: 500px; display: block; margin: 2em 0; background: transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Por los jóvenes</h2>
+                <p>Para hacer crecer esta misión creamos&nbsp;Por los Jóvenes, una plataforma de acción y comunicación de las iniciativas que se hacen por los chicos y chicas más desprotegidos. Desde allí damos a conocer y promovemos las acciones por los jóvenes, tanto propuestas socioeducativas de Don Bosco Argentina como de empresas, organismos e instituciones.</p>
+                <div class="recuadro">
+                    <img src="https://porlosjovenes.org/assets/sitio/img/logo.png" class="pull-left" style="margin-right: 2em">
+                    <p style="margin: 3em; font-size: 115%;">Un árbol con un lápiz de tronco y ramas de manos. Así como un árbol crece gracias a que se lo riega, lo mismo ocurre con la vida de los jóvenes. Aunque en este caso se necesita un tipo de agua especial: la de&nbsp;educación integral y de calidad.&nbsp;El lápiz, representando educación formal y no formal, es la raíz y el tronco sobre el que se sostiene el futuro de los chicos y chicas.</p>
+                    <div style="clear:both;"></div>
+                </div>
+                <p></p>
+                <p style="text-align: justify;">Somos comunicación y somos acción. Buscamos la inclusión social generando oportunidades para todos los jóvenes.</p><p style="text-align: justify;"><br></p><p style="text-align: justify;">Nuestra certeza: <b>¡la educación hace el cambio!</b></p><p style="text-align: justify;"><b><br></b></p><p></p>
+            </div>
+        </div>
+    </div>
+</section>
+{%  endblock %}

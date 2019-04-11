@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    <section class="section-padding" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- section title -->
+                    <div class="title" >
+                        <h3 >TRANSPARENCIA</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Single news -->
+                    <p></p><div><p style="margin-bottom: 15px; font-size: 16px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif;">¡La educación hace el cambio! La formación integral de calidad brinda a todos los jóvenes la oportunidad de construir un futuro de desarrollo personal y, al mismo tiempo, ser protagonistas para mejorar su realidad y la de su comunidad.</p><p style="margin-bottom: 15px; font-size: 16px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif;">EDUCACIÓN es la herramienta que hace posible el futuro de cada joven y que construimos gracias a cientos de personas solidarias que hacen realidad proyectos y espacios formativos de inclusión.</p><p style="margin-bottom: 15px; font-size: 16px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif;">La TRANSPARENCIA es un sostén irrenunciable de nuestras tareas. El control y la comunicación de nuestras cuentas y acciones es un compromiso primordial con nuestros colaboradores, con los miembros de cada proyecto y con la sociedad toda..</p></div>                    <p></p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+        <?php /* if($slider2){ ?>
+
+    <!-- ======= slider part start ======= -->
+     {% image self.imagen_principal original as img_principal %}
+    {% for iframe in self.memoria_balance.all %}
+
+        <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src='{{ iframe.memoria_url }}' allowfullscreen></iframe>
+        </div>
+    {% endfor %}
+
+    <script src='https://players.yumpu.com/modules/embed/yp_r_iframe.js' ></script>
+    <!-- ======= blog part end ======= -->
+
+
+{%  endblock %}

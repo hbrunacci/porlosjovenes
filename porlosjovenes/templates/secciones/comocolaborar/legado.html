@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+<section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- section title -->
+                    <div class="title">
+                        <h3>LEGADOS</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Single news -->
+
+
+<p style="font-family: ">Testamento solidario</p>
+
+<h3 style="font-family: ">Tu mejor legado es su futuro</h3>
+
+<p style="">El testamento solidario es una forma de mantener vivo tu esfuerzo por lograr un mundo más justo. ¿Sabías que donando total o parcialmente tu herencia y/o legado a Don Bosco Argentina&nbsp;seguís ayudando a que más niños, niñas y jóvenes accedan a educación para tener un mejor futuro?</p>
+
+<h3 style="font-family: ">Quiero donar mi herencia a Don Bosco Argentina</h3>
+
+<p style="">Podés disponer libremente de todos tus bienes, a excepción de la parte que corresponde a tus herederos forzosos: ascendientes (padres, abuelos, bisabuelos, etc.), descendientes (hijos, nietos, bisnietos, etc.) y cónyuge.</p><p style="">En el caso de tener&nbsp;herederos forzosos&nbsp;podrás legar hasta&nbsp;1/3 de tus bienes.</p><p style="">En caso de no contar con herederos forzosos podrás disponer libremente de la totalidad de tus bienes y nombrar a&nbsp;Don Bosco Argentina como heredero universal.</p>
+
+<h3 style="font-family: ">Quiero donar sólo parte de mi herencia a Don Bosco Argentina</h3>
+
+<p style="">En el caso de que decidas legar tus bienes a más de una persona y/o institución podés nombrar a Don Bosco Argentina&nbsp;co-heredero. En ese caso debés especificar qué porcentaje corresponde a cada una de esas personas y/o instituciones.&nbsp;</p>
+
+<h3 style="font-family: ">Quiero donar un legado a Don Bosco Argentina</h3>
+
+<p style="">El legado solidario corresponde a la donación de uno o más bienes concretos para Don Bosco Argentina. Pueden ser bienes&nbsp;inmuebles&nbsp;(como casas, departamentos, terrenos, etc) o bienes&nbsp;muebles&nbsp;(como dinero, joyas, mobiliario, etc).</p>
+
+                </div>
+            </div>
+        </div>
+             {% image self.imagen_principal original as img %}
+
+            <div style="width: 100%; height: 400px; display: block; margin: 2em 0; background: transparent url('{{ img.url }}') center center no-repeat; background-size: cover;"></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Single news -->
+
+                 <h2 style="text-align: justify;"></h2><h2><blockquote><div style="text-align: justify;">Escribinos a info@porlosjovenes.org o llamanos al +54 11 4958-6411 y nos pondremos en contacto con vos a la brevedad para asesorarte.</div></blockquote></h2>                </div>
+            </div>
+
+        </div>
+
+
+
+    </section>
+{% endblock %}
