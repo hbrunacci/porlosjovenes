@@ -1,0 +1,117 @@
+  {% load static %}
+
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+    <section class="blog-area section-padding" style="padding-bottom: 2em;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <!-- section title -->
+                    <div class="title">
+                        <h2>Noticias</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row hidden-sm hidden-xs">
+                    <div class="col-md-9">
+                    </div>
+                     <div class="col-md-3 textoCeleste">
+                       <a href="/noticias/"> VER MÁS NOTICIAS > </a>
+                     </div>
+            </div> 
+            <div class="hidden-md hidden-lg"> 
+                <div class="col-md-9">
+                    </div>
+                     <div class="col-md-3 textoCelesteSmall">
+                        <a href="/noticias/" > VER MÁS NOTICIAS ></a>
+                    </div>
+
+            </div>
+            <div class="row">
+               {% for noticia in posts %}
+                   {% if forloop.counter == 1 %}
+
+                <div class="col-md-6">
+                    <!-- Single news -->
+                    <article class="news-info">
+                        <div class="news-img h400">
+                            <a href="{% pageurl noticia %}">
+                                {% if noticia.imagen_portada %}
+                                    {% image noticia.imagen_portada fill-850x450-c50 as image %}
+                                    <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="news-content h200">
+                            <div class="post-meta">
+                                <ul>
+                                    <li><a href="/noticias/">{{ noticia.categoria }}</a>
+                                        <br />
+                                        {% if noticia.date %}
+                                            {{ noticia.date }}
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="{% pageurl noticia %}">
+                                <h2>{{noticia.title}}</h2>
+                            </a>
+                            <p>{{ noticia.intro|truncatewords:15 }}</p>
+                            <a href="{% pageurl noticia %}" >Ver Más</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+             {% endif %}
+             {% if forloop.counter > 1 %}
+                        <div class="col-md-6">
+                            <!-- Single news -->
+                           <article class="news-info">
+                                <div class="news-img h200">
+                                    <a href="{% pageurl noticia %}">
+                                        {% if noticia.imagen_portada %}
+                                            {% image noticia.imagen_portada fill-850x450-c50 as image %}
+                                            <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                               <div class="news-content h200">
+                                   <div class="post-meta">
+                                       <ul>
+                                           <li><a href="/noticias/">{{ noticia.categoria }}</a>
+                                               <br />
+                                               {% if noticia.date %}
+                                                   {{ noticia.date }}
+                                               {% endif %}
+                                           </li>
+                                       </ul>
+                                   </div>
+                                   <a href="{% pageurl noticia %}">
+                                       <h2>{{noticia.title}}</h2>
+                                   </a>
+                                   <p>{{ noticia.intro|truncatewords:15 }}</p>
+                                   <a href="{% pageurl noticia %}" >Ver Más</a>
+                               </div>
+                           </article>
+                        </div>
+             {% endif %}
+            {% endfor %}
+
+                        <div class="col-md-12">
+
+                            <!-- Single news -->
+                            <div class="publicidad" style="width: 100%; background: transparent">
+                                <a href="<?php echo $banner['link']; ?>" target="_blank">
+                                    <img src="<?php echo base_url('uploads/banners/'.$banner['imagen']) ?>" class="img-responsive" style="width: 100%"/>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    </section>

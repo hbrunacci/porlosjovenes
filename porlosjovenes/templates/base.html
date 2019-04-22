@@ -34,7 +34,7 @@ srcset webworkers">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,800,900" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800" rel="stylesheet">
-            <link rel="stylesheet" type="text/css" href="{% static 'css/porlosjovenes.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/porlosjovenes.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %} ">
         <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %} ">
         <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %} ">
@@ -46,7 +46,6 @@ srcset webworkers">
         <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %} ">
         <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %} ">
         <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css?v=0.1' %} ">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/porlosjovenes.css' %}">
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
@@ -70,6 +69,7 @@ srcset webworkers">
         {% endblock %}
 
         {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/porlosjovenes.js' %}"></script>
         <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
         <script src="{% static 'js/vendor/jquery-3.2.1.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -86,7 +86,6 @@ srcset webworkers">
         <script src="{% static 'js/plugins.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
         <script src="{% static 'js/otros.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/porlosjovenes.js' %}"></script>
         <script type="text/javascript">
             $('#mc-embedded-subscribe-form').submit(function(){
                 if (! $('#acepto')[0].checked){

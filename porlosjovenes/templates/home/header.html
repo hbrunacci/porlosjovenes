@@ -1,3 +1,5 @@
+{% load wagtailcore_tags %}
+
 <header class="header-area">
 
         <div class="top-header-area">
@@ -25,7 +27,7 @@
                     <div class="col-md-2">
                         <!-- logo part -->
                         <div class="believed-logo">
-                            <a href="https://porlosjovenes.org/"><img src="https://porlosjovenes.org/assets/sitio/img/logo.png" alt=""></a>
+                            <a href="/"><img src="https://porlosjovenes.org/assets/sitio/img/logo.png" alt=""></a>
                         </div>
                         <!-- mobile menu wraper -->
                         <div class="responsive-menu-wrap"><div class="slicknav_menu"><a href="#" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style="outline: none;"><span class="slicknav_menutxt">MENU</span><span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><ul class="slicknav_nav slicknav_hidden" style="display: none;" aria-hidden="true" role="menu">
@@ -36,32 +38,32 @@
                                     <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-check fa-fw"></i></button>
                                 </form></div>
 
-                                <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a href="#" tabindex="-1">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                <li class="slicknav_collapsed slicknav_parent"><a href="/noticias/" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a href="#" tabindex="-1">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <span class="slicknav_arrow">►</span></a><ul class="drop-menu slicknav_hidden" role="menu" style="display: none;" aria-hidden="true">
-                                        <li><a href="https://porlosjovenes.org/notas/categoria/educacion" role="menuitem" tabindex="-1">Educación</a></li>
-                                        <li><a href="https://porlosjovenes.org/notas/categoria/formacion" role="menuitem" tabindex="-1">Formación para el Trabajo</a></li>
-                                        <li><a href="https://porlosjovenes.org/notas/categoria/pastoral" role="menuitem" tabindex="-1">Acciones Misioneras y Pastorales</a></li>
-                                        <li><a href="https://porlosjovenes.org/notas/categoria/comunitaria" role="menuitem" tabindex="-1">Acciones Sociocomunitarias</a></li>
+                                        <li><a href="/noticias/educacion/" role="menuitem" tabindex="-1">Educación</a></li>
+                                        <li><a href="/noticias/formacion/" role="menuitem" tabindex="-1">Formación para el Trabajo</a></li>
+                                        <li><a href="/noticias/pastoral/" role="menuitem" tabindex="-1">Acciones Misioneras y Pastorales</a></li>
+                                        <li><a href="/noticias/comunitaria/" role="menuitem" tabindex="-1">Acciones Sociocomunitarias</a></li>
                                     </ul>
                                 </li>
                                 <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a href="#" tabindex="-1">Nosotros<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <span class="slicknav_arrow">►</span></a><ul class="drop-menu slicknav_hidden" role="menu" style="display: none;" aria-hidden="true">
-                                        <li><a href="https://porlosjovenes.org/nosotros" role="menuitem" tabindex="-1">Quienes Somos</a></li>
-                                        <li><a href="https://porlosjovenes.org/transparencia" role="menuitem" tabindex="-1">Transparencia</a></li>
-                                        <li><a href="https://porlosjovenes.org/dondeestamos" role="menuitem" tabindex="-1">Dónde Estamos</a></li>
+                                        <li><a href="/nosotros/quienes-somos/" role="menuitem" tabindex="-1">Quienes Somos</a></li>
+                                        <li><a href="/nosotros/transparencia/" role="menuitem" tabindex="-1">Transparencia</a></li>
+                                        <li><a href="/nosotros/donde-estamos/" role="menuitem" tabindex="-1">Dónde Estamos</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="https://porlosjovenes.org/quehacemos" role="menuitem" tabindex="-1">Qué hacemos</a></li>
+                                <li><a href="/que-hacemos/" role="menuitem" tabindex="-1">Qué hacemos</a></li>
                                 <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a href="#" tabindex="-1">Cómo colaborar<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <span class="slicknav_arrow">►</span></a><ul class="drop-menu slicknav_hidden" role="menu" style="display: none;" aria-hidden="true">
-                                        <li><a href="https://porlosjovenes.org/quierodonar" role="menuitem" tabindex="-1">Quiero Donar</a></li>
-                                        <li><a href="https://porlosjovenes.org/alianzas" role="menuitem" tabindex="-1">Alianzas Institucionales</a></li>
-                                        <li><a href="https://porlosjovenes.org/legado" role="menuitem" tabindex="-1">Legados</a></li>
-                                        <li><a href="https://porlosjovenes.org/ayudadifundiendo" role="menuitem" tabindex="-1">Ayudá Difundiendo</a></li>
+                                        <li><a href="/como-colaborar/quiero-donar/" role="menuitem" tabindex="-1">Quiero Donar</a></li>
+                                        <li><a href="/como-colaborar/alianzas/" role="menuitem" tabindex="-1">Alianzas Institucionales</a></li>
+                                        <li><a href="/como-colaborar/legado/" role="menuitem" tabindex="-1">Legados</a></li>
+                                        <li><a href="/como-colaborar/ayuda-difundiendo/" role="menuitem" tabindex="-1">Ayudá Difundiendo</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="https://porlosjovenes.org/carrera" role="menuitem" tabindex="-1">Carrera</a></li>
-                                <li><a href="https://porlosjovenes.org/app" role="menuitem" tabindex="-1">App</a></li>
+                                <li><a href="/carrera/" role="menuitem" tabindex="-1">Carrera</a></li>
+                                <li><a href="/app/" role="menuitem" tabindex="-1">App</a></li>
                             </ul></div></div>
                     </div>
                     <div class="col-md-10">
@@ -75,34 +77,35 @@
                                     <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-check fa-fw"></i></button>
                                 </form></div>
 
-                                <li><a href="#">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                <li><a href="/noticias/">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <ul class="drop-menu">
-                                        <li><a href="https://porlosjovenes.org/notas/categoria/educacion">Educación</a></li>
-                                        <li><a href="https://porlosjovenes.org/notas/categoria/formacion">Formación para el Trabajo</a></li>
-                                        <li><a href="https://porlosjovenes.org/notas/categoria/pastoral">Acciones Misioneras y Pastorales</a></li>
-                                        <li><a href="https://porlosjovenes.org/notas/categoria/comunitaria">Acciones Sociocomunitarias</a></li>
+                                        <li><a href="/noticias/educacion">Educación</a></li>
+                                        <li><a href="/noticias/formacion">Formación para el Trabajo</a></li>
+                                        <li><a href="/noticias/pastoral">Acciones Misioneras y Pastorales</a></li>
+                                        <li><a href="/noticias/comunitaria">Acciones Sociocomunitarias</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Nosotros<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <ul class="drop-menu">
-                                        <li><a href="https://porlosjovenes.org/nosotros">Quienes Somos</a></li>
-                                        <li><a href="https://porlosjovenes.org/transparencia">Transparencia</a></li>
-                                        <li><a href="https://porlosjovenes.org/dondeestamos">Dónde Estamos</a></li>
+                                        <li><a href="/nosotros/quienes-somos/" role="menuitem" tabindex="-1">Quienes Somos</a></li>
+                                        <li><a href="/nosotros/transparencia/" role="menuitem" tabindex="-1">Transparencia</a></li>
+                                        <li><a href="/nosotros/donde-estamos/" role="menuitem" tabindex="-1">Dónde Estamos</a></li>
+
                                     </ul>
                                 </li>
-                                <li><a href="https://porlosjovenes.org/quehacemos">Qué hacemos</a></li>
+                                <li><a href="/que-hacemos/">Qué hacemos</a></li>
                                 <li><a href="#">Cómo colaborar<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <ul class="drop-menu">
-                                        <li><a href="https://porlosjovenes.org/quierodonar">Quiero Donar</a></li>
-                                        <li><a href="https://porlosjovenes.org/alianzas">Alianzas Institucionales</a></li>
-                                        <li><a href="https://porlosjovenes.org/legado">Legados</a></li>
-                                        <li><a href="https://porlosjovenes.org/ayudadifundiendo">Ayudá Difundiendo</a></li>
+                                        <li><a href="/como-colaborar/quiero-donar/">Quiero Donar</a></li>
+                                        <li><a href="/como-colaborar/alianzas/">Alianzas Institucionales</a></li>
+                                        <li><a href="/como-colaborar/legado/">Legados</a></li>
+                                        <li><a href="/como-colaborar/ayuda-difundiendo/">Ayudá Difundiendo</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="https://porlosjovenes.org/carrera">Carrera</a></li>
-                                <li><a href="https://porlosjovenes.org/app">App</a></li>
+                                <li><a href="/carrera/">Carrera</a></li>
+                                <li><a href="/app/">App</a></li>
                             </ul>
-                                <a href="https://porlosjovenes.org/quierodonar" class="boton-donar" style="position: absolute; right: 0;">Quiero Donar</a>
+                                <a href="/como-colaborar/quiero-donar/" class="boton-donar" style="position: absolute; right: 0;">Quiero Donar</a>
                         </nav>
                     </div>
                 </div>

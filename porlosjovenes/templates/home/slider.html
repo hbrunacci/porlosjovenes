@@ -1,29 +1,38 @@
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+
+
+
+    <!-- ======= slider part start ======= -->
     <section class="slider-area">
         <div class="slider-wraper owl-carousel">
+            {% for imagen in self.slider_home.all %}
+            {% image imagen.image original  as tmp_img %}
 
-            <?php if($contenido['slider1']){
-                foreach($contenido['slider1'] as $con){
-                 ?>
-                <!-- single slider -->
-                <div class="single-slider slider-one" style="background: url('<?php echo base_url('uploads/principal/'.$con['imagen']); ?>');">
+                <div class="single-slider slider-one" style="background: url({{ tmp_img.url }})">
                     <div class="slider-table">
                         <div class="slider-table-cell">
                             <div class="container">
                                 <!-- single slider content -->
                                 <div class="slider-info" style="height: 60vh; text-align: center;">
-                                    <?php echo $con['texto']; ?>
-
-                                    <?php if(isset($con['textoCTA']) && !empty($con['textoCTA'])){ ?>
-                                        <a href="<?php echo $con['linkCTA']; ?>" class="<?php echo $con['colorCTA']; ?>" style="opacity: 1;bottom: 30%; margin-left: -3.5em; position: absolute;"><?php echo $con['textoCTA']; ?></a>
-                                    <?php } ?>
+                                    <!-- texto -->
+                                    <h2 style="text-align: center; letter-spacing:0; font-family: Raleway;
+                                        opacity: 0.85; text-shadow: 0 0 4px black,0 0 4px black,0 0 4px black; color: white;">
+                                        {{ imagen.message|richtext }}
+                                    </h2>
+                                    <!-- si boton apareceboton-->
+                                        {% if imagen.boton %}
+                                            <a href="{{ imagen.url_boton }}" class="boton-donar animated fadeInDown"
+                                           style="opacity: 1;bottom: 30%; margin-left: -3.5em; position: absolute;">{{ imagen.text_boton }}</a>
+                                        {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php }
-            } ?>
-
+            {% endfor %}
         </div>
     </section>
     <!-- ======= slider part end ======= -->

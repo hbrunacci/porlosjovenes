@@ -7,6 +7,8 @@ from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+
 from wagtail.documents.models import Document
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.search import index
@@ -19,11 +21,22 @@ class HomePage(Page):
     subpage_type = []
     max_count = 1
 
+    def get_context(self, request, *args, **kwargs):
+        context = super(HomePage, self).get_context(request, *args, **kwargs)
+        noticias = Noticias.objects.first()
+        context['posts'] = Noticia.objects.descendant_of(noticias).live().order_by('-date')[:3]
+
+        return context
+
     class Meta:
 
         verbose_name = "Home Page"
         verbose_name_plural = "Home Pages"
 
+    content_panels = Page.content_panels + [
+        InlinePanel('slider_home', label="Galeria de Imagenes"),
+
+    ]
 
 
 class QueHacemos(Page):
@@ -104,13 +117,14 @@ class QueHacemos(Page):
 
 
 class Nosotros(Page):
-    template = 'secciones/nosotros.html'
+    template = 'secciones/nosotros/nosotros.html'
     subpage_types = ['QuienesSomos', 'Transparencia', 'DondeEstamos']
     max_count = 1
 
     class Meta:
         verbose_name = "'Nosotros'"
         verbose_name_plural = "'Nosotros'"
+
 
 class QuienesSomos(Page):
     template = 'secciones/nosotros/quienessomos.html'
@@ -131,6 +145,7 @@ class QuienesSomos(Page):
     class Meta:
         verbose_name = "'Quienes Somos'"
         verbose_name_plural = "'Quienes Somos'"
+
 
 class Transparencia(Page):
     template = 'secciones/nosotros/transparencia.html'
@@ -155,6 +170,7 @@ class Transparencia(Page):
         verbose_name = "'Transparencia'"
         verbose_name_plural = "'Transparencia'"
 
+
 class memoria(Orderable):
     page = ParentalKey('home.Transparencia',related_name='memoria_balance')
     memoria_descripcion = models.CharField(max_length=100,null=True,blank=True)
@@ -165,9 +181,9 @@ class memoria(Orderable):
         FieldPanel('memoria_url')
     ]
 
+
 class DondeEstamos(Page):
     template = 'secciones/nosotros/dondeestamos.html'
-    template = 'secciones/nosotros/quienessomos.html'
     subpage_types = []
     max_count = 1
     imagen_principal = models.ForeignKey(
@@ -183,9 +199,8 @@ class DondeEstamos(Page):
     ]
 
     class Meta:
-        verbose_name = "'Quienes Somos'"
-        verbose_name_plural = "'Quienes Somos'"
-
+        verbose_name = "'Donde Estamos'"
+        verbose_name_plural = "'Donde Estamos'"
 
 
 class ComoColaborar(Page):
@@ -478,11 +493,35 @@ class Video_Old(Orderable):
         FieldPanel('video_code'),
     ]
 
-class Noticias(Page):
-    template = 'secciones/noticias/noticia.html'
+
+class Noticias(RoutablePageMixin, Page):
+    template = 'secciones/noticias/noticias.html'
     subpage_types = ['Noticia']
 
     max_count = 1
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(Noticias, self).get_context(request, *args, **kwargs)
+        context['posts'] = self.posts
+        context['blog_page'] = self
+        return context
+
+    def get_posts(self):
+        return Noticia.objects.descendant_of(self).live().order_by('-date')
+
+
+    @route(r'^categorias/(?P<category>[-\w]+)/$')
+    def post_by_category(self, request, category, *args, **kwargs):
+        self.search_type = 'categorias'
+        self.search_term = category
+        self.posts = self.get_posts().filter(categoria=category)
+        return Page.serve(self, request, *args, **kwargs)
+
+
+    @route(r'^$')
+    def post_list(self, request, *args, **kwargs):
+        self.posts = self.get_posts()
+        return Page.serve(self, request, *args, **kwargs)
 
     class Meta:
         verbose_name = "Blog Noticias"
@@ -492,16 +531,22 @@ class Noticias(Page):
 class Noticia(Page):
     template = 'secciones/noticias/noticia_detalle.html'
     subpage_types = []
-    CATEGORIAS =  (('CAT1','cat1'),
-                                       ('CAT2', 'cat2'),
-                                       ('CAT3', 'cat3'),
-                                       ('CAT4', 'cat4'),
+    CATEGORIAS =  (('Educacion','Educacion'),
+                                       ('Comunitaria', 'Comunitaria'),
+                                       ('Pastorales', 'Pastorales'),
+                                       ('Trabajo', 'Trabajo'),
                                        )
 
     categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='CAT1')
     date = models.DateField("Fecha", default=datetime.now)
     intro = models.CharField("Bajada", max_length=250)
     body = RichTextField("Cuerpo", blank=True)
+    imagen_portada = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.SET_NULL,
+        null=True,
+        blank=False,
+        related_name='+'
+    )
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -513,8 +558,13 @@ class Noticia(Page):
         FieldPanel('date'),
         FieldPanel('intro'),
         FieldPanel('body', classname="full"),
-        InlinePanel('gallery_images', label="Imagen"),
+        ImageChooserPanel('imagen_portada'),
+        InlinePanel('gallery_images', label="Galeria de Imagenes"),
     ]
+    # Overrides the context to list all child items, that are live, by the
+    # date that they were published
+    # http://docs.wagtail.io/en/latest/getting_started/tutorial.html#overriding-context
+
     class Meta:
         verbose_name = 'Noticia'
         verbose_name_plural = 'Noticias'
@@ -523,12 +573,44 @@ class Noticia(Page):
 class NoticiaGalleryImage(Orderable):
     page = ParentalKey(Noticia, on_delete=models.CASCADE, related_name='gallery_images')
     image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+        'wagtailimages.Image',
+        verbose_name='Imagen',
+        on_delete=models.CASCADE,
+        related_name='+'
     )
-    caption = models.CharField(blank=True, max_length=250)
+    caption = models.CharField(verbose_name='Etiqueta',
+                               blank=True,
+                               max_length=250)
 
     panels = [
         ImageChooserPanel('image'),
         FieldPanel('caption'),
     ]
 
+
+class HomeGalleryImage(Orderable):
+    page = ParentalKey(HomePage,
+                       on_delete=models.CASCADE,
+                       related_name='slider_home')
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name='Imagen',
+        on_delete=models.CASCADE,
+        related_name='+'
+    )
+    caption = models.CharField(verbose_name='Etiqueta',
+                               blank=True,
+                               max_length=250)
+    message = RichTextField('Mensaje', blank=True)
+    boton = models.BooleanField('Boton', default=False)
+    text_boton = models.CharField(max_length=25,default='',blank=True,null=False)
+    url_boton = models.URLField('Redireccionar a', blank=True)
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('caption'),
+        FieldPanel('message'),
+        FieldPanel('boton'),
+        FieldPanel('text_boton'),
+        FieldPanel('url_boton'),
+    ]

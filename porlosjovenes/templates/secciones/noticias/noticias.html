@@ -1,10 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
 
-</body>
-</html>
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% block content %}
+
+    <!-- ======= blog part start ======= -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- section title -->
+                    <div class="title">
+                        <h3>NOTICIAS - <span class="capitalizado"><!--Aca la categoria de la noticia--></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+    {% if posts %}
+    {%for blog in posts %}<!-- recorrer las noticias-->
+                                  <!-- cada 2 noticias agregar una fila-->
+                                  <div class="row">
+
+                     <div class="col-md-6">
+                        <!-- Single news -->
+                        <article class="news-info">
+                            <div class="news-img h400">
+                                <!--link a la noticia-->
+                                <a href="{% pageurl blog %}">
+                                    {% if blog.imagen_portada %}
+                                        {% image blog.imagen_portada fill-850x450-c50 as image %}
+                                        <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
+                                    {% endif %}
+                                </a>
+
+                            </div>
+                            <div class="news-content h200">
+                                <div class="post-meta">
+                                    <ul>
+                                        <li><a href="/noticias/">{{ blog.categoria }}</a>
+                                          <br />
+                                            {% if blog.date %}
+                                                {{ blog.date }}
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a href="{% pageurl blog %}">
+                                    <h2>{{blog.title}}</h2>
+                                </a>
+                                <p>{{ blog.intro|truncatewords:15 }}</p>
+                                <a href="{% pageurl blog %}" >Ver Más</a>
+                            </div>
+                        </article>
+                    </div>
+    {% endfor %}
+    {% else %}
+
+                </div>
+                <!--paginador-->
+                <div class="paginador">
+                  <!--paginador-->
+                </div>
+            <p >No hay artículos en esta sección aún.</p>
+    {% endif %}
+
+            {% endblock %}
