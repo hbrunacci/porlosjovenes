@@ -514,7 +514,7 @@ class Noticias(RoutablePageMixin, Page):
     def post_by_category(self, request, category, *args, **kwargs):
         self.search_type = 'categorias'
         self.search_term = category
-        self.posts = self.get_posts().filter(categoria=category)
+        self.posts = self.get_posts().filter(categoria__iexact=category)
         return Page.serve(self, request, *args, **kwargs)
 
 
@@ -537,7 +537,7 @@ class Noticia(Page):
                                        ('Trabajo', 'Trabajo'),
                                        )
 
-    categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='CAT1')
+    categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Educacion')
     date = models.DateField("Fecha", default=datetime.now)
     intro = models.CharField("Bajada", max_length=250)
     body = RichTextField("Cuerpo", blank=True)
