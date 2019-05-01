@@ -21,6 +21,16 @@ class HomePage(Page):
     subpage_type = []
     max_count = 1
 
+    banner_imagen = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=False,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+    banner_url = models.URLField(null=True,
+                                 blank=True)
+
     def get_context(self, request, *args, **kwargs):
         context = super(HomePage, self).get_context(request, *args, **kwargs)
         noticias = Noticias.objects.first()
@@ -34,7 +44,10 @@ class HomePage(Page):
         verbose_name_plural = "Home Pages"
 
     content_panels = Page.content_panels + [
+        ImageChooserPanel('banner_imagen',heading='Imagen banner inferior'),
+        FieldPanel('banner_url', heading='Link banner inferior'),
         InlinePanel('slider_home', label="Galeria de Imagenes"),
+
 
     ]
 
@@ -528,6 +541,7 @@ class Noticias(RoutablePageMixin, Page):
         verbose_name_plural = "Blog Noticias"
 
 
+
 class Noticia(Page):
     template = 'secciones/noticias/noticia_detalle.html'
     subpage_types = []
@@ -588,16 +602,52 @@ class NoticiaGalleryImage(Orderable):
     ]
 
 
+class Revista(Page):
+    template = 'secciones/revista/revistas.html'
+    subpage_type = []
+
+    max_count = 1
+
+
+    content_panels = Page.content_panels + [
+        InlinePanel('newsletter_gallery', label="Publicaciones de Revistas"),
+    ]
+
+    class Meta:
+        verbose_name = 'Revista'
+        verbose_name_plural = 'Revistas'
+
+
+class NewsletterGallery(Orderable):
+    page = ParentalKey(Revista,
+                       on_delete=models.CASCADE,
+                       related_name='newsletter_gallery')
+    image = models.ForeignKey('wagtailimages.Image',
+                              verbose_name='Imagen',
+                              on_delete=models.CASCADE,
+                              related_name='+'
+                              )
+    caption = models.CharField(verbose_name='Etiqueta',
+                               blank=True,
+                               max_length=200)
+    url_boton = models.URLField('Redireccionar a', blank=True)
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('caption'),
+        FieldPanel('url_boton'),
+    ]
+
+
 class HomeGalleryImage(Orderable):
     page = ParentalKey(HomePage,
                        on_delete=models.CASCADE,
                        related_name='slider_home')
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        verbose_name='Imagen',
-        on_delete=models.CASCADE,
-        related_name='+'
-    )
+    image = models.ForeignKey('wagtailimages.Image',
+                              verbose_name='Imagen',
+                              on_delete=models.CASCADE,
+                              related_name='+'
+                              )
     caption = models.CharField(verbose_name='Etiqueta',
                                blank=True,
                                max_length=250)

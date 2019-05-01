@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    <section class="section-padding" style="padding-bottom: 2em;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- section title -->
+                    <div class="title" >
+                        <h3 >REVISTAS</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Single news -->
+                    <?php if($revistas){ ?>
+                    {% if  self.newsletter_gallery.all.count > 0 %}
+                    <div class="row">
+                        {%  for revista in self.newsletter_gallery.all %}
+                            <div class="col-md-3">
+                            <div class="revista" style="margin-bottom: 2em;">
+                                {% image revista.image original as tmp_image %}
+                            <div style="height: 210px; margin-bottom: 1em; overflow: hidden"><img src="{{tmp_image.url}}" /></div>
+
+                            <h2>{{revista.caption}}</h2><br />
+                            <div class="text-center"><a class="boton-donar" href="{{revista.url_boton}}" target="_blank">Visualizar Online</a></div>
+
+                            </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p>No hay revistas</p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

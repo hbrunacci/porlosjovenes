@@ -91,7 +91,6 @@
                                    <a href="{% pageurl noticia %}">
                                        <h2>{{noticia.title}}</h2>
                                    </a>
-                                   <p>{{ noticia.intro|truncatewords:15 }}</p>
                                    <a href="{% pageurl noticia %}" >Ver Más</a>
                                </div>
                            </article>
@@ -103,8 +102,9 @@
 
                             <!-- Single news -->
                             <div class="publicidad" style="width: 100%; background: transparent">
-                                <a href="<?php echo $banner['link']; ?>" target="_blank">
-                                    <img src="<?php echo base_url('uploads/banners/'.$banner['imagen']) ?>" class="img-responsive" style="width: 100%"/>
+                                <a href="{{ self.banner_url }}" target="_blank">
+                                    {% image self.banner_imagen original as img_banner %}
+                                    <img src= "{{img_banner.url }}" class="img-responsive" style="width: 100%"/>
                                 </a>
                             </div>
 
