@@ -9,7 +9,7 @@
 
 
 
-<a href="<?php echo base_url('alianzas'); ?>" class="flotaAlianzas"><img src="{% static '/img/sumate.png' %}" /></a>
+<a href="/como-colaborar/quiero-donar/" class="flotaAlianzas"><img src="{% static '/img/sumate.png' %}" /></a>
 
     <!-- ======= slider part start ======= -->
     <iframe width="100%" height="600" src="https://www.youtube.com/embed/{{ self.video_code }}?&autoplay=1&mute=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="hidden-sm hidden-xs" ></iframe>
@@ -77,22 +77,22 @@
                     <div class="content redondear">
                         <div class="row">
                             <div class="col-md-3">
-                                <a href="https://porlosjovenes.org/proyectos/categoria/educacion">
+                                <a href="/proyectos/categorias/educacion">
                                     <img src="{% static 'img/demo/app1.jpg' %}" />
                                     <h3 style="font-family: Raleway, sans-serif; font-weight: 700; color: rgb(58, 58, 58); margin: 30px 0px 20px; text-align: center;"><font color="#0097a4"><span style="transition-duration: 0.5s; transition-property: all;">Educación</span></font></h3><p style="margin-bottom: 15px; font-size: 16px; padding-top: 10px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif; text-align: center;">Educación integral de calidad en todos los niveles de enseñanza</p>                                </a>
                             </div>
                             <div class="col-md-3">
-                                <a href="https://porlosjovenes.org/proyectos/categoria/formacion">
+                                <a href="/proyectos/categorias/formacion">
                                     <img src="{% static 'img/demo/app2.jpg' %}" />
                                     <h3 style="font-family: Raleway, sans-serif; font-weight: 700; color: rgb(58, 58, 58); margin: 30px 0px 20px; text-align: center;"><font color="#0097a4"><span style="transition-duration: 0.5s; transition-property: all;">Formación Laboral</span></font></h3><p style="text-align: center; margin-bottom: 15px; font-size: 16px; padding-top: 10px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif; font-weight: 400;">La capacitación es la puerta al trabajo. La formación como herramienta indispensable.</p>                                </a>
                             </div>
                             <div class="col-md-3">
-                                <a href="https://porlosjovenes.org/proyectos/categoria/comunitarias">
+                                <a href="/proyectos/categorias/comunitarias">
                                     <img src="{% static 'img/demo/app3.jpg' %}" />
                                     <h3 style="font-family: Raleway, sans-serif; font-weight: 700; color: rgb(58, 58, 58); margin: 30px 0px 20px; text-align: center;"><font color="#0097a4"><span style="transition-duration: 0.5s; transition-property: all;">Acciones Socio Comunitarias</span></font></h3><p style="margin-bottom: 15px; font-size: 16px; padding-top: 10px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif; text-align: center;">Contención y educación para impulsar y acompañar la vida de cada chico</p>                                </a>
                             </div>
                             <div class="col-md-3">
-                                <a href="https://porlosjovenes.org/proyectos/categoria/pastoral">
+                                <a href="/proyectos/categorias/pastoral">
                                     <img src="{% static 'img/demo/app4.jpg' %}" />
                                     <h3 style="font-family: Raleway, sans-serif; font-weight: 700; color: rgb(58, 58, 58); margin: 30px 0px 20px; text-align: center;"><font color="#0097a4"><span style="transition-duration: 0.5s; transition-property: all;">Acciones Misioneras y Pastorales</span></font></h3><p style="margin-bottom: 15px; font-size: 16px; padding-top: 10px; color: rgb(119, 119, 119); font-family: raleway, roboto, arial, serif; text-align: center;">Para que ninguna familia queda aislada, excluida ni sin recursos materiales y afectivos</p>                                </a>
                             </div>
@@ -104,7 +104,7 @@
                         <div class="sponsors owl-carousel" style="autoPlay: 3000">
                             {% for sponsor in self.carousel_sponsor_app.all %}
                                 <div>
-                                {% image sponsor.imagen_sponsor fill-80x80 as tmp_photo %}
+                                {% image sponsor.imagen_sponsor original as tmp_photo %}
                                 <img src="{{ tmp_photo.url }}" class="img-responsive">
                                 </div>
                             {% endfor %}

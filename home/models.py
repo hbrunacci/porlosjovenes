@@ -465,11 +465,9 @@ class SponsorClass(Orderable):
         ImageChooserPanel('imagen_sponsor'),
         FieldPanel('url_sponsor')
     ]
-
-
-class Meta:
-    verbose_name = "'App'"
-    verbose_name_plural = "'App'"
+    class Meta:
+        verbose_name = "'App'"
+        verbose_name_plural = "'App'"
 
 
 class SponsorApp(SponsorClass):
@@ -511,6 +509,71 @@ class Video_Old(Orderable):
         FieldPanel('video_code'),
     ]
 
+class Proyectos(RoutablePageMixin, Page):
+    template = 'secciones/proyectos/proyectos.html'
+    subpage_types = []
+
+    max_count = 1
+
+    banner_imagen = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=False,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+    banner_url = models.URLField(null=True,
+                                 blank=True)
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('banner_imagen'),
+        FieldPanel('banner_url'),
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(Proyectos, self).get_context(request, *args, **kwargs)
+        all_posts = self.posts
+
+        paginador = Paginator(all_posts, 6)
+        page = request.GET.get("page")
+        try:
+            context['posts'] = paginador.page(page)
+        except PageNotAnInteger:
+            context['posts'] = paginador.page(1)
+        except EmptyPage:
+            context['posts'] = paginador.page(paginador.num_pages)
+
+        context['blog_page'] = self
+        return context
+
+    def get_posts(self):
+
+        return Noticia.objects.descendant_of(Noticias.objects.live().first()).live().filter(es_proyecto=True).order_by('-date')
+
+    @route(r'^ver/(?P<category>[-\w]+)/$')
+    def post_by_category(self, request, category, *args, **kwargs):
+        self.search_type = 'todos'
+        self.search_term = category
+        self.posts = self.get_posts().filter(categoria__iexact=category)
+        return Page.serve(self, request, *args, **kwargs)
+
+    @route(r'^categorias/(?P<category>[-\w]+)/$')
+    def post_by_category_outstanding(self, request, category, *args, **kwargs):
+        self.search_type = 'destacado'
+        self.search_term = category
+        self.posts = self.get_posts().filter(categoria__iexact=category)
+        return Page.serve(self, request, *args, **kwargs)
+
+    @route(r'^$')
+    def post_list(self, request, *args, **kwargs):
+        self.posts = self.get_posts()
+        return Page.serve(self, request, *args, **kwargs)
+
+    class Meta:
+        verbose_name = "Blog Proyectos"
+        verbose_name_plural = "Blog Proyectos"
+
+
 
 class Noticias(RoutablePageMixin, Page):
     template = 'secciones/noticias/noticias.html'
@@ -532,19 +595,18 @@ class Noticias(RoutablePageMixin, Page):
             context['posts'] = paginador.page(paginador.num_pages)
 
         context['blog_page'] = self
+
         return context
 
     def get_posts(self):
         return Noticia.objects.descendant_of(self).live().order_by('-date')
 
-
     @route(r'^categorias/(?P<category>[-\w]+)/$')
     def post_by_category(self, request, category, *args, **kwargs):
-        self.search_type = 'categorias'
+        self.search_type = 'destacado'
         self.search_term = category
         self.posts = self.get_posts().filter(categoria__iexact=category)
         return Page.serve(self, request, *args, **kwargs)
-
 
     @route(r'^$')
     def post_list(self, request, *args, **kwargs):
@@ -554,7 +616,6 @@ class Noticias(RoutablePageMixin, Page):
     class Meta:
         verbose_name = "Blog Noticias"
         verbose_name_plural = "Blog Noticias"
-
 
 
 class Noticia(Page):
@@ -567,6 +628,7 @@ class Noticia(Page):
                                        )
 
     categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Educacion')
+    es_proyecto = models.BooleanField(verbose_name='Mostrar en Proyectos',default=False)
     date = models.DateField("Fecha", default=datetime.now)
     intro = models.CharField("Bajada", max_length=250)
     body = RichTextField("Cuerpo", blank=True)
@@ -583,6 +645,7 @@ class Noticia(Page):
     ]
 
     content_panels = Page.content_panels + [
+        FieldPanel('es_proyecto'),
         FieldPanel('categoria'),
         FieldPanel('date'),
         FieldPanel('intro'),

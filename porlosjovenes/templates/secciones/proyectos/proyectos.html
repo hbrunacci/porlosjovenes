@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+    <section class="section-padding proyectos-seccion {{ self.search_term }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- section title -->
+                    <div class="title">
+                        <h3>PROYECTOS <span class="capitalizado"></span></h3>
+                    </div>
+                </div>
+            </div>
+            {% if self.search_type == 'destacado' %}
+                {% if posts %}
+                    {%for blog in posts|slice:":1" %}
+                    <div class="row">
+                        <div class="col-md-9">
+                            <article class="news-info">
+                                <!-- Single news -->
+                                 {% image blog.imagen_portada original as image %}
+
+                                <div style="width: 100%; height: 400px; display: block;
+                                        background: transparent url('{{ image.url }}')
+                                        center center no-repeat; background-size: cover;"></div>
+                                <div class="nota" style="padding: 1em;">
+                                    <p style="margin: 1.5em 0 0 0; font-size: 16px;">{{post.fecha}}</p>
+                                    <h2>{{post.titulo}}</h2>
+                                    <p style="font-weight:bold;">{{post.intro}}</p>
+                                    {{post.texto}}
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="publicidad" style="width: 100%; background: transparent; margin-bottom: 10px;">
+                                <a href="{{self.banner_link}}" target="_blank">
+                                    {% image self.banner_imagen original as tmp_img %}
+                                    <img src=" {{ tmp_img.url }}" class="img-responsive" style="width: 100%"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+
+            <div class="row">
+                <div class="row">
+                {% if posts %}
+                    {%for blog in posts|slice:"1:" %}
+                        {% if forloop.counter0|divisibleby:3 %}
+                            </div> <div class="row">
+                        {% endif %}
+                        <div class="col-md-4">
+                            <!-- Single news -->
+                            <article class="news-info">
+                                <div class="news-img h200">
+                                <!--link a la noticia-->
+                                    <a href="{% pageurl blog %}">
+                                        {% if blog.imagen_portada %}
+                                            {% image blog.imagen_portada fill-850x450-c50 as image %}
+                                            <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="news-content h200">
+                                    <div class="post-meta">
+                                        <ul>
+                                            <li><a href="/noticias/">{{ blog.categoria }}</a>
+                                                <br />
+                                                {% if blog.date %}
+                                                    {{ blog.date }}
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a href="{% pageurl blog %}">
+                                        <h2>{{blog.title}}</h2>
+                                    </a>
+                                    <p>{{ blog.intro|truncatewords:15 }}</p>
+                                    <a href="{% pageurl blog %}" >Ver Más</a>
+                                </div>
+                            </article>
+                        </div>
+                    {% endfor %}
+                <div class="text-center" style="margin: 1em 0 2em 0;">
+                    <a class="boton-donar" href="/proyectos/ver/{{ self.search_term }}">Ver mas proyectos</a></div>
+                {% else %}
+                </div>
+                    <p >No hay artículos en esta sección aún.</p>
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+    <!-- ======= blog part end ======= -->
+
+{% endblock %}
