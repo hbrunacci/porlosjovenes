@@ -205,7 +205,7 @@
                             {% for sponsor in self.carousel_sponsor_carrera.all %}
                                 <div>
 
-                                {% image sponsor.imagen_sponsor fill-80x80 as tmp_photo %}
+                                {% image sponsor.imagen_sponsor original as tmp_photo %}
                                 <img src="{{ tmp_photo.url }}" class="img-responsive">
                                 </div>
                             {% endfor %}
