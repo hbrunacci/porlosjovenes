@@ -20,54 +20,82 @@
             </div>
 
             <div class="row">
-    {% if posts %}
-    {%for blog in posts %}<!-- recorrer las noticias-->
-                                  <!-- cada 2 noticias agregar una fila-->
-                                  <div class="row">
-
-                     <div class="col-md-6">
-                        <!-- Single news -->
-                        <article class="news-info">
-                            <div class="news-img h400">
+                {% if posts %}
+                    {%for blog in posts %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            </div> <div class="row">
+                        {% endif %}
+                        <div class="col-md-6">
+                            <!-- Single news -->
+                            <article class="news-info">
+                                <div class="news-img h400">
                                 <!--link a la noticia-->
-                                <a href="{% pageurl blog %}">
-                                    {% if blog.imagen_portada %}
-                                        {% image blog.imagen_portada fill-850x450-c50 as image %}
-                                        <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
-                                    {% endif %}
-                                </a>
-
-                            </div>
-                            <div class="news-content h200">
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><a href="/noticias/">{{ blog.categoria }}</a>
-                                          <br />
-                                            {% if blog.date %}
-                                                {{ blog.date }}
-                                            {% endif %}
-                                        </li>
-                                    </ul>
+                                    <a href="{% pageurl blog %}">
+                                        {% if blog.imagen_portada %}
+                                            {% image blog.imagen_portada fill-850x450-c50 as image %}
+                                            <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
+                                        {% endif %}
+                                    </a>
                                 </div>
-                                <a href="{% pageurl blog %}">
-                                    <h2>{{blog.title}}</h2>
-                                </a>
-                                <p>{{ blog.intro|truncatewords:15 }}</p>
-                                <a href="{% pageurl blog %}" >Ver Más</a>
-                            </div>
-                        </article>
-                    </div>
-    {% endfor %}
-    {% else %}
+                                <div class="news-content h200">
+                                    <div class="post-meta">
+                                        <ul>
+                                            <li><a href="/noticias/">{{ blog.categoria }}</a>
+                                                <br />
+                                                {% if blog.date %}
+                                                    {{ blog.date }}
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a href="{% pageurl blog %}">
+                                        <h2>{{blog.title}}</h2>
+                                    </a>
+                                    <p>{{ blog.intro|truncatewords:15 }}</p>
+                                    <a href="{% pageurl blog %}" >Ver Más</a>
+                                </div>
+                            </article>
+                        </div>
+                    {% endfor %}
 
+                     {% if posts.paginator.num_pages > 1 %}
+                        <div class="container text-center">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="pagination">
+                                {% if posts.has_previous %}
+                                  <li class="page-item">
+                                    <a href="?page={{ posts.previous_page_number }}" class="page-link">
+                                      <span>&laquo;</span>
+                                    </a>
+                                  </li>
+                                {% endif %}
+
+                                {% for page_num in posts.paginator.page_range %}
+                                  <li class="page-item {% if page_num == posts.number %} active{% endif %}">
+                                    <a href="?page={{ page_num }}" class="page-link">
+                                      {{ page_num }}
+                                    </a>
+                                  </li>
+                                {% endfor %}
+
+                                {% if posts.has_next %}
+                                  <li class="page-item">
+                                    <a href="?page={{ posts.next_page_number }}" class="page-link">
+                                      <span>&raquo;</span>
+                                    </a>
+                                  </li>
+                                {% endif %}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {% endif %}
+
+                {% else %}
                 </div>
-                <!--paginador-->
-                <div class="paginador">
-                  <!--paginador-->
-                </div>
-            <p >No hay artículos en esta sección aún.</p>
-    {% endif %}
-            </div>
+                    <p >No hay artículos en esta sección aún.</p>
+                {% endif %}
         </div>
     </section>
 {% endblock %}

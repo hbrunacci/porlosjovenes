@@ -3,12 +3,12 @@ from datetime import datetime
 
 from modelcluster.fields import ParentalKey
 
+from django.core.paginator import PageNotAnInteger,Paginator,EmptyPage
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-
 from wagtail.documents.models import Document
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.search import index
@@ -230,6 +230,7 @@ class Alianzas(Page):
     template = 'secciones/comocolaborar/alianzas.html'
     subpage_types = []
     max_count = 1
+
     imagen_principal = models.ForeignKey(
         "wagtailimages.Image",
         blank=False,
@@ -237,6 +238,10 @@ class Alianzas(Page):
         related_name="+",
         on_delete=models.SET_NULL,
     )
+    texto_encabezado = RichTextField(features=['h1', 'h2', 'h3', 'h4', 'h5', 'h6', "bold", "italic"],
+                             null=True,
+                             blank=True)
+
     nota_pie = RichTextField(features=['h1', 'h2', 'h3', 'h4', 'h5', 'h6', "bold", "italic"],
                              null=True,
                              blank=True)
@@ -244,7 +249,7 @@ class Alianzas(Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('imagen_principal',
                           heading='Imagen Central'),
-
+        FieldPanel('texto_encabezado'),
         FieldPanel('nota_pie'),
         MultiFieldPanel([
             InlinePanel('listado_alianzas')
@@ -515,7 +520,17 @@ class Noticias(RoutablePageMixin, Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super(Noticias, self).get_context(request, *args, **kwargs)
-        context['posts'] = self.posts
+        all_posts = self.posts
+
+        paginador = Paginator(all_posts, 6)
+        page = request.GET.get("page")
+        try:
+            context['posts'] = paginador.page(page)
+        except PageNotAnInteger:
+            context['posts'] = paginador.page(1)
+        except EmptyPage:
+            context['posts'] = paginador.page(paginador.num_pages)
+
         context['blog_page'] = self
         return context
 
