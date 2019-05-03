@@ -143,6 +143,8 @@ class QuienesSomos(Page):
     template = 'secciones/nosotros/quienessomos.html'
     subpage_types = []
     max_count = 1
+    texto_principal = models.CharField(max_length=1000, null=False, blank=False, default='')
+
     imagen_principal = models.ForeignKey(
         "wagtailimages.Image",
         blank=False,
@@ -152,6 +154,7 @@ class QuienesSomos(Page):
     )
 
     content_panels = Page.content_panels + [
+        FieldPanel('texto_principal'),
         ImageChooserPanel('imagen_principal')
     ]
 
@@ -165,16 +168,17 @@ class Transparencia(Page):
     subpage_types = []
     max_count = 1
 
+    texto_principal = RichTextField(null=False, blank=False, default='')
     imagen_principal = models.ForeignKey(
         "wagtailimages.Image",
-        blank=False,
+        blank=True,
         null=True,
         related_name="+",
         on_delete=models.SET_NULL,
     )
 
     content_panels = Page.content_panels + [
-        ImageChooserPanel('imagen_principal'),
+        FieldPanel('texto_principal'),
         MultiFieldPanel([
             InlinePanel('memoria_balance')
         ], heading='Links a Memoria y Balance ')
@@ -199,15 +203,18 @@ class DondeEstamos(Page):
     template = 'secciones/nosotros/dondeestamos.html'
     subpage_types = []
     max_count = 1
+    texto_principal = RichTextField(null=False, blank=False, default='')
+
     imagen_principal = models.ForeignKey(
         "wagtailimages.Image",
-        blank=False,
+        blank=True,
         null=True,
         related_name="+",
         on_delete=models.SET_NULL,
     )
 
     content_panels = Page.content_panels + [
+        FieldPanel('texto_principal'),
         ImageChooserPanel('imagen_principal')
     ]
 
@@ -280,6 +287,8 @@ class AyudaDifundiendo(Page):
     template = 'secciones/comocolaborar/ayudadifundiendo.html'
     subpage_types = []
     max_count = 1
+    texto_principal = RichTextField(null=False, blank=False, default='')
+
     imagen_principal = models.ForeignKey(
         "wagtailimages.Image",
         blank=False,
@@ -289,6 +298,7 @@ class AyudaDifundiendo(Page):
     )
 
     content_panels = Page.content_panels + [
+        FieldPanel('texto_principal'),
         ImageChooserPanel('imagen_principal',
                           heading='Imagen Central')
 
@@ -303,6 +313,8 @@ class Legado(Page):
     template = 'secciones/comocolaborar/legado.html'
     subpage_types = []
     max_count = 1
+    texto_principal = RichTextField(null=False, blank=False, default='')
+
     imagen_principal = models.ForeignKey(
         "wagtailimages.Image",
         blank=False,
@@ -312,6 +324,7 @@ class Legado(Page):
     )
 
     content_panels = Page.content_panels + [
+        FieldPanel('texto_principal'),
         ImageChooserPanel('imagen_principal',
                           heading='Imagen Central')
 
@@ -325,11 +338,21 @@ class Legado(Page):
 class QuieroDonar(Page):
     template = 'secciones/comocolaborar/quierodonar.html'
     subpage_types = []
-    max_count = 1
+    max_count = 5
+
+    texto_encabezado = RichTextField(default='')
+
+    imagen_encabezado = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=True,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
 
     imagen_principal = models.ForeignKey(
         "wagtailimages.Image",
-        blank=False,
+        blank=True,
         null=True,
         related_name="+",
         on_delete=models.SET_NULL,
@@ -339,8 +362,12 @@ class QuieroDonar(Page):
     url_aumentar = models.URLField('Url iframe aumento donacion ', blank=True, null=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('texto_encabezado'),
+        ImageChooserPanel('imagen_encabezado',
+                          heading='Imagen Superior'),
         ImageChooserPanel('imagen_principal',
                           heading='Imagen Lateral'),
+
         FieldPanel('url_donar', heading='Link Iframe Donacion Unica'),
         FieldPanel('url_aumentar', heading='Link Iframe Aumento Donacion'),
 
@@ -357,6 +384,9 @@ class Carrera(Page):
     subpage_types = ['Carreras']
 
     max_count = 1
+
+    texto_principal = RichTextField(null=False, blank=False, default='')
+
     imagen_superior_horizontal = models.ForeignKey(
         "wagtailimages.Image",
         blank=False,
@@ -404,6 +434,7 @@ class Carrera(Page):
 
 
     content_panels = Page.content_panels + [
+        FieldPanel('texto_principal'),
         ImageChooserPanel('imagen_superior_horizontal', heading='Imagen de Slider superior horizontal'),
         ImageChooserPanel('imagen_superior_vertical', heading='Imagen de Slider superior vertical'),
         ImageChooserPanel('imagen_inferior_mapa', heading='Mapa de la carrera'),
@@ -430,11 +461,29 @@ class App(Page):
     template = 'secciones/app/app.html'
     subpage_types = []
     max_count = 1
+    texto_izquierda_app = RichTextField(blank=True, null=True, )
+
+    texto_derecha_app = RichTextField(blank=True, null=True)
+
+    texto_educacion = RichTextField(blank=True, null=True)
+
+    texto_formacion = RichTextField(blank=True, null=True)
+
+    texto_acciones_comunitarias = RichTextField(blank=True, null=True)
+
+    texto_acciones_pastorales = RichTextField(blank=True, null=True)
+
     video_code = models.CharField(max_length=70, verbose_name='Codigo Video',
                                   blank=True,
                                   null=True)
     content_panels = Page.content_panels + [
-        FieldPanel('video_code'),
+        FieldPanel('texto_izquierda_app',classname='full'),
+        FieldPanel('texto_derecha_app',classname='full'),
+        FieldPanel('texto_educacion',classname='full'),
+        FieldPanel('texto_formacion',classname='full'),
+        FieldPanel('texto_acciones_comunitarias',classname='full'),
+        FieldPanel('texto_acciones_pastorales',classname='full'),
+        FieldPanel('video_code',classname='full'),
         MultiFieldPanel([
             InlinePanel('carousel_sponsor_app'),
         ], heading='App Sponsor'

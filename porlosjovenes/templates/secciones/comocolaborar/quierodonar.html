@@ -15,10 +15,38 @@
                 </div>
             </div>
         </div>
+        {% if self.imagen_encabezado  %}
+            <!-- single slider -->
+                    {% image self.imagen_encabezado original as img_encabezado %}
+                    <div class="single-slider slider-one" style="background: url('{{img_encabezado.url}}')">
+                        <div class="slider-table">
+                            <div class="slider-table-cell">
+                                <div class="container ">
+                                    <div class="slider-info" style="height: 60vh; text-align: center;">
+                                    <!-- texto -->
+                                    <h2 style="text-align: center; letter-spacing:0; font-family: Raleway;
+                                        opacity: 0.85; text-shadow: 0 0 4px black,0 0 4px black,0 0 4px black; color: white;">
+                                        <p class="col-sm-6 text-center">
+                                            {{ self.texto_encabezado|richtext }}
+                                        </p>
+
+
+                                    </h2>
+                                    <!-- si boton apareceboton-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        {% endif %}
+
         <div class="row">
             <div class="col-md-9">
                 <!-- Single news -->
-                <p>El futuro se construye con educación y la educación la construimos entre todos. Los chicos y jóvenes tienen un sueño: una vida de inclusión y oportunidades. Con tu colaboración logramos que eso, además de su sueño, sea su realidad.</p>
+                {% if not self.imagen_encabezado  %}
+                {{self.texto_encabezado|richtext }}
+                {% endif %}
                 <div class="text-center" style="margin: 2em 0;">
                     <button class="botondonar seleccion" data-form="1">Quiero Colaborar</button>
                     <button href="#" data-form="2" class="botondonar">Quiero aumentar mi colaboración</button>
