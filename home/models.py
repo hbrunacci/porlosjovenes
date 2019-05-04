@@ -671,9 +671,9 @@ class Noticia(Page):
     template = 'secciones/noticias/noticia_detalle.html'
     subpage_types = []
     CATEGORIAS =  (('Educacion','Educacion'),
-                                       ('Comunitaria', 'Comunitaria'),
-                                       ('Pastorales', 'Pastorales'),
-                                       ('Trabajo', 'Trabajo'),
+                                       ('Comunitaria', 'Acciones Comunitarias'),
+                                       ('Pastorales', 'Acciones Misioneras y Pastorales'),
+                                       ('Trabajo', 'Formación Para El Trabajo'),
                                        )
 
     categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Educacion')
