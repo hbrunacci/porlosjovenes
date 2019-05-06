@@ -7,148 +7,82 @@
 
 {% block content %}
 
-<section class="section-padding ">
+        <!-- ======= blog part start ======= -->
+    <section class="section-padding articulo-proyecto" >
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <!-- section title -->
-                    <div class="title">
-                        <h3>NOTICIAS / <span class="capitalizado">{{self.categoria }}</span></h3>
+                    <div class="title" >
+                        <h3 >
+                            {% if self.es_proyecto %}
+                                PROYECTOS
+                            {% else %}
+                                NOTICIAS
+                            {% endif %}
+                             / <span class="capitalizado">{{ self.categoria }} </span></h3>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 articulobody">
                     <!-- Single news -->
+                    {% image self.imagen_portada original as portada %}
 
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                   {% comment %} <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to='{{ imagen.id }}' {% if imagen.id == 1 %} class="active"{% endif %}></li>
-                   {% endcomment %}
-                    <div class="carousel-inner">
-                       {% for imagen in self.gallery_images.all %}
-                           <div class="item {% if forloop.counter == 1 %} active {%  endif %}">
-                                <li data-target="#myCarousel" data-slide-to="{{forloop.counter}}" {% if forloop.counter == 1 %} active {%  endif %}></li>
-                               {% image imagen.image original as tmp_img %}
-                               <img src="{{tmp_img.url}}" alt="{{imagen.caption}}">
-                           </div>
-                       {% endfor %}
-
+                    <div style="width: 100%; height: 400px; display: block; background: transparent url('{{ portada.url }}') center center no-repeat; background-size: cover;"></div>
+                    <div class="nota">
+                        <p style="margin: 1.5em 0 0 0; font-size: 16px;">{{self.date}}</p>
+                        <h2 class="titulo">{{self.titulo}}</h2>
+                        <p style="font-weight:bold;">{{ self.bajada }}</p>
+                        <p class="MsoNormal" style="text-align:justify">
+                            {{ self.body|richtext }}
+                        </p>
                     </div>
 
-
-
-                      <!-- Left and right controls -->
-                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
 
-                            <div class="nota">
-                                <p style="margin: 1.5em 0 0 0; font-size: 16px;">
-                                   {{self.date}}</p>
 
-                                <h2 class="titulo">{{self.titulo}}</h2>
-
-                                <p style="font-weight:bold;">{{ self.bajada }}</p>
-
-                                <p class="MsoNormal" style="text-align:justify">
-                                    {{ self.body|richtext }}
-                                </p>
+            {% if posts %}
+                <div class="col-md-12" style="margin-top: 3em;">
+                <h4 style="padding: 20px 0;">Otras Noticias</h4>
+                </div>
+            {%for blog in posts|slice:"1:" %}
+                <div class="row">
+                <div class="col-md-4">
+                    <article class="news-info">
+                        <div class="news-img h200">
+                            <!--link a la noticia-->
+                            <a href="{% pageurl blog %}">
+                                {% if blog.imagen_portada %}
+                                    {% image blog.imagen_portada original as image %}
+                                    <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="news-content h200">
+                            <div class="post-meta">
+                                <ul>
+                                    <li><a href="/noticias/">{{ blog.categoria }}</a>
+                                        <br />
+                                        {% if blog.date %}
+                                            {{ blog.date }}
+                                        {% endif %}
+                                    </li>
+                                </ul>
                             </div>
-                    <div class="col-md-12" style="margin-top: 3em;">
-                        <h4 style="padding: 20px 0;">Otras Noticias</h4>
-                    </div>
-                    <div class="col-md-4">
-                        <article class="news-info">
-                            <div class="news-img h200">
-
-                                <a href="https://porlosjovenes.org/notas/n/Domingo-Savio-es-sinónimo-de-oportunidad/1634">
-                                    <img src="https://porlosjovenes.org/uploads/news/Rosario-_Domingo_Savio_(3).JPG" alt="">
-                                </a>
-                                <!--div class="post-date-info">
-                                    <span>04</span> 02/2019                                </div-->
-                            </div>
-                            <div class="news-content h200">
-                                <div class="post-meta">
-
-                                    <ul>
-                                        <li>
-                                            04 de febrero, 2019<p></p>
-                                            <a href="https://porlosjovenes.org/articulos/n/">comunitaria</a></li>
-                                    </ul>
-                                </div>
-                                <a href="https://porlosjovenes.org/notas/n/Domingo-Savio-es-sinónimo-de-oportunidad/1634">
-                                    <h2>Domingo Savio es sinónimo de oportunidad</h2>
-                                </a>
-                                <p>Los jóvenes tienen diversos intereses: estudiar, formarse para trabajar, hacer deporte, ser parte de un espacio asociativo. En Rosario, una Casa los reúne.</p>
-                                <a href="https://porlosjovenes.org/notas/n/Domingo-Savio-es-sinónimo-de-oportunidad/1634" class="donate-btn more-btn hvr-shutter-out-horizontal">Ver Más</a>
-                            </div>
-                        </article>
-                    </div>
-                                    <div class="col-md-4">
-                        <article class="news-info">
-                            <div class="news-img h200">
-
-                                <a href="https://porlosjovenes.org/notas/n/Vanina-y-su-experiencia-misionera-en-Gan-Gan/1633">
-                                    <img src="https://porlosjovenes.org/uploads/news/906049_10204173973002671_7769408097664718595_o1.jpg" alt="">
-                                </a>
-                                <!--div class="post-date-info">
-                                    <span>28</span> 01/2019                                </div-->
-                            </div>
-                            <div class="news-content h200">
-                                <div class="post-meta">
-
-                                    <ul>
-                                        <li>
-                                            28 de enero, 2019<p></p>
-                                            <a href="https://porlosjovenes.org/articulos/n/">comunitaria</a></li>
-                                    </ul>
-                                </div>
-                                <a href="https://porlosjovenes.org/notas/n/Vanina-y-su-experiencia-misionera-en-Gan-Gan/1633">
-                                    <h2>Vanina y su experiencia misionera en Gan Gan</h2>
-                                </a>
-                                <p>Vanina vivía en Bahía Blanca hasta que una experiencia misionera le cambió el rumbo: hoy está radicada en Gan Gan, acompañando a niños, niñas y jóvenes.</p>
-                                <a href="https://porlosjovenes.org/notas/n/Vanina-y-su-experiencia-misionera-en-Gan-Gan/1633" class="donate-btn more-btn hvr-shutter-out-horizontal">Ver Más</a>
-                            </div>
-                        </article>
-                    </div>
-                                    <div class="col-md-4">
-                        <article class="news-info">
-                            <div class="news-img h200">
-
-                                <a href="https://porlosjovenes.org/notas/n/Don-Bosco-vive-en-el-andar-misionero/1632">
-                                    <img src="https://porlosjovenes.org/uploads/news/foto-sitio.jpg" alt="">
-                                </a>
-                                <!--div class="post-date-info">
-                                    <span>11</span> 01/2019                                </div-->
-                            </div>
-                            <div class="news-content h200">
-                                <div class="post-meta">
-
-                                    <ul>
-                                        <li>
-                                            11 de enero, 2019<p></p>
-                                            <a href="https://porlosjovenes.org/articulos/n/">comunitaria</a></li>
-                                    </ul>
-                                </div>
-                                <a href="https://porlosjovenes.org/notas/n/Don-Bosco-vive-en-el-andar-misionero/1632">
-                                    <h2>Don Bosco vive en el andar misionero</h2>
-                                </a>
-                                <p>En la región de Gan Gan, Chubut, 150 familias vulnerables y aisladas comparten vida y fe con los misioneros, superando las dificultades en comunidad.</p>
-                                <a href="https://porlosjovenes.org/notas/n/Don-Bosco-vive-en-el-andar-misionero/1632" class="donate-btn more-btn hvr-shutter-out-horizontal">Ver Más</a>
-                            </div>
-                        </article>
-                    </div>
-
-
-
+                            <a href="{% pageurl blog %}">
+                                <h2>{{blog.title}}</h2>
+                            </a>
+                            <p>{{ blog.intro|truncatewords:15 }}</p>
+                            <a href="{% pageurl blog %}" class="donate-btn more-btn hvr-shutter-out-horizontal" >Ver Más</a>
+                        </div>
+                    </article>
+                </div>
+                </div>
+                {% endfor %}
+            {% endif %}
             </div>
         </div>
     </section>
+
 {% endblock %}

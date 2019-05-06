@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <!-- section title -->
                     <div class="title">
-                        <h3>NOTICIAS <span class="capitalizado"><!--Aca la categoria de la noticia--></h3>
+                        <h3>NOTICIAS<span class="capitalizado"> {% if self.search_term %} - {{ self.search_term }} {% endif %}</span></h3>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                                 <!--link a la noticia-->
                                     <a href="{% pageurl blog %}">
                                         {% if blog.imagen_portada %}
-                                            {% image blog.imagen_portada fill-850x450-c50 as image %}
+                                            {% image blog.imagen_portada original as image %}
                                             <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
                                         {% endif %}
                                     </a>

@@ -558,6 +558,7 @@ class Video_Old(Orderable):
         FieldPanel('video_code'),
     ]
 
+
 class Proyectos(RoutablePageMixin, Page):
     template = 'secciones/proyectos/proyectos.html'
     subpage_types = []
@@ -623,11 +624,14 @@ class Proyectos(RoutablePageMixin, Page):
         verbose_name_plural = "Blog Proyectos"
 
 
-
 class Noticias(RoutablePageMixin, Page):
     template = 'secciones/noticias/noticias.html'
     subpage_types = ['Noticia']
-
+    CATEGORIAS = {'Educacion':'Educacion',
+                 'Comunitaria':'Acciones Comunitarias',
+                 'Pastorales': 'Acciones Misioneras y Pastorales',
+                 'Trabajo':'Formación Para El Trabajo'
+                 }
     max_count = 1
 
     def get_context(self, request, *args, **kwargs):
@@ -655,6 +659,7 @@ class Noticias(RoutablePageMixin, Page):
         self.search_type = 'destacado'
         self.search_term = category
         self.posts = self.get_posts().filter(categoria__iexact=category)
+        self.search_term = self.CATEGORIAS[category.title()]
         return Page.serve(self, request, *args, **kwargs)
 
     @route(r'^$')
