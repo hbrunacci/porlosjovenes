@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wagtail.contrib.postgres_search',
     "wagtail.contrib.routable_page",
+    'wagtail.contrib.settings',
 ]
 
 WAGTAILSEARCH_BACKENDS = {

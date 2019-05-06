@@ -30,9 +30,14 @@
                         <a href="/"><img src="https://porlosjovenes.org/assets/sitio/img/logo.png" alt=""></a>
                     </div>
                     <!-- mobile menu wraper -->
-                    <div class="responsive-menu-wrap"><div class="slicknav_menu"><a href="#" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style="outline: none;"><span class="slicknav_menutxt">MENU</span><span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><ul class="slicknav_nav slicknav_hidden" style="display: none;" aria-hidden="true" role="menu">
+                    <div class="responsive-menu-wrap"><div class="slicknav_menu">
+                        <a href="#" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style="outline: none;"><span class="slicknav_menutxt">MENU</span><span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><ul class="slicknav_nav slicknav_hidden" style="display: none;" aria-hidden="true" role="menu">
 
-                            <li><a href="#" class="abrirbuscador" onclick="$('.buscador').toggle('fast');$('#labusca').focus();" role="menuitem" tabindex="-1"><i class="fa fa-search iconobusca" style="margin: 0; padding: 0;"></i></a></li>
+                            <li>
+                                <a href="#" class="abrirbuscador" onclick="$('.buscador').toggle('fast');$('#labusca').focus();" role="menuitem" tabindex="-1">
+                                <i class="fa fa-search iconobusca" style="margin: 0; padding: 0;"></i>
+                            </a>
+                            </li>
 
                             <div class="buscador" style="display: none;"><form method="POST" action="https://porlosjovenes.org/buscador/buscar"><input class="form-control" type="text" name="busqueda" placeholder="ingrese texto a buscar">
                                 <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-check fa-fw"></i></button>

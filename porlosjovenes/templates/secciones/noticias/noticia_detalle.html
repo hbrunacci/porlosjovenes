@@ -37,31 +37,36 @@
                         <p class="MsoNormal" style="text-align:justify">
                             {{ self.body|richtext }}
                         </p>
+                    <div id="mobile-share">
+                        <a href="whatsapp://send?text={{ self.full_url }}" data-action="share/whatsapp/share">Compartir
+                        </a>
+                    </div>
+                        <div class="container-fluid">
+                        {% if self.gallery_images.all.count > 0 %}
+                            <div id="Galeria_imagenes" class="carousel slide col-md-12" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    {% for imagen in self.gallery_images.all %}
+                                        <div class="item {% if forloop.counter == 1 %} active {%  endif %}">
+                                            {% image imagen.image original as tmp_img %}
+                                            <img class="img-responsive center-block" src="{{tmp_img.url}}"
+                                                 alt="{{imagen.caption}}"  style="height: 400px">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <a class="left carousel-control" href="#Galeria_imagenes" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#Galeria_imagenes" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        {% endif %}
+                        </div>
                     </div>
 
-                </div>
-                <div class="row">
-                    {% if self.gallery_images.all.count > 0 %}
-                          <div id="Galeria_imagenes" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                              {% for imagen in self.gallery_images.all %}
-                              <div class="item {% if forloop.counter == 1 %} active {%  endif %}">
-                                {% image imagen.image original as tmp_img %}
-                                <img class="d-block w-100" src="{{tmp_img.url}}" alt="{{imagen.caption}}">
-                              </div>
-                              {% endfor %}
-                            </div>
-                              <a class="left carousel-control" href="#Galeria_imagenes" role="button" data-slide="prev">
-                                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                  <span class="sr-only">Previous</span>
-                              </a>
-                              <a class="right carousel-control" href="#Galeria_imagenes" role="button" data-slide="next">
-                                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                  <span class="sr-only">Next</span>
-                              </a>
-                          </div>
 
-                    {% endif %}
                 </div>
             </div>
                 </div>
