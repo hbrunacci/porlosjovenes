@@ -40,49 +40,33 @@
                     </div>
 
                 </div>
-
-
-            {% if posts %}
-                <div class="col-md-12" style="margin-top: 3em;">
-                <h4 style="padding: 20px 0;">Otras Noticias</h4>
-                </div>
-            {%for blog in posts|slice:"1:" %}
                 <div class="row">
-                <div class="col-md-4">
-                    <article class="news-info">
-                        <div class="news-img h200">
-                            <!--link a la noticia-->
-                            <a href="{% pageurl blog %}">
-                                {% if blog.imagen_portada %}
-                                    {% image blog.imagen_portada original as image %}
-                                    <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
-                                {% endif %}
-                            </a>
-                        </div>
-                        <div class="news-content h200">
-                            <div class="post-meta">
-                                <ul>
-                                    <li><a href="/noticias/">{{ blog.categoria }}</a>
-                                        <br />
-                                        {% if blog.date %}
-                                            {{ blog.date }}
-                                        {% endif %}
-                                    </li>
-                                </ul>
+                    {% if self.gallery_images.all.count > 0 %}
+                          <div id="Galeria_imagenes" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                              {% for imagen in self.gallery_images.all %}
+                              <div class="item {% if forloop.counter == 1 %} active {%  endif %}">
+                                {% image imagen.image original as tmp_img %}
+                                <img class="d-block w-100" src="{{tmp_img.url}}" alt="{{imagen.caption}}">
+                              </div>
+                              {% endfor %}
                             </div>
-                            <a href="{% pageurl blog %}">
-                                <h2>{{blog.title}}</h2>
-                            </a>
-                            <p>{{ blog.intro|truncatewords:15 }}</p>
-                            <a href="{% pageurl blog %}" class="donate-btn more-btn hvr-shutter-out-horizontal" >Ver Más</a>
-                        </div>
-                    </article>
+                              <a class="left carousel-control" href="#Galeria_imagenes" role="button" data-slide="prev">
+                                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                  <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="right carousel-control" href="#Galeria_imagenes" role="button" data-slide="next">
+                                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                  <span class="sr-only">Next</span>
+                              </a>
+                          </div>
+
+                    {% endif %}
                 </div>
-                </div>
-                {% endfor %}
-            {% endif %}
             </div>
-        </div>
+                </div>
+
+
     </section>
 
 {% endblock %}
