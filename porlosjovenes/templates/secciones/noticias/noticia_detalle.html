@@ -37,10 +37,7 @@
                         <p class="MsoNormal" style="text-align:justify">
                             {{ self.body|richtext }}
                         </p>
-                    <div id="mobile-share">
-                        <a href="whatsapp://send?text={{ self.full_url }}" data-action="share/whatsapp/share">Compartir
-                        </a>
-                    </div>
+                    {% include 'social_icon_share.html' %}
                         <div class="container-fluid">
                         {% if self.gallery_images.all.count > 0 %}
                             <div id="Galeria_imagenes" class="carousel slide col-md-12" data-ride="carousel">
