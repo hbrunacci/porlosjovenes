@@ -1,6 +1,16 @@
-<div class='container-fluid whatsapp' id="mobile-share" ALIGN='right' >
-    <a  href="whatsapp://send?text={{ request.META.HTTP_HOST }}{{ self.url }}" data-action="share/whatsapp/share">
-         <i class="fa fa-whatsapp fa-3x" style="color: #008000" aria-hidden="true" title="Compartir en Whatsapp"></i>
+<div class='container-fluid ' id="mobile-share" ALIGN='right' >
+    <a class="whatsapp" href="whatsapp://send?text={{ request.META.HTTP_HOST }}{{ self.url }}" data-action="share/whatsapp/share">
+         <i class="fa fa-whatsapp fa-3x" style="color: #4FCE5D" aria-hidden="true" title="Compartir en Whatsapp"></i>
     </a>
-</div>
+     <a href="https://twitter.com/share?url={{ request.META.HTTP_HOST }}{{ self.url }}&amp;text=Don%20Bosco%20PorlosJovenes.org&amp;hashtags=PorLosJovenes" target="_blank">
+        <i class="fa fa-twitter fa-3x" style="color: #1DA1F2" aria-hidden="true" title="Compartir en Twitter"></i>
+    </a>
+    <a  href="http://www.facebook.com/sharer.php?u={{ request.META.HTTP_HOST }}{{ self.url }}" data-action="share/whatsapp/share">
+         <i class="fa fa-facebook-official fa-3x" style="background-color:#ffffff;color: #3C5A99" aria-hidden="true" title="Compartir en Facebook"></i>
+    </a>
+        <a href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+    </a>
+ </div>
 <br>
+,

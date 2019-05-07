@@ -652,7 +652,9 @@ class Noticias(RoutablePageMixin, Page):
         return context
 
     def get_posts(self):
-        return Noticia.objects.descendant_of(self).live().order_by('-date')
+        posts = Noticia.objects.descendant_of(self).live().exclude(expire_at__lt=datetime.now()).order_by('-date')
+        posts = posts.exclude(go_live_at__gt=datetime.now())
+        return posts
 
     @route(r'^categorias/(?P<category>[-\w]+)/$')
     def post_by_category(self, request, category, *args, **kwargs):
