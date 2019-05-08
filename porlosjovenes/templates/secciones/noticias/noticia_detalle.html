@@ -20,7 +20,7 @@
                             {% else %}
                                 NOTICIAS
                             {% endif %}
-                             / <span class="capitalizado">{{ self.categoria }} </span></h3>
+                             / <span class="capitalizado">{{ descripcion_categorias}} </span></h3>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,41 @@
 
                 </div>
             </div>
-                </div>
+         {% if posts %}
+             {% for noticia in posts %}
+                        <div class="col-md-6">
+                            <!-- Single news -->
+                           <article class="news-info">
+                                <div class="news-img h200">
+                                    <a href="{% pageurl noticia %}">
+                                        {% if noticia.imagen_portada %}
+                                            {% image noticia.imagen_portada fill-850x450-c50 as image %}
+                                            <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                               <div class="news-content h200">
+                                   <div class="post-meta">
+                                       <ul>
+                                           <li><a href="/noticias/">{{ descripcion_categorias}} </a>
+                                               <br />
+                                               {% if noticia.date %}
+                                                   {{ noticia.date }}
+                                               {% endif %}
+                                           </li>
+                                       </ul>
+                                   </div>
+                                   <a href="{% pageurl noticia %}">
+                                       <h2>{{noticia.title}}</h2>
+                                   </a>
+                                   <a href="{% pageurl noticia %}" >Ver Más</a>
+                               </div>
+                           </article>
+                        </div>
+             {% endfor %}
+         {% endif %}
+
+        </div>
 
 
     </section>

@@ -15,6 +15,11 @@ from wagtail.search import index
 from wagtail.contrib.forms.models import (
   AbstractEmailForm, AbstractFormField, FORM_FIELD_CHOICES)
 
+CATEGORIAS = {'Educacion':'Educacion',
+                 'Comunitaria':'Acciones Comunitarias',
+                 'Pastorales': 'Acciones Misioneras y Pastorales',
+                 'Trabajo':'Formación Para El Trabajo'
+                 }
 
 class HomePage(Page):
     template = 'home/home_page.html'
@@ -627,11 +632,7 @@ class Proyectos(RoutablePageMixin, Page):
 class Noticias(RoutablePageMixin, Page):
     template = 'secciones/noticias/noticias.html'
     subpage_types = ['Noticia']
-    CATEGORIAS = {'Educacion':'Educacion',
-                 'Comunitaria':'Acciones Comunitarias',
-                 'Pastorales': 'Acciones Misioneras y Pastorales',
-                 'Trabajo':'Formación Para El Trabajo'
-                 }
+
     max_count = 1
 
     def get_context(self, request, *args, **kwargs):
@@ -661,7 +662,7 @@ class Noticias(RoutablePageMixin, Page):
         self.search_type = 'destacado'
         self.search_term = category
         self.posts = self.get_posts().filter(categoria__iexact=category)
-        self.search_term = self.CATEGORIAS[category.title()]
+        self.search_term = CATEGORIAS[category.title()]
         return Page.serve(self, request, *args, **kwargs)
 
     @route(r'^$')
@@ -677,7 +678,7 @@ class Noticias(RoutablePageMixin, Page):
 class Noticia(Page):
     template = 'secciones/noticias/noticia_detalle.html'
     subpage_types = []
-    CATEGORIAS =  (('Educacion','Educacion'),
+    CATEGORIAS = (('Educacion','Educacion'),
                                        ('Comunitaria', 'Acciones Comunitarias'),
                                        ('Pastorales', 'Acciones Misioneras y Pastorales'),
                                        ('Trabajo', 'Formación Para El Trabajo'),
@@ -716,6 +717,21 @@ class Noticia(Page):
     class Meta:
         verbose_name = 'Noticia'
         verbose_name_plural = 'Noticias'
+
+    def get_posts(self):
+        posts = Noticia.objects.descendant_of(Noticias.objects.live().first()).live()
+        posts = posts.exclude(expire_at__lt=datetime.now()).order_by('-date')
+        posts = posts.exclude(go_live_at__gt=datetime.now())
+        posts = posts.filter(categoria=self.categoria).exclude(id=self.id)
+        return posts
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(Noticia, self).get_context(request, *args, **kwargs)
+        context['posts'] = self.get_posts()
+
+        context['descripcion_categorias'] = CATEGORIAS[self.categoria]
+
+        return context
 
 
 class NoticiaGalleryImage(Orderable):
