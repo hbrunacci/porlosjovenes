@@ -72,7 +72,7 @@
                                 <div class="news-img h200">
                                     <a href="{% pageurl noticia %}">
                                         {% if noticia.imagen_portada %}
-                                            {% image noticia.imagen_portada fill-850x450-c50 as image %}
+                                            {% image noticia.imagen_portada original as image %}
                                             <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
                                         {% endif %}
                                     </a>
@@ -81,7 +81,6 @@
                                    <div class="post-meta">
                                        <ul>
                                            <li><a href="/noticias/">{{ noticia.categoria }}</a>
-                                               <br />
                                                {% if noticia.date %}
                                                    {{ noticia.date }}
                                                {% endif %}
