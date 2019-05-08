@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.utils import timezone
 
 from modelcluster.fields import ParentalKey
 
@@ -653,8 +654,8 @@ class Noticias(RoutablePageMixin, Page):
         return context
 
     def get_posts(self):
-        posts = Noticia.objects.descendant_of(self).live().exclude(expire_at__lt=datetime.now()).order_by('-date')
-        posts = posts.exclude(go_live_at__gt=datetime.now())
+        posts = Noticia.objects.descendant_of(self).live().exclude(expire_at__lt=timezone.now()).order_by('-date')
+        posts = posts.exclude(go_live_at__gt=timezone.now())
         return posts
 
     @route(r'^categorias/(?P<category>[-\w]+)/$')
@@ -720,9 +721,10 @@ class Noticia(Page):
 
     def get_posts(self):
         posts = Noticia.objects.descendant_of(Noticias.objects.live().first()).live()
-        posts = posts.filter(categoria=self.categoria).exclude(id=self.id)[:2]
-        posts = posts.exclude(expire_at__lt=datetime.now()).order_by('-date')
-        posts = posts.exclude(go_live_at__gt=datetime.now())
+        posts = posts.filter(categoria=self.categoria).exclude(id=self.id)
+        posts = posts.exclude(expire_at__lt=timezone.now()).order_by('-date')
+        posts = posts.exclude(go_live_at__gt=timezone.now())
+        posts = posts.all()[:2]
         return posts
 
     def get_cat_description(self):
