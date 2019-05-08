@@ -228,6 +228,13 @@ p {
    margin-left: 15%;
 }
 .slider-info h2 {
+    letter-spacing: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-family:  Raleway;
+    opacity: 1;
+    text-shadow: black 0px 0px 4px, black 0px 0px 4px, black 0px 0px 4px;
+    color: white;
    text-transform: initial !important;
 }
 
