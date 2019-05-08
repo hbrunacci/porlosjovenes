@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <!-- section title -->
                     <div class="title">
-                        <h3>NOTICIAS<span class="capitalizado"> {% if self.search_term %} - {{ self.search_term }} {% endif %}</span></h3>
+                        <h3>NOTICIAS<span class="capitalizado"> {% if self.search_term %} - {{ self.search_term }} {% endif %}</h3>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                                 <div class="news-content h200">
                                     <div class="post-meta">
                                         <ul>
-                                            <li><a href="/noticias/">{{ blog.categoria }}</a>
+                                            <li><a href="/noticias/">{{ blog.get_cat_description }}</a>
                                                 <br />
                                                 {% if blog.date %}
                                                     {{ blog.date }}

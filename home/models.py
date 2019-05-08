@@ -720,10 +720,13 @@ class Noticia(Page):
 
     def get_posts(self):
         posts = Noticia.objects.descendant_of(Noticias.objects.live().first()).live()
+        posts = posts.filter(categoria=self.categoria).exclude(id=self.id)[:2]
         posts = posts.exclude(expire_at__lt=datetime.now()).order_by('-date')
         posts = posts.exclude(go_live_at__gt=datetime.now())
-        posts = posts.filter(categoria=self.categoria).exclude(id=self.id)
         return posts
+
+    def get_cat_description(self):
+        return CATEGORIAS[self.categoria]
 
     def get_context(self, request, *args, **kwargs):
         context = super(Noticia, self).get_context(request, *args, **kwargs)
