@@ -236,6 +236,8 @@ p {
     text-shadow: black 0px 0px 4px, black 0px 0px 4px, black 0px 0px 4px;
     color: white;
    text-transform: initial !important;
+    left: 0px;
+    right: 0px;
 }
 
 .slider-table-cell .container {
