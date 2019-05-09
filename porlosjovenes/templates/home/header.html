@@ -68,7 +68,7 @@
                                 <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
                                     <a href="#" tabindex="-1">Cómo colaborar<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                 <span class="slicknav_arrow">►</span></a><ul class="drop-menu slicknav_hidden" role="menu" style="display: none;" aria-hidden="true">
-                                    <li><a href="/como-colaborar/quiero-donar/" role="menuitem" tabindex="-1">Quiero Donar</a></li>
+                                    <li><a href="/quierodonar/" role="menuitem" tabindex="-1">Quiero Donar</a></li>
                                     <li><a href="/como-colaborar/alianzas/" role="menuitem" tabindex="-1">Alianzas Institucionales</a></li>
                                     <li><a href="/como-colaborar/legado/" role="menuitem" tabindex="-1">Legados</a></li>
                                     <li><a href="/como-colaborar/ayuda-difundiendo/" role="menuitem" tabindex="-1">Ayudá Difundiendo</a></li>
@@ -108,7 +108,7 @@
                             <li><a href="/que-hacemos/">Qué hacemos</a></li>
                             <li><a href="#">Cómo colaborar<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                 <ul class="drop-menu">
-                                    <li><a href="/como-colaborar/quiero-donar/">Quiero Donar</a></li>
+                                    <li><a href="/quierodonar/">Quiero Donar</a></li>
                                     <li><a href="/como-colaborar/alianzas/">Alianzas Institucionales</a></li>
                                     <li><a href="/como-colaborar/legado/">Legados</a></li>
                                     <li><a href="/como-colaborar/ayuda-difundiendo/">Ayudá Difundiendo</a></li>
@@ -117,11 +117,23 @@
                             <li><a href="/carrera/">Carrera</a></li>
                             <li><a href="/app/">App</a></li>
                         </ul>
-                            <a href="/como-colaborar/quiero-donar/" class="boton-donar" style="position: absolute; right: 0;">Quiero Donar</a>
+                            <a href="/quierodonar/" class="boton-donar" style="position: absolute; right: 0;">Quiero Donar</a>
                     </nav>
                 </div>
             </div>
         </div>
+
+        {% if self.url == '/carrera/' %}
+            <div class="menucarrera">
+                    <a onClick="scrollToDiv('#inscribite');">INSCRIBITE</a>
+                    <a onClick="scrollToDiv('#informacion');">INFORMACIÓN</a>
+                    <a onClick="scrollToDiv('#kit');">KIT</a>
+                    <a onClick="scrollToDiv('#mapa');">MAPA</a>
+                    <a onClick="scrollToDiv('#sumarse');">POR QUÉ SUMARSE</a>
+                    <a onClick="scrollToDiv('#anteriores');">EDICIONES ANTERIORES</a>
+            </div>
+        {% endif %}
+
         </div>
 
   </header>
