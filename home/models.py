@@ -385,84 +385,6 @@ class QuieroDonar(Page):
         verbose_name_plural = "'Quiero Donar'"
 
 
-class Carrera(Page):
-    template = 'secciones/carrera/carrera.html'
-    subpage_types = ['Carreras']
-
-    max_count = 1
-
-    texto_principal = RichTextField(null=False, blank=False, default='')
-
-    imagen_superior_horizontal = models.ForeignKey(
-        "wagtailimages.Image",
-        blank=False,
-        null=True,
-        related_name="+",
-        on_delete=models.SET_NULL,
-    )
-    imagen_superior_vertical = models.ForeignKey(
-        "wagtailimages.Image",
-        blank=False,
-        null=True,
-        related_name="+",
-        on_delete=models.SET_NULL,
-    )
-    imagen_inferior_mapa = models.ForeignKey(
-        "wagtailimages.Image",
-        blank=False,
-        null=True,
-        related_name="+",
-        on_delete=models.SET_NULL,
-    )
-    imagen_inferior_kit = models.ForeignKey(
-        "wagtailimages.Image",
-        blank=False,
-        null=True,
-        related_name="+",
-        on_delete=models.SET_NULL,
-    )
-
-    reglamento = models.ForeignKey(
-        'wagtaildocs.Document',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    politica_menores = models.ForeignKey(
-        'wagtaildocs.Document',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-
-    content_panels = Page.content_panels + [
-        FieldPanel('texto_principal'),
-        ImageChooserPanel('imagen_superior_horizontal', heading='Imagen de Slider superior horizontal'),
-        ImageChooserPanel('imagen_superior_vertical', heading='Imagen de Slider superior vertical'),
-        ImageChooserPanel('imagen_inferior_mapa', heading='Mapa de la carrera'),
-        ImageChooserPanel('imagen_inferior_kit', heading='Kit Merchandainsing'),
-        DocumentChooserPanel('reglamento', heading='Reglamento general'),
-        DocumentChooserPanel('politica_menores', heading='Reglamento para menores'),
-        MultiFieldPanel([
-            InlinePanel('carousel_videos_anteriores')
-        ], heading='Videos Anteriores'
-            , classname='collapsible collapsed'),
-
-        MultiFieldPanel([
-            InlinePanel('carousel_sponsor_carrera'),
-        ], heading='Carrera Sponsor'
-            , classname='collapsible collapsed')
-    ]
-
-    class Meta:
-        verbose_name = "Home Carrera"
-        verbose_name_plural = "Home Carrera"
-
-
 class App(Page):
     template = 'secciones/app/app.html'
     subpage_types = []
@@ -533,10 +455,117 @@ class SponsorCarrera(SponsorClass):
     page = ParentalKey("home.Carrera", related_name='carousel_sponsor_carrera')
 
 
+class Carrera(Page):
+    template = 'secciones/carrera/carrera.html'
+    subpage_types = ['Carreras']
+
+    max_count = 1
+
+    texto_principal = RichTextField(null=False, blank=False, default='')
+
+
+    content_panels = Page.content_panels + [
+        FieldPanel('texto_principal'),
+        MultiFieldPanel([
+            InlinePanel('carousel_videos_anteriores')
+        ], heading='Videos Anteriores'
+            , classname='collapsible collapsed'),
+
+        MultiFieldPanel([
+            InlinePanel('carousel_sponsor_carrera'),
+        ], heading='Carrera Sponsor'
+            , classname='collapsible collapsed')
+    ]
+
+    class Meta:
+        verbose_name = "Home Carrera"
+        verbose_name_plural = "Home Carrera"
+    def get_context(self, request, *args, **kwargs):
+        context = super(Carrera, self).get_context(request, *args, **kwargs)
+
+        context['Eventos'] = self.get_posts()
+
+        return context
+
+    def get_posts(self):
+        posts = Carreras.objects.descendant_of(self).live().exclude(expire_at__lt=timezone.now())
+        posts = posts.exclude(go_live_at__gt=timezone.now())
+        posts = posts.first()
+        return posts
+
+
+
 class Carreras(Page):
     subpage_type = []
     template = 'secciones/carrera/carrera_data.html'
 
+    imagen_superior_horizontal = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=False,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+    imagen_superior_vertical = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=False,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+    imagen_inferior_mapa = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=False,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+    imagen_inferior_kit = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=False,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+
+    reglamento = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    politica_menores = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('imagen_superior_horizontal', heading='Imagen de Slider superior horizontal'),
+        ImageChooserPanel('imagen_superior_vertical', heading='Imagen de Slider superior vertical'),
+        ImageChooserPanel('imagen_inferior_mapa', heading='Mapa de la carrera'),
+        ImageChooserPanel('imagen_inferior_kit', heading='Kit Merchandainsing'),
+        DocumentChooserPanel('reglamento', heading='Reglamento general'),
+        DocumentChooserPanel('politica_menores', heading='Reglamento para menores'),
+        MultiFieldPanel([
+            InlinePanel('opciones_carreras')
+        ], heading='Circuitos de Carrera'
+            , classname='collapsible collapsed'),
+
+    ]
+
+    class Meta:
+        verbose_name = "Carrera"
+        verbose_name_plural = "Carreras"
+
+class Opciones_Carreras(Orderable):
+    page = ParentalKey('home.Carreras', related_name='opciones_carreras')
     inscripcion_url = models.URLField("Link de Incripcion", blank=False, null=False)
     distancia = models.CharField("Distancia", blank=False, null=False, max_length=10)
     valor = models.IntegerField("Valor de Inscripcion" , blank=False, null=False )
@@ -548,9 +577,6 @@ class Carreras(Page):
         FieldPanel('valor'),
         FieldPanel('inscripcion_url'),
     ]
-    class Meta:
-        verbose_name = "Carrera"
-        verbose_name_plural = "Carreras"
 
 
 class Video_Old(Orderable):

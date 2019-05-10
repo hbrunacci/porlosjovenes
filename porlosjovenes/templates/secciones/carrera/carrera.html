@@ -5,6 +5,11 @@
 
 {% block content %}
 
+    {% if Eventos %}
+        {% include 'secciones/carrera/barra_superior.html' %}
+        {% include 'secciones/carrera/carrera_info.html' %}
+
+    {% endif %}
 
     <section class="carrera-inscribite" id="sumarse">
         <div class="container">
@@ -13,11 +18,12 @@
                     <!-- section title -->
                     <div class="title hidden-sm hidden-xs">
                         <h2>¿Por qué sumarse?</h2>
-                        <p>Al participar de la carrera, ayudás a acompañar a<br>muchos jóvenes a través de los proyectos<br>socioeducativos de Don Bosco Argentina.<br>Sumarte es apoyar su presente y futuro. ¡Gracias!</p>                    </div>
-
+                        {{self.texto_principal|richtext}}
+                    </div>
                     <div class="title hidden-lg hidden-md">
                         <h2>¿Por qué sumarse?</h2>
-                         <p>Al participar de la carrera, ayudás a acompañar a muchos jóvenes a través de los proyectos socioeducativos de Don Bosco Argentina. Sumarte es apoyar su presente y futuro. ¡Gracias!</p>                    </div>
+                        {{self.texto_principal|richtext}}
+                    </div>
                 </div>
             </div>
         </div>

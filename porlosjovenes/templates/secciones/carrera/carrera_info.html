@@ -1,5 +1,8 @@
-    {% image self.imagen_superior_horizontal original as img_horizontal %}
-    {% image self.imagen_superior_vertical original as img_vertical %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+    {% image Eventos.imagen_superior_horizontal original as img_horizontal %}
+    {% image Eventos.imagen_superior_vertical original as img_vertical %}
 
     <section class="slider-area hidden-xs hidden-sm" style="position:relative;">
          <div class="slider-wraper owl-carousel">
@@ -31,14 +34,14 @@
                     </div>
 
                     <div class="row">
-                        {% for carrera in page.get_children %}
-                            {% if carrera.specific.descripcion_categoria %}
+                        {% for carrera in Eventos.opciones_carreras.all %}
+                            {% if carrera.descripcion_categoria %}
                                 <div class="col-md-4">
-                                    <a href="{{ carrera.specific.inscripcion_url }}">
+                                    <a href="{{ carrera.inscripcion_url }}">
                                         <div class="recuadro2">
-                                            <span>{{ carrera.specific.distancia }}</span>${{carrera.specific.valor}}
+                                            <span>{{ carrera.distancia }}</span>${{carrera.valor}}
                                         </div>
-                                        <span class="titulinho"> {{ carrera.specific.descripcion_categoria }}
+                                        <span class="titulinho"> {{ carrera.descripcion_categoria }}
                                         </span>
                                     </a>
                                 </div>
@@ -72,16 +75,17 @@
                         <h2>Información</h2>
                     </div>
                     <div class="content">
-                    <a href=" {{ self.reglamento.url }}">Reglamento</a>
-                    <a href="{{ self.politica_menores.url }}">Autorización para menores</a>
+                    <a href=" {{ Eventos.reglamento.url }}">Reglamento</a>
+                    <a href="{{ Eventos.politica_menores.url }}">Autorización para menores</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    {% image self.imagen_inferior_mapa original as img_mapa %}
-    {% image self.imagen_inferior_kit original as img_kit %}
+    {% image Eventos.imagen_inferior_mapa original as img_mapa %}
+    {% image Eventos.imagen_inferior_kit original as img_kit %}
     <!-- ======= blog part start ======= -->
+    {% if Eventos.imagen_inferior_mapa %}
     <section class="carrera-kit" id="kit">
         <div class="container">
             <div class="row">
@@ -103,7 +107,9 @@
             </div>
         </div>
     </section>
-    <!-- ======= slider part start ======= -->
+    {% endif %}
+<!-- ======= slider part start ======= -->
+    {% if Eventos.imagen_inferior_kit %}
     <section class="slider-area hidden-xs hidden-sm" id="mapa">
         <div class="slider-wraper owl-carousel">
             <!-- single slider -->
@@ -125,3 +131,4 @@
 
     </section>
     <!-- ======= blog part start ======= -->
+    {% endif %}
