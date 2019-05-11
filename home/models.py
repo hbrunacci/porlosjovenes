@@ -564,6 +564,7 @@ class Carreras(Page):
         verbose_name = "Carrera"
         verbose_name_plural = "Carreras"
 
+
 class Opciones_Carreras(Orderable):
     page = ParentalKey('home.Carreras', related_name='opciones_carreras')
     inscripcion_url = models.URLField("Link de Incripcion", blank=False, null=False)

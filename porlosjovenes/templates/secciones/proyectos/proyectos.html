@@ -28,10 +28,10 @@
                                         background: transparent url('{{ image.url }}')
                                         center center no-repeat; background-size: cover;"></div>
                                 <div class="nota" style="padding: 1em;">
-                                    <p style="margin: 1.5em 0 0 0; font-size: 16px;">{{post.fecha}}</p>
+                                    <p style="margin: 1.5em 0 0 0; font-size: 16px;">{{blog.fecha}}</p>
                                     <h2>{{post.titulo}}</h2>
-                                    <p style="font-weight:bold;">{{post.intro}}</p>
-                                    {{post.texto}}
+                                    <p style="font-weight:bold;">{{blog.intro}}</p>
+                                    {{blog.body|richtext}}
                                 </div>
                             </article>
                         </div>
@@ -90,7 +90,7 @@
                     {% endfor %}
                 <br>
                 <div class="text-center" style="margin: 1em 0 2em 0;">
-                    <a class="boton-donar" href="/proyectos/{{ self.search_term }}">Ver mas proyectos</a></div>
+                    <a class="boton-donar" href="/proyectos/categorias/{{ self.search_term }}">Ver mas proyectos</a></div>
                 {% else %}
                 </div>
                     <p >No hay artículos en esta sección aún.</p>
