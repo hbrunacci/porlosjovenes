@@ -630,20 +630,25 @@ class Proyectos(RoutablePageMixin, Page):
         return context
 
     def get_posts(self):
+        posts = Noticia.objects.descendant_of(Noticias.objects.live().first()).live().filter(es_proyecto=True).order_by('-date')
+        posts = posts.exclude(expire_at__lt=timezone.now()).order_by('-date')
+        posts = posts.exclude(go_live_at__gt=timezone.now())
 
-        return Noticia.objects.descendant_of(Noticias.objects.live().first()).live().filter(es_proyecto=True).order_by('-date')
+        return posts
 
     @route(r'^ver/(?P<category>[-\w]+)/$')
     def post_by_category(self, request, category, *args, **kwargs):
         self.search_type = 'todos'
-        self.search_term = category
+        self.category_group = category
+        self.search_term = CATEGORIAS[category.title()]
         self.posts = self.get_posts().filter(categoria__iexact=category)
         return Page.serve(self, request, *args, **kwargs)
 
     @route(r'^categorias/(?P<category>[-\w]+)/$')
     def post_by_category_outstanding(self, request, category, *args, **kwargs):
         self.search_type = 'destacado'
-        self.search_term = category
+        self.category_group = category
+        self.search_term = CATEGORIAS[category.title()]
         self.posts = self.get_posts().filter(categoria__iexact=category)
         return Page.serve(self, request, *args, **kwargs)
 
