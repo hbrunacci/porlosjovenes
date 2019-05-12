@@ -745,14 +745,14 @@ p {
 }
 
 .proyectos-seccion.comunitaria .news-info {   border-top: 4px solid #007D96;   }
-.proyectos-seccion.formacion .news-info {   border-top: 4px solid #F3714A;   }
+.proyectos-seccion.trabajo .news-info {   border-top: 4px solid #F3714A;   }
 .proyectos-seccion.educacion .news-info {   border-top: 4px solid #709044;   }
 .proyectos-seccion.pastorales .news-info {   border-top: 4px solid #FAA953;   }
 
 .articulo-proyecto .nota { background: #EEE; margin: 2em 0; padding: 1em; }
 
 .articulo-proyecto.comunitaria .nota { border-top: 5px solid #007D96; }
-.articulo-proyecto.formacion .nota { border-top: 5px solid #F3714A; }
+.articulo-proyecto.trabajo .nota { border-top: 5px solid #F3714A; }
 .articulo-proyecto.educacion .nota { border-top: 5px solid #709044; }
 .articulo-proyecto.pastorales .nota { border-top: 5px solid #FAA953; }
 
@@ -871,7 +871,7 @@ h2 {
     }
 
     .quehacemosHome a.educacion { background: #709044; }
-    .quehacemosHome a.formacion { background: #F3714A; }
+    .quehacemosHome a.trabajo { background: #F3714A; }
     .quehacemosHome a.comunitaria { background: #007D96; }
     .quehacemosHome a.pastoral { background: #FAA953; }
 
