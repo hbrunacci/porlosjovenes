@@ -33,7 +33,7 @@
                     <div class="nota">
                         <p style="margin: 1.5em 0 0 0; font-size: 16px;">{{self.date}}</p>
                         <h2 class="titulo">{{self.titulo}}</h2>
-                        <p style="font-weight:bold;">{{ self.bajada }}</p>
+                        <p style="font-weight:bold;">{{ self.intro }}</p>
                         <p class="MsoNormal" style="text-align:justify">
                             {{ self.body|richtext }}
                         </p>
@@ -95,6 +95,7 @@
                                    </div>
                                    <a href="{% pageurl noticia %}">
                                        <h2>{{noticia.title}}</h2>
+                                    <p style="font-weight:bold;">{{ blog.intro|truncatewords:15 }}</p>
                                    </a>
                                    <a href="{% pageurl noticia %}" >Ver Más</a>
                                </div>
