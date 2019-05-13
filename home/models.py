@@ -501,28 +501,28 @@ class Carreras(Page):
 
     imagen_superior_horizontal = models.ForeignKey(
         "wagtailimages.Image",
-        blank=False,
+        blank=True,
         null=True,
         related_name="+",
         on_delete=models.SET_NULL,
     )
     imagen_superior_vertical = models.ForeignKey(
         "wagtailimages.Image",
-        blank=False,
+        blank=True,
         null=True,
         related_name="+",
         on_delete=models.SET_NULL,
     )
     imagen_inferior_mapa = models.ForeignKey(
         "wagtailimages.Image",
-        blank=False,
+        blank=True,
         null=True,
         related_name="+",
         on_delete=models.SET_NULL,
     )
     imagen_inferior_kit = models.ForeignKey(
         "wagtailimages.Image",
-        blank=False,
+        blank=True,
         null=True,
         related_name="+",
         on_delete=models.SET_NULL,
@@ -724,6 +724,7 @@ class Noticia(Page):
     body = RichTextField("Cuerpo", blank=True)
     imagen_portada = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.SET_NULL,
+        verbose_name='Imagen de Portada',
         null=True,
         blank=False,
         related_name='+'
@@ -775,7 +776,7 @@ class NoticiaGalleryImage(Orderable):
     page = ParentalKey(Noticia, on_delete=models.CASCADE, related_name='gallery_images')
     image = models.ForeignKey(
         'wagtailimages.Image',
-        verbose_name='Imagen',
+        verbose_name='Imagen Galeria',
         on_delete=models.CASCADE,
         related_name='+'
     )
