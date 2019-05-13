@@ -6,8 +6,8 @@ from wagtail.search.models import Query
 
 
 def search(request):
-    search_query = request.GET.get('query', None)
-    page = request.GET.get('page', 1)
+    search_query = request.POST.get('busqueda', None)
+    page = 'Noticia'
 
     # Search
     if search_query:

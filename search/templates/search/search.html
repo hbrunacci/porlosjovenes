@@ -1,39 +1,70 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-searchresults{% endblock %}
 
-{% block title %}Search{% endblock %}
+{% block title %}Resultados de la busqueda{% endblock %}
 
 {% block content %}
-    <br>
-    <h1>Buscar</h1>
+        <!-- ======= blog part start ======= -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- section title -->
+                    <div class="title">
+                        <h3>Resultados para la búsqueda</h3>
+                    </div>
+                </div>
+            </div>
 
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
+            <div class="row">
+                {% if search_results.object_list %}
+                   {% for blog in search_results.object_list %}
+                     {% if forloop.counter0|divisibleby:4 %}
+                            </div> <div class="row">
+                        {% endif %}
+                        <div class="col-md-3">
+                            <!-- Single news -->
+                            <article class="news-info">
+                                <div class="news-img h200">
+                                <!--link a la noticia-->
+                                    <a href="{% pageurl blog %}">
+                                        {% if blog.specific.imagen_portada %}
+                                            {% image blog.specific.imagen_portada original as image %}
+                                            <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="news-content h200">
+                                    <div class="post-meta">
+                                        <ul>
+                                            <li><a href="/noticias/">{{ blog.specific.get_cat_description }}</a>
+                                                <br />
+                                                {% if blog.specific.date %}
+                                                    {{ blog.specific.date }}
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a href="{% pageurl blog %}">
+                                        <h2>{{blog.specific.title}}</h2>
+                                    </a>
+                                    <p>{{ blog.specific.intro|truncatewords:15 }}</p>
+                                    <a href="{% pageurl blog %}" >Ver Más</a>
+                                </div>
+                            </article>
+                        </div>
+                 {% endfor %}
+                </div>
+            {% elif search_query %}
+                    <p >No hay artículos en esta sección aún.</p>
+            {% endif %}
 
-    {% if search_results %}
-        <ul>
-            {% for result in search_results %}
-                <li>
-                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-                    {% if result.search_description %}
-                        {{ result.search_description }}
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
 
-        {% if search_results.has_previous %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-        {% endif %}
 
-        {% if search_results.has_next %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-        {% endif %}
-    {% elif search_query %}
-        No results found
-    {% endif %}
+        </div>
+    </section>
+
+
 {% endblock %}

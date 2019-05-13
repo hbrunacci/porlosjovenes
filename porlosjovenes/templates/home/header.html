@@ -37,18 +37,23 @@
                         <nav class="main-menu">
                             <ul class="navigation">
 
-                                <li><a href="#" class="abrirbuscador" onClick="$('.buscador').toggle('fast');$('#labusca').focus();"><i class="fa fa-search iconobusca" style="margin: 0; padding: 0;"></i></a></li>
+                                <li><a href="#" class="abrirbuscador"   onClick="$('.buscador').toggle('fast');$('#labusca').focus();">
+                                    <i class="fa fa-search iconobusca" style="margin: 0; padding: 0;">
+
+                                    </i>
+                                </a></li>
 
                                 <div class="buscador" style="display: none;">
-                                    <form method="POST"
-                                          action="/search/">
+                                    <form method="POST" action="/search/">
+                                        {% csrf_token %}
                                         <input class="form-control" type="text" id="labusca" name="busqueda" placeholder="ingrese texto a buscar" />
                                     <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-check fa-fw"></i></button>
+                                    </form>
                                 </div>
 
                                 <li {% if self.url == '/noticias/' %} class="active"{% endif %}
                                 >
-                                  <a href="#">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                  <a href="/noticias/">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <ul class="drop-menu">
                                         <li><a href="/noticias/categorias/educacion">Educación</a></li>
                                         <li><a href="/noticias/categorias/trabajo">Formación para el Trabajo</a></li>
