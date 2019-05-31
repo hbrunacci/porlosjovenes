@@ -344,7 +344,7 @@ class Legado(Page):
 class QuieroDonar(Page):
     template = 'secciones/comocolaborar/quierodonar.html'
     subpage_types = []
-    max_count = 5
+    max_count = 10
 
     texto_encabezado = RichTextField(default='')
 
