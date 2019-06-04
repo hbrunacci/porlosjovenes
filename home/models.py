@@ -711,6 +711,7 @@ class Noticias(RoutablePageMixin, Page):
 class Noticia(Page):
     template = 'secciones/noticias/noticia_detalle.html'
     subpage_types = []
+
     CATEGORIAS = (('Educacion','Educacion'),
                                        ('Comunitaria', 'Acciones Comunitarias'),
                                        ('Pastorales', 'Acciones Misioneras y Pastorales'),
@@ -733,6 +734,8 @@ class Noticia(Page):
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body'),
+        index.FilterField('expire_at'),
+        index.FilterField('go_live_at'),
     ]
 
     content_panels = Page.content_panels + [
