@@ -672,7 +672,7 @@ class Noticias(RoutablePageMixin, Page):
         context = super(Noticias, self).get_context(request, *args, **kwargs)
         all_posts = self.posts
 
-        paginador = Paginator(all_posts, 6)
+        paginador = Paginator(all_posts, 8)
         page = request.GET.get("page")
         try:
             context['posts'] = paginador.page(page)
@@ -713,10 +713,10 @@ class Noticia(Page):
     subpage_types = []
 
     CATEGORIAS = (('Educacion','Educacion'),
-                                       ('Comunitaria', 'Acciones Comunitarias'),
-                                       ('Pastorales', 'Acciones Misioneras y Pastorales'),
-                                       ('Trabajo', 'Formación Para El Trabajo'),
-                                       )
+                  ('Comunitaria', 'Acciones Comunitarias'),
+                  ('Pastorales', 'Acciones Misioneras y Pastorales'),
+                  ('Trabajo', 'Formación Para El Trabajo'),
+                  )
 
     categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Educacion')
     es_proyecto = models.BooleanField(verbose_name='Mostrar en Proyectos',default=False)
