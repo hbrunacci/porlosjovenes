@@ -332,7 +332,7 @@
     .believed-logo {
         position: relative;
         z-index: 99;
-        width: 100%;
+        width: 50%;
     }
     .main-menu {
         display: none;
