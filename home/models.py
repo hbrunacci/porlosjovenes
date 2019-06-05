@@ -736,6 +736,7 @@ class Noticia(Page):
         index.SearchField('body'),
         index.FilterField('expire_at'),
         index.FilterField('go_live_at'),
+        index.FilterField('date'),
     ]
 
     content_panels = Page.content_panels + [

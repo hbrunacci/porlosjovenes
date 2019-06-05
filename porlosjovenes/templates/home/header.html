@@ -45,9 +45,10 @@
 
                                 <div class="buscador" style="display: none;">
                                     <form method="POST" action="/search/">
-                                        {% csrf_token %}
+
                                         <input class="form-control" type="text" id="labusca" name="busqueda" placeholder="ingrese texto a buscar" />
                                     <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-check fa-fw"></i></button>
+                                      {% csrf_token %}
                                     </form>
                                 </div>
 
