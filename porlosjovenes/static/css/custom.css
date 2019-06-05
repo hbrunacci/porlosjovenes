@@ -455,8 +455,13 @@ p {
     padding: 10px 0 30px 0;
     color: white;
 }
-.carrera-inscribite p {
-    color: white; 
+.carrera-inscribite .rich-text h1,
+.carrera-inscribite .rich-text h2,
+.carrera-inscribite .rich-text h3,
+.carrera-inscribite .rich-text h4,
+.carrera-inscribite .rich-text h5,
+.carrera-inscribite .rich-text h6 {
+    color: white;
 }
 .carrera-inscribite h2 {
     color: #feca5c;
