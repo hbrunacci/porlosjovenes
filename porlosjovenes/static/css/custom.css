@@ -1072,3 +1072,13 @@ h2 {
 }
 
 }
+
+.legado {
+    text-align: justify;
+}
+
+@media all and (max-width: 400px) {
+    .legado {
+        text-align: left;
+    }
+}
