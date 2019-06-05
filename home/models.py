@@ -725,7 +725,7 @@ class Noticia(Page):
     body = RichTextField("Cuerpo", blank=True)
     imagen_portada = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.SET_NULL,
-        verbose_name='Imagen de Portada',
+        verbose_name='Imagen de la Nota',
         null=True,
         blank=False,
         related_name='+'

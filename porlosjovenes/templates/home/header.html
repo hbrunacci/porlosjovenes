@@ -22,20 +22,20 @@
         </div>
         <!-- menu area -->
         <div class="menu-area">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <!-- logo part -->
                         <div class="believed-logo">
-                            <a href="/"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                            <a href="/"><img src="{% static 'img/logo_cortado.png' %}" alt=""></a>
                         </div>
                         <!-- mobile menu wraper -->
                         <div class="responsive-menu-wrap"></div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <!-- menu part -->
                         <nav class="main-menu">
-                            <ul class="navigation">
+                            <ul class="navigation" style="text-align: center";>
 
                                 <li><a href="#" class="abrirbuscador"   onClick="$('.buscador').toggle('fast');$('#labusca').focus();">
                                     <i class="fa fa-search iconobusca" style="margin: 0; padding: 0;">
@@ -99,7 +99,7 @@
                                         {% if self.url == '/app/' %} class="active"{% endif %}>
                                     <a href="/app/">App</a></li>
                             </ul>
-                                <a href="/quierodonar/" class="boton-donar" style="position: absolute; right: 0;">Quiero Donar</a>
+                                <a href="/quierodonar/" class="boton-donar" style="position: absolute; right: 45px;">Quiero Donar</a>
                         </nav>
                     </div>
                 </div>
