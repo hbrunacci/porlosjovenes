@@ -453,12 +453,13 @@ p {
     background: #b90f36; 
     text-align: center;
     padding: 10px 0 30px 0;
+    color: white;
 }
 .carrera-inscribite p {
     color: white; 
 }
 .carrera-inscribite h2 {
-        color: #feca5c;
+    color: #feca5c;
     font-weight: 700;
     font-size: 50px;
     padding-bottom: 0;
