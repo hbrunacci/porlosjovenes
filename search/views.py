@@ -16,8 +16,9 @@ def search(request):
 
     # Search
     if search_query:
-        search_results = Noticia.objects.live().exclude(expire_at__lt=timezone.now()).order_by('-date')
+        search_results = Noticia.objects.live().exclude(expire_at__lt=timezone.now())
         search_results = search_results.exclude(go_live_at__gt=timezone.now())
+        search_results = search_results.order_by("-date")
         search_results = search_results.search(search_query)
         query = Query.get(search_query)
 
