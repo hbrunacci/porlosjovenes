@@ -419,8 +419,9 @@ p {
     margin: 35px 80px 20px 0;
 }
 .fixed-menu .believed-logo img {
-            width: 160px;
-        height: 70px;
+    width: 160px;
+    height: 60px;
+    margin-top: 10px;
 }
 .fixed-menu .donate-box {
     margin-top: 35px;
