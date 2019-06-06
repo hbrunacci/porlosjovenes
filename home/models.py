@@ -748,6 +748,11 @@ class Noticia(Page):
         ImageChooserPanel('imagen_portada'),
         InlinePanel('gallery_images', label="Galeria de Imagenes"),
     ]
+
+    promote_panels = [
+        MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+        ImageChooserPanel('imagen_portada'),
+    ]
     # Overrides the context to list all child items, that are live, by the
     # date that they were published
     # http://docs.wagtail.io/en/latest/getting_started/tutorial.html#overriding-context
