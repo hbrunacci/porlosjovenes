@@ -52,9 +52,9 @@ INSTALLED_APPS = [
     "wagtail.contrib.routable_page",
     'wagtail.contrib.settings',
 
-    'wagtail_2fa',
-    'django_otp',
-    'django_otp.plugins.otp_totp',
+#    'wagtail_2fa',
+#    'django_otp',
+#    'django_otp.plugins.otp_totp',
 ]
 
 WAGTAILSEARCH_BACKENDS = {
@@ -68,7 +68,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'wagtail_2fa.middleware.VerifyUserMiddleware',
+#    'wagtail_2fa.middleware.VerifyUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
