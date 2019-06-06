@@ -12,7 +12,7 @@ from home.models import Noticia
 
 def search(request):
     search_query = request.POST.get('busqueda', None)
-    page = request.GET.get('page', 1)
+    page = request.GET.get('page', 8)
 
     # Search
     if search_query:
