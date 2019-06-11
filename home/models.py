@@ -770,8 +770,9 @@ class Noticia(MetadataPageMixin, Page):
         return self.imagen_portada
 
     def get_meta_url(self):
-        print(self.get_full_url())
-        return self.get_full_url()
+        print('%s%s' % ('https://porlosjovenes.org', self.get_url()))
+        surl = '%s%s' % ('https://porlosjovenes.org', self.get_url())
+        return surl
 
     def get_posts(self):
         posts = Noticia.objects.descendant_of(Noticias.objects.live().first()).live()
