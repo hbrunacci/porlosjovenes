@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
+{% load wagtailmetadata_tags %}
 
 
 {% load wagtailcore_tags wagtailimages_tags %}
+{% block extra_css %}
+    {% meta_tags %}
+           {# Override this in templates to add extra stylesheets #}
+{% endblock %}
 
-{% block title %}{{ self.title }} {% endblock title %}
-{% block meta_title %} {{self.titulo}} {% endblock meta_title %}
-{% block meta_description %} {{ self.intro}} {% endblock meta_description %}
 
 {% block content %}
 

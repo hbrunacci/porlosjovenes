@@ -16,13 +16,16 @@ from wagtail.search import index
 from wagtail.contrib.forms.models import (
   AbstractEmailForm, AbstractFormField, FORM_FIELD_CHOICES)
 
+from wagtailmetadata.models import MetadataPageMixin
+
+
 CATEGORIAS = {'Educacion':'Educacion',
                  'Comunitaria':'Acciones Comunitarias',
                  'Pastorales': 'Acciones Misioneras y Pastorales',
                  'Trabajo':'Formación Para El Trabajo'
                  }
 
-class HomePage(Page):
+class HomePage(MetadataPageMixin, Page):
     template = 'home/home_page.html'
     subpage_type = []
     max_count = 1
@@ -58,7 +61,7 @@ class HomePage(Page):
     ]
 
 
-class QueHacemos(Page):
+class QueHacemos(MetadataPageMixin, Page):
     template = 'secciones/quehacemos/quehacemos.html'
     subpage_types = []
     max_count = 1
@@ -135,7 +138,7 @@ class QueHacemos(Page):
         verbose_name_plural = "'Que Hacemos'"
 
 
-class Nosotros(Page):
+class Nosotros(MetadataPageMixin, Page):
     template = 'secciones/nosotros/nosotros.html'
     subpage_types = ['QuienesSomos', 'Transparencia', 'DondeEstamos']
     max_count = 1
@@ -145,7 +148,7 @@ class Nosotros(Page):
         verbose_name_plural = "'Nosotros'"
 
 
-class QuienesSomos(Page):
+class QuienesSomos(MetadataPageMixin, Page):
     template = 'secciones/nosotros/quienessomos.html'
     subpage_types = []
     max_count = 1
@@ -169,7 +172,7 @@ class QuienesSomos(Page):
         verbose_name_plural = "'Quienes Somos'"
 
 
-class Transparencia(Page):
+class Transparencia(MetadataPageMixin, Page):
     template = 'secciones/nosotros/transparencia.html'
     subpage_types = []
     max_count = 1
@@ -205,7 +208,7 @@ class memoria(Orderable):
     ]
 
 
-class DondeEstamos(Page):
+class DondeEstamos(MetadataPageMixin, Page):
     template = 'secciones/nosotros/dondeestamos.html'
     subpage_types = []
     max_count = 1
@@ -229,7 +232,7 @@ class DondeEstamos(Page):
         verbose_name_plural = "'Donde Estamos'"
 
 
-class ComoColaborar(Page):
+class ComoColaborar(MetadataPageMixin, Page):
     template = 'secciones/comocolaborar.html'
     subpage_types = ['alianzas', 'ayudadifundiendo', 'legado', 'quierodonar']
     max_count = 1
@@ -239,7 +242,7 @@ class ComoColaborar(Page):
         verbose_name_plural = "'Como Colaborar'"
 
 
-class Alianzas(Page):
+class Alianzas(MetadataPageMixin, Page):
     template = 'secciones/comocolaborar/alianzas.html'
     subpage_types = []
     max_count = 1
@@ -289,7 +292,7 @@ class alianza(Orderable):
     ]
 
 
-class AyudaDifundiendo(Page):
+class AyudaDifundiendo(MetadataPageMixin, Page):
     template = 'secciones/comocolaborar/ayudadifundiendo.html'
     subpage_types = []
     max_count = 1
@@ -315,7 +318,7 @@ class AyudaDifundiendo(Page):
         verbose_name_plural = "'Ayuda Difundiendo'"
 
 
-class Legado(Page):
+class Legado(MetadataPageMixin, Page):
     template = 'secciones/comocolaborar/legado.html'
     subpage_types = []
     max_count = 1
@@ -341,7 +344,7 @@ class Legado(Page):
         verbose_name_plural = "'Ayuda Difundiendo'"
 
 
-class QuieroDonar(Page):
+class QuieroDonar(MetadataPageMixin, Page):
     template = 'secciones/comocolaborar/quierodonar.html'
     subpage_types = []
     max_count = 10
@@ -385,7 +388,7 @@ class QuieroDonar(Page):
         verbose_name_plural = "'Quiero Donar'"
 
 
-class App(Page):
+class App(MetadataPageMixin, Page):
     template = 'secciones/app/app.html'
     subpage_types = []
     max_count = 1
@@ -455,7 +458,7 @@ class SponsorCarrera(SponsorClass):
     page = ParentalKey("home.Carrera", related_name='carousel_sponsor_carrera')
 
 
-class Carrera(Page):
+class Carrera(MetadataPageMixin,Page):
     template = 'secciones/carrera/carrera.html'
     subpage_types = ['Carreras']
 
@@ -495,7 +498,7 @@ class Carrera(Page):
 
 
 
-class Carreras(Page):
+class Carreras(MetadataPageMixin,Page):
     subpage_type = []
     template = 'secciones/carrera/carrera_data.html'
 
@@ -668,6 +671,7 @@ class Noticias(RoutablePageMixin, Page):
 
     max_count = 1
 
+
     def get_context(self, request, *args, **kwargs):
         context = super(Noticias, self).get_context(request, *args, **kwargs)
         all_posts = self.posts
@@ -708,7 +712,7 @@ class Noticias(RoutablePageMixin, Page):
         verbose_name_plural = "Blog Noticias"
 
 
-class Noticia(Page):
+class Noticia(MetadataPageMixin, Page):
     template = 'secciones/noticias/noticia_detalle.html'
     subpage_types = []
 
@@ -730,6 +734,7 @@ class Noticia(Page):
         blank=False,
         related_name='+'
     )
+
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -753,13 +758,19 @@ class Noticia(Page):
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
         ImageChooserPanel('imagen_portada'),
     ]
-    # Overrides the context to list all child items, that are live, by the
+
+     # Overrides the context to list all child items, that are live, by the
     # date that they were published
     # http://docs.wagtail.io/en/latest/getting_started/tutorial.html#overriding-context
 
     class Meta:
         verbose_name = 'Noticia'
         verbose_name_plural = 'Noticias'
+
+    def get_meta_image(self):
+        return self.imagen_portada
+
+
 
     def get_posts(self):
         posts = Noticia.objects.descendant_of(Noticias.objects.live().first()).live()
@@ -775,6 +786,7 @@ class Noticia(Page):
     def get_context(self, request, *args, **kwargs):
         context = super(Noticia, self).get_context(request, *args, **kwargs)
         context['posts'] = self.get_posts()
+
 
         context['descripcion_categorias'] = CATEGORIAS[self.categoria]
 
@@ -799,7 +811,7 @@ class NoticiaGalleryImage(Orderable):
     ]
 
 
-class Revista(Page):
+class Revista(MetadataPageMixin, Page):
     template = 'secciones/revista/revistas.html'
     subpage_type = []
 

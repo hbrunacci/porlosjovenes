@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.postgres_search',
     "wagtail.contrib.routable_page",
     'wagtail.contrib.settings',
-
+    'wagtailmetadata',
 #    'wagtail_2fa',
 #    'django_otp',
 #    'django_otp.plugins.otp_totp',
