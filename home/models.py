@@ -483,11 +483,10 @@ class Carrera(MetadataPageMixin,Page):
     class Meta:
         verbose_name = "Home Carrera"
         verbose_name_plural = "Home Carrera"
+
     def get_context(self, request, *args, **kwargs):
         context = super(Carrera, self).get_context(request, *args, **kwargs)
-
         context['Eventos'] = self.get_posts()
-
         return context
 
     def get_posts(self):
@@ -770,7 +769,9 @@ class Noticia(MetadataPageMixin, Page):
     def get_meta_image(self):
         return self.imagen_portada
 
-
+    def get_meta_url(self):
+        print(self.get_full_url())
+        return self.get_full_url()
 
     def get_posts(self):
         posts = Noticia.objects.descendant_of(Noticias.objects.live().first()).live()
