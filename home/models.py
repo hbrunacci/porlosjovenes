@@ -769,8 +769,8 @@ class Noticia(MetadataPageMixin, Page):
     def get_meta_description(self):
         return self.intro
 
-    def get_meta_image(self):
-        return self.imagen_portada
+#    def get_meta_image(self):
+#        return self.imagen_portada
 
     def get_meta_url(self):
         surl = '%s%s' % ('https://porlosjovenes.org', self.get_url())

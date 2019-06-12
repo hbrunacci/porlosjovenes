@@ -1,4 +1,5 @@
 {% load static wagtailuserbar %}
+{% load wagtailmetadata_tags %}
 
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ srcset webworkers">
             {% endblock %}
         </title>
         {% block meta_data %}
-            <!-- metadata -->
+            {% meta_tags %}
         {% endblock meta_data %}
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
