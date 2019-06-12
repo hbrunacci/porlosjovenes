@@ -766,13 +766,18 @@ class Noticia(MetadataPageMixin, Page):
         verbose_name = 'Noticia'
         verbose_name_plural = 'Noticias'
 
+    def get_meta_description(self):
+        return self.intro
+
     def get_meta_image(self):
         return self.imagen_portada
 
     def get_meta_url(self):
-        print('%s%s' % ('https://porlosjovenes.org', self.get_url()))
         surl = '%s%s' % ('https://porlosjovenes.org', self.get_url())
         return surl
+
+    def get_meta_title(self):
+        return self.title
 
     def get_posts(self):
         posts = Noticia.objects.descendant_of(Noticias.objects.live().first()).live()
