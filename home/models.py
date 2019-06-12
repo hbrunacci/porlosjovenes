@@ -755,7 +755,7 @@ class Noticia(MetadataPageMixin, Page):
 
     promote_panels = [
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
-        ImageChooserPanel('imagen_portada'),
+        ImageChooserPanel('search_image')
     ]
 
      # Overrides the context to list all child items, that are live, by the
