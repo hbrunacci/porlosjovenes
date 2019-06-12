@@ -594,7 +594,7 @@ class Video_Old(Orderable):
     ]
 
 
-class Proyectos(RoutablePageMixin, Page):
+class Proyectos(RoutablePageMixin,MetadataPageMixin, Page):
     template = 'secciones/proyectos/proyectos.html'
     subpage_types = []
 
@@ -664,7 +664,7 @@ class Proyectos(RoutablePageMixin, Page):
         verbose_name_plural = "Blog Proyectos"
 
 
-class Noticias(RoutablePageMixin, Page):
+class Noticias(RoutablePageMixin,MetadataPageMixin, Page):
     template = 'secciones/noticias/noticias.html'
     subpage_types = ['Noticia']
 
