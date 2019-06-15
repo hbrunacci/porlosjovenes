@@ -12,7 +12,7 @@ from home.models import Noticia
 
 def search(request):
     search_query = request.POST.get('busqueda', None)
-    page = request.GET.get('page', 8)
+    page = request.GET.get('page', 1)
 
     # Search
     if search_query:
@@ -28,7 +28,7 @@ def search(request):
         search_results = Page.objects.none()
 
     # Pagination
-    paginator = Paginator(search_results, 1)
+    paginator = Paginator(search_results, 8)
     try:
         search_results = paginator.page(page)
     except PageNotAnInteger:
