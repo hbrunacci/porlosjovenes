@@ -26,7 +26,9 @@ srcset webworkers">
         <meta name="author" content="themewarehouse">
 
         {% block meta_data %}
-            {% meta_tags %}
+            {% if not request.path_info == '/search/' %}
+                {% meta_tags %}
+            {% endif %}
         {% endblock meta_data %}
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
