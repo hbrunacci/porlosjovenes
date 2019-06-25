@@ -322,7 +322,7 @@ p {
 /***** page title  *****/
 
 .page-title-area {
-    background: url('../img/page-title-bg.jpg') no-repeat scroll center top / cover;
+    background: url("../img/page-title-bg.7118876f08a2.jpg") no-repeat scroll center top / cover;
     padding: 70px 0;
     position: relative;
 }
@@ -533,15 +533,15 @@ ul li a.menu-active {
 }
 
 .slider-one {
-    background: rgba(0, 0, 0, 0) url("../img/slider/01.jpg") no-repeat scroll center top / cover;
+    background: rgba(0, 0, 0, 0) url("../img/slider/01.3ebebafa29eb.jpg") no-repeat scroll center top / cover;
 }
 
 .slider-two {
-    background: rgba(0, 0, 0, 0) url("../img/slider/02.jpg") no-repeat scroll center top / cover;
+    background: rgba(0, 0, 0, 0) url("../img/slider/02.3ebebafa29eb.jpg") no-repeat scroll center top / cover;
 }
 
 .slider-three {
-    background: rgba(0, 0, 0, 0) url("../img/slider/03.jpg") no-repeat scroll center top / cover;
+    background: rgba(0, 0, 0, 0) url("../img/slider/03.3ebebafa29eb.jpg") no-repeat scroll center top / cover;
 }
 
 .slider-table {
@@ -686,7 +686,7 @@ ul li a.menu-active {
 }
 
 .about-info-area {
-    background: rgba(0, 0, 0, 0) url("../img/background/mission-bg.jpg") no-repeat scroll center top / cover;
+    background: rgba(0, 0, 0, 0) url("../img/background/mission-bg.7118876f08a2.jpg") no-repeat scroll center top / cover;
     position: relative;
 }
 
@@ -886,7 +886,7 @@ textarea.form-control {
     ================================ */
 
 .donate-count-area {
-    background: rgba(0, 0, 0, 0) url("../img/background/donate-count-bg.jpg") no-repeat scroll center top / cover;
+    background: rgba(0, 0, 0, 0) url("../img/background/donate-count-bg.7118876f08a2.jpg") no-repeat scroll center top / cover;
     position: relative;
 }
 
@@ -1204,7 +1204,7 @@ textarea.form-control {
     ================================ */
 
 .project-count-area {
-    background: rgba(0, 0, 0, 0) url("../img/background/condition-bg.jpg") no-repeat scroll center top / cover;
+    background: rgba(0, 0, 0, 0) url("../img/background/condition-bg.7118876f08a2.jpg") no-repeat scroll center top / cover;
     position: relative;
 }
 
@@ -1415,7 +1415,7 @@ textarea.form-control {
     ================================ */
 
 .donation-area {
-    background: rgba(0, 0, 0, 0) url("../img/background/donate-from-bg.jpg") no-repeat fixed center top / cover;
+    background: rgba(0, 0, 0, 0) url("../img/background/donate-from-bg.7118876f08a2.jpg") no-repeat fixed center top / cover;
 }
 
 .donate-form {
