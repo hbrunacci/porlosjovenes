@@ -152,7 +152,7 @@ class QuienesSomos(MetadataPageMixin, Page):
     template = 'secciones/nosotros/quienessomos.html'
     subpage_types = []
     max_count = 1
-    texto_principal = models.CharField(max_length=1000, null=False, blank=False, default='')
+    texto_principal = models.CharField(max_length=2000, null=False, blank=False, default='')
 
     imagen_principal = models.ForeignKey(
         "wagtailimages.Image",
