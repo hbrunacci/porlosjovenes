@@ -10,10 +10,11 @@ django-taggit==0.23.0
 django-treebeard==4.3
 djangorestframework==3.9.2
 draftjs-exporter==2.1.5
+gunicorn==19.9.0
 html5lib==1.0.1
 idna==2.8
 Pillow==5.4.1
-psycopg2-binary
+psycopg2-binary==2.8.2
 pytz==2018.9
 qrcode==6.1
 requests==2.21.0
@@ -24,5 +25,7 @@ urllib3==1.25.3
 wagtail==2.5
 wagtail-2fa==1.1.0
 wagtail-django-recaptcha==1.0
+wagtail-metadata==2.0.1
 webencodings==0.5.1
+whitenoise==4.1.2
 Willow==1.1
