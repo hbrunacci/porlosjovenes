@@ -47,8 +47,20 @@ class HomePage(MetadataPageMixin, Page):
 
         return context
 
-    class Meta:
+    def get_meta_description(self):
+        return self.title
 
+    def get_meta_image(self):
+        return self.banner_imagen
+
+    def get_meta_url(self):
+        surl = '%s%s' % ('https://porlosjovenes.org', self.get_url())
+        return surl
+
+    def get_meta_title(self):
+        return self.title
+
+    class Meta:
         verbose_name = "Home Page"
         verbose_name_plural = "Home Pages"
 
@@ -152,7 +164,7 @@ class QuienesSomos(MetadataPageMixin, Page):
     template = 'secciones/nosotros/quienessomos.html'
     subpage_types = []
     max_count = 1
-    texto_principal = models.CharField(max_length=2000, null=False, blank=False, default='')
+    texto_principal = RichTextField(null=False, blank=False, default='')
 
     imagen_principal = models.ForeignKey(
         "wagtailimages.Image",
