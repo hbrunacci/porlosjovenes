@@ -52,7 +52,7 @@
                                         <div class="item {% if forloop.counter == 1 %} active {%  endif %}">
                                             {% image imagen.image original as tmp_img %}
                                             <img class="img-responsive center-block" src="{{tmp_img.url}}"
-                                                 alt="{{imagen.caption}}"  style="height: 400px">
+                                                 alt="{{imagen.caption}}" >
                                         </div>
                                     {% endfor %}
                                 </div>
