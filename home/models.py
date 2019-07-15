@@ -51,7 +51,7 @@ class HomePage(MetadataPageMixin, Page):
         return self.title
 
     def get_meta_image(self):
-        return self.banner_imagen
+        return self.search_image
 
     def get_meta_url(self):
         surl = '%s%s' % ('https://porlosjovenes.org', self.get_url())
