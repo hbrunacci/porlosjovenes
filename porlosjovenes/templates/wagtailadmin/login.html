@@ -1,0 +1,13 @@
+{% extends "wagtailadmin/login.html" %}
+
+{% block fields %}
+    {{ block.super }}
+    <li class="full">
+        <div class="field iconfield">
+            Two factor auth token
+            <div class="input icon-key">
+                <input type="text" name="captcha">
+            </div>
+        </div>
+    </li>
+{% endblock %}
