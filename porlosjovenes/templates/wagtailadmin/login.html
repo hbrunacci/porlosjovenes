@@ -1,13 +1,17 @@
 {% extends "wagtailadmin/login.html" %}
 
-{% block fields %}
-    {{ block.super }}
-    <li class="full">
-        <div class="field iconfield">
-            Two factor auth token
-            <div class="input icon-key">
-                <input type="text" name="captcha">
-            </div>
-        </div>
-    </li>
+{% block extra_js %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
 {% endblock %}
+
+                {% block extra_fields %}
+                {% for field_name, field in form.extra_fields %}gs
+                <li class="full">
+                    {{ field.label_tag }}
+                    <div class="">
+                        {{ field }}
+                    </div>
+                </li>
+                {% endfor %}
+                {% endblock extra_fields %}

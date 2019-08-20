@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'wagtail_2fa',
     'django_otp',
     'django_otp.plugins.otp_totp',
+    #'wagtailcaptcha',
+
 ]
 
 WAGTAILSEARCH_BACKENDS = {
@@ -191,5 +193,9 @@ WAGTAIL_SITE_NAME = "porlosjovenes"
 BASE_URL = '127.0.0.1:8000'
 WAGTAIL_2FA_REQUIRED = True
 
+ #recaptcha settings
 
+RECAPTCHA_PUBLIC_KEY = '6Ld5XqcUAAAAAPaBmuwFFxhBIvtPclQxRUdhMKd2'
+RECAPTCHA_PRIVATE_KEY = '6Ld5XqcUAAAAAFel6nF9pJRmLVF4rUL9UGM_MtSo'
+NOCAPTCHA = True
 

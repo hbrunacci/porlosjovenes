@@ -22,6 +22,8 @@ MIDDLEWARE = MIDDLEWARE + [
 
 INTERNAL_IPS = ('127.0.0.1',)
 
+#WAGTAILADMIN_USER_LOGIN_FORM = 'porlosjovenes.customforms.CustomLoginForm'
+
 try:
     from .local import *
 except ImportError:
