@@ -6,12 +6,14 @@
 {% endblock %}
 
                 {% block extra_fields %}
-                {% for field_name, field in form.extra_fields %}gs
-                <li class="full">
-                    {{ field.label_tag }}
-                    <div class="">
-                        {{ field }}
+                <li class="full" style="margin-left: 1px; margin-top: 25px;" >
+
+                    <div class="field iconfield">
+                        {{ form.captcha.label_tag }}
+                        <div class="input icon-password">
+                            {{ form.captcha }}
+                        </div>
                     </div>
+
                 </li>
-                {% endfor %}
                 {% endblock extra_fields %}
