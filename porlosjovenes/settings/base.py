@@ -200,6 +200,11 @@ RECAPTCHA_PUBLIC_KEY = '6Ld5XqcUAAAAAPaBmuwFFxhBIvtPclQxRUdhMKd2'
 RECAPTCHA_PRIVATE_KEY = '6Ld5XqcUAAAAAFel6nF9pJRmLVF4rUL9UGM_MtSo'
 NOCAPTCHA = True
 
+
+INTERNAL_IPS = ('127.0.0.1',)
+
+WAGTAILADMIN_USER_LOGIN_FORM = 'porlosjovenes.customforms.CustomLoginForm'
+
 '''
 LOGGING = {
     'version': 1,
