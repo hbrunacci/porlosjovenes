@@ -200,3 +200,37 @@ RECAPTCHA_PUBLIC_KEY = '6Ld5XqcUAAAAAPaBmuwFFxhBIvtPclQxRUdhMKd2'
 RECAPTCHA_PRIVATE_KEY = '6Ld5XqcUAAAAAFel6nF9pJRmLVF4rUL9UGM_MtSo'
 NOCAPTCHA = True
 
+'''
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'porlojovenes.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['file'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
+        'MYAPP': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+    }
+}
+'''
