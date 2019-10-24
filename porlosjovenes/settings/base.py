@@ -206,6 +206,7 @@ CSRF_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = None
 
 CSP_DEFAULT_SRC = ( "'unsafe-inline'", 'fonts.googleapis.com')
+
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com')
 CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",
                   "www.googletagmanager.com",
@@ -220,6 +221,7 @@ CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com",
                "'self' data:",
                "pagomiscuentas.com"
                )
+CSP_CONNECT = ("'self", 'https://porlosjovenes.org')
 CSP_FRAME_SRC = ("'self'", "https://www.google.com",
                  "https://www.youtube.com",
                  "https://donbosco.secure.force.com",
