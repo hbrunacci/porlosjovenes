@@ -1,6 +1,6 @@
 {% load wagtailcore_tags %}
 {% load static %}
-<header class="header-area">
+<header class="header-area" style="height: 221px;">
 
         <div class="top-header-area">
             <div class="container">
@@ -32,7 +32,7 @@
                         <!-- mobile menu wraper -->
                         <div class="responsive-menu-wrap"></div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-7">
                         <!-- menu part -->
                         <nav class="main-menu">
                             <ul class="navigation" style="text-align: center";>
@@ -100,15 +100,17 @@
                                         {% if self.url == '/app/' %} class="active"{% endif %}>
                                     <a href="/app/">App</a></li>
                             </ul>
-                                <a href="/quierodonar/" class="boton-donar" style="position: absolute; right: 45px;">Quiero Donar</a>
                         </nav>
                     </div>
+                    <div class="col-md-2 hidden-xs hidden-sm" style="margin-top: 50px;left: 20px;top: 20px;">
+                                <a href="/quierodonar/" class="boton-donar" style="position: absolute; right: 45px;">Quiero Donar</a>
+
+                    </div>
+
                 </div>
-            </div>
 
         {% if self.url == '/carrera/' %}
-            {% if Eventos %}
-            <div class="menucarrera">
+            <div class="menucarrera hidden-xs hidden-sm">
                     <a onClick="scrollToDiv('#inscribite');">INSCRIBITE</a>
                     <a onClick="scrollToDiv('#informacion');">INFORMACIÓN</a>
                     <a onClick="scrollToDiv('#kit');">KIT</a>
@@ -116,8 +118,8 @@
                     <a onClick="scrollToDiv('#sumarse');">POR QUÉ SUMARSE</a>
                     <a onClick="scrollToDiv('#anteriores');">EDICIONES ANTERIORES</a>
             </div>
-            {% endif %}
         {% endif %}
+            </div>
 
         </div>
 
