@@ -77,7 +77,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    #'csp.middleware.CSPMiddleware',
+    'csp.middleware.CSPMiddleware',
 
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
@@ -215,11 +215,15 @@ CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",
                   "https://www.google-analytics.com",
                   "https://players.yumpu.com")
 CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
-CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com", "stats.g.doubleclick.net",
+CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com",
+               "stats.g.doubleclick.net",
                "'self' data:",
                "pagomiscuentas.com"
                )
-CSP_FRAME_SRC = ("'self'", "https://www.youtube.com", "https://www.yumpu.com")
+CSP_FRAME_SRC = ("'self'", "https://www.google.com",
+                 "https://www.youtube.com",
+                 "https://donbosco.secure.force.com",
+                 "https://www.yumpu.com")
 
 INTERNAL_IPS = ('127.0.0.1',)
 
