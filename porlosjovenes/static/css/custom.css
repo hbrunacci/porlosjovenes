@@ -24,6 +24,22 @@ section p {
 ">
 }
 
+@media (min-width: 1283px) {
+  header {
+    height: 247px !important;
+  }
+}
+
+@media (min-width: 982px) and (max-width: 1283px) {
+  header {
+    height: 275px !important;
+  }
+}
+
+header .fixed-menu .container-fluid {
+  background-color: #fff;
+}
+
 @media (max-width: 780px) {
     .believed-logo img {
         width: 132px;
