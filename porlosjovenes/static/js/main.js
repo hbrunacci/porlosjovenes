@@ -64,7 +64,7 @@ function slicknavOpened(trigger) {
             Fixed Menu
         =========================*/
     $(window).on('scroll', function () {
-        if ($(window).scrollTop() > 60) {
+        if ($(window).scrollTop() > 1) {
             $('.menu-area').addClass('fixed-menu');
             $('.top-header-area').addClass('fixear');
         } else {
