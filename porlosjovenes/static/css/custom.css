@@ -36,8 +36,9 @@ section p {
   }
 }
 
-header .fixed-menu .container-fluid {
+header .menu-area .container-fluid {
   background-color: #fff;
+  padding: 0px !important;
 }
 
 @media (max-width: 780px) {
