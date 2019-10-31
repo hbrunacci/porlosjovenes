@@ -223,6 +223,7 @@ CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com",
                )
 CSP_CONNECT_SRC = ("'self'", 'https://porlosjovenes.org')
 CSP_FRAME_SRC = ("'self'", "https://www.google.com",
+                 'aeroterra.maps.arcgis.com',
                  "https://www.youtube.com",
                  "https://donbosco.secure.force.com",
                  "https://www.yumpu.com")
