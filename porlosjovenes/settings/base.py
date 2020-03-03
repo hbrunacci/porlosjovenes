@@ -222,7 +222,8 @@ CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com",
                "stats.g.doubleclick.net",
                "'self' data:",
                "pagomiscuentas.com",
-               "px.ads.linkedin.com"
+               "px.ads.linkedin.com",
+               "p.adsymptotic.com"
                )
 CSP_CONNECT_SRC = ("'self'", 'https://porlosjovenes.org')
 CSP_FRAME_SRC = ("'self'", "https://www.google.com",
