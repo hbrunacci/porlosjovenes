@@ -209,6 +209,8 @@ CSP_DEFAULT_SRC = ( "'unsafe-inline'", 'fonts.googleapis.com')
 
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com')
 CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",
+                  "connect.facebook.ne",
+                  "snap.licdn.com",
                   "www.googletagmanager.com",
                   "www.google.com",
                   "www.gstatic.com",
