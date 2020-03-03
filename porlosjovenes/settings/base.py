@@ -221,7 +221,8 @@ CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
 CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com",
                "stats.g.doubleclick.net",
                "'self' data:",
-               "pagomiscuentas.com"
+               "pagomiscuentas.com",
+               "px.ads.linkedin.com"
                )
 CSP_CONNECT_SRC = ("'self'", 'https://porlosjovenes.org')
 CSP_FRAME_SRC = ("'self'", "https://www.google.com",
