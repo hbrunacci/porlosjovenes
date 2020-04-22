@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% block content %}
+
+
+<a href="/como-colaborar/alianzas/" class="flotaAlianzas"><img src="{% static 'img/boton_flotante.png' %}" /></a>
+
+ {% image self.imagen_encabezado original as img_principal %}
+<div class="container" style="margin: 0px; padding: 0px; width: 100%;" >
+    <div style="width: 100%; height: 400px; display: block;  background:
+            transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
+    </div>
+</div>
+
+ {% image self.imagen_inferior original as img_inferior %}
+    <div style="width: 100%; height: 240px; display: block; margin: 2em 0; background:
+            transparent url('{{ img_inferior.url }}') center center no-repeat; background-size: cover;"></div>
+<div>
+   <h1 style="text-align: center; color: #008996; font-family:'Galano Bold'"> {{self.hashtag}} </h1>
+    <br>
+</div>
+
+    {% include "covid19/slider_noticias.html" %}
+
+    <div>
+   <h2 style="text-align: end; color: #008996; font-family:'Galano Bold'"> VER MÁS NOTICIAS      </h2>
+    <br>
+</div>
+
+
+{% endblock %}
