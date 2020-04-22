@@ -16,7 +16,7 @@ DOCUMENT_CHOOSER_MODAL_ONLOAD_HANDLERS = {
                 // Set current collection ID at upload form tab
                 let collectionId = $('#collection_chooser_collection_id').val();
                 if (collectionId) {
-                  $('#id_collection').val(collectionId);
+                  $('#id_document-chooser-upload-collection').val(collectionId);
                 }
 
                 // Select upload form tab
@@ -26,16 +26,21 @@ DOCUMENT_CHOOSER_MODAL_ONLOAD_HANDLERS = {
         };
 
         var searchUrl = $('form.document-search', modal.body).attr('action');
+        var request;
         function search() {
-            $.ajax({
+            request = $.ajax({
                 url: searchUrl,
                 data: {
                     q: $('#id_q').val(),
                     collection_id: $('#collection_chooser_collection_id').val()
                 },
                 success: function(data, status) {
+                    request = null;
                     $('#search-results').html(data);
                     ajaxifyLinks($('#search-results'));
+                },
+                error: function() {
+                    request = null;
                 }
             });
             return false;
@@ -48,12 +53,16 @@ DOCUMENT_CHOOSER_MODAL_ONLOAD_HANDLERS = {
                 dataObj = {p: page};
             }
 
-            $.ajax({
+            request = $.ajax({
                 url: searchUrl,
                 data: dataObj,
                 success: function(data, status) {
+                    request = null;
                     $('#search-results').html(data);
                     ajaxifyLinks($('#search-results'));
+                },
+                error: function() {
+                    request = null;
                 }
             });
             return false;
@@ -86,16 +95,15 @@ DOCUMENT_CHOOSER_MODAL_ONLOAD_HANDLERS = {
         $('form.document-search', modal.body).on('submit', search);
 
         $('#id_q').on('input', function() {
+            if (request) {
+                request.abort();
+            }
             clearTimeout($.data(this, 'timer'));
             var wait = setTimeout(search, 50);
             $(this).data('timer', wait);
         });
 
         $('#collection_chooser_collection_id').on('change', search);
-
-        $('#id_tags', modal.body).tagit({
-            autocomplete: {source: jsonData['tag_autocomplete_url']}
-        });
     },
     'document_chosen': function(modal, jsonData) {
         modal.respond('documentChosen', jsonData['result']);
