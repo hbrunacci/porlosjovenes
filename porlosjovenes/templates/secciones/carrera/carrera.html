@@ -53,9 +53,8 @@
                         <div class="sponsors owl-carousel" style="autoPlay: 3000">
                             {% for sponsor in self.carousel_sponsor_carrera.all %}
                                 <div>
-
-                                {% image sponsor.imagen_sponsor original as tmp_photo %}
-                                <img src="{{ tmp_photo.url }}" class="img-responsive">
+                                    {% image sponsor.imagen_sponsor original as tmp_photo %}
+                                    <img src="{{ tmp_photo.url }}" class="img-responsive">
                                 </div>
                             {% endfor %}
                         </div>
