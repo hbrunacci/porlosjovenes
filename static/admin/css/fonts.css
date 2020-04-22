@@ -18,3 +18,17 @@
     font-weight: 300;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Galano';
+    src: url('../fonts/Galano Grotesque.otf');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Galano Bold';
+    src: url('../fonts/Galano Grotesque Bold.otf');
+    font-style: normal;
+}
+
+

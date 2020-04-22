@@ -231,3 +231,23 @@ body {
         display: none;
     }
 }
+
+
+.covid {
+    background: #ffb25b;
+    border-radius: 9%;
+    color: white !important;
+    font-weight: bold !important;
+    width: auto;
+}
+
+.covid-news {
+    background: none !important;
+}
+.covid-img {
+    padding: 10px;
+    height: 200px;
+}
+.covid-img img {
+    width: 100% !important;
+}

@@ -4,25 +4,22 @@ from django.utils import timezone
 
 from modelcluster.fields import ParentalKey
 
-from django.core.paginator import PageNotAnInteger,Paginator,EmptyPage
+from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-from wagtail.documents.models import Document
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.search import index
-from wagtail.contrib.forms.models import (
-  AbstractEmailForm, AbstractFormField, FORM_FIELD_CHOICES)
-
 from wagtailmetadata.models import MetadataPageMixin
 
 
 CATEGORIAS = {'Educacion':'Educacion',
                  'Comunitaria':'Acciones Comunitarias',
                  'Pastorales': 'Acciones Misioneras y Pastorales',
-                 'Trabajo':'Formación Para El Trabajo'
+                 'Trabajo':'Formación Para El Trabajo',
+                 'Covid19': 'Emergencia Covid-19',
                  }
 
 class HomePage(MetadataPageMixin, Page):
@@ -44,7 +41,6 @@ class HomePage(MetadataPageMixin, Page):
         context = super(HomePage, self).get_context(request, *args, **kwargs)
         noticias = Noticias.objects.first()
         context['posts'] = Noticia.objects.descendant_of(noticias).live().order_by('-date')[:3]
-
         return context
 
     def get_meta_description(self):
@@ -65,11 +61,9 @@ class HomePage(MetadataPageMixin, Page):
         verbose_name_plural = "Home Pages"
 
     content_panels = Page.content_panels + [
-        ImageChooserPanel('banner_imagen',heading='Imagen banner inferior'),
+        ImageChooserPanel('banner_imagen', heading='Imagen banner inferior'),
         FieldPanel('banner_url', heading='Link banner inferior'),
         InlinePanel('slider_home', label="Galeria de Imagenes"),
-
-
     ]
 
 
@@ -210,7 +204,7 @@ class Transparencia(MetadataPageMixin, Page):
 
 
 class memoria(Orderable):
-    page = ParentalKey('home.Transparencia',related_name='memoria_balance')
+    page = ParentalKey('home.Transparencia', related_name='memoria_balance')
     memoria_descripcion = models.CharField(max_length=100,null=True,blank=True)
     memoria_url = models.URLField(blank=True,null=True)
 
@@ -731,6 +725,7 @@ class Noticia(MetadataPageMixin, Page):
                   ('Comunitaria', 'Acciones Comunitarias'),
                   ('Pastorales', 'Acciones Misioneras y Pastorales'),
                   ('Trabajo', 'Formación Para El Trabajo'),
+                  ('Covid19', 'Emergencia Covid-19'),
                   )
 
     categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Educacion')
@@ -894,3 +889,4 @@ class HomeGalleryImage(Orderable):
         FieldPanel('text_boton'),
         FieldPanel('url_boton'),
     ]
+

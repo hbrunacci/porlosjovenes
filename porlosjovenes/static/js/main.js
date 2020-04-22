@@ -197,6 +197,30 @@ function slicknavOpened(trigger) {
         }
     });
 
+
+    /*---------- blog slider ---------*/
+    var blog_slider = $('.covid-slider');
+    blog_slider.owlCarousel({
+        navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+        loop: true,
+        nav: true,
+        autoplay: false,
+        margin: 10,
+        autoplayTimeout: 7000,
+        mouseDrag: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1000: {
+                items: 4
+            }
+        }
+    });
+
     /*  ======================================
             CounterUp
         ====================================== */
