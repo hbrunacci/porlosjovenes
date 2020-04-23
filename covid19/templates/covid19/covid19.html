@@ -63,13 +63,19 @@
 
 
             <script>
+            var myIcon = L.icon({
+                                iconUrl: '{% static 'img/marker-icon.png' %}',
+                                iconAnchor: [12, 41],
+                                shadowUrl: '{% static 'img/marker-shadow.png' %}'
+
+                            });
             var covidmap = L.map('mapid',{scrollWheelZoom: false}). setView([-33.167563, -64.118819], 6);
 
             </script>
 
             {% for institucion in instituciones %}
                 <script>
-                L.marker([{{institucion.get_latlng}}]).addTo(covidmap)
+                L.marker([{{institucion.get_latlng}}], {icon: myIcon}).addTo(covidmap)
                     .bindPopup('{{ institucion.title }}')
                 </script>
             {% endfor %}
