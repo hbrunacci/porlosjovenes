@@ -26,6 +26,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'home',
     'search',
+    'covid19',
+    'instituciones',
+    'wagtailgmaps',
+
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -57,6 +61,7 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_totp',
     'wagtailcaptcha',
     'captcha',
+
 
 ]
 
@@ -209,7 +214,9 @@ CSP_DEFAULT_SRC = ( "'unsafe-inline'", 'fonts.googleapis.com')
 
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com')
 CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",
-                  "connect.facebook.ne",
+                  "unpkg.com",
+                  "maps.googleapis.com",
+                  "connect.facebook.net",
                   "snap.licdn.com",
                   "www.googletagmanager.com",
                   "www.google.com",
@@ -219,6 +226,10 @@ CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",
                   "https://players.yumpu.com")
 CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
 CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com",
+               "maps.gstatic.com",
+               "maps.googleapis.com",
+               "www.google.com",
+               "www.gravatar.com",
                "stats.g.doubleclick.net",
                "'self' data:",
                "pagomiscuentas.com",
@@ -235,6 +246,14 @@ CSP_FRAME_SRC = ("'self'", "https://www.google.com",
 INTERNAL_IPS = ('127.0.0.1',)
 
 WAGTAILADMIN_USER_LOGIN_FORM = 'porlosjovenes.customforms.CustomLoginForm'
+
+# Mandatory
+WAGTAIL_ADDRESS_MAP_CENTER = 'Don Bosco 4001, CABA'  # It must be a properly formatted address
+WAGTAIL_ADDRESS_MAP_KEY = 'AIzaSyAozUOjYgqhFVNDeK2GYfiFwdgf9zuYJfQ'
+
+# Optional
+WAGTAIL_ADDRESS_MAP_ZOOM = 8  # See https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions for more information.
+WAGTAIL_ADDRESS_MAP_LANGUAGE = 'sp'
 
 '''
 LOGGING = {

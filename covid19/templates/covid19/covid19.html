@@ -4,7 +4,21 @@
 
 {% load wagtailcore_tags wagtailimages_tags %}
 
+{% block extra_css %}
 
+    <link rel="stylesheet" type="text/css" href="{% static 'leaflet/leaflet.css' %}" >
+
+    <style>
+    .searchmap {
+            padding: 7px 0 3px 50px;
+    margin: 0px;
+    text-align: center;
+    color: white;
+    background: #008996;
+    font-family: unset;
+    }
+    </style>
+{% endblock %}
 {% block content %}
 
 
@@ -16,9 +30,15 @@
             transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
     </div>
 </div>
+<div class="container-fluid" style="margin: 0px; padding: 0px; width: 100%;">
+   <h2 class="col-md-9 searchmap"> Conocé las acciones a nivel local en cada una de nuestras sedes. </h2>
+   <div class="col-md-3 searchmap"> - </div>
+
+</div>
+    <div id="mapid" style="height: 360px; z-index: 0"></div>
 
  {% image self.imagen_inferior original as img_inferior %}
-    <div style="width: 100%; height: 240px; display: block; margin: 2em 0; background:
+    <div style="width: 100%; height: 240px; display: block; margin: 0em 0em 2em 0em; background:
             transparent url('{{ img_inferior.url }}') center center no-repeat; background-size: cover;"></div>
 <div>
    <h1 style="text-align: center; color: #008996; font-family:'Galano Bold'"> {{self.hashtag}} </h1>
@@ -34,3 +54,16 @@
 
 
 {% endblock %}
+
+
+        {% block extra_js %}
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAozUOjYgqhFVNDeK2GYfiFwdgf9zuYJfQ" async defer></script>
+                    <script src="{% static 'leaflet/leaflet.js' %}"></script>
+         <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
+
+            <script>
+            var mymap = L.map('mapid',{scrollWheelZoom: false}). setView([-33.167563, -64.118819], 6);
+            var roads = L.gridLayer.googleMutant({type: 'roadmap'}).addTo(mymap);
+
+            </script>
+        {% endblock %}
