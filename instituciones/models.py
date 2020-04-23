@@ -62,8 +62,9 @@ class Institucion(MetadataPageMixin, Page):
         # Finally, return the cleaned_data
         return cleaned_data
 
-
-
+    def get_latlng(self):
+        resp = ','.join([(x.split(':')[1]) for x in str(self.institucion_latlng).replace("'", "").replace("}", "").split(',')])
+        return resp
 
 
 class Accion(Orderable):

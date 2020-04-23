@@ -61,9 +61,20 @@
                     <script src="{% static 'leaflet/leaflet.js' %}"></script>
          <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
 
+
             <script>
-            var mymap = L.map('mapid',{scrollWheelZoom: false}). setView([-33.167563, -64.118819], 6);
-            var roads = L.gridLayer.googleMutant({type: 'roadmap'}).addTo(mymap);
+            var covidmap = L.map('mapid',{scrollWheelZoom: false}). setView([-33.167563, -64.118819], 6);
 
             </script>
+
+            {% for institucion in instituciones %}
+                <script>
+                L.marker([{{institucion.get_latlng}}]).addTo(covidmap)
+                    .bindPopup('{{ institucion.title }}')
+                </script>
+            {% endfor %}
+            <script>
+                var roads = L.gridLayer.googleMutant({type: 'roadmap'}).addTo(covidmap);
+            </script>
+
         {% endblock %}

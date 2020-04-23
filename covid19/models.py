@@ -10,6 +10,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtailmetadata.models import MetadataPageMixin
 
 from home.models import Noticia,Noticias
+from instituciones.models import Instituciones, Institucion
 
 class Covid19(MetadataPageMixin, Page):
     template = 'covid19/covid19.html'
@@ -57,8 +58,11 @@ class Covid19(MetadataPageMixin, Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super(Covid19, self).get_context(request, *args, **kwargs)
+        instituciones = Instituciones.objects.first()
         noticias = Noticias.objects.first()
-        context['posts'] = Noticia.objects.descendant_of(noticias).live().order_by('-date')[:3]
+        context['instituciones'] = Institucion.objects.descendant_of(instituciones).live()
+        context['noticias'] = Noticia.objects.descendant_of(noticias).live().order_by('-date')[:8]
+
         return context
 
 
