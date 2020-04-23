@@ -1,4 +1,5 @@
 *.pyc
 home/migrations/
 /media
-/static/wagtail*
+/static
+/porlosjovenes/lib
