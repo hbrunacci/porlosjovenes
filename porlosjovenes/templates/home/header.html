@@ -53,6 +53,12 @@
                                     </form>
                                 </div>
 
+                                <li
+                                        {% if self.url == '/emergencia-covid-19/' %} class="active"{% endif %}>
+                                    <a href="/emergencia-covid-19/" style="border-radius: 8%; background-color: #ffb25b ">Emergencia Covid 19</a>
+                                </li>
+
+
                                 <li {% if self.url == '/noticias/' %} class="active"{% endif %}
                                 >
                                   <a href="/noticias/">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
@@ -97,9 +103,12 @@
                                 <li
                                         {% if self.url == '/carrera/' %} class="active"{% endif %}
                                 ><a href="/carrera/">Carrera</a></li>
+                                {% comment %}
                                 <li
                                         {% if self.url == '/app/' %} class="active"{% endif %}>
-                                    <a href="/app/">App</a></li>
+                                    <a href="/app/">App</a>
+                                </li>
+                                 {% endcomment %}
                             </ul>
                         </nav>
                     </div>
