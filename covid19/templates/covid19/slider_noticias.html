@@ -3,40 +3,72 @@
 
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="container-fluid row">
-    <div class="covid-slider owl-carousel">
-        {% for noticia in noticias %}
-                <div class="col-md-12">
-                            <!-- Single news -->
-                       <article class="news-info covid-news">
-                            <div class="news-img covid-img">
-                                <a href="{% pageurl noticia %}">
-                                    {% if noticia.imagen_portada %}
-                                        {% image noticia.imagen_portada original as image %}
-                                        <img src="{{ image.url }}"  style=" width: 100% !important;" alt="{{ image.alt }}"/>
-                                    {% endif %}
-                                </a>
-                            </div>
-                           <div class="news-content h200">
-                               <div class="post-meta">
-                                   <ul>
-                                       <li><a href="/noticias/">{{ noticia.categoria }}</a>
-                                           {% if noticia.date %}
-                                               <br>{{ noticia.date }}
-                                           {% endif %}
-                                       </li>
-                                   </ul>
-                               </div>
-                               <a href="{% pageurl noticia %}">
-                                   <h2>{{noticia.title}}</h2>
-                               </a>
-                               <a href="{% pageurl noticia %}" >Ver Más</a>
-                           </div>
-                       </article>
-                </div>
-        {% endfor %}
-                        </div>
+
+
+<section id="anteriores">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <!-- section title -->
+                    <div class="title">
+                        <!-- hastag-->
+                        <h1 style="text-align: center; color: #008996; font-family:'Galano Bold'"> {{self.hashtag}} </h1>
+                        <br>
                     </div>
+
+                    <div class="row">
+                        <!-- carrousel-->
+                        <div class="covid-slider owl-carousel">
+                            {% for noticia in noticias %}
+                                    <div class="col-md-12">
+                                                <!-- Single news -->
+                                           <article class="news-info covid-news">
+                                                <div class="news-img covid-img">
+                                                    <a href="{% pageurl noticia %}">
+                                                        {% if noticia.imagen_portada %}
+                                                            {% image noticia.imagen_portada original as image %}
+                                                            <img src="{{ image.url }}"  style=" width: 100% !important;" alt="{{ image.alt }}"/>
+                                                        {% endif %}
+                                                    </a>
+                                                </div>
+                                               <div class="news-content h200" style="text-align: left;">
+                                                   <div class="post-meta">
+                                                       <ul>
+                                                           <li style="text-align: left !important;"><a href="/noticias/" style="" >{{ noticia.categoria }}</a>
+                                                               {% if noticia.date %}
+                                                                   <br>{{ noticia.date }}
+                                                               {% endif %}
+                                                           </li>
+                                                       </ul>
+                                                   </div>
+                                                   <a href="{% pageurl noticia %}">
+                                                       <h2 style="text-align: justify !important; font-size: 16px !important;" >{{noticia.title}}</h2>
+                                                   </a>
+                                                   <a href="{% pageurl noticia %}" style="text-align:end!important; font-size: smaller;" >Ver Más</a>
+                                               </div>
+                                           </article>
+                                    </div>
+                            {% endfor %}
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row" style="margin: 6em 0 4em 0;">
+                        <!-- sponsors -->
+                    </div>
+
+
+                 </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
 
 
 
