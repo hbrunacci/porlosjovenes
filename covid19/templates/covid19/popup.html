@@ -1,0 +1,8 @@
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<h3>{{ institucion.title }} </h3>
+<h4>{{ institucion.institucion_direccion }} </h4>
+{% for accion in institucion.acciones.all %}
+    <a href="">accion </a>
+{% endfor %}

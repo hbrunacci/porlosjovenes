@@ -66,6 +66,7 @@
             var myIcon = L.icon({
                                 iconUrl: '{% static 'img/marker-icon.png' %}',
                                 iconAnchor: [12, 41],
+                                popupAnchor: [0, -27],
                                 shadowUrl: '{% static 'img/marker-shadow.png' %}'
 
                             });
@@ -75,9 +76,24 @@
 
             {% for institucion in instituciones %}
                 <script>
-                L.marker([{{institucion.get_latlng}}], {icon: myIcon}).addTo(covidmap)
-                    .bindPopup('{{ institucion.title }}')
-                </script>
+                                   // create popup contents
+                    //var customPopup =
+                                   var customPopup = "<h3>{{institucion.title}}</h3>"
+                                   var customPopup = customPopup.concat('<h4>{{institucion.institucion_direccion}}</h4>')
+                                   {% for accion in institucion.acciones.all %}
+                                   var customPopup = customPopup.concat('<h5>  - {{accion.descripcion}}</h4>')
+                                       {% endfor %}
+
+                    // specify popup options
+                    var customOptions =
+                        {
+                        'maxWidth': '500',
+                        'className' : 'custom'
+                        }
+
+                    L.marker([{{institucion.get_latlng}}], {icon: myIcon}).addTo(covidmap)
+                        .bindPopup(customPopup,customOptions)
+                    </script>
             {% endfor %}
             <script>
                 var roads = L.gridLayer.googleMutant({type: 'roadmap'}).addTo(covidmap);
