@@ -214,6 +214,7 @@ CSP_DEFAULT_SRC = ( "'unsafe-inline'", 'fonts.googleapis.com')
 
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com')
 CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",
+                  "'unsafe-eval'",
                   "secure.mlstatic.com",
                   "unpkg.com",
                   "maps.googleapis.com",
@@ -240,6 +241,7 @@ CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com",
                )
 CSP_CONNECT_SRC = ("'self'", 'https://porlosjovenes.org')
 CSP_FRAME_SRC = ("'self'", "https://www.google.com",
+                 "https://www.mercadopago.com.ar"
                  'aeroterra.maps.arcgis.com',
                  "https://www.youtube.com",
                  "https://donbosco.secure.force.com",
