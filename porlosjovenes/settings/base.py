@@ -214,6 +214,7 @@ CSP_DEFAULT_SRC = ( "'unsafe-inline'", 'fonts.googleapis.com')
 
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com')
 CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",
+                  "secure.mlstatic.com",
                   "unpkg.com",
                   "maps.googleapis.com",
                   "connect.facebook.net",
@@ -227,6 +228,7 @@ CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",
 CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
 CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com",
                "maps.gstatic.com",
+               "secure.mlstatic.com",
                "maps.googleapis.com",
                "www.google.com",
                "www.gravatar.com",
