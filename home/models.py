@@ -13,6 +13,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.search import index
 from wagtailmetadata.models import MetadataPageMixin
+from instituciones.models import Institucion
 
 
 CATEGORIAS = {'Educacion':'Educacion',
@@ -740,6 +741,7 @@ class Noticia(MetadataPageMixin, Page):
         blank=False,
         related_name='+'
     )
+    noticia_institucion = models.ForeignKey(Institucion, on_delete=models.SET_NULL, null=True, blank=True, related_name='institucion')
 
 
     search_fields = Page.search_fields + [
@@ -758,6 +760,7 @@ class Noticia(MetadataPageMixin, Page):
         FieldPanel('body', classname="full"),
         ImageChooserPanel('imagen_portada'),
         InlinePanel('gallery_images', label="Galeria de Imagenes"),
+        FieldPanel('noticia_institucion'),
     ]
 
     promote_panels = [
