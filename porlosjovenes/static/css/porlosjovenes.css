@@ -251,3 +251,21 @@ body {
 .covid-img img {
     width: 100% !important;
 }
+
+.boton_mp_mobile {
+    display: none;
+}
+
+.boton_mp_web {
+    display: inline;
+}
+
+@media only screen and (max-width: 990px) {
+    .boton_mp_mobile {
+        display: block;
+    }
+
+    .boton_mp_web {
+        display: none;
+    }
+}
