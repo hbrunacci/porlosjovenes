@@ -30,14 +30,16 @@
  {% image self.imagen_encabezado original as img_principal %}
 
     <div class="container" style="text-align:center; margin: 0px; padding: 0px; width: 100%;" >
-    <a href="https://www.mercadopago.com.ar/checkout/v1/modal?pref_id=486091909-93e0f562-4992-41b6-b531-837435e1b21e" class="animated fadeInDown"
-       style="opacity: 1;bottom: 10%; margin-left: -4.5em; position: absolute;">
-        <img src="{% static 'img/boton_flotante.png' %}" /></a>
 
     <div style="width: 100%; height: 400px; display: block;  background:
             transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
     </div>
 </div>
+ <a href="https://www.mercadopago.com.ar/checkout/v1/modal?pref_id=486091909-93e0f562-4992-41b6-b531-837435e1b21e"
+       class="quiero-donar animated fadeInDown"
+       style="opacity: 1;bottom: 10%; margin-left: -4.5em; position: absolute;">
+        <img src="{% static 'img/boton_flotante.png' %}" />
+ </a>
 
 <div class="container-fluid" style="margin: 0px; padding: 0px; width: 100%;">
    <h2 class="col-md-9 searchmap"> Conocé las acciones a nivel local en cada una de nuestras sedes. </h2>

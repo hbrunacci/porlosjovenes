@@ -530,6 +530,8 @@ ul li a.menu-active {
 
 .slider-area {
     background-color: #272727;
+    display: inline-block;
+    width: 100%;
 }
 
 .slider-one {
