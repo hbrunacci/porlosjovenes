@@ -429,7 +429,7 @@ ul.breadcrumb li a {
 
 .main-menu {
     text-align: center;
-    margin: 18px 80px 18px 0;
+    margin: 18px 35px 18px 0;
 }
 
 .main-menu ul {
@@ -665,6 +665,14 @@ ul li a.menu-active {
 .download-link {
     margin-top: 30px;
 }
+
+.covid-banner{
+     height: 400px;
+    }
+
+.covid-banner2{
+     height: 240px;
+    }
 
 /*  ================================
         about us area

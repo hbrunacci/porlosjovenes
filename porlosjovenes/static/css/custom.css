@@ -101,7 +101,7 @@ font-size: 17px;
 
 .main-menu {
     text-align: left;
-    margin: 60px 80px 50px 0;
+    margin: 40px 80px 50px 0;
 }
 
 .donate-box {
@@ -216,7 +216,7 @@ p {
 
 
 .news-content h2 {
-    word-break: break-word;
+    word-break: break-all;
 }
 
   .footer-area .titulo p{
@@ -424,8 +424,13 @@ p {
 
 .fixed-menu {
 
-     height: 155px;
+    height: 155px;
     padding-top: 24px;
+}
+
+.fixed-menu .container-fluid {
+
+    height: 155px;
 }
 
 .fixed-menu 
@@ -868,8 +873,11 @@ h2 {
 
 
 .sliderResponsive {
-     height: 140px;
+     height: 200px;
 }
+
+
+
 .responsive50 {
      height: 140px;
 }
