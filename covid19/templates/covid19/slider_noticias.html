@@ -12,7 +12,7 @@
                     <!-- section title -->
                     <div class="title">
                         <!-- hastag-->
-                        <h1 style="text-align: center; color: #008996; font-family:'Galano Bold'"> {{self.hashtag}} </h1>
+                        <h1 style="text-align: center; color: #008996; font-family:'Galano';font-weight:bold;"> {{self.hashtag}} </h1>
                         <br>
                     </div>
 
@@ -20,7 +20,7 @@
                         <!-- carrousel-->
                         <div class="covid-slider owl-carousel">
                             {% for noticia in noticias %}
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="font-family:'Galano'; font-weight:bold;">
                                                 <!-- Single news -->
                                            <article class="news-info covid-news">
                                                 <div class="news-img covid-img">
@@ -44,7 +44,7 @@
                                                    <a href="{% pageurl noticia %}">
                                                        <h2 style="line-height:22px; text-align: justify !important; font-size: 16px !important;" >{{noticia.title}}</h2>
                                                    </a>
-                                               <p style="font-size:13px; line-height: normal;">{{ noticia.intro|truncatewords:15 }}</p>
+                                               <p style="font-weight:normal; font-size:13px; line-height: normal;">{{ noticia.intro|truncatewords:15 }}</p>
                                                    <a href="{% pageurl noticia %}" style="text-align:end!important; font-size: smaller;" >Ver Más</a>
                                                </div>
                                            </article>
