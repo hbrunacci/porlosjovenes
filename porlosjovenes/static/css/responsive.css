@@ -534,12 +534,12 @@
     }
 
     .covid-slider .owl-nav div {
-        left: 35%;
-        top: auto;
+        left: 2%;
+        top:  40%;
     }
     .covid-slider div.owl-next {
         left: auto;
-        right: 35%;
+        right: 2%;
     }
     .post-meta ul {
         margin-top: 0;
@@ -691,11 +691,11 @@
         right: 40%;
     }
     .covid-slider .owl-nav div {
-        left: 40%;
+        left: 2%;
     }
     .covid-slider div.owl-next {
         left: auto;
-        right: 40%;
+        right: 2%;
     }
     .events-details {
         padding: 15px 0;
