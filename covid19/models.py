@@ -76,4 +76,4 @@ class Covid19(MetadataPageMixin, Page):
 class SponsorCovid(SponsorClass):
     page = ParentalKey("covid19.Covid19", related_name='carousel_sponsor_covid')
 
-add 
+

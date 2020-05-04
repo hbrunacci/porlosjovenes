@@ -45,7 +45,7 @@
                                                        <h2 style="line-height:22px; text-align: justify !important; font-size: 16px !important;" >{{noticia.title}}</h2>
                                                    </a>
                                                <p style="font-weight:normal; font-size:13px; line-height: normal;">{{ noticia.intro|truncatewords:15 }}</p>
-                                                   <a href="{% pageurl noticia %}" style="text-align:end!important; font-size: smaller;" >Ver Más</a>
+                                                   <a href="{% pageurl noticia %}" style="text-align:end!important; font-size: small;" >Ver Más</a>
                                                </div>
                                            </article>
                                     </div>
@@ -55,12 +55,12 @@
 
                     </div>
 
-                    {% if self.carousel_sponsor_app.all %}
+                    {% if self.carousel_sponsor_covid.all %}
                     <div class="row" style="margin: 6em 0 4em 0;">
                         <!-- sponsors -->
 
                         <div class="sponsors owl-carousel" style="autoPlay: 3000">
-                            {% for sponsor in self.carousel_sponsor_app.all %}
+                            {% for sponsor in self.carousel_sponsor_covid.all %}
                                 <div>
                                 {% image sponsor.imagen_sponsor original as tmp_photo %}
                                 <img src="{{ tmp_photo.url }}" class="img-responsive">
