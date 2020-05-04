@@ -66,9 +66,12 @@ function slicknavOpened(trigger) {
     $(window).on('scroll', function () {
         if ($(window).scrollTop() > 1) {
             $('.menu-area').addClass('fixed-menu');
+            $('.menu-area').removeClass('on-top');
+
             $('.top-header-area').addClass('fixear');
         } else {
             $('.menu-area').removeClass('fixed-menu');
+            $('.menu-area').addClass('on-top');
             $('.top-header-area').removeClass('fixear');
         }
     });
