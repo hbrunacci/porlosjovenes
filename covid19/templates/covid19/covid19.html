@@ -36,7 +36,7 @@
  <a href="https://www.mercadopago.com.ar/checkout/v1/modal?pref_id=486091909-93e0f562-4992-41b6-b531-837435e1b21e"
        class="quiero-donar animated fadeInDown"
        style="opacity: 1;bottom: 10%; margin-left: -4.5em; position: absolute;">
-        <img src="{% static 'img/boton_flotante.png' %}" />
+        <img src="{% static 'img/boton_flotante_xl.png' %}" />
  </a>
 
 <div class="container-fluid" style="margin: 0px; padding: 0px; width: 100%;">
@@ -75,7 +75,7 @@
                                 shadowUrl: '{% static 'img/marker-shadow.png' %}'
 
                             });
-            var covidmap = L.map('mapid',{scrollWheelZoom: false}). setView([-33.167563, -64.118819], 6);
+            var covidmap = L.map('mapid',{scrollWheelZoom: false}). setView([-35.167563, -65.518819], 4);
 
             </script>
 
@@ -89,7 +89,6 @@
                                    var customPopup = customPopup.concat('<h5>  - {{accion.descripcion}}</h4>')
                                        {% endfor %}
 
-                    // specify popup options
                     var customOptions =
                         {
                         'maxWidth': '500',
