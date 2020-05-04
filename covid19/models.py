@@ -9,7 +9,9 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtailmetadata.models import MetadataPageMixin
 
-from home.models import Noticia,Noticias
+from modelcluster.fields import ParentalKey
+
+from home.models import Noticia, Noticias, SponsorClass
 from instituciones.models import Instituciones, Institucion
 
 class Covid19(MetadataPageMixin, Page):
@@ -47,8 +49,13 @@ class Covid19(MetadataPageMixin, Page):
         FieldPanel('texto_inferior'),
         ImageChooserPanel('imagen_inferior',
                           heading='Imagen Inferior'),
+        FieldPanel('hashtag', heading='Hashtag'),
+        MultiFieldPanel([
+            InlinePanel('carousel_sponsor_covid'),
+        ], heading='Sponsor campaña covid'
+         , classname="collapsible ")
 
-        FieldPanel('hashtag', heading='Hashtag')
+
     ]
 
 
@@ -66,3 +73,7 @@ class Covid19(MetadataPageMixin, Page):
         return context
 
 
+class SponsorCovid(SponsorClass):
+    page = ParentalKey("covid19.Covid19", related_name='carousel_sponsor_covid')
+
+add 

@@ -55,9 +55,24 @@
 
                     </div>
 
-
+                    {% if self.carousel_sponsor_app.all %}
                     <div class="row" style="margin: 6em 0 4em 0;">
                         <!-- sponsors -->
+
+                        <div class="sponsors owl-carousel" style="autoPlay: 3000">
+                            {% for sponsor in self.carousel_sponsor_app.all %}
+                                <div>
+                                {% image sponsor.imagen_sponsor original as tmp_photo %}
+                                <img src="{{ tmp_photo.url }}" class="img-responsive">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+
+                </div>
+            </div>
                     </div>
 
 
