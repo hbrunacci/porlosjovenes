@@ -16,7 +16,7 @@ from wagtailmetadata.models import MetadataPageMixin
 from instituciones.models import Institucion
 
 
-CATEGORIAS = {'Educacion':'Educacion',
+CATEGORIAS = {'Educacion':'Educación',
                  'Comunitaria':'Acciones Comunitarias',
                  'Pastorales': 'Acciones Misioneras y Pastorales',
                  'Trabajo':'Formación Para El Trabajo',
@@ -118,7 +118,7 @@ class QueHacemos(MetadataPageMixin, Page):
         related_name="+",
         on_delete=models.SET_NULL,
     )
-    educacion_texto = models.CharField('Educacion Texto',max_length=400, null=True, blank=False)
+    educacion_texto = models.CharField('Educación Texto',max_length=400, null=True, blank=False)
     trabajo_texto =  models.CharField('Trabajo Texto',max_length=400, null=True, blank=False)
     comunitaria_texto = models.CharField('Comunitaria Texto',max_length=400,null=True, blank=False)
     acciones_texto = models.CharField('Acciones Texto',max_length=400, null=True, blank=False)
@@ -722,10 +722,10 @@ class Noticia(MetadataPageMixin, Page):
     template = 'secciones/noticias/noticia_detalle.html'
     subpage_types = []
 
-    CATEGORIAS = (('Educacion','Educacion'),
+    CATEGORIAS = (('Educacion','Educación'),
                   ('Comunitaria', 'Acciones Comunitarias'),
                   ('Pastorales', 'Acciones Misioneras y Pastorales'),
-                  ('Trabajo', 'Formación Para El Trabajo'),
+                  ('Trabajo', 'Formación para el trabajo'),
                   ('Covid19', 'Emergencia Covid-19'),
                   )
 
@@ -741,7 +741,7 @@ class Noticia(MetadataPageMixin, Page):
         blank=False,
         related_name='+'
     )
-    noticia_institucion = models.ForeignKey(Institucion, on_delete=models.SET_NULL, null=True, blank=True, related_name='institucion')
+    noticia_institucion = models.ForeignKey(Institucion, on_delete=models.SET_NULL, null=True, blank=True, related_name='noticias')
 
 
     search_fields = Page.search_fields + [

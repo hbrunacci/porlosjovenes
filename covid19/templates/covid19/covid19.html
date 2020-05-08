@@ -49,13 +49,13 @@
  {% image self.imagen_inferior original as img_inferior %}
     <div class='covid-banner2' style="width: 100%; display: block; margin: 0em 0em 2em 0em; background: transparent url('{{ img_inferior.url }}') center center no-repeat; background-size: cover;"></div>
 
-
     {% include "covid19/slider_noticias.html" %}
 
     <div>
-   <h2 style="text-align: end; color: #008996; font-family:'Galano'; font-weight:bold; > VER MÁS NOTICIAS      </h2>
+   <h2 style="text-align: end; color: #008996; font-family:'Galano'; font-weight:bold;" > VER MÁS NOTICIAS      </h2>
     <br>
 </div>
+    </div>
 
 
 {% endblock %}
@@ -88,6 +88,10 @@
                                    {% for accion in institucion.acciones.all %}
                                    var customPopup = customPopup.concat('<h5>  - {{accion.descripcion}}</h4>')
                                        {% endfor %}
+                                   {% for accion in institucion.acciones.all %}
+                                   var customPopup = customPopup.concat('<h5>  - {{accion.descripcion}}</h4>')
+                                       {% endfor %}
+
 
                     var customOptions =
                         {
