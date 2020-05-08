@@ -731,4 +731,9 @@
      height: 120px;
     }
 
+    .leaflet-popup-content-wrapper {
+        zoom: 80%;
+    }
+
+
 }

@@ -7,6 +7,9 @@
 {% block extra_css %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'leaflet/leaflet.css' %}" >
+    <link rel="stylesheet" type="text/css" href="{% static 'leaflet/leaflet.responsive.popup.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'leaflet/leaflet.responsive.popup.rtl.css'  %}" />
+
 
     <style>
     .searchmap {
@@ -44,7 +47,7 @@
    <div class="col-md-3 searchmap"> - </div>
 
 </div>
-    <div id="mapid" style="height: 360px; z-index: 0"></div>
+    <div  id="mapid" style="height: 360px; z-index: 0"></div>
 
  {% image self.imagen_inferior original as img_inferior %}
     <div class='covid-banner2' style="width: 100%; display: block; margin: 0em 0em 2em 0em; background: transparent url('{{ img_inferior.url }}') center center no-repeat; background-size: cover;"></div>
@@ -64,7 +67,8 @@
         {% block extra_js %}
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAozUOjYgqhFVNDeK2GYfiFwdgf9zuYJfQ" async defer></script>
                     <script src="{% static 'leaflet/leaflet.js' %}"></script>
-         <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
+            <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
+            <script src="https://unpkg.com/leaflet-responsive-popup@0.6.4/leaflet.responsive.popup.js"></script>
 
 
             <script>
@@ -83,24 +87,36 @@
                 <script>
                                    // create popup contents
                     //var customPopup =
-                                   var customPopup = "<h3>{{institucion.title}}</h3>"
-                                   var customPopup = customPopup.concat('<h4>{{institucion.institucion_direccion}}</h4>')
-                                   {% for accion in institucion.acciones.all %}
-                                   var customPopup = customPopup.concat('<h5>  - {{accion.descripcion}}</h4>')
-                                       {% endfor %}
-                                   {% for accion in institucion.acciones.all %}
-                                   var customPopup = customPopup.concat('<h5>  - {{accion.descripcion}}</h4>')
-                                       {% endfor %}
 
 
-                    var customOptions =
-                        {
-                        'maxWidth': '500',
-                        'className' : 'custom'
-                        }
+                                   var customPopup = "<div style='font-family:'Galano';'> <h3>{{institucion.title}}</h3>";
+                                   var customPopup = customPopup.concat('<h4>{{institucion.institucion_direccion}}</h4>');
+                                   var customPopup = customPopup.concat('<hr style="margin: 5px 0 5px 0;border-top: 4px solid #ffb25b;">');
+
+                                   {% for accion in institucion.acciones.all %}
+                                   var customPopup = customPopup.concat('<h5>  - {{accion.descripcion}}</h5>');
+                                       {% endfor %}
+                                   {% for noticia in institucion.noticias.all %}
+                                       {% if forloop.counter0 == 0 %}
+                                           var customPopup = customPopup.concat('<h4 style="color: #008996; padding-bottom: 1px;padding-top: 7px;">  NOTICIAS </h4>');
+                                           var customPopup = customPopup.concat('<hr style="margin: 1px 0 5px 0; border-top: 2px solid #008996;">');
+
+                                       {% endif %}
+                                   var customPopup = customPopup.concat('<h4 color= #000000> {{noticia.title}}</h4>');
+                                   var customPopup = customPopup.concat('<h5 color= gray> {{ noticia.intro|truncatewords:15 }}</h5>');
+                                   var customPopup = customPopup.concat('<a style="font-size: smaller; color:#008996" href="{{noticia.url}}">  Ver más </a>');
+                                   var customPopup = customPopup.concat('<hr style="margin: 2px 0 2px 0; border-top: 1px solid #008996;">');
+
+                                       {% endfor %}
+                                   var customPopup = customPopup.concat('</div>');
+
+
+
+
+                    var popup = L.responsivePopup().setContent(customPopup);
 
                     L.marker([{{institucion.get_latlng}}], {icon: myIcon}).addTo(covidmap)
-                        .bindPopup(customPopup,customOptions)
+                        .bindPopup(popup)
                     </script>
             {% endfor %}
             <script>
