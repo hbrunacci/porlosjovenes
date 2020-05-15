@@ -73,7 +73,7 @@ class Covid19(MetadataPageMixin, Page):
         return self.search_description
 
     def get_meta_image(self):
-        return self.search_image
+        return 'https://porlosjovenes.org%s' % self.search_image.usage_url
 
 
     def get_context(self, request, *args, **kwargs):
