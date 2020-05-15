@@ -64,7 +64,7 @@ class Covid19(MetadataPageMixin, Page):
         verbose_name_plural = "'Emergencia Covid'"
 
     def get_meta_url(self):
-        return self.full_url
+        return 'https://porlosjovenes.org%s' % self.url
 
     def get_meta_title(self):
         return self.seo_title or self.title
