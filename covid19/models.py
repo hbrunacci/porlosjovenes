@@ -63,6 +63,19 @@ class Covid19(MetadataPageMixin, Page):
         verbose_name = "Emergencia Covid"
         verbose_name_plural = "'Emergencia Covid'"
 
+    def get_meta_url(self):
+        return self.full_url
+
+    def get_meta_title(self):
+        return self.seo_title or self.title
+
+    def get_meta_description(self):
+        return self.search_description
+
+    def get_meta_image(self):
+        return self.search_image
+
+
     def get_context(self, request, *args, **kwargs):
         context = super(Covid19, self).get_context(request, *args, **kwargs)
         instituciones = Instituciones.objects.first()
