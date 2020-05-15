@@ -11,14 +11,14 @@
 <meta property="og:title" content="{{ object.get_meta_title }}" />
 <meta property="og:description" content="{{ object.get_meta_description }}" />
 <meta property="og:site_name" content="{{ site_name }}" />
-<meta property="og:image"  content='https://porlosjovenes.org/static/img/logo_cortado.fd05c990d7cf.png' />
+<meta property="og:image" content="{{ meta_image }}" />
 {% endblock opengraph %}
 
 {% block meta %}
 <meta itemprop='url' content='{{ object.get_meta_url }}'/>
 <meta itemprop="name" content="{{ object.get_meta_title }} — {{ site_name }}">
 <meta itemprop='description' content='{{ object.get_meta_description }}' />
-<meta itemprop='image' content='https://porlosjovenes.org/static/img/logo_cortado.fd05c990d7cf.png' />
+<meta itemprop='image' content="{{ meta_image }}" />/>
 
 <title>{{ object.get_object_title }}</title>
 <meta name="description" content="{{ object.get_meta_description }}">
