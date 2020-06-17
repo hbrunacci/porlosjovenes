@@ -19,7 +19,7 @@ from instituciones.models import Institucion
 CATEGORIAS = {'Educacion':'Educación',
                  'Comunitaria':'Acciones Comunitarias',
                  'Pastorales': 'Acciones Misioneras y Pastorales',
-                 'Trabajo':'Formación Para El Trabajo',
+                 'Trabajo':'Formación para el trabajo',
                  'Covid19': 'Emergencia Covid-19',
                  }
 
