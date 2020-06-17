@@ -123,15 +123,18 @@
                 </div>
 
         {% if self.url == '/carrera/' %}
-            <div class="menucarrera hidden-xs hidden-sm">
-                    <a onClick="scrollToDiv('#inscribite');">INSCRIBITE</a>
-                    <a onClick="scrollToDiv('#informacion');">INFORMACIÓN</a>
-                    <a onClick="scrollToDiv('#kit');">KIT</a>
-                    <a onClick="scrollToDiv('#mapa');">MAPA</a>
-                    <a onClick="scrollToDiv('#sumarse');">POR QUÉ SUMARSE</a>
-                    <a onClick="scrollToDiv('#anteriores');">EDICIONES ANTERIORES</a>
-            </div>
+            {% if Eventos %}
+                <div class="menucarrera hidden-xs hidden-sm">
+                        <a onClick="scrollToDiv('#inscribite');">INSCRIBITE</a>
+                        <a onClick="scrollToDiv('#informacion');">INFORMACIÓN</a>
+                        <a onClick="scrollToDiv('#kit');">KIT</a>
+                        <a onClick="scrollToDiv('#mapa');">MAPA</a>
+                        <a onClick="scrollToDiv('#sumarse');">POR QUÉ SUMARSE</a>
+                        <a onClick="scrollToDiv('#anteriores');">EDICIONES ANTERIORES</a>
+                </div>
+            {% endif %}
         {% endif %}
+
             </div>
 
         </div>
