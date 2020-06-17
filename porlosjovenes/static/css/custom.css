@@ -21,18 +21,17 @@ section p {
     padding-top: 0px;
     margin-top: 33px;
     margin-left: 42px;
-">
 }
 
 @media (min-width: 1283px) {
   header {
-    height: 195px !important;
+    height: 180px !important;
   }
 }
 
 @media (min-width: 982px) and (max-width: 1283px) {
   header {
-    height: 195px !important;
+    height: 180px !important;
   }
 }
 
@@ -101,7 +100,7 @@ font-size: 17px;
 
 .main-menu {
     text-align: center;
-    margin: 40px 0px 50px 0;
+    margin: 40px 0px 35px 0;
 }
 
 .donate-box {
@@ -425,13 +424,13 @@ p {
 
 .fixed-menu {
 
-    height: 155px;
+    height: 120px;
     padding-top: 24px;
 }
 
 .fixed-menu .container-fluid {
 
-    height: 155px;
+    height: 110px;
 }
 
 .fixed-menu 
@@ -440,11 +439,11 @@ p {
 }
 
 .fixed-menu .main-menu {
-    margin: 35px 0px 20px 0;
+    margin: 22px 0px 10px 0;
 }
 .fixed-menu .believed-logo img {
     width: 160px;
-    height: 60px;
+    height: 70px;
     margin-top: 10px;
 }
 .fixed-menu .donate-box {
