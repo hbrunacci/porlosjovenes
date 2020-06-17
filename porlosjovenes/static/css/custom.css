@@ -100,8 +100,8 @@ font-size: 17px;
 }
 
 .main-menu {
-    text-align: left;
-    margin: 40px 80px 50px 0;
+    text-align: center;
+    margin: 40px 0px 50px 0;
 }
 
 .donate-box {
@@ -109,7 +109,8 @@ font-size: 17px;
 }
 .main-menu ul li a {
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
+    padding: 24px 7px;
     letter-spacing: 0;
 }
 
@@ -439,7 +440,7 @@ p {
 }
 
 .fixed-menu .main-menu {
-    margin: 35px 80px 20px 0;
+    margin: 35px 0px 20px 0;
 }
 .fixed-menu .believed-logo img {
     width: 160px;

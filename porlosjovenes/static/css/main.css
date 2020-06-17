@@ -524,7 +524,6 @@ ul li a.menu-active {
     position: fixed;
     top: 28px;
     width: 100%;
-    padding: 6px;
 }
 .menu-area.on-top .responsive-menu-wrap {
     margin-top: -10px;
