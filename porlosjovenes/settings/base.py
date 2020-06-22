@@ -129,7 +129,7 @@ DATABASES = {
         'USER': 'jovenes',
         'PASSWORD': 'JOVEnes,2018',
         'HOST': '',  # Set to empty string for localhost.
-        'PORT': '',  # Set to empty string for default.
+         'PORT': '',  # Set to empty string for default.
         'CONN_MAX_AGE': 600,  # number of seconds database connections should persist for
     }
 }
@@ -259,6 +259,10 @@ WAGTAIL_ADDRESS_MAP_KEY = 'AIzaSyAozUOjYgqhFVNDeK2GYfiFwdgf9zuYJfQ'
 WAGTAIL_ADDRESS_MAP_ZOOM = 8  # See https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions for more information.
 WAGTAIL_ADDRESS_MAP_LANGUAGE = 'sp'
 
+WAGTAILIMAGES_FORMAT_CONVERSIONS = {
+    'bmp': 'jpeg',
+    'webp': 'webp',
+}
 '''
 LOGGING = {
     'version': 1,
