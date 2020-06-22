@@ -11,7 +11,7 @@
             {% for imagen in self.slider_home.all %}
             {% image imagen.image original  as tmp_img %}
 
-                <div class="single-slider slider-one" style="background: url({{ tmp_img.url }})">
+                <div href="{{ imagen.url_boton }}"  class="single-slider slider-one" style="background: url({{ tmp_img.url }})">
                     <div class="slider-table">
                         <div class="slider-table-cell">
                             <div class="container">

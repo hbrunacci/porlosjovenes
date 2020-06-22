@@ -96,12 +96,28 @@
 
 {% block extra_js %}
     <script type="text/javascript">
-(function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){
-    var s = document.createElement("script");s.type = "text/javascript";
-    s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";
-    var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);
-    window.$MPC_loaded = true;})();
-}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+        (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){
+            var s = document.createElement("script");s.type = "text/javascript";
+            s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";
+            var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);
+            window.$MPC_loaded = true;})();
+        }window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+    </script>
 
-</script>
+    {# Override this in templates to add extra javascript #}
+    <script>
+        ga(function(tracker) {
+          // Gets the client ID of the default tracker.
+          var clientId = tracker.get('clientId');
+
+          // Gets a reference to the window object of the destionation iframe.
+          var frameWindow_1 = document.getElementById('frameI').contentWindow;
+          var frameWindow_2 = document.getElementById('frameI').contentWindow;
+
+          // Sends the client ID to the window inside the destination frame.
+          frameWindow_1.postMessage(clientId, '{{ self.url_donar }}');
+          frameWindow_2.postMessage(clientId, '{{ self.url_aumentar }}');
+        });
+    </script>
+
 {% endblock %}

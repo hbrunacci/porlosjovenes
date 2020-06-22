@@ -68,24 +68,16 @@ srcset webworkers">
 
             ga('create', 'UA-84697718-1', 'auto');
             ga('send', 'pageview');
+            ga(function(tracker) {
+                var clientId = tracker.get('clientId');
+                console.log(clientId);
+            });
+
         </script>
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123301080-1"></script>
-            <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-123301080-1');
-        </script>
 
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})
-        (window,document,'script','dataLayer','GTM-TKXGLLN');
-        </script>
-            <!-- Facebook Pixel Code -->
+
+          <!-- Facebook Pixel Code -->
         <script>
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -175,7 +167,7 @@ srcset webworkers">
         </script>
 
         {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
+
         {% endblock %}
     </body>
 </html>
