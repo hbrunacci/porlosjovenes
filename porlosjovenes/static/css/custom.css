@@ -1118,4 +1118,5 @@ h2 {
 @font-face {
     font-family: galano;
     src:url("../fonts/galanogrotesque.otf") format("truetype");
+    font-display: swap;
 }
