@@ -1120,3 +1120,9 @@ h2 {
     src:url("../fonts/galanogrotesque.otf") format("truetype");
     font-display: swap;
 }
+
+
+.page-item.active.a {
+    background-color: #0097a5;
+    border-color: #0097a5;
+}
