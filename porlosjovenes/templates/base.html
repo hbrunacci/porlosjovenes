@@ -65,17 +65,12 @@ srcset webworkers">
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
+ 
             ga('create', 'UA-84697718-1', 'auto');
             ga('send', 'pageview');
-            ga(function(tracker) {
-                var clientId = tracker.get('clientId');
-                console.log(clientId);
-            });
+
 
         </script>
-
-
 
           <!-- Facebook Pixel Code -->
         <script>
@@ -165,7 +160,24 @@ srcset webworkers">
                 });
             });
         </script>
-
+        <script>
+            function addEvent(el, evt, fn) {
+                if (el.addEventListener) {
+                    el.addEventListener(evt, fn);
+                    } else if (el.attachEvent) {
+                    el.attachEvent('on' + evt, function(evt) {
+                    fn.call(el, evt);
+                    });
+                    } else if (typeof el['on' + evt] === 'undefined' || el['on' + evt] === null) {
+                    el['on' + evt] = function(evt) {
+                        fn.call(el, evt);
+                    };
+                }
+            }
+            addEvent(window, 'message', function(message) {
+                console.log(message)
+            });
+        </script>
         {% block extra_js %}
 
         {% endblock %}
