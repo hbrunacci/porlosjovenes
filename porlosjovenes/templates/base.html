@@ -181,6 +181,8 @@ srcset webworkers">
                     ga('send','event','purchase', message.data,'0');
                 }
             });
+
+            setTimeout(ga('send','event','ingreso', 'permanencia','0'),10000);
         </script>
         {% block extra_js %}
 
