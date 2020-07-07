@@ -82,7 +82,7 @@ srcset webworkers">
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '220162465814570');
+          fbq('init', '289938481982976');
           fbq('track', 'PageView');
         </script>
         <noscript><img height="1" width="1" style="display:none"
@@ -179,6 +179,7 @@ srcset webworkers">
                 if (message.origin === "https://donbosco.secure.force.com") {
                     console.log(message.data);
                     ga('send','event','purchase', message.data,'0');
+                    fbq('track', 'Donate',{content_name: message.data});
                 }
             });
 

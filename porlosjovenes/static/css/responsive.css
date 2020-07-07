@@ -682,7 +682,9 @@
     body {
     font-size: 8px;
     }
-
+    boton-donar.animated.fadeInDown {
+        font-size: 16px;
+    }
     .blog-slider .owl-nav div {
         left: 40%;
     }
