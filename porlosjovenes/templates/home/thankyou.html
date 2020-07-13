@@ -9,7 +9,7 @@
         // similar behavior as an HTTP redirect
         ga('send','event','purchase', '{{ mensaje_donacion }}','0');
         fbq('track', 'Donate',{content_name: '{{ mensaje_donacion }}'});
-        setTimeout(function(){window.location.replace("http://porlosjovenes.org")},500);
+        setTimeout(function(){window.location.replace("http://porlosjovenes.org")},1500);
     </script>
 
 {% endblock %}
