@@ -6,6 +6,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from django.views.generic import RedirectView
+from home.views import donacion_correcta, donacion_enproceso
 
 from search import views as search_views
 
@@ -16,6 +17,8 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.png')),
     url(r'^search/$', search_views.search, name='search'),
+    url(r'^donacion_correcta/$', donacion_correcta, name='donacion_correcta'),
+    url(r'^donacion_enproceso/$', donacion_enproceso, name='donacion_enproceso'),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in

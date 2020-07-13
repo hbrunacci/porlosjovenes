@@ -28,9 +28,13 @@ srcset webworkers">
         <link rel="shortcut icon" href={% static 'img/favicon.ico' %}>
 
         {% block meta_data %}
-            {% if not request.path_info == '/search/' %}
+            {% if request.path_info == '/search/' %}
+            {% elif request.path_info == '/donacion_correcta/' %}
+            {% elif request.path_info == '/donacion_enproceso/' %}
+            {% else %}
                 {% meta_tags %}
             {% endif %}
+
         {% endblock meta_data %}
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

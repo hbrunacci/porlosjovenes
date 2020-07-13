@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+    <script>
+        console.log('{{ mensaje_donacion }}');
+        // similar behavior as an HTTP redirect
+        ga('send','event','purchase', '{{ mensaje_donacion }}','0');
+        fbq('track', 'Donate',{content_name: '{{ mensaje_donacion }}'});
+        setTimeout(function(){window.location.replace("http://porlosjovenes.org")},500);
+    </script>
+
+{% endblock %}

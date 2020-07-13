@@ -228,6 +228,7 @@ CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",
                   "https://players.yumpu.com")
 CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
 CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com",
+               'https://www.facebook.com',
                "https://www.google.com.ar",
                "maps.gstatic.com",
                "secure.mlstatic.com",
