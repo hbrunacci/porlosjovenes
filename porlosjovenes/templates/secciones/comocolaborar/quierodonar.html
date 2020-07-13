@@ -37,25 +37,23 @@
                 </div>
             </div>
         </div>
-
-
         <div class="row">
             <div class="col-md-9">
                 <!-- Single news -->
                  {{self.texto_encabezado|richtext }}
                 <div class="text-center" style="margin: 2em 0;">
-                    <a mp-mode="dftl" href="https://www.mercadopago.com.ar/checkout/v1/modal?pref_id=486091909-93e0f562-4992-41b6-b531-837435e1b21e"
+                    <a mp-mode="dftl" href="https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=486091909-93e0f562-4992-41b6-b531-837435e1b21e"
                    class='blue-ar-l-sq-arall boton_mp_mobile' ><img src="{% static 'img/boton_flotante_xl_ML.png' %}" /></a>
                     <button class="botondonar seleccion" data-form="1">Quiero Colaborar</button>
                     <button href="#" data-form="2" class="botondonar">Quiero aumentar mi colaboración</button>
                 </div>
-                <iframe src="{{ self.url_donar }}" style="height: 1000px; width: 100%; border:0;" id="frameI"></iframe>
-                <iframe src="{{ self.url_aumentar }}" style="height: 1000px; width: 100%; border:0; display: none;" id="frameII"></iframe>
+                <iframe src="{{ self.url_donar }}" style="height: 1050px; width: 100%; border:0;" id="frameI"></iframe>
+                <iframe src="{{ self.url_aumentar }}" style="height: 1050px; width: 100%; border:0; display: none;" id="frameII"></iframe>
             </div>
             <div class="col-md-3">
                 <div style="text-align: center">
-                <a mp-mode="dftl" href="https://www.mercadopago.com.ar/checkout/v1/modal?pref_id=486091909-93e0f562-4992-41b6-b531-837435e1b21e"
-                   class='blue-ar-l-sq-arall boton_mp_web' ><img src="{% static 'img/boton_flotante_xl.png' %}" /></a>
+                <a mp-mode="dftl" href="https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=486091909-93e0f562-4992-41b6-b531-837435e1b21e"
+                   class='blue-ar-l-sq-arall boton_mp_web' ><img src="{% static 'img/boton_flotante_xl_ML.png' %}" /></a>
                 {% image self.imagen_principal original as img %}
                 </div>
                 <img src='{{ img.url }}' style="width: 100%; ">
