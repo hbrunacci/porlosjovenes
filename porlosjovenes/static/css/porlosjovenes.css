@@ -279,3 +279,19 @@ body {
         display: none;
     }
 }
+
+.page-item {
+    border-color: #0097A5 !important;
+
+}
+
+.page-link.active {
+    background-color: #0097A5 !important;
+    border-color: #0097A5 !important;
+    color: #ffffff !important;
+}
+
+.page-link {
+    border-color: #0097A5 !important;
+    color:  #0097A5 !important;
+}
