@@ -522,6 +522,7 @@ ul li a.menu-active {
 
 .menu-area.on-top {
     position: fixed;
+    z-index: 200 !important;
     top: 28px;
     width: 100%;
 }
