@@ -32,7 +32,7 @@
                                 <!--link a la noticia-->
                                     <a href="{% pageurl blog %}">
                                         {% if blog.imagen_portada %}
-                                            {% image blog.imagen_portada original as image %}
+                                            {% image blog.imagen_portada fill-400x400 as image %}
                                             <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
                                         {% endif %}
                                     </a>

@@ -38,7 +38,7 @@
                         <div class="news-img h400">
                             <a href="{% pageurl noticia %}">
                                 {% if noticia.imagen_portada %}
-                                    {% image noticia.imagen_portada original as image %}
+                                    {% image noticia.imagen_portada fill-400x400 as image %}
                                     <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
                                 {% endif %}
                             </a>
@@ -72,7 +72,7 @@
                                 <div class="news-img h200">
                                     <a href="{% pageurl noticia %}">
                                         {% if noticia.imagen_portada %}
-                                            {% image noticia.imagen_portada original as image %}
+                                            {% image noticia.imagen_portada fill-400x400 as image %}
                                             <img src="{{ image.url }}"  alt="{{ image.alt }}"/>
                                         {% endif %}
                                     </a>
