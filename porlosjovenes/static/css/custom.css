@@ -27,12 +27,24 @@ section p {
   header {
     height: 180px !important;
   }
+    .boton-donar.responsive {
+       display: none;
+   }
 }
 
-@media (min-width: 982px) and (max-width: 1283px) {
+
+
+
+@media (min-width: 781px) and (max-width: 981px) {
   header {
-    height: 180px !important;
+    height: 140px !important;
   }
+  .believed-logo img {
+
+        margin-top: 7px;
+        margin-left: 0;
+    }
+
 }
 
 header .menu-area .container-fluid {
@@ -40,14 +52,7 @@ header .menu-area .container-fluid {
   padding: 0px !important;
 }
 
-@media (max-width: 780px) {
-    .believed-logo img {
-        width: 132px;
-        height: 50px;
-        margin-top: 7px;
-        margin-left: 0;
-    }
-}
+
 
 
 .believed-logo {
@@ -382,7 +387,7 @@ p {
     text-decoration:none;
 }
 
-.botondonar {
+.botondonar  .main-menu->ul->li->a.botondonar{
     border: 3px solid #0097a5;
     border-radius: 10px;
     padding: 15px;
@@ -1124,4 +1129,41 @@ h2 {
 .page-item.active.a {
     background-color: #0097a5;
     border-color: #0097a5;
+}
+
+
+@media (max-width: 780px) {
+    .believed-logo img {
+        width: 138px;
+        margin-top: 7px;
+        margin-left: 0;
+    }
+    .boton-donar.responsive {
+        height: 36px;
+        font-size: small;
+        padding-top: 5px;
+        float: right;
+        margin-top: 15px;
+        margin-right: 52px;
+    }
+}
+
+@media (min-width: 982px) and (max-width: 1283px) {
+  header {
+    height: 140px !important;
+  }
+   .boton-donar.responsive {
+       display: none;
+   }
+   .main-menu {
+    text-align: center;
+    margin: 16px 0px 0px 0;
+}
+   .main-menu ul li a {
+       font-size: 12px;
+   }
+.believed-logo img {
+    margin-top: 22px;
+}
+
 }
