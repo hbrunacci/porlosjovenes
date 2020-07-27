@@ -1135,7 +1135,7 @@ h2 {
 @media (max-width: 780px) {
     .believed-logo img {
         width: 138px;
-        margin-top: 7px;
+        margin-top: 3px;
         margin-left: 0;
     }
     .boton-donar.responsive {
@@ -1143,7 +1143,7 @@ h2 {
         font-size: small;
         padding-top: 5px;
         float: right;
-        margin-top: 15px;
+        margin-top: 10px;
         margin-right: 52px;
     }
 }
