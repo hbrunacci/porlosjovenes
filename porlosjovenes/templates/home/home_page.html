@@ -9,7 +9,20 @@
 
 {% include 'home/slider.html' %}
 {% include 'home/mini_noticias.html' %}
-
 {% include 'home/body.html' %}
 
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function() {
+            $("#slider_plj").owlCarousel({
+                items : 10
+            });
+            $('.owl-item').on('click', function(event){
+                var href = $('#quiero-donar').attr('href');
+                window.location.href = href;
+            });
+        });
+    </script>
 {% endblock %}

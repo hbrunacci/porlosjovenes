@@ -7,7 +7,7 @@
 
     <!-- ======= slider part start ======= -->
     <section class="slider-area">
-        <div class="slider-wraper owl-carousel">
+        <div class="slider-wraper owl-carousel" id="slider_plj">
             {% for imagen in self.slider_home.all %}
             {% image imagen.image original  as tmp_img %}
 
@@ -29,7 +29,7 @@
                                 {% if imagen.boton %}
                                     <br>
                                     <a href="{{ imagen.url_boton }}" class="boton-donar animated fadeInDown"
-                                   style="font-size: 16px; opacity: 1;bottom: 30%; margin-left: -4.5em; position: absolute;">{{ imagen.text_boton }}</a>
+                                   style="font-size: 16px; opacity: 1;bottom: 25%; margin-left: -4.5em; position: absolute;">{{ imagen.text_boton }}</a>
                                 {% endif %}
 
                                 </div>
