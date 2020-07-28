@@ -169,9 +169,20 @@ class QuienesSomos(MetadataPageMixin, Page):
         on_delete=models.SET_NULL,
     )
 
+    imagen_lateral = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=False,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+    link_donacion = models.URLField(blank=True, null=True)
+
     content_panels = Page.content_panels + [
         FieldPanel('texto_principal'),
-        ImageChooserPanel('imagen_principal')
+        ImageChooserPanel('imagen_principal'),
+        ImageChooserPanel('imagen_lateral'),
+        FieldPanel('link_donacion')
     ]
 
     class Meta:

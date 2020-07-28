@@ -17,9 +17,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-9">
                 <!-- Single news -->
                 <p style="text-align: justify;"> {{ self.texto_principal|richtext }}</p>
+            </div>
+            <div class="col-md-3">
+                <a href="{{ self.link_donacion }}">
+                    {% image self.imagen_lateral original as img %}
+                <img src='{{ img.url }}' style="width: 100%; ">  <!-- Single news -->
+                </a>
             </div>
         </div>
     </div>
