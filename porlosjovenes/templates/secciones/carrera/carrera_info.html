@@ -24,111 +24,111 @@
     </section>
     <!-- ======= blog part start ======= -->
 
-    <section class="carrera-inscribite" id="inscribite">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <!-- section title -->
-                    <div class="title">
-                        <h2>Inscribite*</h2>
-                    </div>
-
-                    <div class="row">
-                        {% for carrera in Eventos.opciones_carreras.all %}
-                            {% if carrera.descripcion_categoria %}
-                                <div class="col-md-4">
-                                    <a href="{{ carrera.inscripcion_url }}">
-                                        <div class="recuadro2">
-                                            <span>{{ carrera.distancia }}</span>${{carrera.valor}}
-                                        </div>
-                                        <span class="titulinho"> {{ carrera.descripcion_categoria }}
-                                        </span>
-                                    </a>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                      <h4 style="color: #feca5c;"> * Nuevo precio sin remera</h4>
-                    </div>
-
-                    <div class="row">
-                         <div class="col-md-1">
-
-                        </div>
-                        <div class="col-md-10">
-                           <a href="{{ self.aa }}" style="display: none;"><div class="inscribiteSinRemera">Consultá costo de inscripción sin remera</div></a>
-                        </div>
-                        <div class="col-md-1">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ======= blog part start ======= -->
-    <section class="carrera-informacion" id="informacion">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <!-- section title -->
-                    <div class="title">
-                        <h2>Información</h2>
-                    </div>
-                    <div class="content">
-                    <a href=" {{ Eventos.reglamento.url }}">Reglamento</a>
-                    <a href="{{ Eventos.politica_menores.url }}">Autorización para menores</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    {% image Eventos.imagen_inferior_mapa original as img_mapa %}
-    {% image Eventos.imagen_inferior_kit original as img_kit %}
-    <!-- ======= blog part start ======= -->
-    {% if Eventos.imagen_inferior_kit %}
-    <section class="carrera-kit" id="kit">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <!-- section title -->
-                    <div class="title text-center">
-                        <h2>KIT</h2>
-                        <p style="text-align: center;">Remera, medalla finisher y productos de las marcas participantes</p>
-                    </div>
-
-                      <div class="sliderResponsive" style="width: 100%; display: block; margin: 0 0;
-                       background: transparent url('{{ img_kit.url }}')
-                       center center no-repeat;
-                       background-size: cover;">
-
-                      </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    {% endif %}
-<!-- ======= slider part start ======= -->
-    {% if Eventos.imagen_inferior_mapa %}
-    <section class="slider-area hidden-xs hidden-sm" id="mapa">
-        <div class="slider-wraper owl-carousel">
-            <!-- single slider -->
-            <div class="single-slider slider-one" style="background: url('{{img_mapa.url}}')">
-                <div class="slider-table">
-                    <div class="slider-table-cell">
-                        <div class="container">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ======= slider part start ======= -->
-    <section class="slider-area hidden-md hidden-lg" id="mapa">
-            <!-- single slider -->
-            <img src="{{img_mapa.url}}" style="width: 100%;" />
-
-    </section>
-    <!-- ======= blog part start ======= -->
-    {% endif %}
+{#    <section class="carrera-inscribite" id="inscribite">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-md-12 text-center">#}
+{#                    <!-- section title -->#}
+{#                    <div class="title">#}
+{#                        <h2>Inscribite*</h2>#}
+{#                    </div>#}
+{##}
+{#                    <div class="row">#}
+{#                        {% for carrera in Eventos.opciones_carreras.all %}#}
+{#                            {% if carrera.descripcion_categoria %}#}
+{#                                <div class="col-md-4">#}
+{#                                    <a href="{{ carrera.inscripcion_url }}">#}
+{#                                        <div class="recuadro2">#}
+{#                                            <span>{{ carrera.distancia }}</span>${{carrera.valor}}#}
+{#                                        </div>#}
+{#                                        <span class="titulinho"> {{ carrera.descripcion_categoria }}#}
+{#                                        </span>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                        {% endfor %}#}
+{#                      <h4 style="color: #feca5c;"> * Nuevo precio sin remera</h4>#}
+{#                    </div>#}
+{##}
+{#                    <div class="row">#}
+{#                         <div class="col-md-1">#}
+{##}
+{#                        </div>#}
+{#                        <div class="col-md-10">#}
+{#                           <a href="{{ self.aa }}" style="display: none;"><div class="inscribiteSinRemera">Consultá costo de inscripción sin remera</div></a>#}
+{#                        </div>#}
+{#                        <div class="col-md-1">#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!-- ======= blog part start ======= -->#}
+{#    <section class="carrera-informacion" id="informacion">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-md-12 text-center">#}
+{#                    <!-- section title -->#}
+{#                    <div class="title">#}
+{#                        <h2>Información</h2>#}
+{#                    </div>#}
+{#                    <div class="content">#}
+{#                    <a href=" {{ Eventos.reglamento.url }}">Reglamento</a>#}
+{#                    <a href="{{ Eventos.politica_menores.url }}">Autorización para menores</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    {% image Eventos.imagen_inferior_mapa original as img_mapa %}#}
+{#    {% image Eventos.imagen_inferior_kit original as img_kit %}#}
+{#    <!-- ======= blog part start ======= -->#}
+{#    {% if Eventos.imagen_inferior_kit %}#}
+{#    <section class="carrera-kit" id="kit">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-md-12 text-center">#}
+{#                    <!-- section title -->#}
+{#                    <div class="title text-center">#}
+{#                        <h2>KIT</h2>#}
+{#                        <p style="text-align: center;">Remera, medalla finisher y productos de las marcas participantes</p>#}
+{#                    </div>#}
+{##}
+{#                      <div class="sliderResponsive" style="width: 100%; display: block; margin: 0 0;#}
+{#                       background: transparent url('{{ img_kit.url }}')#}
+{#                       center center no-repeat;#}
+{#                       background-size: cover;">#}
+{##}
+{#                      </div>#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    {% endif %}#}
+{#<!-- ======= slider part start ======= -->#}
+{#    {% if Eventos.imagen_inferior_mapa %}#}
+{#    <section class="slider-area hidden-xs hidden-sm" id="mapa">#}
+{#        <div class="slider-wraper owl-carousel">#}
+{#            <!-- single slider -->#}
+{#            <div class="single-slider slider-one" style="background: url('{{img_mapa.url}}')">#}
+{#                <div class="slider-table">#}
+{#                    <div class="slider-table-cell">#}
+{#                        <div class="container">#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!-- ======= slider part start ======= -->#}
+{#    <section class="slider-area hidden-md hidden-lg" id="mapa">#}
+{#            <!-- single slider -->#}
+{#            <img src="{{img_mapa.url}}" style="width: 100%;" />#}
+{##}
+{#    </section>#}
+{#    <!-- ======= blog part start ======= -->#}
+{#s#}
