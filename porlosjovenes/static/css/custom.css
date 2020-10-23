@@ -1,5 +1,5 @@
 body {
-    font-family: raleway, roboto, arial, serif;
+    font-family: Galano, roboto, arial, serif;
     color: black;
 }
 
@@ -19,13 +19,13 @@ section p {
 .believed-logo img {
     width: 221px;
     padding-top: 0px;
-    margin-top: 33px;
+    margin-top: 0px;
     margin-left: 42px;
 }
 
 @media (min-width: 1283px) {
   header {
-    height: 180px !important;
+    height: 130px !important;
   }
     .boton-donar.responsive {
        display: none;
@@ -57,6 +57,8 @@ header .menu-area .container-fluid {
 
 .believed-logo {
     padding: 0;
+    width: 90%;
+
 }
 .header-area {
     height: 195px;
@@ -70,7 +72,7 @@ header .menu-area .container-fluid {
     }
 
 #sticky-wrapper {
-    padding-top: 34px;
+    padding-top: 2px;
     height: 150px;
 }
 
@@ -105,7 +107,6 @@ font-size: 17px;
 
 .main-menu {
     text-align: center;
-    margin: 40px 0px 35px 0;
 }
 
 .donate-box {
@@ -427,19 +428,13 @@ p {
     font-family: 'Montserrat', sans-serif;
 }
 
-.fixed-menu {
-
-    height: 120px;
-    padding-top: 24px;
-}
 
 .fixed-menu .container-fluid {
 
     height: 110px;
 }
 
-.fixed-menu 
-.believed-logo {
+.fixed-menu .believed-logo {
     margin-top: 15px;
 }
 
@@ -448,7 +443,6 @@ p {
 }
 .fixed-menu .believed-logo img {
     width: 160px;
-    margin-top: 10px;
 }
 .fixed-menu .donate-box {
     margin-top: 35px;
@@ -834,10 +828,10 @@ p {
     .iconos { float: none; display: inline-block; }
 
 .flotador {
-     background:#777B82; position: relative; padding: 10px 0;
+     background:#4d5159; position: relative; padding: 10px 0;
 }
 .flota {
-     background:#97999F; position: absolute; top: 0; left: 0; height: 100%; width: 38%;
+     background:#4d5159; position: absolute; top: 0; left: 0; height: 100%; width: 38%;
 }
 
 .sinEspacioDerecho > div {
@@ -949,11 +943,15 @@ h2 {
 
 .footerContacto{
     font-size: 12px !important;
+    font-weight: 400;
+    line-height: 1;
 }
 
 @media  (max-width: 600px) {
     .footerContacto{
         font-size: 10px !important;
+        font-weight: 400;
+        line-height: 1;
     }
 }
 
@@ -1132,6 +1130,17 @@ h2 {
 }
 
 
+@media (max-width: 420px) {
+    .believed-logo {
+        width: 85%;
+    }
+    .fixed-menu .believed-logo .boton-donar.responsive {
+        margin-top: 0;
+    }
+
+}
+
+
 @media (max-width: 780px) {
     .believed-logo img {
         width: 138px;
@@ -1143,13 +1152,12 @@ h2 {
         font-size: small;
         padding-top: 6px;
         float: right;
-        margin-top: 15px;
-        margin-right: 52px;
+        position: relative;
+        top: 17px;
     }
 }
 
 .fixed-menu .believed-logo .boton-donar.responsive {
-
     margin-top: 10px;
 }
 
@@ -1170,5 +1178,24 @@ h2 {
 .believed-logo img {
     margin-top: 22px;
 }
+
+}
+.mp_iframe_wrapper {
+    text-align: center;
+}
+
+.mp_iframe_class {
+    width: 650px;
+    height:800px;
+}
+
+@media (max-width: 420px) {
+    .believed-logo {
+        width: 85%;
+    }
+    .fixed-menu .believed-logo .boton-donar.responsive {
+        margin-top: 0;
+        padding: 6px 4px;
+    }
 
 }

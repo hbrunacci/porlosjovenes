@@ -27,18 +27,15 @@
                 <div class="row" style="width: 100%; margin: 0px;">
                     <div class="col-md-2" style="padding: 0px 0px 0px 10px;">
                         <!-- logo part -->
-                        <div class="believed-logo" style="width: 100%">
+                        <div class="believed-logo" >
                             <a href="/"><img src="{% static 'img/logo_cortado.png' %}" alt=""></a>
-                            <a href="/quierodonar-covid-19/?utm_source=web&utm_medium=botonCTA&utm_campaign=-"
+                            <a href="/quierodonar-covid-19/"
                                class="boton-donar responsive"
                                style="">Quiero Donar
                             </a>
-
-
                         </div>
                             <!-- mobile menu wraper -->
-
-                        <div class="responsive-menu-wrap" style="z-index: 200;"></div>
+                        <div class="responsive-menu-wrap" ></div>
                     </div>
                     <div class="col-md-10" >
                         <!-- menu part -->
@@ -66,9 +63,8 @@
                                 </li>
 
 
-                                <li {% if self.url == '/noticias/' %} class="active"{% endif %}
-                                >
-                                  <a href="/noticias/">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                <li {% if self.url == '/noticias/' %} class="active"{% endif %}>
+                                    <a href="/noticias/">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <ul class="drop-menu">
                                         <li><a href="/noticias/categorias/educacion">Educación</a></li>
                                         <li><a href="/noticias/categorias/trabajo">Formación para el trabajo</a></li>
@@ -143,9 +139,7 @@
 {#                </div>#}
 {#            {% endif %}#}
 {#        {% endif %}#}
-
             </div>
-
         </div>
 
         <!-- menu area -->

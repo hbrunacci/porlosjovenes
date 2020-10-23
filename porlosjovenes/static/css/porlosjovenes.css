@@ -295,3 +295,202 @@ body {
     border-color: #0097A5 !important;
     color:  #0097A5 !important;
 }
+
+
+.footer-area {
+    background-color: #4d5159;
+}
+
+.footer-taxes {
+    text-align: center;
+    background: #97999F;
+    padding: 0px;
+}
+
+.footer-donbosco {
+    background: #777b82;
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.footer-end {
+    background: #4d5159;
+}
+
+.footer-taxes p {
+    font-size: medium;
+    margin: 6px;
+}
+
+.formulario-marco {
+    width: 37%;
+    border: 1px solid;
+    border-color: azure;
+    border-radius: 2%;
+    align-content: end;
+    min-height: 70vh;
+    background: rgb(240, 255, 255, 0.8);
+    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.donacion-titulo {
+    padding: 6px;
+}
+
+
+.donacion-seccion {
+    border-bottom: 2px solid;
+    border-color: white;
+    padding: 4px 0px;
+}
+
+.donacion-media-seccion {
+    padding: 8px 0px;
+}
+
+.donacion-nota {
+    font-size: smaller;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 0px;
+}
+
+.recibo-nota {
+    font-size: smaller;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 0px;
+}
+
+.redondear-derecha {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.radio-inline {
+    padding-right: 0px;
+}
+
+.logo-fpago {
+    width: 100px;
+    margin-left: 8px;
+}
+.boton-paso {
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    height: 10px !important;
+    padding: 1px 7px 22px 7px;
+    color: white;
+    width: 17%;
+    background: #0097a5;
+    border-radius: 5px;
+    box-shadow: 0 0 4px black;
+    border: 2px solid #0097a5;
+    transition: 0.35s all;
+    display: inline-block;
+    text-transform: uppercase;
+
+}
+.boton-donacion {
+    margin: 8px 0px 0px 7px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    height: 10px !important;
+    padding: 2px 7px 28px 7px;
+    color: white;
+    width: 17%;
+    background: #0097a5;
+    border-radius: 5px;
+    box-shadow: 0 0 4px black;
+    border: 2px solid #0097a5;
+    transition: 0.35s all;
+    display: inline-block;
+    text-transform: uppercase;
+}
+.boton-donacion:hover {
+   background: white;
+   color: #0097a5;
+}
+
+.montos {
+    margin-bottom: 10px;
+
+}
+
+.opt-fpago {
+    margin: 4px 0px;
+    font-weight: 400;
+}
+
+.botonera {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.tipo-donacion {
+    margin: 0px 10px;
+}
+.tipo-moneda {
+    font-size: small;
+    padding: 5px;
+}
+
+.nota-aumento {
+    padding: 5px 0px;
+}
+
+.soy-donante {
+    margin: 5px 10px 0px 10px;
+}
+
+.footer-paso {
+    text-align: center;
+    margin-bottom: 10px;
+
+}
+
+.botonera-pasos {
+    text-align: center;
+    height: 40px;
+}
+.hide-step {
+    display: none;
+}
+
+.nota-piedonacion {
+    font-size: small;
+    text-align: center;
+    margin: 10px 5px;
+}
+.donacion-progress {
+    height: 20px;
+    width: 90%;
+    border-radius: unset;
+}
+progress[value]::-webkit-progress-value {
+  background-image:
+	   -webkit-linear-gradient(-45deg,
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%,
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top,
+	                           rgba(255, 255, 255, .25),
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #09c, #f44);
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+.grupo-campos {
+    height: 300px;
+}
+
+.campo {
+    font-size: 11px;
+}
+
+.contenedor-campo {
+    margin: 7px 0px;
+
+}

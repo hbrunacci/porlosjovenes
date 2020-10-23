@@ -54,8 +54,6 @@ class Covid19(MetadataPageMixin, Page):
             InlinePanel('carousel_sponsor_covid'),
         ], heading='Sponsor campaña covid'
          , classname="collapsible ")
-
-
     ]
 
 

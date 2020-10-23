@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'covid19',
     'instituciones',
     'wagtailgmaps',
+    'donaciones',
 
 
     'wagtail.contrib.forms',
@@ -82,7 +83,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'csp.middleware.CSPMiddleware',
+    #'csp.middleware.CSPMiddleware',
 
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
@@ -214,6 +215,9 @@ CSP_DEFAULT_SRC = ( "'unsafe-inline'", 'fonts.googleapis.com')
 
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com')
 CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",
+                  "https://http2.mlstatic.com",
+                  "https://http2.mlstatic.com/analytics/ga/mla-mp-analytics.min.js",
+                  "https://www.mercadopago.com.ar",
                   "'unsafe-eval'",
                   "secure.mlstatic.com",
                   "unpkg.com",
@@ -243,11 +247,13 @@ CSP_IMG_SRC = ("'self'", "https://www.google-analytics.com",
                )
 CSP_CONNECT_SRC = ("'self'", 'https://porlosjovenes.org')
 CSP_FRAME_SRC = ("'self'", "https://www.google.com",
-                 "https://www.mercadopago.com.ar"
+                 "https://www.mercadopago.com.ar",
                  'aeroterra.maps.arcgis.com',
                  "https://www.youtube.com",
                  "https://donbosco.secure.force.com",
                  "https://www.yumpu.com")
+CSP_FRAME_ANCESTORS = ("self", "https://www.mercadopago.com.ar", "https://www.mercadolibre.com.ar"
+                       , "*.mercadopago.com", "*.mercadolibre.com")
 
 INTERNAL_IPS = ('127.0.0.1',)
 

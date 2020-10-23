@@ -31,13 +31,15 @@ srcset webworkers">
             {% if request.path_info == '/search/' %}
             {% elif request.path_info == '/donacion_correcta/' %}
             {% elif request.path_info == '/donacion_enproceso/' %}
+            {% elif request.path_info == '/test-mp/' %}
+            {% elif request.path_info == '/procesar-pago/' %}
             {% else %}
                 {% meta_tags %}
             {% endif %}
 
         {% endblock meta_data %}
         <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <!-- ======= titles ======= -->
         <!-- ======= favicon ======= -->
@@ -181,9 +183,11 @@ srcset webworkers">
             addEvent(window, 'message', function(message) {
 
                 if (message.origin === "https://donbosco.secure.force.com") {
-                    console.log(message.data);
-                    ga('send','event','purchase', message.data,'0');
-                    fbq('track', 'Donate',{content_name: message.data});
+                    if (message.data.length < 20) {
+                        console.log(message.data);
+                        ga('send', 'event', 'purchase', message.data, '0');
+                        fbq('track', 'Donate', {content_name: message.data});
+                    }
                 }
             });
 

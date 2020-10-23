@@ -425,6 +425,7 @@ ul.breadcrumb li a {
 .menu-area {
     background-color: #fff;
     transition: 0.5s;
+    margin-top: 28px;
 }
 
 .main-menu {
@@ -521,7 +522,6 @@ ul li a.menu-active {
 }
 
 .menu-area.on-top {
-    position: fixed;
     z-index: 200 !important;
     top: 28px;
     width: 100%;

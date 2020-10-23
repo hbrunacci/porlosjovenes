@@ -5,7 +5,11 @@
     <footer class="footer-area parallax">
         <div class="top-footer-area">
             <div class="">
-                <div class="row titulo" style="padding-top: 8px;">
+                <div class="row footer-taxes" >
+                <p> Por los Jóvenes - Don Bosco (CUIT: 30-61017160-1) es una entidad sin fines de lucro.
+                    Certificado de Exención en el Impuesto a las Ganancias N° 04620200046981</p>
+                </div>
+                <div class="row footer-donbosco" style="padding-top: 8px;">
                     <div class="col-md-12 text-center hidden-xs hidden-sm">
                         <p>Por los jóvenes es una plataforma de <a href="http://www.donbosco.org.ar" target="_blank">
                             <img src="{% static 'img/donbosco-argentina.png' %}" style="height:50px; vertical-align: middle;" /></p>
@@ -23,31 +27,45 @@
             <div class="flota"></div>
              <div class="container text-center medio">
                     <div class="row">
-                        <div class="col-md-4 marginar">
+                        <div class="col-md-4">
+                             <div class="row sinEspacioDerecho">
+                                <div class="col-md-12 text-left detalle">
+                                    <p>Don Bosco 4002 (C1206ABN) Buenos Aires, Argentina<br />
+                                        Tel. (011) 4958-6411 . Fax (011) 4958-6424<br />
+                                        info@porlosjovenes.org</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <a href="/revistas" style="color: white !important;">
                                  <p><img src="{% static 'img/revista.jpg' %}" style="vertical-align: middle; " /><br />Ver Revista Online</p>
                             </a>
                         </div>
-                        <div class="col-md-4">
+
+                        <div class="col-md-2">
                             <p><img src="{% static 'img/newsletter.jpg' %}" style="vertical-align: middle;" /><br />Suscribite gratis a nuestro newsletter</p>
                         </div>
 
                      <form action="https://obradedonbosco.us3.list-manage.com/subscribe/post?u=f7ef3d780cb31313636da5e96&amp;id=f0ddc2869b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                        <div class="col-md-4" style="padding-top: 30px;">
+                        <div class="col-md-3" style="padding-top: 30px;">
 
 
                             <div class="row sinEspacioDerecho">
 
-                                <div class="col-md-5"><input type="text" name="FNAME" class="form-control input-sm" placeholder="Nombre" style="height: auto" /></div>
-                                <div class="col-md-5">
+                                <div class="col-md-10"><input type="text" name="FNAME" class="form-control input-sm" placeholder="Nombre" style="height: auto" /></div>
+                                <div class="col-md-10">
 
                                     <input type="text" name="EMAIL" class="form-control input-sm" placeholder="Email" style="height: auto" />
 
                                 </div>
                                 <div class="col-md-2"><input type="submit" name="subscribe" value="ENVIAR" class="btn btn-primary"  style="margin: -2px 0 0 0; background: #0098A5;" /></div>
                                 <div class="col-md-12 text-left">
-                        <small class="footerContacto"><input type="checkbox" name="acepto" id="acepto" value="1" >He leído y acepto la <a href="{% static 'img/politicas.pdf' %}" target="_blank" style="color: white; text-decoration: underline;">política de privacidad</a>
-                            de porlosjovenes.org</small></div>
+                                        <small class="footerContacto">
+                                            <input type="checkbox" name="acepto" id="acepto" value="1"
+                                            >He leído y acepto la <a href="{% static 'img/politicas.pdf' %}" target="_blank" style="color: white; text-decoration: underline;">
+                                            política de privacidad</a> de porlosjovenes.org
+                                        </small>
+                                </div>
                             </div>
 
 
@@ -62,11 +80,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 text-center detalle">
-                        <p>Don Bosco 4002 (C1206ABN) Buenos Aires, Argentina<br />
-                            Tel. (011) 4958-6411 . Fax (011) 4958-6424<br />
-                            info@porlosjovenes.org</p>
-                    </div>
+
                 </div>
             </div>
         </div>
