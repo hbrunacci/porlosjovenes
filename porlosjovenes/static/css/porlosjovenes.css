@@ -432,6 +432,7 @@ body {
 }
 .tipo-donacion {
     margin: 0px 10px;
+    height: 91px;
 }
 .tipo-moneda {
     font-size: small;
@@ -462,7 +463,7 @@ body {
 
 .nota-piedonacion {
     font-size: small;
-    text-align: center;
+    text-align: justify;
     margin: 10px 5px;
 }
 .donacion-progress {
@@ -493,4 +494,60 @@ progress[value]::-webkit-progress-value {
 .contenedor-campo {
     margin: 7px 0px;
 
+}
+
+.requerido {
+    border: 1px solid #f26649;
+}
+
+.completo {
+    border: 1px solid #1190a2;
+}
+
+.progress-title{
+    font-size: 18px;
+    font-weight: 700;
+    color: #1c2647;
+    margin: 0 0 10px;
+}
+.progress{
+    height: 20px;
+    background: #fff;
+    border-radius: 0;
+    position: relative;
+}
+.progress:before,
+.progress:after{
+    content: "";
+    width: 5px;
+    background: #1c2647;
+    position: absolute;
+    top: 0;
+    left: -5px;
+    bottom: 0;
+}
+.progress:after{
+    left: auto;
+    right: -5px;
+}
+.progress .progress-bar{
+    border: none;
+    box-shadow: none;
+    -webkit-animation: 2s linear 0s normal none infinite running progress-bar-stripes,animate-positive 1s;
+    animation: 2s linear 0s normal none infinite running progress-bar-stripes,animate-positive 1s;
+}
+@-webkit-keyframes animate-positive{
+    0%{ width: 0; }
+}
+@keyframes animate-positive{
+    0%{ width: 0; }
+}
+
+.progress-bar-pjl {
+  background-color: #1190a2;
+}
+.progress-striped .progress-bar-plj {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
