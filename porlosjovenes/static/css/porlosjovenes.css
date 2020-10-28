@@ -344,6 +344,7 @@ body {
     border-bottom: 2px solid;
     border-color: white;
     padding: 4px 0px;
+    font-size: small;
 }
 
 .donacion-media-seccion {
@@ -422,7 +423,7 @@ body {
 }
 
 .opt-fpago {
-    margin: 4px 0px;
+    margin: 10px 0px;
     font-weight: 400;
 }
 
@@ -433,6 +434,7 @@ body {
 .tipo-donacion {
     margin: 0px 10px;
     height: 91px;
+    font-size: small;
 }
 .tipo-moneda {
     font-size: small;
@@ -442,15 +444,25 @@ body {
 .nota-aumento {
     padding: 5px 0px;
 }
-
+.forma-pago {
+    font-size: small;
+}
 .soy-donante {
     margin: 5px 10px 0px 10px;
 }
-
+.datos-cobro {
+    height: 110px;
+    font-size: small;
+}
 .footer-paso {
     text-align: center;
     margin-bottom: 10px;
 
+}
+
+#tipodonante {
+    padding-bottom: 10px;
+    font-size: small;
 }
 
 .botonera-pasos {
@@ -485,6 +497,7 @@ progress[value]::-webkit-progress-value {
 }
 .grupo-campos {
     height: 300px;
+    font-size: small;
 }
 
 .campo {
@@ -493,9 +506,12 @@ progress[value]::-webkit-progress-value {
 
 .contenedor-campo {
     margin: 7px 0px;
-
+    padding-right: 0px;
 }
 
+.campo-icon {
+    display: table-cell;
+}
 .requerido {
     border: 1px solid #f26649;
 }
@@ -550,4 +566,71 @@ progress[value]::-webkit-progress-value {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+
+    .campo-icon {
+        display: none;
+    }
+
+@media only screen and (max-width: 450px) {
+    .footer-taxes p {
+    font-size: small;
+    margin: 10px;
+}
+
+    .formulario-marco {
+        width: 95%;
+    }
+    .tipo-donacion {
+        height: 130px;
+    }
+    .forma-pago {
+
+    }
+    #tipodonacion label{
+        display: block !important;
+        margin-left: 10px;
+    }
+    #forma_pago {
+        margin: auto;
+    }
+    .opt-fpago {
+        display: block !important;
+        margin-left: 10px;
+
+    }
+    .boton-donacion {
+        display: block;
+        width: 75%;
+        margin: auto;
+        margin-bottom: 6px;
+    }
+    #nota_moneda {
+        text-align: center;
+    }
+    .otro-monto {
+        padding-right: 0;
+        width: 75%;
+    /* align-items: center; */
+        margin: auto;
+    }
+    .contenedor-campo {
+        padding-right: 15px;
+        padding-left: 15px !important;
+    }
+    .campo-icon {
+        display: table-cell;
+    }
+    .grupo-campos {
+        height: 420px;
+    }
+    .campo-option {
+                margin: auto;
+    }
+    .campo-option label {
+        display: block;
+    font-size: small;
+                margin: auto !important;
+    }
+
 }

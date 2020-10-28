@@ -6,9 +6,9 @@ $(function () {
         var paso3= $('#paso3')
 
 
-        paso1.removeClass('hide-step');
+        paso3.removeClass('hide-step');
         paso2.addClass('hide-step');
-        paso3.addClass('hide-step');
+        paso1.addClass('hide-step');
         set_requeridos();
 
         $("#to_2").click(function () {

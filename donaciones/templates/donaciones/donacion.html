@@ -14,13 +14,13 @@
                 <div class="paso-uno" id="paso1">
                     <div class="soy-donante ">
                         <div class=" donacion-seccion container-fluid">
-                              <div class="col-md-6">YA SOY DONANTE
+                            <div id="tipodonante">
+                              <div class="col-xs-6">YA SOY DONANTE
                                 </div>
-                            <div class="input-group" id="tipodonante">
-                                    <label class="col-md-3 radio-inline" style="margin-left: 35px">
+                                    <label class="col-md-2 radio-inline" >
                                         <input type="radio" name="optdonante" id="sidonante" >Si
                                     </label>
-                                    <label class="col-md-3 radio-inline" style="margin-left: 35px">
+                                    <label class="col-md-3 radio-inline" >
                                         <input type="radio" name="optdonante" id="nodonante" checked>No
                                     </label>
 
@@ -30,7 +30,6 @@
                     <div class="tipo-donacion donacion-seccion ">
                         <div class="container-fluid" >
                         <div class="donacion-titulo">QUIERO DONAR</div>
-                            <div class="col-md-12">
                                 <div class="input-group"     style="margin: auto;"  id="tipodonacion">
                                     <label class="radio-inline" >
                                         <input type="radio" name="optdonacion" id="dona-mensual" checked>Mensual
@@ -45,7 +44,7 @@
                                 <div>
                                     <input type="checkbox" style="font-size: smaller; margin:0" name="chkautoaumento" id="aumenta-auto"> Acepto aumentar la donación un 40% anualmente
                                 </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="forma-pago">
@@ -83,15 +82,14 @@
                                 <a href="#" class="boton-donacion" id="id_810">u$s 10</a>
                                 <a href="#" class="boton-donacion" id="id_450">u$s 5</a>
                             </div>
-                            <div class="col-md-4" style="padding-right: 0">
-                                <div class="input-group">
+                            <div class="col-md-4 otro-monto" style="padding-right: 0">
+                                <div class="input-group ">
                                     <span class="input-group-addon" style="padding: 6px; top: 0px;" id="simbolo-moneda"> $ </span>
                                     <input type="text" name="nombre" class="form-control input-sm " placeholder="Otro Monto" style="height: auto" />
                                     <span class="input-group-addon" style="padding: 6px; top: 0px;" id="basic-addon4"> .00 </span>
                                 </div>
                             </div>
-                            <div class="col-md-8 tipo-moneda" style="padding-right: 0" id="nota_moneda">
-
+                            <div class="col-md-8 tipo-moneda" style="padding-right: 0" id="nota_moneda">*Montos en PESOS ARGENTINOS (ARS)
                             </div>
                             <div class="col-md-12 hide-step">
                                 <p id='nota-aumento' class="donacion-nota">*El valor indicador es el importe al que deseo llevar mi donación</p>
@@ -124,7 +122,7 @@
                         TUS DATOS DE CONTACTO
                     </div>
                         <div >
-                        <div id="nombre" class="col-md-6 contenedor-campo" style="padding-right: 0">
+                        <div id="nombre" class="col-md-6 contenedor-campo" >
                             <div class="input-group">
                                 <span class="input-group-addon glyphicon glyphicon-user campo" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
                                 <input type="text" name="nombre" class="form-control input-sm campo" placeholder="Nombre"  style="height: auto" />
@@ -132,7 +130,8 @@
                         </div>
 
                         <div id="apellido" class="col-md-6 contenedor-campo redondear-derecha" style="padding-left: 0; margin-bottom: 0">
-                            <div class="redondear-derecha" style="margin-bottom: 10px;">
+                            <div class="input-group redondear-derecha" style="margin-bottom: 10px;">
+                                <span class="input-group-addon glyphicon glyphicon-user campo campo-icon" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
                                 <input type="text" name="apellido" class="form-control input-sm campo redondear-derecha"
                                        placeholder="Apellido"  style="height: auto; margin-bottom: 0px;" />
                             </div>
@@ -146,8 +145,8 @@
                             </div>
                         </div>
                         <div id='genero' class="col-md-6 contenedor-campo  " >
-                            <div class="input-group" style="border: 0px !important" >
-                                <label class="radio-inline campo">
+                            <div class="input-group campo-option" style="border: 0px !important" >
+                                <label class="radio-inline campo ">
                                     <input type="radio" name="optradio" checked>Femenino
                                 </label>
                                 <label class="radio-inline campo">
@@ -161,14 +160,15 @@
                                 <input type="text" name="email" class="form-control input-sm redondear-derecha campo" placeholder="E-mail" style="height: auto" />
                             </div>
                         </div>
-                        <div id='direccion' class="col-md-8 contenedor-campo" style="padding-right: 0">
+                        <div id='direccion' class="col-md-8 contenedor-campo" >
                             <div class="input-group redondear-derecha">
                                 <span class="input-group-addon glyphicon glyphicon-globe campo" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
                                 <input type="text" name="direccion" class="form-control input-sm campo" placeholder="Direccion" style="height: auto" />
                             </div>
                         </div>
                         <div id='codigopostal' class="col-md-4 contenedor-campo redondear-derecha" style="padding-left: 0; ">
-                            <div class="redondear-derecha">
+                            <div class="input-group redondear-derecha">
+                                <span class="input-group-addon glyphicon glyphicon-user campo campo-icon" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
                                 <input type="text" name="cpostal" class="form-control input-sm redondear-derecha campo" placeholder="Cód. Postal" style="margin-bottom: 0;height: auto" />
                             </div>
                         </div>
@@ -210,7 +210,7 @@
 
 
                 <div class="paso-tres" id="paso3">
-                    <div class="datos-cobro" style="height: 110px">
+                    <div class="datos-cobro" >
                         <div class=" donacion-seccion container-fluid">
                             <div class="container-fluid contenedor-campo">
                                 TUS DATOS PARA LA DONACION:
