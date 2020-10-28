@@ -579,7 +579,16 @@ progress[value]::-webkit-progress-value {
 }
 
     .formulario-marco {
-        width: 95%;
+        width: 100%;
+        border: 0px solid;
+        border-color: white;
+        border-radius: 0%;
+        align-content: end;
+        min-height: 70vh;
+        background: rgb(240, 255, 255, 1);
+        margin-bottom: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
     }
     .tipo-donacion {
         height: 130px;
@@ -631,6 +640,13 @@ progress[value]::-webkit-progress-value {
         display: block;
     font-size: small;
                 margin: auto !important;
+    }
+
+    #encabezado_responsive {
+            width: 100%;
+            background-size: cover;
+            display: block !important;
+            height: 160px;
     }
 
 }

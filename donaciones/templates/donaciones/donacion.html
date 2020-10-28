@@ -7,9 +7,12 @@
 {% block content %}
 
  {% image self.imagen_encabezado original as img_principal %}
-    <div class="container" style="width: 100%; display: block;
+    <div id='fondo_pantalla' class="container" style="width: 100%; display: block;
             background: transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
         <div class="row" style="margin-bottom: 10px;">
+            <div id='encabezado_responsive' class="container" style="display: none;
+                background: transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
+            </div>
             <div class="formulario-marco pull-right">
                 <div class="paso-uno" id="paso1">
                     <div class="soy-donante ">
@@ -66,17 +69,27 @@
                                 <div class="input-group" id="forma_pago">
                                     {% for forma in self.medios_pago.all %}
                                         <label class="col-md-6 opt-fpago">
-                                            <input id="{{ forma.nombre_medio }}" type="radio" name="optfpago" {% if forloop.first %} checked {% endif %}><img class="logo-fpago" src="{% static 'img/mpago_tarjeta_de_credito.png' %}" alt="Tarjeta de Credito"  title="Tarjeta de Credito">
+                                            <input id="{{ forma.nombre_medio }}" type="radio" name="optfpago" {% if forloop.first %} checked {% endif %}>
+                                            {% if forma.nombre_medio == 'fpago-credito' %}
+                                            <img class="logo-fpago" src="{% static 'img/mpago_tarjeta_de_credito.png' %}" alt="Tarjeta de Credito"  title="Tarjeta de Credito">
+                                            {% elif forma.nombre_medio == 'fpago-debito' %}
+                                            <img class="logo-fpago" src="{% static 'img/mpago_debito_en_cuenta.png' %}" alt="Debito en Cuenta"  title="Debito Cuenta">
+                                            {% elif forma.nombre_medio == 'fpago-paypal' %}
+                                            <img class="logo-fpago" src="https://logodownload.org/wp-content/uploads/2014/10/paypal-logo-4.png" alt="Paypal"  title="Paypal Logo">
+                                            {% elif forma.nombre_medio == 'fpago-mercadopago' %}
+                                            <img class="logo-fpago" src="https://www.mercadopago.com/org-img/Manual/ManualMP/imgs/isologoHorizontal.png" alt="MercadoPago">
+                                            {% endif %}
                                         </label>
                                     {% endfor %}
                                    {% comment %} <label class="col-md-6 opt-fpago">
-                                        <input id="fpago-debito" type="radio" name="optfpago"><img class="logo-fpago" src="{% static 'img/mpago_debito_en_cuenta.png' %}" alt="Debito en Cuenta"  title="Debito Cuenta">
+                                        <input id="fpago-debito" type="radio" name="optfpago">
+                                            </label>
+                                    <label class="col-md-6 opt-fpago">
+                                        <input id="fpago-paypal" type="radio" name="optfpago">
                                     </label>
                                     <label class="col-md-6 opt-fpago">
-                                        <input id="fpago-paypal" type="radio" name="optfpago"><img class="logo-fpago" src="https://logodownload.org/wp-content/uploads/2014/10/paypal-logo-4.png" alt="Paypal"  title="Paypal Logo">
-                                    </label>
-                                    <label class="col-md-6 opt-fpago">
-                                        <input id="fpago-mercadopago" type="radio" name="optfpago"><img class="logo-fpago" src="https://www.mercadopago.com/org-img/Manual/ManualMP/imgs/isologoHorizontal.png" alt="MercadoPago">
+                                        <input id="fpago-mercadopago" type="radio" name="optfpago">
+
                                     </label>{% endcomment %}
                                 </div>
                             </div>
