@@ -6,9 +6,9 @@ $(function () {
         var paso3= $('#paso3')
 
 
-        paso3.removeClass('hide-step');
+        paso1.removeClass('hide-step');
         paso2.addClass('hide-step');
-        paso1.addClass('hide-step');
+        paso3.addClass('hide-step');
         set_requeridos();
 
         $("#to_2").click(function () {
@@ -96,6 +96,7 @@ $(function () {
         $("#fpago-paypal").change(function (event) {
             if (event.target.checked) {
                 set_moneda_dolar();
+                mostrar_botonera('valores-fpago-paypal');
                 $('to_finish').html('FINALIZAR CON PAYPAL')
                 console.log('check')
             }
@@ -104,6 +105,7 @@ $(function () {
         $("#fpago-mercadopago").change(function (event) {
             if (event.target.checked) {
                 set_moneda_pesos();
+                mostrar_botonera('valores-fpago-mercadopago');
                 $('to_finish').html('FINALIZAR CON MERCADOPAGO')
                 console.log('check')
             }
@@ -112,6 +114,7 @@ $(function () {
         $("#fpago-debito").change(function (event) {
             if (event.target.checked) {
                 set_moneda_pesos();
+                mostrar_botonera('valores-fpago-debito');
                 $('to_finish').html('CONFIRMAR')
 
                 console.log('check')
@@ -121,6 +124,8 @@ $(function () {
         $("#fpago-credito").change(function (event) {
             if (event.target.checked) {
                 set_moneda_pesos();
+
+                mostrar_botonera('valores-fpago-credito');
                 $('to_finish').html('CONFIRMAR')
                 console.log('check')
             }
@@ -177,17 +182,22 @@ $(function () {
         $('#pais').removeClass('hide-step');
         $('#nacimiento').removeClass('hide-step');
         $('#telefono').removeClass('hide-step');
-
     }
 
     function set_moneda_dolar() {
         $('#simbolo-moneda').html('u$s');
-        $('#nota_moneda').html('*Montos en DOLARES ESTADOUNIDENSES (U$S)');
-
+        $('#nota_moneda').html('*Montos en DOLARES (U$S)');
     }
     function set_moneda_pesos() {
         $('#simbolo-moneda').html('$');
         $('#nota_moneda').html('*Montos en PESOS ARGENTINOS (ARS)');
+    }
+
+    function mostrar_botonera(botonera) {
+        $("[id^=valores-]").each(function() {
+            $(this).addClass('hide-step');
+        });
+        $('#'+botonera).removeClass('hide-step');
     }
 
     function ocultar_aumento_donacion() {

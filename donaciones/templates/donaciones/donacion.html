@@ -17,12 +17,22 @@
                             <div id="tipodonante">
                               <div class="col-xs-6">YA SOY DONANTE
                                 </div>
+                                    {% if self.soy_donante == 'ambos' %}
                                     <label class="col-md-2 radio-inline" >
                                         <input type="radio" name="optdonante" id="sidonante" >Si
                                     </label>
                                     <label class="col-md-3 radio-inline" >
                                         <input type="radio" name="optdonante" id="nodonante" checked>No
                                     </label>
+                                    {% elif self.soy_donante == 'solo_no' %}
+                                    <label class="col-md-3 radio-inline" >
+                                        <input type="radio" name="optdonante" id="nodonante" checked>No
+                                    </label>
+                                    {% elif self.soy_donante == 'solo_si' %}
+                                    <label class="col-md-2 radio-inline" >
+                                        <input type="radio" name="optdonante" id="sidonante" checked >Si
+                                    </label>
+                                    {% endif %}
 
                             </div>
                         </div>
@@ -37,12 +47,14 @@
                                     <label class="radio-inline">
                                         <input type="radio" name="optdonacion" id="dona-unica">Por única vez
                                     </label>
-                                    <label class="radio-inline">
+                                    <label class="radio-inline"
+                                    style="{% if self.soy_donante == 'solo_no' %} display:None {% endif %}
+                                    ">
                                         <input type="radio" name="optdonacion" id="dona-aumento">Aumentar mi donación
                                     </label>
                                 </div>
                                 <div>
-                                    <input type="checkbox" style="font-size: smaller; margin:0" name="chkautoaumento" id="aumenta-auto"> Acepto aumentar la donación un 40% anualmente
+                                    <input type="checkbox" style="font-size: smaller; margin:0" name="chkautoaumento" id="aumenta-auto"> Acepto aumentar la donación un  {{ self.incremento_automatico }}% anualmente
                                 </div>
 
                         </div>
@@ -52,10 +64,12 @@
                             <div class="donacion-titulo">SELECCIONAR FORMA DE PAGO</div>
                             <div class="col-md-12">
                                 <div class="input-group" id="forma_pago">
-                                    <label class="col-md-6 opt-fpago">
-                                        <input id="fpago-credito" type="radio" name="optfpago" checked><img class="logo-fpago" src="{% static 'img/mpago_tarjeta_de_credito.png' %}" alt="Tarjeta de Credito"  title="Tarjeta de Credito">
-                                    </label>
-                                    <label class="col-md-6 opt-fpago">
+                                    {% for forma in self.medios_pago.all %}
+                                        <label class="col-md-6 opt-fpago">
+                                            <input id="{{ forma.nombre_medio }}" type="radio" name="optfpago" {% if forloop.first %} checked {% endif %}><img class="logo-fpago" src="{% static 'img/mpago_tarjeta_de_credito.png' %}" alt="Tarjeta de Credito"  title="Tarjeta de Credito">
+                                        </label>
+                                    {% endfor %}
+                                   {% comment %} <label class="col-md-6 opt-fpago">
                                         <input id="fpago-debito" type="radio" name="optfpago"><img class="logo-fpago" src="{% static 'img/mpago_debito_en_cuenta.png' %}" alt="Debito en Cuenta"  title="Debito Cuenta">
                                     </label>
                                     <label class="col-md-6 opt-fpago">
@@ -63,25 +77,23 @@
                                     </label>
                                     <label class="col-md-6 opt-fpago">
                                         <input id="fpago-mercadopago" type="radio" name="optfpago"><img class="logo-fpago" src="https://www.mercadopago.com/org-img/Manual/ManualMP/imgs/isologoHorizontal.png" alt="MercadoPago">
-                                    </label>
+                                    </label>{% endcomment %}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="montos">
                         <div class=" donacion-seccion container-fluid"     style="font-size: small;">
-                            <div class="col-md-12 botonera" id="valores-pesos">
-                                <a href="#" class="boton-donacion" id="id_2700" >$ 2700</a>
-                                <a href="#" class="boton-donacion" id="id_1994">$ 1994</a>
-                                <a href="#" class="boton-donacion" id="id_810">$ 810</a>
-                                <a href="#" class="boton-donacion" id="id_450">$ 700</a>
-                            </div>
-                            <div class="col-md-12 botonera hide-step" id="valores-dolares">
-                                <a href="#" class="boton-donacion" id="id_2700">u$s 50</a>
-                                <a href="#" class="boton-donacion" id="id_1994">u$s 25</a>
-                                <a href="#" class="boton-donacion" id="id_810">u$s 10</a>
-                                <a href="#" class="boton-donacion" id="id_450">u$s 5</a>
-                            </div>
+                            {% for forma in self.medios_pago.all %}
+                                <div class="col-md-12 botonera {% if forloop.counter0 > 0 %} hide-step {% endif %}" id="valores-{{ forma.nombre_medio }}">
+                                    <a href="#" class="boton-donacion" id="valor-1-{{ forma.nombre_medio }}" > {{ forma.monto_1 }}</a>
+                                    <a href="#" class="boton-donacion" id="valor-2-{{ forma.nombre_medio }}" > {{ forma.monto_2 }}</a>
+                                    <a href="#" class="boton-donacion" id="valor-3-{{ forma.nombre_medio }}" > {{ forma.monto_3 }}</a>
+                                    <a href="#" class="boton-donacion" id="valor-4-{{ forma.nombre_medio }}" > {{ forma.monto_4 }}</a>
+
+                                </div>
+                            {% endfor %}
+
                             <div class="col-md-4 otro-monto" style="padding-right: 0">
                                 <div class="input-group ">
                                     <span class="input-group-addon" style="padding: 6px; top: 0px;" id="simbolo-moneda"> $ </span>
