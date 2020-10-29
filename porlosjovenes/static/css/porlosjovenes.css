@@ -323,13 +323,14 @@ body {
 }
 
 .formulario-marco {
-    width: 37%;
+    color: #333;
+    width: 425px;
     border: 1px solid;
     border-color: azure;
-    border-radius: 2%;
+    border-radius: 1%;
     align-content: end;
     min-height: 70vh;
-    background: rgb(240, 255, 255, 0.8);
+    background: rgb(255, 255, 255, 0.7);
     margin-bottom: 15px;
     margin-top: 10px;
     margin-right: 10px;
@@ -341,9 +342,9 @@ body {
 
 
 .donacion-seccion {
-    border-bottom: 2px solid;
+    border-bottom: 1px solid;
     border-color: white;
-    padding: 4px 0px;
+    padding: 5px 0px;
     font-size: small;
 }
 
@@ -375,20 +376,21 @@ body {
 }
 
 .logo-fpago {
-    width: 100px;
-    margin-left: 8px;
+    width: 90px;
+    margin-left: 10px;
 }
 .boton-paso {
+    margin: 8px 0px 0px 7px;
     text-align: center;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 15px;
     height: 10px !important;
-    padding: 1px 7px 22px 7px;
+    padding: 1px 7px 25px 7px;
     color: white;
-    width: 17%;
+    width: 19%;
     background: #0097a5;
-    border-radius: 5px;
-    box-shadow: 0 0 4px black;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
     border: 2px solid #0097a5;
     transition: 0.35s all;
     display: inline-block;
@@ -399,14 +401,14 @@ body {
     margin: 8px 0px 0px 7px;
     text-align: center;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 15px;
     height: 10px !important;
-    padding: 2px 7px 28px 7px;
+    padding: 7px 7px 29px 7px;
     color: white;
-    width: 17%;
+    width: 19%;
     background: #0097a5;
-    border-radius: 5px;
-    box-shadow: 0 0 4px black;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
     border: 2px solid #0097a5;
     transition: 0.35s all;
     display: inline-block;
@@ -416,6 +418,12 @@ body {
    background: white;
    color: #0097a5;
 }
+
+#tipodonacion {
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
 
 .montos {
     margin-bottom: 10px;
@@ -437,12 +445,24 @@ body {
     font-size: small;
 }
 .tipo-moneda {
-    font-size: small;
+    font-size: 11px;
     padding: 5px;
+    width: 60%;
+}
+#aumenta-auto {
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+    font-size: 12px;
+}
+.otro-monto {
+    margin-left: 20px;
 }
 
 .nota-aumento {
     padding: 5px 0px;
+    font-size: 11px;
+    margin-left: 4px;
 }
 .forma-pago {
     font-size: small;
@@ -585,7 +605,7 @@ progress[value]::-webkit-progress-value {
         border-radius: 0%;
         align-content: end;
         min-height: 70vh;
-        background: rgb(240, 255, 255, 1);
+        background: rgb(255, 255, 255, 1);
         margin-bottom: 0px;
         margin-top: 0px;
         margin-right: 0px;
@@ -596,12 +616,19 @@ progress[value]::-webkit-progress-value {
     .forma-pago {
 
     }
+    #tipodonacion {
+        text-align: left;
+        width: auto;
+        margin-left: 120px;
+    }
     #tipodonacion label{
-        display: block !important;
+        display: block;
         margin-left: 10px;
     }
     #forma_pago {
-        margin: auto;
+        text-align: left;
+        width: auto;
+        margin-left: 100px;
     }
     .opt-fpago {
         display: block !important;
@@ -616,6 +643,7 @@ progress[value]::-webkit-progress-value {
     }
     #nota_moneda {
         text-align: center;
+        font-size: 11px;
     }
     .otro-monto {
         padding-right: 0;

@@ -18,10 +18,10 @@
                     <div class="soy-donante ">
                         <div class=" donacion-seccion container-fluid">
                             <div id="tipodonante">
-                              <div class="col-xs-6">YA SOY DONANTE
+                              <div class="col-xs-5">YA SOY DONANTE
                                 </div>
                                     {% if self.soy_donante == 'ambos' %}
-                                    <label class="col-md-2 radio-inline" >
+                                    <label class="col-md-3 radio-inline" >
                                         <input type="radio" name="optdonante" id="sidonante" >Si
                                     </label>
                                     <label class="col-md-3 radio-inline" >
@@ -43,7 +43,7 @@
                     <div class="tipo-donacion donacion-seccion ">
                         <div class="container-fluid" >
                         <div class="donacion-titulo">QUIERO DONAR</div>
-                                <div class="input-group"     style="margin: auto;"  id="tipodonacion">
+                                <div class="input-group"  id="tipodonacion">
                                     <label class="radio-inline" >
                                         <input type="radio" name="optdonacion" id="dona-mensual" checked>Mensual
                                     </label>
@@ -56,8 +56,8 @@
                                         <input type="radio" name="optdonacion" id="dona-aumento">Aumentar mi donación
                                     </label>
                                 </div>
-                                <div>
-                                    <input type="checkbox" style="font-size: smaller; margin:0" name="chkautoaumento" id="aumenta-auto"> Acepto aumentar la donación un  {{ self.incremento_automatico }}% anualmente
+                                <div class="nota-aumento">
+                                    <input type="checkbox" name="chkautoaumento" id="aumenta-auto"> Acepto aumentar la donación un  {{ self.incremento_automatico }}% anualmente
                                 </div>
 
                         </div>
@@ -109,12 +109,12 @@
 
                             <div class="col-md-4 otro-monto" style="padding-right: 0">
                                 <div class="input-group ">
-                                    <span class="input-group-addon" style="padding: 6px; top: 0px;" id="simbolo-moneda"> $ </span>
-                                    <input type="text" name="nombre" class="form-control input-sm " placeholder="Otro Monto" style="height: auto" />
-                                    <span class="input-group-addon" style="padding: 6px; top: 0px;" id="basic-addon4"> .00 </span>
+                                    <span class="input-group-addon" style="padding: 2px 6px; top: 0px;" id="simbolo-moneda"> $ </span>
+                                    <input type="text" name="nombre" class="form-control input-sm " placeholder="Otro monto..." style="padding: 2px 6px;height: auto" />
+                                    <span class="input-group-addon" style="padding: 2px 6px; top: 0px;" id="basic-addon4"> .00 </span>
                                 </div>
                             </div>
-                            <div class="col-md-8 tipo-moneda" style="padding-right: 0" id="nota_moneda">*Montos en PESOS ARGENTINOS (ARS)
+                            <div class="col-md-6 tipo-moneda" style="padding-right: 0" id="nota_moneda">*Montos en PESOS ARGENTINOS (ARS)
                             </div>
                             <div class="col-md-12 hide-step">
                                 <p id='nota-aumento' class="donacion-nota">*El valor indicador es el importe al que deseo llevar mi donación</p>
