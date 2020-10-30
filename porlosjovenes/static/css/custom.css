@@ -25,7 +25,7 @@ section p {
 
 @media (min-width: 1283px) {
   header {
-    height: 130px !important;
+    height: 110px !important;
   }
     .boton-donar.responsive {
        display: none;
