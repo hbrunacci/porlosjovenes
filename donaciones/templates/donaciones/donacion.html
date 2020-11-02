@@ -81,47 +81,38 @@
                                             {% endif %}
                                         </label>
                                     {% endfor %}
-                                   {% comment %} <label class="col-md-6 opt-fpago">
-                                        <input id="fpago-debito" type="radio" name="optfpago">
-                                            </label>
-                                    <label class="col-md-6 opt-fpago">
-                                        <input id="fpago-paypal" type="radio" name="optfpago">
-                                    </label>
-                                    <label class="col-md-6 opt-fpago">
-                                        <input id="fpago-mercadopago" type="radio" name="optfpago">
-
-                                    </label>{% endcomment %}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="montos">
-                        <div class=" donacion-seccion container-fluid"     style="font-size: small;">
+                    <div class="montos donacion-seccion">
+                        <div class="  container-fluid"     style="font-size: small;">
                             {% for forma in self.medios_pago.all %}
                                 <div class="col-md-12 botonera {% if forloop.counter0 > 0 %} hide-step {% endif %}" id="valores-{{ forma.nombre_medio }}">
                                     <a href="#" class="boton-donacion" id="valor-1-{{ forma.nombre_medio }}" > {{ forma.monto_1 }}</a>
                                     <a href="#" class="boton-donacion" id="valor-2-{{ forma.nombre_medio }}" > {{ forma.monto_2 }}</a>
                                     <a href="#" class="boton-donacion" id="valor-3-{{ forma.nombre_medio }}" > {{ forma.monto_3 }}</a>
                                     <a href="#" class="boton-donacion" id="valor-4-{{ forma.nombre_medio }}" > {{ forma.monto_4 }}</a>
-
                                 </div>
                             {% endfor %}
-
-                            <div class="col-md-4 otro-monto" style="padding-right: 0">
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 otro-monto" style="padding-right: 0">
                                 <div class="input-group ">
-                                    <span class="input-group-addon" style="padding: 2px 6px; top: 0px;" id="simbolo-moneda"> $ </span>
-                                    <input type="text" name="nombre" class="form-control input-sm " placeholder="Otro monto..." style="padding: 2px 6px;height: auto" />
-                                    <span class="input-group-addon" style="padding: 2px 6px; top: 0px;" id="basic-addon4"> .00 </span>
+                                    <span class="input-group-addon otro-monto-add"  id="simbolo-moneda"> $ </span>
+                                    <input type="text" name="otrovalor" class="form-control input-sm " placeholder="Otro monto..." style="padding: 2px 6px;height: auto; " />
+                                    <span class="input-group-addon otro-monto-add"  id="basic-addon4"> .00 </span>
                                 </div>
+
                             </div>
-                            <div class="col-md-6 tipo-moneda" style="padding-right: 0" id="nota_moneda">*Montos en PESOS ARGENTINOS (ARS)
-                            </div>
+                            <div class="col-xs-6 tipo-moneda" style="padding-right: 0" id="nota_moneda">*Montos en PESOS ARGENTINOS (ARS)
+                                </div>
+                        </div>
                             <div class="col-md-12 hide-step">
                                 <p id='nota-aumento' class="donacion-nota">*El valor indicador es el importe al que deseo llevar mi donación</p>
                             </div>
 
                         </div>
-                    </div>
                     <div class="botonera-pasos">
                         <div class="col-md-12">
                             <a href="#" class="boton-paso" id='to_2' style="width: 30%" >SIGUIENTE</a>
@@ -129,7 +120,7 @@
                     </div>
                     <div class="footer-paso">
                         <div class="col-md-12">
-                            <div class="progress">
+                            <div class="progress" style="margin: 10px;  height: 18px;">
                                 <div class="progress-bar progress-bar-pjl progress-bar-striped active" style="width:33%;"></div>
                             </div>
                             <div class="col-md-12">
@@ -147,16 +138,16 @@
                         TUS DATOS DE CONTACTO
                     </div>
                         <div >
-                        <div id="nombre" class="col-md-6 contenedor-campo" >
-                            <div class="input-group">
-                                <span class="input-group-addon glyphicon glyphicon-user campo" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
+                        <div id="nombre" class="col-md-6 contenedor-campo  redondear-izquierda" >
+                            <div class="input-group redondear-izquierda">
+                                <span class="input-group-addon glyphicon glyphicon-user campo campo-icon  redondear-izquierda " id="basic-addon1"></span>
                                 <input type="text" name="nombre" class="form-control input-sm campo" placeholder="Nombre"  style="height: auto" />
                             </div>
                         </div>
 
-                        <div id="apellido" class="col-md-6 contenedor-campo redondear-derecha" style="padding-left: 0; margin-bottom: 0">
+                        <div id="apellido" class="col-md-6 contenedor-campo redondear-derecha" style="right:1px; padding-left: 0; margin-bottom: 0">
                             <div class="input-group redondear-derecha" style="margin-bottom: 10px;">
-                                <span class="input-group-addon glyphicon glyphicon-user campo campo-icon" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
+                                <span class="input-group-addon glyphicon glyphicon-user campo campo-icon campo-icon-desktop"  id="basic-addon1"></span>
                                 <input type="text" name="apellido" class="form-control input-sm campo redondear-derecha"
                                        placeholder="Apellido"  style="height: auto; margin-bottom: 0px;" />
                             </div>
@@ -164,54 +155,55 @@
 
                     </div>
                         <div id="documento" class="col-md-5 contenedor-campo">
-                            <div class="input-group redondear-derecha">
-                                <span class="input-group-addon glyphicon glyphicon-credit-card campo" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
+                            <div class="input-group redondear-izquierda redondear-derecha">
+                                <span class="input-group-addon glyphicon glyphicon-credit-card campo campo-icon" id="basic-addon1"></span>
                                 <input type="text" name="documento" class="form-control input-sm redondear-derecha campo" placeholder="DNI" style="height: auto" />
                             </div>
                         </div>
-                        <div id='genero' class="col-md-6 contenedor-campo  " >
+                        <div id='genero' class="col-md-6 contenedor-campo" style="margin-left: 30px" >
                             <div class="input-group campo-option" style="border: 0px !important" >
                                 <label class="radio-inline campo ">
                                     <input type="radio" name="optradio" checked>Femenino
                                 </label>
-                                <label class="radio-inline campo">
+                                <label class="radio-inline campo" style="    margin-left: 35px;">
                                     <input type="radio" name="optradio">Masculino
                                 </label>
                             </div>
                         </div>
                         <div id='email' class="col-md-8 contenedor-campo ">
-                            <div class="input-group redondear-derecha">
-                                <span class="input-group-addon glyphicon glyphicon-envelope campo" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
+                            <div class="input-group redondear-izquierda redondear-derecha">
+                                <span class="input-group-addon glyphicon glyphicon-envelope campo campo-icon" id="basic-addon1"></span>
                                 <input type="text" name="email" class="form-control input-sm redondear-derecha campo" placeholder="E-mail" style="height: auto" />
                             </div>
                         </div>
                         <div id='direccion' class="col-md-8 contenedor-campo" >
-                            <div class="input-group redondear-derecha">
-                                <span class="input-group-addon glyphicon glyphicon-globe campo" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
+                            <div class="input-group redondear-izquierda ">
+                                <span class="input-group-addon glyphicon glyphicon-globe campo campo-icon " id="basic-addon1"></span>
                                 <input type="text" name="direccion" class="form-control input-sm campo" placeholder="Direccion" style="height: auto" />
                             </div>
                         </div>
                         <div id='codigopostal' class="col-md-4 contenedor-campo redondear-derecha" style="padding-left: 0; ">
                             <div class="input-group redondear-derecha">
-                                <span class="input-group-addon glyphicon glyphicon-user campo campo-icon" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
-                                <input type="text" name="cpostal" class="form-control input-sm redondear-derecha campo" placeholder="Cód. Postal" style="margin-bottom: 0;height: auto" />
+                                <span class="input-group-addon glyphicon glyphicon-user campo campo-icon campo-icon-desktop"  id="basic-addon1"></span>
+                                <input type="text" name="cpostal" class="form-control input-sm redondear-derecha campo" placeholder="Cód. Postal" style="right: 2px; margin-bottom: 0;height: auto" />
                             </div>
                         </div>
-                        <div id="pais" class="col-md-8 contenedor-campo redondear-derecha">
-                            <div class="input-group redondear-derecha">
-                                <span class="input-group-addon glyphicon glyphicon-globe campo" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
+                        <div id="pais" class="col-md-8 contenedor-campo redondear-derecha  redondear-izquierda">
+                            <div class="input-group redondear-derecha  redondear-izquierda">
+                                <span class="input-group-addon glyphicon glyphicon-globe campo campo-icon" id="basic-addon1"></span>
                                 <input type="text" name="pais" class="form-control input-sm redondear-derecha campo" placeholder="País" style="height: auto" />
                             </div>
                         </div>
-                        <div id='nacimiento' class="col-md-5 contenedor-campo redondear-derecha">
-                            <div class="input-group redondear-derecha">
-                                <span class="input-group-addon glyphicon glyphicon-calendar campo" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
+                        <div id='nacimiento' class="col-md-6 contenedor-campo redondear-derecha redondear-izquierda">
+                            <div class="input-group redondear-derecha redondear-izquierda">
+                                <span class="input-group-addon glyphicon glyphicon-calendar campo campo-icon" id="basic-addon1"></span>
                                 <input type="text" name="fnacimiento" class="form-control input-sm redondear-derecha campo" placeholder="Fecha de nacimiento" style="height: auto" />
                             </div>
+                            <span style="float: right; font-size: 10px;">Ej: 01/01/2000</span>
                         </div>
-                        <div id='telefono' class="col-md-5 contenedor-campo redondear-derecha">
-                            <div class="input-group redondear-derecha">
-                                <span class="input-group-addon glyphicon glyphicon-earphone campo" style="padding: 6px; top: 0px;" id="basic-addon1"></span>
+                        <div id='telefono' class="col-md-6 contenedor-campo redondear-derecha redondear-izquierda">
+                            <div class="input-group redondear-derecha redondear-izquierda">
+                                <span class="input-group-addon glyphicon glyphicon-earphone campo campo-icon" id="basic-addon1"></span>
                                 <input type="text" name="telefono" class="form-control input-sm redondear-derecha campo" placeholder="5491112341234" style="height: auto" />
                             </div>
                         </div>
@@ -223,7 +215,7 @@
                             <a href="#" class="boton-paso" id='to_3' style="width: 30%" >SIGUIENTE</a>
                         </div>
                     </div>
-                    <div class="footer-paso"  style="height: 30px; margin: 16px 0px">
+                    <div class="footer-paso"  style="height: 30px; margin: 12px 0px;margin-top: 40px;">
                         <div class="col-md-12">
                             <div class="progress">
                         <div class="progress-bar progress-bar-pjl progress-bar-striped active" style="width:66%;"></div>
@@ -251,7 +243,8 @@
                     <div class="requiere-comprobante">
                         <div class="donacion-seccion container-fluid">
                             <div class="col-md-12" >
-                                <input type="checkbox" style="font-size: smaller" id="chkrecibo"
+                                <input type="checkbox" style="font-size: smaller; margin-right: 7px;  position: relative;
+    top: 3px;" id="chkrecibo"
                                        name="chkrecibo">Quiero que me envien recibo de mi donación.
                                 <p class="recibo-nota"> Si sos empresa, solicitá tu recibo a
                                     <strong>info@porlosjovenes.org </strong> informando el CUIT</p>

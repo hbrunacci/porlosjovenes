@@ -1,5 +1,5 @@
 body {
-    font-family: Galano, roboto, arial, serif;
+    font-family: Galano, roboto, arial, serif !important;
     color: black;
 }
 

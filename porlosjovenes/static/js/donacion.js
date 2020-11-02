@@ -37,20 +37,27 @@ $(function () {
         });
         paso2.change(function (event) {
             objeto = event.target
-            if (objeto.value.length > 0 ) {
-               console.log(objeto.parentElement)
-               $(objeto.parentElement).removeClass('requerido')
-               $(objeto.parentElement).addClass('completo')
+            if (objeto.value.length > 0 )  {
+                console.log(objeto.parentElement)
+                if (!hasClass(objeto.parentElement, 'radio-inline')) {
+                    $(objeto.parentElement).removeClass('requerido');
+                    $(objeto.parentElement).addClass('completo');
+                }
+
             }
             else
             {
-               $(objeto.parentElement).removeClass('completo')
-               $(objeto.parentElement).addClass('requerido')
+               if (!hasClass(objeto.parentElement, 'radio-inline')) {
+                   $(objeto.parentElement).removeClass('completo');
+                   $(objeto.parentElement).addClass('requerido');
+               }
             }
             ;
 
         })
-
+        function hasClass(element, className) {
+            return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
+        };
         // Tipo Donante
 
         $("#sidonante").change(function (event) {
