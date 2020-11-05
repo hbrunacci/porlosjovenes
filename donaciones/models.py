@@ -83,7 +83,7 @@ class Medios_Pago(Orderable):
         related_name="+",
         on_delete=models.SET_NULL,
     ),
-    moneda = models.CharField('Moneda', max_length=10,blank=False, null=False, choices=MONEDAS, default='pesos'),
+    moneda = models.CharField('Moneda', max_length=10, blank=False, null=False, choices=MONEDAS, default='pesos')
     monto_1 = models.IntegerField("Valor 1", blank=False, null=False)
 
     monto_2 = models.IntegerField("Valor 2", blank=False, null=False)
@@ -106,3 +106,8 @@ class Medios_Pago(Orderable):
 
     ]
 
+    def get_currency_symbol(self):
+        if self.moneda == 'pesos':
+            return '$'
+        else:
+            return 'u$s'

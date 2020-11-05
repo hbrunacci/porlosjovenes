@@ -7,6 +7,22 @@ button, html, input, select, textarea {
     font-family: Galano, roboto, arial, serif !important;
     color: black;
 }
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 80%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fadeInUp {
+  animation-name: fadeInUp;
+}
 .video-responsive {
     height: 0;
     overflow: hidden;
@@ -54,6 +70,20 @@ button, html, input, select, textarea {
 .blog-list li:nth-child(12), .blogpage-listing li:nth-child(12) {
       width: 50%;
     }
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: green!important;
+}
+
+.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25)
+}
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+}
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+  background-color: #C8FFC8;
 }
 
 .blog-list-item {
@@ -333,7 +363,7 @@ body {
     border-color: azure;
     border-radius: 1%;
     align-content: end;
-    min-height: 70vh;
+    min-height: 470px;
     background: rgb(255, 255, 255, 0.7);
     margin-bottom: 15px;
     margin-top: 10px;
@@ -387,7 +417,18 @@ body {
 .logo-fpago {
     width: 90px;
     margin-left: 10px;
+    position: relative;
+    top: -4px;
 }
+
+.fpago-propio-debito {
+    width: 114px;
+}
+.fpago-propio-credito {
+    width: 125px;
+}
+
+
 .boton-paso {
     margin: 8px 0px 0px 7px;
     text-align: center;
@@ -439,7 +480,7 @@ body {
 }
 
 .opt-fpago {
-    margin: 10px 0px;
+    margin: 4px 0px;
     font-weight: 400;
 }
 
@@ -493,9 +534,23 @@ body {
     height: 110px;
     font-size: small;
 }
+.boton-logo {
+    width: 60% !important;
+    background: white;
+    color:#0097a5;
+    padding-bottom: 23px;
+    padding-top: 4px;
+}
+.logo-fpago-finish {
+    width: 40%;
+    position: relative;
+    top: -2px;
+    margin-left: 5px;
+}
+
 .footer-paso {
     text-align: center;
-    margin-top: 16px 0px;
+    margin-top: 16px;
 }
 
 #tipodonante {
@@ -515,6 +570,11 @@ body {
     font-size: small;
     text-align: justify;
     margin: 10px 5px;
+}
+.logo-tarjeta {
+    width: 25px;
+    position: relative;
+    top: 10px;
 }
 .donacion-progress {
     height: 20px;
@@ -540,6 +600,7 @@ progress[value]::-webkit-progress-value {
     background-size: 35px 20px, 100% 100%, 100% 100%;
 }
 .grupo-campos {
+    margin-top: 10px;
     height: 320px;
     font-size: small;
 }
@@ -633,7 +694,7 @@ progress[value]::-webkit-progress-value {
         border-color: white;
         border-radius: 0%;
         align-content: end;
-        min-height: 70vh;
+        min-height: 470px;
         background: rgb(255, 255, 255, 1);
         margin-bottom: 0px;
         margin-top: 0px;
@@ -711,4 +772,12 @@ progress[value]::-webkit-progress-value {
             height: 160px;
     }
 
+}
+
+.modal-title {
+    text-align: left;
+    background: #1190a2;
+    color: white;
+    font-family: Galano;
+    font-size: 16px;
 }
