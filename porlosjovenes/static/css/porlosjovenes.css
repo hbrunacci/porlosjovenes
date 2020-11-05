@@ -723,7 +723,6 @@ progress[value]::-webkit-progress-value {
     .opt-fpago {
         display: block !important;
         margin-left: 10px;
-
     }
     .boton-donacion {
         display: block;
@@ -774,6 +773,7 @@ progress[value]::-webkit-progress-value {
 
 }
 .modal-content {
+    opacity: 0.9 !important;
     min-height: 356px;
     width: 415px;
     margin: auto;
