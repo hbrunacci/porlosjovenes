@@ -773,6 +773,13 @@ progress[value]::-webkit-progress-value {
     }
 
 }
+.modal-content {
+    min-height: 356px;
+    width: 415px;
+    margin: auto;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
 
 .modal-title {
     text-align: left;
@@ -780,4 +787,32 @@ progress[value]::-webkit-progress-value {
     color: white;
     font-family: Galano;
     font-size: 16px;
+    padding: 12px;
+}
+
+.modal-header {
+    padding: 0px;
+    height: 46px;
+}
+
+.modal-header button{
+    position: relative;
+    top: -32px;
+    right: 20px;
+    font-size: 22px;
+    font-weight: 600;
+}
+.linea_separador {
+    margin: 0 0 4px 0;
+    color: black;
+}
+.otros_bancos {
+    text-align: left;
+}
+
+.otro_datos_banco {
+    height: 18px;
+}
+.otros_pmc {
+    margin: 0;
 }
