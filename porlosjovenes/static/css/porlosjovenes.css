@@ -487,6 +487,7 @@ body {
 .opt-fpago {
     margin: 4px 0px;
     font-weight: 400;
+    float: none;
 }
 
 .botonera {
