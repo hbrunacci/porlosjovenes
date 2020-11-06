@@ -490,7 +490,7 @@ body {
 }
 
 .otro-monto-add {
-    padding: 2px 6px; top: 0px;
+    padding: 2px 1px; top: 0px;
     font-size: 12px;
 }
 
@@ -513,7 +513,7 @@ body {
 }
 .otro-monto {
     margin-left: 20px;
-    width: 150px;
+    width: 156px;
 }
 .otro-monto input {
     padding: 2px 6px;
