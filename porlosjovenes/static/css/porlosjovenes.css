@@ -464,6 +464,11 @@ body {
     display: inline-block;
     text-transform: uppercase;
 }
+.boton-selected {
+   background: #00464c;
+    border: 2px solid #00464c;
+   color: white;
+}
 .boton-donacion:hover {
    background: white;
    color: #0097a5;

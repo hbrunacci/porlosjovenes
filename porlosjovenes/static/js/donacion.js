@@ -26,6 +26,7 @@ $(function () {
         $("#back_1").click(function () {
             $('#paso1').removeClass('hide-step');
             $('#paso2').addClass('hide-step');
+            console.log(get_monto_donacion())
         });
         $("#back_2").click(function () {
            $('#paso2').removeClass('hide-step');
@@ -36,6 +37,13 @@ $(function () {
         });
         paso1.click(function (event) {
             console.log(event.target.id);
+            boton = event.target;
+            if (hasClass(boton, 'valor')) {
+                $('.valor').each(function () {
+                    $(this).removeClass('boton-selected');
+                })
+                $(boton).addClass('boton-selected');
+            }
         });
         paso2.change(function (event) {
             objeto = event.target
@@ -91,8 +99,6 @@ $(function () {
                 ocultar_aumento_donacion();
             }
         })
-
-
 
         //tipo-donacion
 
@@ -194,6 +200,22 @@ $(function () {
         $('#cbu-container').addClass('hide-step');
         $('#cc-container').addClass('hide-step');
     }
+    function get_monto_donacion(){
+        var valor = 0;
+        $('.valor').each(function () {
+            if ($(this).hasClass('boton-selected')) {
+                if ($(this).val() === '') {
+                    valor = $(this).attr('value');
+                } else
+                {
+                    valor = $(this).val();
+                }
+            }
+        })
+       return valor
+    }
+
+
 
     function campos_aumento() {
         $('#nombre').removeClass('hide-step');

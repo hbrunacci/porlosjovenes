@@ -89,10 +89,10 @@
                         <div class="  container-fluid"     style="font-size: small;">
                             {% for forma in self.medios_pago.all %}
                                 <div class="col-md-12 botonera {% if forloop.counter0 > 0 %} hide-step {% endif %}" id="valores-{{ forma.nombre_medio }}">
-                                    <a href="#" class="boton-donacion" id="valor-1-{{ forma.nombre_medio }}" > {{ forma.get_currency_symbol }} {{ forma.monto_1 }}</a>
-                                    <a href="#" class="boton-donacion" id="valor-2-{{ forma.nombre_medio }}" > {{ forma.get_currency_symbol }} {{ forma.monto_2 }}</a>
-                                    <a href="#" class="boton-donacion" id="valor-3-{{ forma.nombre_medio }}" > {{ forma.get_currency_symbol }} {{ forma.monto_3 }}</a>
-                                    <a href="#" class="boton-donacion" id="valor-4-{{ forma.nombre_medio }}" > {{ forma.get_currency_symbol }} {{ forma.monto_4 }}</a>
+                                    <a href="#" class="boton-donacion valor" value="{{ forma.monto_1 }}" id="valor-{{ forma.nombre_medio }}-1" > {{ forma.get_currency_symbol }} {{ forma.monto_1 }}</a>
+                                    <a href="#" class="boton-donacion valor" value="{{ forma.monto_2 }}" id="valor-{{ forma.nombre_medio }}-2" > {{ forma.get_currency_symbol }} {{ forma.monto_2 }}</a>
+                                    <a href="#" class="boton-donacion valor" value="{{ forma.monto_3 }}" id="valor-{{ forma.nombre_medio }}-3" > {{ forma.get_currency_symbol }} {{ forma.monto_3 }}</a>
+                                    <a href="#" class="boton-donacion valor" value="{{ forma.monto_4 }}" id="valor-{{ forma.nombre_medio }}-4" > {{ forma.get_currency_symbol }} {{ forma.monto_4 }}</a>
                                 </div>
                             {% endfor %}
                         </div>
@@ -100,7 +100,7 @@
                             <div class="col-xs-4 otro-monto" style="padding-right: 0">
                                 <div class="input-group ">
                                     <span class="input-group-addon otro-monto-add" style="width: 25px" id="simbolo-moneda"> $ </span>
-                                    <input type="number" name="otrovalor" class="form-control input-sm " placeholder="Otro monto..." style="padding: 2px 2px;height: auto; " />
+                                    <input type="number" id='otrovalor' name="otrovalor" class="form-control input-sm valor" placeholder="Otro monto..." style="padding: 2px 2px;height: auto; " />
                                     <span class="input-group-addon otro-monto-add" style="width: 25px" id="basic-addon4"> .00 </span>
                                 </div>
 
