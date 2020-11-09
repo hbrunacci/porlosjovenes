@@ -467,7 +467,7 @@ body {
 .boton-selected {
    background: #00464c;
     border: 2px solid #00464c;
-   color: white;
+   color: white !important;
 }
 .boton-donacion:hover {
    background: white;
@@ -769,7 +769,22 @@ progress[value]::-webkit-progress-value {
     font-size: small;
                 margin: auto !important;
     }
+    .redondear-derecha {
+        border-radius: 4px;
+    }
+    .redondear-izquierda {
+        border-radius: 4px;
+    }
+    #nombre {
+        margin-right: 15px;
+    }
 
+    #apellido {
+        margin-right: 14px;
+    }
+    #cpostal {
+       right: 0px;
+    }
     #encabezado_responsive {
             width: 100%;
             background-size: cover;
@@ -821,4 +836,27 @@ progress[value]::-webkit-progress-value {
 }
 .otros_pmc {
     margin: 0;
+}
+
+.alerta {
+    font-size: 11px;
+    position: relative;
+    color: red;
+    height: 0;
+}
+
+.falta_tdonante {
+    top: 16px;
+    left: -157px;
+}
+.falta_frecuencia {
+    top: -12px;
+    right: -5px;
+}
+.falta_fpago {
+    top:-7px;
+}
+.falta_monto {
+    top: -10px;
+    right: -6px;
 }

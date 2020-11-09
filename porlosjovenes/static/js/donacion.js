@@ -12,9 +12,33 @@ $(function () {
         set_requeridos();
 
         $("#to_2").click(function () {
-            $('#paso1').addClass('hide-step');
-            $('#paso2').removeClass('hide-step');
-            check_campos_completos('paso1');
+            $('#alerta_falta_tdonante').addClass('hide-step');
+            $('#alerta_falta_frecuencia').addClass('hide-step');
+            $('#alerta_falta_fpago').addClass('hide-step');
+            $('#alerta_falta_monto').addClass('hide-step');
+            var completo = true;
+            if (get_tipo_donante() === '0'){
+                completo = false;
+                $('#alerta_falta_tdonante').removeClass('hide-step');
+            }
+            if (get_tipo_donacion() === '0'){
+                completo = false;
+                $('#alerta_falta_frecuencia').removeClass('hide-step');
+            }
+            if (get_forma_pago() === '0'){
+                completo = false;
+                $('#alerta_falta_fpago').removeClass('hide-step');
+            }
+            if (get_monto_donacion() == 0) {
+                completo = false;
+                $('#alerta_falta_monto').removeClass('hide-step');
+            }
+            if (completo === true) {
+                $('#paso1').addClass('hide-step');
+                $('#paso2').removeClass('hide-step');
+            }
+
+
         });
 
         $("#to_3").click(function () {
@@ -26,7 +50,7 @@ $(function () {
         $("#back_1").click(function () {
             $('#paso1').removeClass('hide-step');
             $('#paso2').addClass('hide-step');
-            console.log(get_monto_donacion())
+
         });
         $("#back_2").click(function () {
            $('#paso2').removeClass('hide-step');
@@ -36,7 +60,7 @@ $(function () {
             alert("Handler for .click() called.");
         });
         paso1.click(function (event) {
-            console.log(event.target.id);
+            ///console.log(event.target.id);
             boton = event.target;
             if (hasClass(boton, 'valor')) {
                 $('.valor').each(function () {
@@ -183,23 +207,54 @@ $(function () {
     });
     function hasClass(element, className) {
         return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
-    };
+    }
     function set_requeridos() {
-        $('#nombre div').addClass('requerido');
-        $('#apellido div').addClass('requerido');
-        $('#documento  div').addClass('requerido');
+        $('#nombre label').addClass('requerido');
+        $('#apellido label').addClass('requerido');
+        $('#documento  label').addClass('requerido');
         $('#genero div').addClass('requerido');
-        $('#email div').addClass('requerido');
-        $('#direccion div').addClass('requerido');
-        $('#codigopostal div').addClass('requerido');
-        $('#pais div').addClass('requerido');
-        $('#nacimiento div').addClass('requerido');
-        $('#telefono div').addClass('requerido');
+        $('#email label').addClass('requerido');
+        $('#direccion label').addClass('requerido');
+        $('#codigopostal label').addClass('requerido');
+        $('#pais label').addClass('requerido');
+        $('#nacimiento label').addClass('requerido');
+        $('#telefono label').addClass('requerido');
     }
     function hide_cc_cbu() {
         $('#cbu-container').addClass('hide-step');
         $('#cc-container').addClass('hide-step');
     }
+    function get_tipo_donante() {
+        response = '0';
+        $("[name=optdonante]").each(function () {
+             if ($(this).prop('checked')){
+                response = $(this).prop('id')
+                ///console.log($(this).prop('id'));
+            }
+        })
+        return response;
+    }
+    function get_tipo_donacion() {
+        response = '0';
+        $("[id^=dona-]").each(function () {
+             if ($(this).prop('checked')){
+                response = $(this).prop('id')
+                ///console.log($(this).prop('id'));
+            }
+        })
+        return response;
+    }
+    function get_forma_pago() {
+        response = '0';
+        $("[id^=fpago-]").each(function () {
+             if ($(this).prop('checked')){
+                response = $(this).prop('id')
+                ///console.log($(this).prop('id'));
+            }
+        })
+        return response;
+    }
+
     function get_monto_donacion(){
         var valor = 0;
         $('.valor').each(function () {

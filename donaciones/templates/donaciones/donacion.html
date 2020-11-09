@@ -18,8 +18,9 @@
                     <div class="soy-donante ">
                         <div class=" donacion-seccion container-fluid">
                             <div id="tipodonante">
-                              <div class="col-xs-5">YA SOY DONANTE
-                                </div>
+                              <div class="col-xs-5" style="padding-left: 11px;">YA SOY DONANTE</div>
+                                  <div class="alerta falta_tdonante hide-step" id="alerta_falta_tdonante">Decinos si ya sos donante.</div>
+
                                     {% if self.soy_donante == 'ambos' %}
                                     <label class="col-md-3 radio-inline" >
                                         <input type="radio" name="optdonante" id="sidonante" >Si
@@ -41,43 +42,44 @@
                         </div>
                     </div>
                     <div class="tipo-donacion donacion-seccion ">
-                        <div class="container-fluid" >
-                        <div class="donacion-titulo">QUIERO DONAR</div>
-                                <div class="input-group"  id="tipodonacion">
-                                    <label class="radio-inline" >
-                                        <input type="radio" name="optdonacion" id="dona-mensual" >Mensual
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="optdonacion" id="dona-unica">Por única vez
-                                    </label>
-                                    <label class="radio-inline"
-                                    style="{% if self.soy_donante == 'solo_no' %} display:None {% endif %}
+                        <div class="container-fluid" style="padding-right: 5px; padding-left: 5px" >
+                        <div class="donacion-titulo" style="padding-right: 6px; padding-left: 6px!important">QUIERO DONAR</div>
+                        <div class="alerta falta_frecuencia hide-step" id="alerta_falta_frecuencia">Falta indicar la frecuencia           </div>
+                            <div class="input-group"  id="tipodonacion">
+                                <label class="radio-inline" >
+                                    <input type="radio" name="optdonacion" id="dona-mensual" >Mensual
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optdonacion" id="dona-unica">Por única vez
+                                </label>
+                                <label class="radio-inline" style="{% if self.soy_donante == 'solo_no' %} display:None {% endif %}
                                     ">
-                                        <input type="radio" name="optdonacion" id="dona-aumento">Aumentar mi donación
-                                    </label>
-                                </div>
-                                <div class="nota-aumento">
-                                    <input type="checkbox" name="chkautoaumento" id="aumenta-auto"> Acepto aumentar la donación un  {{ self.incremento_automatico }}% anualmente
-                                </div>
-
+                                    <input type="radio" name="optdonacion" id="dona-aumento">Aumentar mi donación
+                                </label>
+                            </div>
+                            <div class="nota-aumento">
+                                <input type="checkbox" name="chkautoaumento" id="aumenta-auto"> Acepto aumentar la donación un  {{ self.incremento_automatico }}% anualmente
+                            </div>
                         </div>
                     </div>
                     <div class="forma-pago">
                         <div class=" container-fluid">
-                            <div class="donacion-titulo">SELECCIONAR FORMA DE PAGO</div>
+                            <div class="donacion-titulo">SELECCIONAR FORMA DE PAGO
+                                <div class="alerta falta_fpago hide-step" id="alerta_falta_fpago">Falta indicar la forma de pago.       </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="input-group" id="forma_pago">
                                     {% for forma in self.medios_pago.all %}
                                         <label class="col-md-6 opt-fpago">
                                             <input id="{{ forma.nombre_medio }}" type="radio" name="optfpago">
                                             {% if forma.nombre_medio == 'fpago-credito' %}
-                                            <img class="logo-fpago fpago-propio-credito" src="{% static 'img/mpago_tarjeta_de_credito.png' %}" alt="Tarjeta de Credito"  title="Tarjeta de Credito">
+                                                <img class="logo-fpago fpago-propio-credito" src="{% static 'img/mpago_tarjeta_de_credito.png' %}" alt="Tarjeta de Credito"  title="Tarjeta de Credito">
                                             {% elif forma.nombre_medio == 'fpago-debito' %}
-                                            <img class="logo-fpago fpago-propio-debito" src="{% static 'img/mpago_debito_en_cuenta.png' %}" alt="Debito en Cuenta"  title="Debito Cuenta">
+                                                <img class="logo-fpago fpago-propio-debito" src="{% static 'img/mpago_debito_en_cuenta.png' %}" alt="Debito en Cuenta"  title="Debito Cuenta">
                                             {% elif forma.nombre_medio == 'fpago-paypal' %}
-                                            <img class="logo-fpago" src="{% static 'img/paypal.png' %}" alt="Paypal"  title="Paypal Logo">
+                                                <img class="logo-fpago" src="{% static 'img/paypal.png' %}" alt="Paypal"  title="Paypal Logo">
                                             {% elif forma.nombre_medio == 'fpago-mercadopago' %}
-                                            <img class="logo-fpago" src="{% static 'img/mercadopago.png' %}" alt="MercadoPago">
+                                                <img class="logo-fpago" src="{% static 'img/mercadopago.png' %}" alt="MercadoPago">
                                             {% endif %}
                                         </label>
                                     {% endfor %}
@@ -87,9 +89,9 @@
                     </div>
                     <div class="montos donacion-seccion">
                         <div class="  container-fluid"     style="font-size: small;">
+                            <div class="alerta falta_monto hide-step" id="alerta_falta_monto">Falta indicar qué monto querés donar. </div>
                             {% for forma in self.medios_pago.all %}
-                                <div class="col-md-12 botonera {% if forloop.counter0 > 0 %} hide-step {% endif %}" id="valores-{{ forma.nombre_medio }}">
-                                    <a href="#" class="boton-donacion valor" value="{{ forma.monto_1 }}" id="valor-{{ forma.nombre_medio }}-1" > {{ forma.get_currency_symbol }} {{ forma.monto_1 }}</a>
+                                <div class="col-md-12 botonera {% if forloop.counter0 > 0 %} hide-step {% endif %}" id="valores-{{ forma.nombre_medio }}"><a href="#" class="boton-donacion valor" value="{{ forma.monto_1 }}" id="valor-{{ forma.nombre_medio }}-1" > {{ forma.get_currency_symbol }} {{ forma.monto_1 }}</a>
                                     <a href="#" class="boton-donacion valor" value="{{ forma.monto_2 }}" id="valor-{{ forma.nombre_medio }}-2" > {{ forma.get_currency_symbol }} {{ forma.monto_2 }}</a>
                                     <a href="#" class="boton-donacion valor" value="{{ forma.monto_3 }}" id="valor-{{ forma.nombre_medio }}-3" > {{ forma.get_currency_symbol }} {{ forma.monto_3 }}</a>
                                     <a href="#" class="boton-donacion valor" value="{{ forma.monto_4 }}" id="valor-{{ forma.nombre_medio }}-4" > {{ forma.get_currency_symbol }} {{ forma.monto_4 }}</a>
@@ -103,22 +105,20 @@
                                     <input type="number" id='otrovalor' name="otrovalor" class="form-control input-sm valor" placeholder="Otro monto..." style="padding: 2px 2px;height: auto; " />
                                     <span class="input-group-addon otro-monto-add" style="width: 25px" id="basic-addon4"> .00 </span>
                                 </div>
-
                             </div>
                             <div class="col-xs-6 tipo-moneda" style="padding-right: 0" id="nota_moneda">*Montos en PESOS ARGENTINOS (ARS)
-                                </div>
-                        </div>
-                            <div class="col-md-12 hide-step">
-                                <p id='nota-aumento' class="donacion-nota">*El valor indicador es el importe al que deseo llevar mi donación</p>
                             </div>
-
                         </div>
+                        <div class="col-md-12 hide-step">
+                            <p id='nota-aumento' class="donacion-nota">*El valor indicador es el importe al que deseo llevar mi donación</p>
+                        </div>
+                    </div>
                     <div class="botonera-pasos">
                         <div class="col-md-12">
                             <a href="#" class="boton-paso" id='to_2' style="width: 30%" >SIGUIENTE</a>
                         </div>
                     </div>
-                    <div class="footFr-paso">
+                    <div class="footer-paso">
                         <div class="col-md-12">
                             <div class="progress" style="margin: 10px;  height: 18px;">
                                 <div class="progress-bar progress-bar-pjl progress-bar-striped active" style="width:33%;"></div>
@@ -130,134 +130,131 @@
 
                             <!-- Modal -->
                                 <div class="modal fade" id="otras_formas_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <div class="modal-title" id="exampleModalLabel">OTRAS FORMAS DE COLABORAR</div>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true" >X</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body" style="padding-bottom: 0">
-                                    <div class="container-flex">
-                                        <div class="row otros_bancos">
-                                            <div class="col-xs-2" style="padding: 0px;">
-                                                <img src="{% static "img/touch_landscape.png" %}" alt="">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="modal-title" id="exampleModalLabel">OTRAS FORMAS DE COLABORAR</div>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true" >X</span>
+                                                </button>
                                             </div>
-                                            <div class="col-xs-10">
-                                                <div style="height:16px; font-size: 14px; font-weight: 900">TRANSFERENCIA o DEPÓSITO</div>
-                                                <div style="font-size: 13px">en los siguientes bancos:</div>
-                                                <div class="otro_datos_banco">BBVA Cta. Cte. 165 6068-0</div><div>CBU 0170165020000000606806</div>
-                                                <hr class="linea_separador">
-                                                <div class="otro_datos_banco">GALICIA Cta. Cte. 16309-5 007-0 </div><div>CBU 0070007820000016309504</div>
-                                                <hr class="linea_separador">
-                                                <div class="otro_datos_banco">SANTANDER RÍO Cta. Cte. 055-016553-4 </div><div>CBU 0720055720000001655340</div>
-                                                <hr class="linea_separador">
-                                                <div class="otro_datos_banco">SANTANDER RÍO Cta. Cte. U$S 055-016717-2 </div><div>CBU 0720055721000001671723</div>
+                                            <div class="modal-body" style="padding-bottom: 0">
+                                                <div class="container-flex">
+                                                    <div class="row otros_bancos">
+                                                        <div class="col-xs-2" style="padding: 0px;">
+                                                            <img src="{% static "img/touch_landscape.png" %}" alt="">
+                                                        </div>
+                                                        <div class="col-xs-10">
+                                                            <div style="height:16px; font-size: 14px; font-weight: 900">TRANSFERENCIA o DEPÓSITO</div>
+                                                            <div style="font-size: 13px">en los siguientes bancos:</div>
+                                                            <div class="otro_datos_banco">BBVA Cta. Cte. 165 6068-0</div><div>CBU 0170165020000000606806</div>
+                                                            <hr class="linea_separador">
+                                                            <div class="otro_datos_banco">GALICIA Cta. Cte. 16309-5 007-0 </div><div>CBU 0070007820000016309504</div>
+                                                            <hr class="linea_separador">
+                                                            <div class="otro_datos_banco">SANTANDER RÍO Cta. Cte. 055-016553-4 </div><div>CBU 0720055720000001655340</div>
+                                                            <hr class="linea_separador">
+                                                            <div class="otro_datos_banco">SANTANDER RÍO Cta. Cte. U$S 055-016717-2 </div><div>CBU 0720055721000001671723</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer" style="padding: 0">
+                                                <div class="container-flex">
+                                                    <div class="row otros_pmc">
+                                                      <div class="col-xs-2" style="padding: 20px 8px;">
+                                                          <a href="">
+                                                              <img src="{% static "img/pago_mis_cuentas_2lineas.png" %}" alt="PMC">
+                                                          </a>
+                                                      </div>
+                                                      <div class="col-xs-10" style="padding: 15px ;text-align: left;">
+                                                          <div style="height:16px; font-size: 14px; font-weight: 900">PAGO MIS CUENTAS</div>
+                                                          <div style="font-size: 13px">(Rubro 'Donaciones'; empresa 'ObroDonBosco')</div>
+                                                      </div>
+                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
-
                                     </div>
-                                  </div>
-                                  <div class="modal-footer" style="padding: 0">
-                                      <div class="container-flex">
-                                          <div class="row otros_pmc">
-                                            <div class="col-xs-2" style="padding: 20px 8px;">
-                                                <a href="">
-                                                    <img src="{% static "img/pago_mis_cuentas_2lineas.png" %}" alt="PMC">
-                                                </a>
-                                            </div>
-                                            <div class="col-xs-10" style="padding: 15px ;text-align: left;">
-                                                <div style="height:16px; font-size: 14px; font-weight: 900">PAGO MIS CUENTAS</div>
-                                                <div style="font-size: 13px">(Rubro 'Donaciones'; empresa 'ObroDonBosco')</div>
-                                            </div>
-                                        </div>
-                                      </div>
-                                  </div>
                                 </div>
-                              </div>
-                            </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
 
-                <div class="paso-dos " id="paso2">
+                <div class="paso-dos hide-step" id="paso2">
                     <div class="datos-persona container-fluid grupo-campos">
-                    <div class="col-sm-12 contenedor-campo" style="text-align: left">
-                        TUS DATOS DE CONTACTO
-                    </div>
-                        <div >
-                        <div id="nombre" class="col-sm-6 contenedor-campo  redondear-izquierda" >
-                            <div class="input-group redondear-izquierda">
-                                <span class="input-group-addon fas fa-user campo campo-icon  redondear-izquierda " id="basic-addon1"></span>
-                                <input type="text" name="nombre" class="form-control input-sm campo" placeholder="Nombre"  style="height: auto" />
-                            </div>
+                        <div class="col-sm-12 contenedor-campo" style="text-align: left">
+                            TUS DATOS DE CONTACTO
                         </div>
-
-                        <div id="apellido" class="col-sm-6 contenedor-campo redondear-derecha" style="right:1px; padding-left: 0; margin-bottom: 0">
-                            <div class="input-group redondear-derecha" style="margin-bottom: 10px;">
-                                <span class="input-group-addon fas fa-user campo campo-icon campo-icon-desktop"  id="basic-addon1"></span>
-                                <input type="text" name="apellido" class="form-control input-sm campo redondear-derecha"
+                        <div class="row" style="margin-left: 0px">
+                            <div id="nombre" class="col-sm-6 contenedor-campo  redondear-izquierda" >
+                                <label class="input-group redondear-izquierda">
+                                    <span class="input-group-addon fas fa-user campo campo-icon  redondear-izquierda " id="basic-addon1"></span>
+                                    <input type="text" name="nombre" class="form-control input-sm campo" placeholder="Nombre"  style="height: auto" />
+                                </label>
+                            </div>
+                            <div id="apellido" class="col-sm-6 contenedor-campo redondear-derecha" style="right:1px; padding-left: 0; margin-bottom: 0">
+                                <label class="input-group redondear-derecha" style="margin-bottom: 10px;">
+                                    <span class="input-group-addon fas fa-user campo campo-icon campo-icon-desktop"  id="basic-addon1"></span>
+                                    <input type="text" name="apellido" class="form-control input-sm campo redondear-derecha"
                                        placeholder="Apellido"  style="height: auto; margin-bottom: 0px;" />
+                                </label>
                             </div>
                         </div>
-
-                    </div>
                         <div id="documento" class="col-sm-5 contenedor-campo">
-                            <div class="input-group redondear-izquierda redondear-derecha">
+                            <label class="input-group redondear-izquierda redondear-derecha">
                                 <span class="input-group-addon far fa-id-card campo campo-icon" id="basic-addon1"></span>
                                 <input type="number" name="documento" class="form-control input-sm redondear-derecha campo" placeholder="DNI" style="height: auto" />
-                            </div>
+                            </label>
                         </div>
                         <div id='genero' class="col-sm-6 contenedor-campo" style="margin-left: 30px" >
                             <div class="input-group campo-option" style="border: 0px !important" >
                                 <label class="radio-inline campo ">
                                     <input type="radio" name="optradio" >Femenino
                                 </label>
-                                <label class="radio-inline campo" style="    margin-left: 35px;">
+                                <label class="radio-inline campo" style="margin-left: 35px;">
                                     <input type="radio" name="optradio">Masculino
                                 </label>
                             </div>
                         </div>
                         <div id='email' class="col-sm-8 contenedor-campo ">
-                            <div class="input-group redondear-izquierda redondear-derecha">
+                            <label class="input-group redondear-izquierda redondear-derecha">
                                 <span class="input-group-addon fas fa-envelope campo campo-icon" id="basic-addon1"></span>
                                 <input type="email" name="email" class="form-control input-sm redondear-derecha campo" placeholder="E-mail" style="height: auto" />
-                            </div>
+                            </label>
                         </div>
                         <div id='direccion' class="col-sm-8 contenedor-campo" >
-                            <div class="input-group redondear-izquierda ">
+                            <label class="input-group redondear-izquierda ">
                                 <span class="input-group-addon fas fa-map-marker-alt campo campo-icon " id="basic-addon1"></span>
                                 <input type="text" name="direccion" class="form-control input-sm campo" placeholder="Direccion" style="height: auto" />
-                            </div>
+                            </label>
                         </div>
                         <div id='codigopostal' class="col-sm-4 contenedor-campo redondear-derecha" style="padding-left: 0; ">
-                            <div class="input-group redondear-derecha">
+                            <label class="input-group redondear-derecha">
                                 <span class="input-group-addon fas fa-map-marker-alt campo campo-icon campo-icon-desktop"  id="basic-addon1"></span>
-                                <input type="text" name="cpostal" class="form-control input-sm redondear-derecha campo" placeholder="Cód. Postal" style="right: 2px; margin-bottom: 0;height: auto" />
-                            </div>
+                                <input type="text" id="cpostal" name="cpostal" class="form-control input-sm redondear-derecha campo" placeholder="Cód. Postal" style="right: 2px; margin-bottom: 0;height: auto" />
+                            </label>
                         </div>
                         <div id="pais" class="col-sm-8 contenedor-campo redondear-derecha  redondear-izquierda">
-                            <div class="input-group redondear-derecha  redondear-izquierda">
+                            <label class="input-group redondear-derecha  redondear-izquierda">
                                 <span class="input-group-addon fas fa-map-marker-alt campo campo-icon" id="basic-addon1"></span>
                                 <input type="text" name="pais" class="form-control input-sm redondear-derecha campo" placeholder="País" style="height: auto" />
-                            </div>
+                            </label>
                         </div>
-                        <div id='nacimiento' class="col-sm-6 contenedor-campo redondear-derecha redondear-izquierda">
-                            <div class="input-group redondear-derecha redondear-izquierda">
+                        <div id='nacimiento' class="col-sm-6 contenedor-campo redondear-derecha redondear-izquierda"
+                        style= "margin-bottom: -15px; text-align: end;">
+                            <label class="input-group redondear-derecha redondear-izquierda">
                                 <span class="input-group-addon far fa-calendar-alt campo campo-icon" id="basic-addon1"></span>
-                                <input type="date" name="fnacimiento" class="form-control input-sm redondear-derecha campo" placeholder="Fecha de nacimiento" style="height: auto" />
-                            </div>
-                            <span style="float: right; font-size: 10px;">Ej: 01/01/2000</span>
+                                <input type="date" name="fnacimiento" class="form-control input-sm redondear-derecha campo" placeholder="Fecha de nacimiento" style="line-height: 17px;height: auto" />
+                            </label>
+                            <span style="font-size: 10px; position: relative; top: -6px;">Ej: 01/01/2000</span>
                         </div>
                         <div id='telefono' class="col-sm-6 contenedor-campo redondear-derecha redondear-izquierda">
-                            <div class="input-group redondear-derecha redondear-izquierda">
+                            <label class="input-group redondear-derecha redondear-izquierda">
                                 <span class="input-group-addon fas fa-phone-alt campo campo-icon" id="basic-addon1"></span>
                                 <input type="number" name="telefono" class="form-control input-sm redondear-derecha campo" placeholder="5491112341234" style="height: auto" />
-                            </div>
+                            </label>
                         </div>
                     </div>
 
@@ -276,7 +273,7 @@
                     </div>
                 </div>
 
-                <div class="paso-tres" id="paso3">
+                <div class="paso-tres hide-step" id="paso3">
                     <div class="datos-cobro" id="datos-cobro" >
                         <div class=" donacion-seccion container-fluid">
                             <div class="container-fluid contenedor-campo">
