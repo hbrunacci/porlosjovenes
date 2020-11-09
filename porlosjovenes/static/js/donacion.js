@@ -42,9 +42,19 @@ $(function () {
         });
 
         $("#to_3").click(function () {
-            $('#paso2').addClass('hide-step');
-            $('#paso3').removeClass('hide-step');
-            check_campos_completos('paso2');
+            var completo = true;
+            $('#alerta_datosdonante').addClass('hide-step');
+            console.log(check_campos_completos('paso2'));
+            if (check_campos_completos('paso2') > 0) {
+                console.log('incompleto')
+                $('#alerta_datosdonante').removeClass('hide-step');
+                completo = false;
+            }
+
+            if (completo === true) {
+                $('#paso2').addClass('hide-step');
+                $('#paso3').removeClass('hide-step');
+            }
         });
 
         $("#back_1").click(function () {
@@ -324,7 +334,7 @@ $(function () {
                     }
             });
         }
-        console.log(paso + " sin completar " + sin_completar);
+        return sin_completar;
     }
     function set_moneda_dolar() {
         $('#simbolo-moneda').html('u$s');

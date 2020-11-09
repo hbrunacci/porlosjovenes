@@ -860,3 +860,8 @@ progress[value]::-webkit-progress-value {
     top: -10px;
     right: -6px;
 }
+.falta_datosdonante {
+    top: -12px;
+    right: -14px;
+
+}
