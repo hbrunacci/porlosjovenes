@@ -213,10 +213,10 @@
                         <div id='genero' class="col-sm-6 contenedor-campo" style="margin-left: 30px" >
                             <div class="input-group campo-option" style="border: 0px !important" >
                                 <label class="radio-inline campo ">
-                                    <input type="radio" name="optradio" >Femenino
+                                    <input id="femenino" type="radio" name="optradio" >Femenino
                                 </label>
                                 <label class="radio-inline campo" style="margin-left: 35px;">
-                                    <input type="radio" name="optradio">Masculino
+                                    <input id="masculino" type="radio" name="optradio">Masculino
                                 </label>
                             </div>
                         </div>
@@ -232,7 +232,7 @@
                                 <input type="text" name="direccion" class="form-control input-sm campo" placeholder="Direccion" style="height: auto" />
                             </label>
                         </div>
-                        <div id='codigopostal' class="col-sm-4 contenedor-campo redondear-derecha" style="padding-left: 0; ">
+                        <div id='codigopostal' class="col-sm-4 contenedor-campo redondear-derecha" style="padding-left: 0;">
                             <label class="input-group redondear-derecha">
                                 <span class="input-group-addon fas fa-map-marker-alt campo campo-icon campo-icon-desktop"  id="basic-addon1"></span>
                                 <input type="text" id="cpostal" name="cpostal" class="form-control input-sm redondear-derecha campo" placeholder="Cód. Postal" style="right: 2px; margin-bottom: 0;height: auto" />
@@ -281,6 +281,8 @@
                             <div class="container-fluid contenedor-campo">
                                 TUS DATOS PARA LA DONACION:
                             </div>
+                            <div class="alerta falta_datosdonante hide-step" id="alerta_datosdonante">Falta completar el nro de tarjeta</div>
+
                             <div class="col-md-8 contenedor-campo">
                                 <div class="input-group hide-step" id="cc-container">
                                     <span class="input-group-addon glyphicon glyphicon-credit-card campo"
@@ -314,8 +316,11 @@
                      <div class="botonera-pasos">
                          <div class="col-md-12" style="margin: 25px 0;">
                             <a href="#" class="boton-paso" id='back_2' style="width: 25%" >VOLVER</a>
-                            <a href="#" class="boton-paso" id='to_finish' style="width: 30%">CONFIRMAR</a>
-                        </div>
+                             <form action="{% pageurl page %}" method="POST" >
+                                 {% csrf_token %}
+                                <a type="submit" href="#" class="boton-paso" id='to_finish' style="width: 30%">CONFIRMAR</a>
+                             </form>
+                            </div>
                      </div>
                     <div class="footer-paso">
                         <div class="col-md-12">

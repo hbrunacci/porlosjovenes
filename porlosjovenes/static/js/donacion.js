@@ -1,10 +1,15 @@
 $(function () {
     $('.main-menu').addClass('form-donacion');
     $(document).ready(function() {
+        $(function () {
+            $.ajaxSetup({
+                headers: { "X-CSRFToken": getCookie("csrftoken") }
+            });
+        });
         var paso1= $('#paso1')
         var paso2= $('#paso2')
         var paso3= $('#paso3')
-
+        var datos_donacion = {};
 
         paso1.removeClass('hide-step');
         paso2.addClass('hide-step');
@@ -17,35 +22,50 @@ $(function () {
             $('#alerta_falta_fpago').addClass('hide-step');
             $('#alerta_falta_monto').addClass('hide-step');
             var completo = true;
-            if (get_tipo_donante() === '0'){
+            var tipo_donante = get_tipo_donante()
+            var tipo_donacion = get_tipo_donacion()
+            var forma_pago = get_forma_pago()
+            var monto_donacion = get_monto_donacion()
+
+            if (tipo_donante === '0'){
                 completo = false;
                 $('#alerta_falta_tdonante').removeClass('hide-step');
+            } else {
+                datos_donacion['tipo_donante'] = tipo_donante
+
             }
-            if (get_tipo_donacion() === '0'){
+            if (tipo_donacion === '0'){
                 completo = false;
                 $('#alerta_falta_frecuencia').removeClass('hide-step');
+            } else {
+                datos_donacion['tipo_donante'] = tipo_donacion
             }
-            if (get_forma_pago() === '0'){
+
+            if (forma_pago === '0'){
                 completo = false;
                 $('#alerta_falta_fpago').removeClass('hide-step');
+            } else {
+                datos_donacion['forma_pago'] = forma_pago
             }
-            if (get_monto_donacion() == 0) {
+            if (monto_donacion === 0) {
                 completo = false;
                 $('#alerta_falta_monto').removeClass('hide-step');
+            } else {
+                datos_donacion['monto_donacion'] = monto_donacion
             }
+
             if (completo === true) {
                 $('#paso1').addClass('hide-step');
                 $('#paso2').removeClass('hide-step');
             }
-
 
         });
 
         $("#to_3").click(function () {
             var completo = true;
             $('#alerta_datosdonante').addClass('hide-step');
-            console.log(check_campos_completos('paso2'));
-            if (check_campos_completos('paso2') > 0) {
+            var datos_paso = check_campos_completos('paso2')
+            if (datos_paso['sin_completar'] > 0) {
                 console.log('incompleto')
                 $('#alerta_datosdonante').removeClass('hide-step');
                 completo = false;
@@ -67,7 +87,17 @@ $(function () {
            $('#paso3').addClass('hide-step');
         });
         $("#to_finish").click(function () {
-            alert("Handler for .click() called.");
+            url =''
+            $.ajax('/procesar-pago/', {
+                type: 'POST',  // http method
+                data: get_form_data(),  // data to submit
+                success: function (data, status, xhr) {
+                    $('p').append('status: ' + status + ', data: ' + data);
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+                        $('p').append('Error' + errorMessage);
+                }
+            });
         });
         paso1.click(function (event) {
             ///console.log(event.target.id);
@@ -82,7 +112,6 @@ $(function () {
         paso2.change(function (event) {
             objeto = event.target
             if (objeto.value.length > 0 )  {
-                console.log(objeto.parentElement)
                 if (!hasClass(objeto.parentElement, 'radio-inline')) {
                     $(objeto.parentElement).removeClass('requerido');
                     $(objeto.parentElement).addClass('completo');
@@ -110,14 +139,13 @@ $(function () {
                 valor = objeto.value;
                 card_name = $.payform.parseCardType(valor);
                 if ( $.inArray(card_name, ["visa", "mastercard", "amex", "diners"]) !== -1 )   {
-
                     $('#logo-tarjeta').css('display','block');
                     card_img_src = statics_img + '/' + card_name +'.png';
                     $('#logo-tarjeta').attr('src', card_img_src);
+                    $('#logo-tarjeta').attr('value', card_name);
                 } else
                 {
                     $('#logo-tarjeta').css('display','none');
-
                 }
             }
         });
@@ -137,7 +165,6 @@ $(function () {
         //tipo-donacion
 
         $("#dona-aumento").change(function (event) {
-            console.log('aumento')
             if (event.target.checked) {
                 $('#aumenta-auto').parent().removeClass('hide-step')
                 $('#nota-aumento').parent().removeClass('hide-step')
@@ -145,7 +172,6 @@ $(function () {
             }
         })
         $("#dona-mensual").change(function (event) {
-            console.log('mensual')
             if (event.target.checked) {
                 $('#aumenta-auto').parent().removeClass('hide-step')
                 $('#nota-aumento').parent().addClass('hide-step')
@@ -153,7 +179,6 @@ $(function () {
             }
         })
         $("#dona-unica").change(function (event) {
-            console.log('unica')
             if (event.target.checked) {
                 $('#aumenta-auto').parent().addClass('hide-step')
                 $('#nota-aumento').parent().addClass('hide-step')
@@ -163,7 +188,6 @@ $(function () {
 
         //Formas de Pago
         $("#fpago-paypal").change(function (event) {
-            console.log('check paypal')
             if (event.target.checked) {
                 set_moneda_dolar();
                 mostrar_botonera('valores-fpago-paypal');
@@ -174,7 +198,6 @@ $(function () {
             }
         })
         $("#fpago-mercadopago").change(function (event) {
-            console.log('fpago-mercadopago')
             if (event.target.checked) {
                 set_moneda_pesos();
                 mostrar_botonera('valores-fpago-mercadopago');
@@ -185,7 +208,6 @@ $(function () {
             }
         })
         $("#fpago-debito").change(function (event) {
-            console.log('fpago-debito')
             if (event.target.checked) {
                 set_moneda_pesos();
                 mostrar_botonera('valores-fpago-debito');
@@ -195,7 +217,6 @@ $(function () {
             }
         })
         $("#fpago-credito").change(function (event) {
-            console.log('fpago-credito')
             if (event.target.checked) {
                 set_moneda_pesos();
                 mostrar_botonera('valores-fpago-credito');
@@ -205,7 +226,6 @@ $(function () {
             }
         })
         $("#chkrecibo").change(function (event) {
-            console.log('chkrecibo')
             if (event.target.checked) {
                 $('#recibo-nota').removeClass('hide-step')
             }
@@ -218,6 +238,11 @@ $(function () {
     function hasClass(element, className) {
         return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
     }
+
+    function get_form_data() {
+        return {'value':'1234'}
+    }
+
     function set_requeridos() {
         $('#nombre label').addClass('requerido');
         $('#apellido label').addClass('requerido');
@@ -239,7 +264,6 @@ $(function () {
         $("[name=optdonante]").each(function () {
              if ($(this).prop('checked')){
                 response = $(this).prop('id')
-                ///console.log($(this).prop('id'));
             }
         })
         return response;
@@ -249,7 +273,6 @@ $(function () {
         $("[id^=dona-]").each(function () {
              if ($(this).prop('checked')){
                 response = $(this).prop('id')
-                ///console.log($(this).prop('id'));
             }
         })
         return response;
@@ -259,7 +282,6 @@ $(function () {
         $("[id^=fpago-]").each(function () {
              if ($(this).prop('checked')){
                 response = $(this).prop('id')
-                ///console.log($(this).prop('id'));
             }
         })
         return response;
@@ -327,14 +349,29 @@ $(function () {
 
         }
         if (paso === 'paso2') {
-            $( ".requerido" ).each(function( index ) {
+            var datos_persona = {}
+            $(".requerido").each(function(index) {
                 foo = $(this)[0].parentElement
                 if (!hasClass(foo, 'hide-step')) {
                     sin_completar++;
                     }
+
             });
+            $(".completo input").each(function (index) {
+                foo = $(this)[0]
+                if (foo.value === 'on') {
+                    if (foo.checked) {
+                        datos_persona['genero'] = foo.id
+                    }
+                } else
+                {
+                    datos_persona[foo.name] = foo.value
+                }
+            })
+            datos_persona['sin_completar'] = sin_completar
+            console.log(datos_persona);
         }
-        return sin_completar;
+        return datos_persona;
     }
     function set_moneda_dolar() {
         $('#simbolo-moneda').html('u$s');
@@ -357,4 +394,18 @@ $(function () {
         dona_aumento.parent().addClass("hide-step")
         $('#dona-mensual').prop('checked', true);
     }
+    function getCookie(c_name){
+    if (document.cookie.length > 0)
+    {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1)
+        {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) c_end = document.cookie.length;
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return "";
+ }
 });

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .functions import register_transaction, demo_compromise_data_mensual
 import mercadopago
 import json
 CLIENT_ID = 'TEST-32b3b724-20ef-4fd1-a922-dc6ac3f8f693'
@@ -55,5 +56,8 @@ def test_mp(request):
 
 
 def procesar_pago(request):
-    result = ''
-    return result
+    if request.POST:
+        data = request.POST
+        print(data)
+    #result = register_transaction(demo_compromise_data_mensual)
+    return ''
