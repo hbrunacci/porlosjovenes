@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.png')),
     url(r'^search/$', search_views.search, name='search'),
-    url(r'^procesar-pago/$', procesar_pago, name='procesar-pago'),
+    url(r'^procesar-pago/$', procesar_pago.as_view(), name='procesar-pago'),
     url(r'^generar-preference/$', generar_preference.as_view(), name='generar-preference'),
     url(r'^test-mp/$', test_mp, name='test-mp'),
     url(r'^donacion_correcta/$', donacion_correcta, name='donacion_correcta'),

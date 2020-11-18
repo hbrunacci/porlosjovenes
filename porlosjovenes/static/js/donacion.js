@@ -72,6 +72,7 @@ $(function () {
             }
 
             if (completo === true) {
+                $.extend(true,datos_donacion,datos_paso);
                 $('#paso2').addClass('hide-step');
                 $('#paso3').removeClass('hide-step');
             }
@@ -87,17 +88,24 @@ $(function () {
            $('#paso3').addClass('hide-step');
         });
         $("#to_finish").click(function () {
-            url =''
-            $.ajax('/procesar-pago/', {
-                type: 'POST',  // http method
-                data: get_form_data(),  // data to submit
-                success: function (data, status, xhr) {
-                    $('p').append('status: ' + status + ', data: ' + data);
-                },
-                error: function (jqXhr, textStatus, errorMessage) {
-                        $('p').append('Error' + errorMessage);
-                }
-            });
+            var completo = true;
+            var datos_paso = check_campos_completos('paso3')
+            console.log(datos_paso);
+            $.extend(true,datos_donacion,datos_paso);
+            console.log()
+
+            if (completo===true) {
+                $.ajax('/procesar-pago/', {
+                    type: 'POST',  // http method
+                    data: get_form_data(),  // data to submit
+                    success: function (data, status, xhr) {
+                        $('p').append('status: ' + status + ', data: ' + data);
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) {
+                            $('p').append('Error' + errorMessage);
+                    }
+                });
+            }
         });
         paso1.click(function (event) {
             ///console.log(event.target.id);
@@ -207,6 +215,11 @@ $(function () {
                 $('#to_finish').html('FINALIZAR CON<img class="logo-fpago-finish" src=' + ff +' alt="mercadopago">');
             }
         })
+        function get_form_data() {
+            console.log(datos_donacion)
+            return datos_donacion
+        }
+
         $("#fpago-debito").change(function (event) {
             if (event.target.checked) {
                 set_moneda_pesos();
@@ -239,9 +252,6 @@ $(function () {
         return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
     }
 
-    function get_form_data() {
-        return {'value':'1234'}
-    }
 
     function set_requeridos() {
         $('#nombre label').addClass('requerido');
@@ -370,8 +380,17 @@ $(function () {
             })
             datos_persona['sin_completar'] = sin_completar
             console.log(datos_persona);
+            return datos_persona;
         }
-        return datos_persona;
+        if (paso === 'paso3') {
+            var datos_pago = {}
+            datos_pago['cardNumber'] = $('#credit-card').val();
+            datos_pago['cbunumber'] = $('#cbu-number').val();
+            datos_pago['pay_company'] = $('#logo-tarjeta').attr('value');
+            datos_pago['gatewayuserid'] = ''
+            return datos_pago
+        }
+
     }
     function set_moneda_dolar() {
         $('#simbolo-moneda').html('u$s');

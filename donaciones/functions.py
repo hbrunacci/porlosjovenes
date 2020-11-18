@@ -104,14 +104,14 @@ def process_new_contact(contact_data={}):
 
 def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso = dict()
-    compromiso['Monto_en_pesos__c'] = compromise_data.get('amount')
-    compromiso['Frecuencia__c'] = compromise_data.get('frequency')
-    compromiso['Estado__c'] = compromise_data.get('Activo')
+    compromiso['Monto_en_pesos__c'] = compromise_data.get('monto_donacion')
+    compromiso['Frecuencia__c'] = compromise_data.get('tipo_donante')
+    compromiso['Estado__c'] = 'Activo'
     compromiso['Fecha_de_compromiso__c'] = datetime.today().date().__str__()
     compromiso['Fecha_para_realizar_primer_cobranza__c'] = datetime.today().date().replace(day=1).__str__()
-    compromiso['Canal_de_Ingreso__c'] = compromise_data.get('paymentChannel')
-    compromiso['Forma_de_Pago__c'] = get_forma_de_pago(compromise_data['pay_type'])
-    compromiso['Tipo_de_tarjeta__c'] = get_cc_company_value(compromise_data['pay_company'])
+    compromiso['Canal_de_Ingreso__c'] = 'Web_DB'
+    compromiso['Forma_de_Pago__c'] = get_forma_de_pago(compromise_data.get('forma_pago'))
+    compromiso['Tipo_de_tarjeta__c'] = get_cc_company_value(compromise_data.get('pay_company'))
     value = compromise_data.get('cardNumber')
     value = compromise_data.get('cbunumber') if not value else value
     value = compromise_data.get('gatewayuserid') if not value else value
@@ -123,11 +123,11 @@ def process_new_compromise(compromise_data=None, contact_id=None):
 
 def get_forma_de_pago(pay_type):
     types_dict ={
-        'MP':'MercadoPago',
-        'PP':'Paypal',
-        'Dcta':'Débito en Cuenta',
-        'TC':'Tarjeta de Crédito',
-        'TD':'Tarjeta de Débito'
+        'fpago-mercadopago':'MercadoPago',
+        'fpago-paypal':'Paypal',
+        'fpago-debito':'Débito en Cuenta',
+        'fpago-credito':'Tarjeta de Crédito',
+        'fpago-tdebito':'Tarjeta de Débito'
                  }
     response = types_dict.get(pay_type)
     return response

@@ -55,9 +55,15 @@ def test_mp(request):
     return render(request, 'home/test.html')
 
 
-def procesar_pago(request):
-    if request.POST:
+class procesar_pago(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def post(self, request):
         data = request.POST
+        data = dict(data)
+        for key in data.keys():
+            data[key] = data[key][0]
         print(data)
-    #result = register_transaction(demo_compromise_data_mensual)
-    return ''
+        result = register_transaction(data)
+        return Response('')
