@@ -1,5 +1,19 @@
 from simple_salesforce import Salesforce
 from datetime import datetime
+demo = {'tipo_donante': 'dona-unica',
+        'forma_pago': 'fpago-credito',
+        'monto_donacion': '17',
+        'nombre': 'Julieta',
+        'apellido': 'Rosati',
+        'documento': '36990183',
+        'genero': 'femenino',
+        'email': 'jrosati@donbosco.org.ar',
+        'direccion': 'palpa 3121', 'cpostal': '1426', 'pais': 'Argentina',
+        'fnacimiento': '1992-06-08', 'telefono': '1539053903', 'sin_completar': '0',
+        'pay_company': 'visa', 'sin_completar_step3': '0',
+        'cardNumber': '4444444444444444', 'cbunumber': '', 'gatewayuserid': ''}
+
+demo_compromiso = 'Id_contacto__c', '0032f00000JYkbq'
 
 demo_compromise_data_mensual = {
 'apellido':'Brunacci',
@@ -68,6 +82,7 @@ def is_a_contact(sf_con=None, contact_data=None):
         documento = contact_data.get('N_mero_de_Documento__c')
         string_sql = F"SELECT Id, N_mero_de_Documento__c, Email FROM Contact WHERE Email='{email}' or N_mero_de_Documento__c='{documento}' "
         result = sf_con.query(string_sql)
+        print(result.get('totalSize'))
         if result.get('totalSize') > 0:
             for item in result.get('records'):
                 if item.get('N_mero_de_Documento__c') == documento:
@@ -105,7 +120,7 @@ def process_new_contact(contact_data={}):
 def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso = dict()
     compromiso['Monto_en_pesos__c'] = compromise_data.get('monto_donacion')
-    compromiso['Frecuencia__c'] = compromise_data.get('tipo_donante')
+    compromiso['Frecuencia__c'] = get_frecuencia(compromise_data.get('tipo_donante'))
     compromiso['Estado__c'] = 'Activo'
     compromiso['Fecha_de_compromiso__c'] = datetime.today().date().__str__()
     compromiso['Fecha_para_realizar_primer_cobranza__c'] = datetime.today().date().replace(day=1).__str__()
@@ -130,6 +145,14 @@ def get_forma_de_pago(pay_type):
         'fpago-tdebito':'Tarjeta de Débito'
                  }
     response = types_dict.get(pay_type)
+    return response
+
+def get_frecuencia(frecuency):
+    types_dict ={
+        'dona-unica':'Esporádica',
+        'dona-mensual':'Mensual',
+        }
+    response = types_dict.get(frecuency)
     return response
 
 def get_cc_company_value(cc_company_explicit):
@@ -212,11 +235,11 @@ def update_or_create_compromise(sf_con, data, contact_id):
     data['Donante__c'] = contact_id
     if frecuency == 'actualizacion':
         print('actualizando')
-        sf_con.Compromise.create(data)
+        sf_con.Compromiso__c.create(data)
         #buscar compromisos existentes de es contact_id
         #Identificar el de menor valor y darlo de baja
     print('creando')
-    sf_con.Compromise__c.create(data)
+    sf_con.Compromiso__c.create(data)
     #crear un nuevo compromiso
 
 
