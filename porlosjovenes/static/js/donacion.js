@@ -82,7 +82,7 @@ $(function () {
             var completo = true;
             var datos_paso = check_campos_completos('paso3')
             $.extend(true,datos_donacion,datos_paso);
-            if (datos_paso['sin_completar'] > 0) {
+            if (datos_paso['sin_completar_step3'] > 0) {
                 console.log('incompleto')
                 completo = false;
             }
@@ -225,10 +225,6 @@ $(function () {
                 $('#to_finish').html('FINALIZAR CON<img class="logo-fpago-finish" src=' + ff +' alt="mercadopago">');
             }
         })
-        function get_form_data() {
-            console.log(datos_donacion)
-            return datos_donacion
-        }
 
         $("#fpago-debito").change(function (event) {
             if (event.target.checked) {
@@ -248,6 +244,11 @@ $(function () {
                 $('to_finish').html('CONFIRMAR')
             }
         })
+        function get_form_data() {
+            console.log(datos_donacion)
+            return datos_donacion
+        }
+
         $("#chkrecibo").change(function (event) {
             if (event.target.checked) {
                 $('#recibo-nota').removeClass('hide-step')
@@ -278,6 +279,8 @@ $(function () {
     function hide_cc_cbu() {
         $('#cbu-container').addClass('hide-step');
         $('#cc-container').addClass('hide-step');
+        $('#alerta_datostarjeta').addClass('hide-step');
+        $('#alerta_datoscbu').addClass('hide-step');
     }
     function get_tipo_donante() {
         response = '0';
@@ -306,7 +309,6 @@ $(function () {
         })
         return response;
     }
-
     function get_monto_donacion(){
         var valor = 0;
         $('.valor').each(function () {
@@ -395,20 +397,20 @@ $(function () {
         if (paso === 'paso3') {
             var datos_pago = {}
             datos_pago['pay_company'] = $('#logo-tarjeta').attr('value');
-            datos_pago['sin_completar'] = 0
-            if (!$('#cc-number').hasClass('hide-step')) {
+            datos_pago['sin_completar_step3'] = 0
+            if (!$('#cc-container').hasClass('hide-step')) {
                 console.log('cc-number-check');
                 len_field = $('#credit-card').val().length;
                 if (len_field < 16) {
                     $('#alerta_datostarjeta').removeClass('hide-step');
-                    datos_pago['sin_completar'] = 1
+                    datos_pago['sin_completar_step3'] = 1
                 } else
                 {
                     $('#alerta_datostarjeta').addClass('hide-step');
                     datos_pago['sin_completar_step3']  = 0
                 }
             }
-            if (!$('#cbu-number').hasClass('hide-step')) {
+            if (!$('#cbu-container').hasClass('hide-step')) {
                 console.log('cbu-number-check');
                 len_field = $('#cbu-number').val().length;
                 if (len_field < 22) {
@@ -421,7 +423,6 @@ $(function () {
 
                 }
             }
-
             datos_pago['cardNumber'] = $('#credit-card').val();
             datos_pago['cbunumber'] = $('#cbu-number').val();
             datos_pago['pay_company'] = $('#logo-tarjeta').attr('value');
