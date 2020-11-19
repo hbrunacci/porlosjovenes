@@ -96,7 +96,7 @@ $(function () {
                          if ($('#dona-aumento').prop('checked')) {
                             $('#graciasaumento').click()
                          } else {
-                            ('#graciasfidelizados').click()
+                            $('#graciasfidelizados').click()
                          }
 
                     },
