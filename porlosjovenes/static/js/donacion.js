@@ -138,7 +138,7 @@ $(function () {
                    $(objeto.parentElement.parentElement).addClass('requerido');
                }
             }
-            ;
+
 
         });
         paso3.change(function (event) {
@@ -157,6 +157,14 @@ $(function () {
                 }
             }
         });
+        $("#credit-card").keypress(function (e) {
+            return !((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0));
+        });
+
+        $("#cbu-number").keypress(function (e) {
+            return !((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0));
+        });
+
 
         // Tipo Donante
         $("#sidonante").change(function (event) {
@@ -352,6 +360,15 @@ $(function () {
         $('#nacimiento').removeClass('hide-step');
         $('#telefono').removeClass('hide-step');
     }
+
+
+    $("#txt_cardNumber").keypress(function (e) {
+        if ((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0)) {
+            return false;
+        }
+        return true;
+    });
+
     function check_campos_completos(paso) {
         var sin_completar = 0;
 
@@ -384,10 +401,34 @@ $(function () {
         }
         if (paso === 'paso3') {
             var datos_pago = {}
+            datos_pago['pay_company'] = $('#logo-tarjeta').attr('value');
+
+
+            if (!$('#cc-number').hasClass('hide-step')) {
+                len_field = $('#credit-card').val().length;
+                if (len_field < 16) {
+                    $('#alerta_datostarjeta').removeClass('hide-step');
+                } else
+                {
+                    $('#alerta_datostarjeta').addClass('hide-step');
+                }
+            }
+            if (!$('cbu-number').hasClass('hide-step')) {
+                len_field = $('#cbu-number').val().length;
+                if (len_field < 22) {
+                    $('#alerta_datoscbu').removeClass('hide-step');
+                } else
+                {
+                    $('#alerta_datoscbu').addClass('hide-step');
+                }
+            }
+
             datos_pago['cardNumber'] = $('#credit-card').val();
             datos_pago['cbunumber'] = $('#cbu-number').val();
             datos_pago['pay_company'] = $('#logo-tarjeta').attr('value');
+            datos_pago['recibo'] = $('#chkrecibo').checked
             datos_pago['gatewayuserid'] = ''
+
             return datos_pago
         }
 

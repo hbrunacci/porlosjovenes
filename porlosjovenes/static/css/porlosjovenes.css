@@ -865,3 +865,8 @@ progress[value]::-webkit-progress-value {
     right: -14px;
 
 }
+
+.falta_datosbancarios {
+    top: -12px;
+    right: -14px;
+}

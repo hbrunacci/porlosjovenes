@@ -102,7 +102,7 @@
                             <div class="col-xs-4 otro-monto" style="padding-right: 0">
                                 <div class="input-group ">
                                     <span class="input-group-addon otro-monto-add" style="width: 25px" id="simbolo-moneda"> $ </span>
-                                    <input type="number" id='otrovalor' name="otrovalor" class="form-control input-sm valor" placeholder="Otro monto..." style="padding: 2px 2px;height: auto; " />
+                                    <input type="number" id='otrovalor' min="0" max="999999" name="otrovalor" class="form-control input-sm valor" placeholder="Otro monto..." style="padding: 2px 2px;height: auto; " />
                                     <span class="input-group-addon otro-monto-add" style="width: 25px" id="basic-addon4"> .00 </span>
                                 </div>
                             </div>
@@ -281,18 +281,21 @@
                             <div class="container-fluid contenedor-campo">
                                 TUS DATOS PARA LA DONACION:
                             </div>
-                            <div class="alerta falta_datosdonante hide-step" id="alerta_datosdonante">Falta completar el nro de tarjeta</div>
+                            <div class="alerta falta_datosbancarios hide-step" id="alerta_datostarjeta">Falta completar el nro de tarjeta</div>
+                            <div class="alerta falta_datosbancarios hide-step" id="alerta_datoscbu">Falta completar el nro de tarjeta</div>
 
                             <div class="col-md-8 contenedor-campo">
                                 <div class="input-group hide-step" id="cc-container">
                                     <span class="input-group-addon glyphicon glyphicon-credit-card campo"
                                           style="padding: 6px; top: 0px;" id="basic-addon1"></span>
-                                    <input type="number" name="cc-number" maxlength="16" id='credit-card' class="form-control input-sm redondear-derecha campo hide-step" placeholder="1234 5678 9123 4567" style="height: auto" />
+                                    <input type="text" name="cc-number" maxlength="16" id='credit-card'
+                                           class="form-control input-sm redondear-derecha campo hide-step" placeholder="1234123412341234" style="height: auto" />
                                 </div>
                                 <div class="input-group hide-step" id="cbu-container" >
                                     <span class="input-group-addon glyphicon glyphicon-credit-card campo"
                                           style="padding: 6px; top: 0px;" id="basic-addon1"></span>
-                                     <input type="number"  maxlength="22" name="cbu-number" id='cbu-number' class="form-control input-sm redondear-derecha campo hide-step" placeholder="12345678 12345678912345" style="height: auto" />
+                                     <input type="text"  maxlength="22" name="cbu-number" id='cbu-number'
+                                            class="form-control input-sm redondear-derecha campo hide-step" placeholder="nro de CBU" style="height: auto" />
                                 </div>
 
 
@@ -315,11 +318,8 @@
                     </div>
                      <div class="botonera-pasos">
                          <div class="col-md-12" style="margin: 25px 0;">
-                            <a href="#" class="boton-paso" id='back_2' style="width: 25%" >VOLVER</a>
-                             <form action="{% pageurl page %}" method="POST" >
-                                 {% csrf_token %}
-                                <a type="submit" href="#" class="boton-paso" id='to_finish' style="width: 30%">CONFIRMAR</a>
-                             </form>
+                             <a href="#" class="boton-paso" id='back_2' style="width: 25%" >VOLVER</a>
+                             <a  href="#" class="boton-paso" id='to_finish' style="width: 30%">CONFIRMAR</a>
                             </div>
                      </div>
                     <div class="footer-paso">
