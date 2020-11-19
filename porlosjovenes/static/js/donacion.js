@@ -93,6 +93,12 @@ $(function () {
                     data: get_form_data(),  // data to submit
                     success: function (data, status, xhr) {
                          $(".loader").fadeOut("slow");
+                         if ($('#dona-aumento').checked()) {
+                            $('#graciasaumento').click()
+                         } else {
+                            ('#graciasfidelizados').click()
+                         }
+
                     },
                     error: function (jqXhr, textStatus, errorMessage) {
                         $(".loader").fadeOut("slow");
