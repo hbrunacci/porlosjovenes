@@ -86,16 +86,17 @@ $(function () {
                 console.log('incompleto')
                 completo = false;
             }
-
             if (completo===true) {
+                $(".loader").css('display','block')
                 $.ajax('/procesar-pago/', {
                     type: 'POST',  // http method
                     data: get_form_data(),  // data to submit
                     success: function (data, status, xhr) {
-                        $('p').append('status: ' + status + ', data: ' + data);
+                         $(".loader").fadeOut("slow");
                     },
                     error: function (jqXhr, textStatus, errorMessage) {
-                            $('p').append('Error' + errorMessage);
+                        $(".loader").fadeOut("slow");
+
                     }
                 });
             }
@@ -396,6 +397,7 @@ $(function () {
             datos_pago['pay_company'] = $('#logo-tarjeta').attr('value');
             datos_pago['sin_completar'] = 0
             if (!$('#cc-number').hasClass('hide-step')) {
+                console.log('cc-number-check');
                 len_field = $('#credit-card').val().length;
                 if (len_field < 16) {
                     $('#alerta_datostarjeta').removeClass('hide-step');
@@ -403,19 +405,19 @@ $(function () {
                 } else
                 {
                     $('#alerta_datostarjeta').addClass('hide-step');
-                    datos_pago['sin_completar'] = 0
+                    datos_pago['sin_completar_step3']  = 0
                 }
             }
-            if (!$('cbu-number').hasClass('hide-step')) {
+            if (!$('#cbu-number').hasClass('hide-step')) {
+                console.log('cbu-number-check');
                 len_field = $('#cbu-number').val().length;
                 if (len_field < 22) {
                     $('#alerta_datoscbu').removeClass('hide-step');
-                    datos_pago['sin_completar'] = 1
-
+                    datos_pago['sin_completar_step3'] = 1
                 } else
                 {
                     $('#alerta_datoscbu').addClass('hide-step');
-                    datos_pago['sin_completar'] = 0
+                    datos_pago['sin_completar_step3'] = 0
 
                 }
             }
