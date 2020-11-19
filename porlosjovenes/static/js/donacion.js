@@ -93,7 +93,7 @@ $(function () {
                     data: get_form_data(),  // data to submit
                     success: function (data, status, xhr) {
                          $(".loader").fadeOut("slow");
-                         if ($('#dona-aumento').checked()) {
+                         if ($('#dona-aumento').prop('checked')) {
                             $('#graciasaumento').click()
                          } else {
                             ('#graciasfidelizados').click()
