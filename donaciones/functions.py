@@ -13,6 +13,24 @@ demo = {'tipo_donante': 'dona-unica',
         'pay_company': 'visa', 'sin_completar_step3': '0',
         'cardNumber': '4444444444444444', 'cbunumber': '', 'gatewayuserid': ''}
 
+demo1 = {'tipo_donante': 'dona-unica',
+         'forma_pago': 'fpago-debito',
+         'monto_donacion': '2',
+         'nombre': 'Juan',
+         'apellido': 'Perez',
+         'documento': '10101010',
+         'genero': 'femenino',
+         'email': 'hbrunacci@gmail.com',
+         'direccion': 'ameghino',
+         'cpostal': '1407',
+         'pais': 'Argentina',
+         'fnacimiento': '2000-02-01',
+         'telefono': '55555555',
+         'cardNumber': '',
+         'cbunumber': '1212312312312312312312',
+         'gatewayuserid': ''}
+
+
 demo_compromiso = 'Id_contacto__c', '0032f00000JYkbq'
 
 demo_compromise_data_mensual = {
@@ -125,13 +143,13 @@ def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso['Fecha_de_compromiso__c'] = datetime.today().date().__str__()
     compromiso['Fecha_para_realizar_primer_cobranza__c'] = datetime.today().date().replace(day=1).__str__()
     compromiso['Canal_de_Ingreso__c'] = 'Web_PJL'
+    compromiso['Tipo_de_compromiso__c'] = None
     compromiso['Forma_de_Pago__c'] = get_forma_de_pago(compromise_data.get('forma_pago'))
     compromiso['Tipo_de_tarjeta__c'] = get_cc_company_value(compromise_data.get('pay_company'))
     value = compromise_data.get('cardNumber')
-    value = compromise_data.get('cbunumber') if not value else value
     value = compromise_data.get('gatewayuserid') if not value else value
     compromiso['N_mero_de_la_Tarjeta__c'] = value
-    compromiso['CBU__c'] = compromise_data.get('cbu', None)
+    compromiso['CBU__c'] = compromise_data.get('cbunumber')
     compromiso['Donante__c'] = contact_id
     return compromiso
 
@@ -199,7 +217,8 @@ def register_transaction(form_fields=None):
         print('compromiso')
         compromise = update_or_create_compromise(sf_con, form_data.get('compromise_info'), contact_id)
 
-    except:
+    except Exception as e:
+        print(e)
         print('error registrando ')
         return False
         #dump a archivo
@@ -224,7 +243,8 @@ def get_or_create_contact(sf_con, data=None):
         else:
             print('create contact')
             contact = sf_con.Contact.create(data)
-    except:
+    except Exception as e:
+        print(e)
         print('error en inscripcion')
         return None
     return contact.get('id')
