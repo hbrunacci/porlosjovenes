@@ -124,7 +124,7 @@ def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso['Estado__c'] = 'Activo'
     compromiso['Fecha_de_compromiso__c'] = datetime.today().date().__str__()
     compromiso['Fecha_para_realizar_primer_cobranza__c'] = datetime.today().date().replace(day=1).__str__()
-    compromiso['Canal_de_Ingreso__c'] = 'Web_DB'
+    compromiso['Canal_de_Ingreso__c'] = 'Web_PJL'
     compromiso['Forma_de_Pago__c'] = get_forma_de_pago(compromise_data.get('forma_pago'))
     compromiso['Tipo_de_tarjeta__c'] = get_cc_company_value(compromise_data.get('pay_company'))
     value = compromise_data.get('cardNumber')
