@@ -63,15 +63,6 @@
                                 </li>
 
 
-                                <li {% if self.url == '/noticias/' %} class="active"{% endif %}>
-                                    <a href="/noticias/">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                                    <ul class="drop-menu">
-                                        <li><a href="/noticias/categorias/educacion">Educación</a></li>
-                                        <li><a href="/noticias/categorias/trabajo">Formación para el trabajo</a></li>
-                                        <li><a href="/noticias/categorias/pastorales">Acciones Misioneras y Pastorales</a></li>
-                                        <li><a href="/noticias/categorias/comunitaria">Acciones Sociocomunitarias</a></li>
-                                    </ul>
-                                </li>
                                 <li
                                         {% if   self.url == '/nosotros/quienes-somos/' %} class="active"
                                         {% elif self.url == '/nosotros/transparencia/' %} class="active"
@@ -103,12 +94,20 @@
                                         <li><a href="/como-colaborar/ayuda-difundiendo/">Ayudá Difundiendo</a></li>
                                     </ul>
                                 </li>
-                                <li
-                                        {% if self.url == '/carrera/' %} class="active"{% endif %}
-                                ><a href="/carrera/">Carrera</a></li>
+                                <li {% if self.url == '/noticias/' %} class="active"{% endif %}>
+                                    <a href="/noticias/">Noticias<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul class="drop-menu">
+                                        <li><a href="/noticias/categorias/educacion">Educación</a></li>
+                                        <li><a href="/noticias/categorias/trabajo">Formación para el trabajo</a></li>
+                                        <li><a href="/noticias/categorias/pastorales">Acciones Misioneras y Pastorales</a></li>
+                                        <li><a href="/noticias/categorias/comunitaria">Acciones Sociocomunitarias</a></li>
+                                    </ul>
+                                </li>
                                 {% comment %}
-                                <li
-                                        {% if self.url == '/app/' %} class="active"{% endif %}>
+                                <li {% if self.url == '/carrera/' %} class="active"{% endif %}>
+                                    <a href="/carrera/">Carrera</a>
+                                </li>
+                                <li {% if self.url == '/app/' %} class="active"{% endif %}>
                                     <a href="/app/">App</a>
                                 </li>
                                  {% endcomment %}
