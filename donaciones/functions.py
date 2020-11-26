@@ -100,7 +100,6 @@ def is_a_contact(sf_con=None, contact_data=None):
         documento = contact_data.get('N_mero_de_Documento__c')
         string_sql = F"SELECT Id, N_mero_de_Documento__c, Email FROM Contact WHERE Email='{email}' or N_mero_de_Documento__c='{documento}' "
         result = sf_con.query(string_sql)
-        print(result.get('totalSize'))
         if result.get('totalSize') > 0:
             for item in result.get('records'):
                 if item.get('N_mero_de_Documento__c') == documento:
@@ -118,10 +117,13 @@ def process_new_contact(contact_data={}):
     new_contact = {}
     new_contact['LastName'] = contact_data.get('apellido')
     new_contact['FirstName'] = contact_data.get('nombre')
+    new_contact['Necesita_recibo__c'] =  contact_data.get('recibo')
+    new_contact['Sexo__c'] = contact_data.get('genero')
+    new_contact['Tipo_de_documento__c'] = 'DNI'
     new_contact['Email'] = contact_data.get('email')
     new_contact['Medio_de_Correspondencia__c'] = 'Correo Electrónico'
-    new_contact['N_mero_de_Documento__c'] = contact_data.get('documento')
-    new_contact['HomePhone'] = contact_data.get('telefono')
+    new_contact['N_mero_de_Documento__c'] = contact_data.get('documento').zfill(8)
+    new_contact['MobilePhone'] = contact_data.get('telefono')
     new_contact['MailingStreet'] = contact_data.get('direccion')
     new_contact['MailingCity'] = contact_data.get('ciudad')
     new_contact['MailingState'] = contact_data.get('estado')
@@ -130,7 +132,8 @@ def process_new_contact(contact_data={}):
     new_contact['OtherCity'] = contact_data.get('ciudad')
     new_contact['OtherState'] = contact_data.get('estado')
     new_contact['OtherPostalCode'] = contact_data.get('cpostal')
- #   new_contact['Birthdate'] = contact_data.get('fnacimiento')
+    new_contact['Birthdate'] = contact_data.get('fnacimiento')
+    new_contact['Cuit_Cuil__c'] = generar_cuit(new_contact['N_mero_de_Documento__c'],new_contact['Sexo__c'])
     new_contact['RecordTypeId'] = get_record_type()
     new_contact['AccountId'] = get_account_id()
     return new_contact
@@ -142,7 +145,7 @@ def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso['Estado__c'] = 'Activo'
     compromiso['Fecha_de_compromiso__c'] = datetime.today().date().__str__()
     compromiso['Fecha_para_realizar_primer_cobranza__c'] = datetime.today().date().replace(day=1).__str__()
-    compromiso['Canal_de_Ingreso__c'] = 'Web_PJL'
+    compromiso['Canal_de_Ingreso__c'] = 'Web PJL'
     compromiso['Tipo_de_compromiso__c'] = None
     compromiso['Forma_de_Pago__c'] = get_forma_de_pago(compromise_data.get('forma_pago'))
     compromiso['Tipo_de_tarjeta__c'] = get_cc_company_value(compromise_data.get('pay_company'))
@@ -151,6 +154,7 @@ def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso['N_mero_de_la_Tarjeta__c'] = value
     compromiso['CBU__c'] = compromise_data.get('cbunumber')
     compromiso['Donante__c'] = contact_id
+    compromiso['Aumentar_40_anual_donaci_n__c'] = False if demo_compromise_data_unico.get('aumenta') == '0' else True
     return compromiso
 
 
@@ -169,6 +173,7 @@ def get_frecuencia(frecuency):
     types_dict ={
         'dona-unica':'Esporádica',
         'dona-mensual':'Mensual',
+        'dona-aumento':'Mensual'
         }
     response = types_dict.get(frecuency)
     return response
@@ -185,8 +190,6 @@ def get_cc_company_value(cc_company_explicit):
     return response
 
 ## recibo el dato del formulario
-
-
 
 def generate_contact(data=None):
     contact = {}
@@ -249,21 +252,58 @@ def get_or_create_contact(sf_con, data=None):
         return None
     return contact.get('id')
 
+def get_last_compromise(sf_con, id_contact):
+    res = None
+    string_sql = F"SELECT  Id FROM Compromiso__c WHERE Donante__c = '{id_contact}' order by Id desc limit 1"
+    rest = sf_con.query(string_sql)
+    return rest['records'][0]['Id']
+
 def update_or_create_compromise(sf_con, data, contact_id):
     frecuency = data.get('Frecuencia__c')
     print(frecuency)
     data['Donante__c'] = contact_id
     if frecuency == 'actualizacion':
-        print('actualizando')
+        print('actualizando compromiso')
+        id_compromiso_actualizar = get_last_compromise(sf_con, contact_id)
+        if id_compromiso_actualizar:
+            print('Actualizar compromiso')
+            data['Monto_Forma_pago_modificado_form_web__c'] = True
+            sf_con.Compromiso__c.upsert(id_compromiso_actualizar,data)
+        else:
+            print('no tiene compromisos para actualizar, se crea una nueva')
+            sf_con.Compromiso__c.create(data)
+    else:
+        print('creando compromiso')
         sf_con.Compromiso__c.create(data)
-        #buscar compromisos existentes de es contact_id
-        #Identificar el de menor valor y darlo de baja
-    print('creando')
-    sf_con.Compromiso__c.create(data)
-    #crear un nuevo compromiso
 
 
+def generar_cuit(dni='00000000',sexo=''):
+    if sexo.upper()[0] == 'M':
+        inicio = '20'
+    else:
+        inicio = '27'
+
+    dni = dni.zfill(8)
+    prev = ''.join([inicio, dni])
+    verificador = calcular_digito_cuit(prev)
+    if verificador == 10:
+        inicio = '23'
+        prev = ''.join([inicio, dni])
+        verificador = calcular_digito_cuit(prev)
+    cuit = f"{inicio}{dni}{verificador}"
+    return cuit
 
 
+def calcular_digito_cuit(cuit):
+    base = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2]
+    # calculo el digito verificador:
+    aux = 0
+    for i in range(10):
+        aux += int(cuit[i]) * base[i]
+
+    aux = 11 - (aux - (int(aux / 11) * 11))
+    if aux == 11:
+        aux = 0
+    return aux
 
 

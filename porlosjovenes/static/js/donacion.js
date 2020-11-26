@@ -10,6 +10,8 @@ $(function () {
         var paso2= $('#paso2')
         var paso3= $('#paso3')
         var datos_donacion = {};
+        datos_donacion['recibo'] = 'No';
+        datos_donacion['aumenta'] = '0';
 
         paso1.removeClass('hide-step');
         paso2.addClass('hide-step');
@@ -93,6 +95,7 @@ $(function () {
                     data: get_form_data(),  // data to submit
                     success: function (data, status, xhr) {
                          $(".loader").fadeOut("slow");
+                         console.log('Procesado Correctamento')
                          if ($('#dona-aumento').prop('checked')) {
                             $('#graciasaumento').click()
                          } else {
@@ -101,6 +104,7 @@ $(function () {
 
                     },
                     error: function (jqXhr, textStatus, errorMessage) {
+                        console.log('Error procesando')
                         $(".loader").fadeOut("slow");
 
                     }
@@ -258,11 +262,23 @@ $(function () {
         $("#chkrecibo").change(function (event) {
             if (event.target.checked) {
                 $('#recibo-nota').removeClass('hide-step')
+                datos_donacion['recibo'] = 'Sí';
             }
                 else {
                 $('#recibo-nota').addClass('hide-step')
+                datos_donacion['recibo'] = 'No';
             }
         })
+        $("#aumenta-auto").change(function (event) {
+            console.log(event.target.value);
+            if (event.target.checked) {
+                datos_donacion['aumenta'] = event.target.value;
+            } else {
+                datos_donacion['aumenta'] = '0';
+            }
+        })
+
+
 
     });
     function hasClass(element, className) {
@@ -402,7 +418,6 @@ $(function () {
         }
         if (paso === 'paso3') {
             var datos_pago = {}
-            datos_pago['pay_company'] = $('#logo-tarjeta').attr('value');
             datos_pago['sin_completar_step3'] = 0
             if (!$('#cc-container').hasClass('hide-step')) {
                 console.log('cc-number-check');
@@ -432,7 +447,8 @@ $(function () {
             datos_pago['cardNumber'] = $('#credit-card').val();
             datos_pago['cbunumber'] = $('#cbu-number').val();
             datos_pago['pay_company'] = $('#logo-tarjeta').attr('value');
-            datos_pago['recibo'] = $('#chkrecibo').checked
+            console.log($('#chkrecibo').prop('checked'))
+
             datos_pago['gatewayuserid'] = ''
 
             return datos_pago
