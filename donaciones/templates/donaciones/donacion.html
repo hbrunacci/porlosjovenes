@@ -319,6 +319,7 @@
                                        name="chkrecibo">Quiero que me envien recibo de mi donación.
                                 <p class="recibo-nota hide-step" id="recibo-nota"> Si sos empresa, solicitá tu recibo a
                                     <strong>info@porlosjovenes.org </strong> informando el CUIT</p>
+
                             </div>
                         </div>
                     </div>
@@ -326,6 +327,12 @@
                          <div class="col-md-12" style="margin: 25px 0;">
                              <div class="loader" style="display: none"></div>
                              <a href="#" class="boton-paso" id='back_2' style="width: 25%" >VOLVER</a>
+                             <div class='paypal-container hide-step'
+                                  id="paypal-container"
+                                  style = "height: 40px; width: 100px">
+                                 <div id='paypal-button'> </div>
+
+                             </div>
                              <a  href="#" class="boton-paso" id='to_finish' style="width: 30%">CONFIRMAR</a>
                             </div>
                      </div>
@@ -385,8 +392,12 @@
 {% block extra_js %}
     <script>
     var statics_img = '/static/img'
+    var datos_donacion ={}
     </script>
 
+    <script
+    src="https://www.paypal.com/sdk/js?client-id=AUBgXAeZ8qwzfGSHKkSmdYM0x7avxaMtiVoTT1-9zJxODyKWaroPP9R1VhEC1RxpM-ZjW9-FkIgtkzyW">
+    </script>
 <script type="text/javascript" src="{% static 'js/jquery.payform.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/donacion.js' %}"></script>
 
@@ -394,6 +405,9 @@
     $('#myModal').on('shown.bs.modal', function () {
           $('#myInput').focus()
     })
+    </script>
+
+    <script>
     </script>
 
 {% endblock %}

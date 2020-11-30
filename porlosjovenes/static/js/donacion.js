@@ -1,5 +1,8 @@
 $(function () {
+
     $('.main-menu').addClass('form-donacion');
+
+
     $(document).ready(function() {
         $(function () {
             $.ajaxSetup({
@@ -9,15 +12,13 @@ $(function () {
         var paso1= $('#paso1')
         var paso2= $('#paso2')
         var paso3= $('#paso3')
-        var datos_donacion = {};
+        //var datos_donacion = {};
         datos_donacion['recibo'] = 'No';
         datos_donacion['aumenta'] = '0';
-
         paso1.removeClass('hide-step');
         paso2.addClass('hide-step');
         paso3.addClass('hide-step');
         set_requeridos();
-
         $("#to_2").click(function () {
             $('#alerta_falta_tdonante').addClass('hide-step');
             $('#alerta_falta_frecuencia').addClass('hide-step');
@@ -62,7 +63,6 @@ $(function () {
             }
 
         });
-
         $("#to_3").click(function () {
             var completo = true;
             $('#alerta_datosdonante').addClass('hide-step');
@@ -79,7 +79,6 @@ $(function () {
                 $('#paso3').removeClass('hide-step');
             }
         });
-
         $("#to_finish").click(function () {
             var completo = true;
             var datos_paso = check_campos_completos('paso3')
@@ -89,8 +88,15 @@ $(function () {
                 completo = false;
             }
             if (completo===true) {
-                $(".loader").css('display','block')
-                $.ajax('/procesar-pago/', {
+                if ($(this).hasClass('paypal')) {
+                    console.log('paypal')
+                    $('#paypal-button').click();
+                }
+                else if ($(this).hasClass('mercadopago')){
+                    console.log('mercadopago');
+                } else {
+                    $(".loader").css('display','block')
+                    $.ajax('/procesar-pago/', {
                     type: 'POST',  // http method
                     data: get_form_data(),  // data to submit
                     success: function (data, status, xhr) {
@@ -109,9 +115,9 @@ $(function () {
 
                     }
                 });
+                }
             }
         });
-
         $("#back_1").click(function () {
             $('#paso1').removeClass('hide-step');
             $('#paso2').addClass('hide-step');
@@ -121,7 +127,6 @@ $(function () {
            $('#paso2').removeClass('hide-step');
            $('#paso3').addClass('hide-step');
         });
-
         paso1.click(function (event) {
             ///console.log(event.target.id);
             boton = event.target;
@@ -189,9 +194,7 @@ $(function () {
                 ocultar_aumento_donacion();
             }
         })
-
         //tipo-donacion
-
         $("#dona-aumento").change(function (event) {
             if (event.target.checked) {
                 $('#aumenta-auto').parent().removeClass('hide-step')
@@ -213,16 +216,16 @@ $(function () {
                 campos_unica()
             }
         })
-
-        //Formas de Pago
+        //Formas de Pagodatos_donacion
         $("#fpago-paypal").change(function (event) {
             if (event.target.checked) {
                 set_moneda_dolar();
                 mostrar_botonera('valores-fpago-paypal');
                 ff = statics_img + '/paypal.png';
                 hide_cc_cbu();
-                $('#to_finish').addClass('boton-logo');
-                $('#to_finish').html('FINALIZAR CON<img class="logo-fpago-finish" src=' + ff +' alt="paypal">')
+                $('#to_finish').addClass('hide-step');
+                $('#paypal-container').removeClass('hide-step')
+                //$('#to_finish').html('FINALIZAR CON<img class="logo-fpago-finish" src=' + ff +' alt="paypal">')
             }
         })
         $("#fpago-mercadopago").change(function (event) {
@@ -231,17 +234,21 @@ $(function () {
                 mostrar_botonera('valores-fpago-mercadopago');
                 ff = statics_img + '/mercadopago.png';
                 hide_cc_cbu();
-                $('#to_finish').addClass('boton-logo');
-                $('#to_finish').html('FINALIZAR CON<img class="logo-fpago-finish" src=' + ff +' alt="mercadopago">');
+                $('#to_finish').addClass('hide-step');
+                $('#paypal-container').addClass('hide-step')
+
+                //$('#to_finish').html('FINALIZAR CON<img class="logo-fpago-finish" src=' + ff +' alt="mercadopago">');
             }
         })
-
         $("#fpago-debito").change(function (event) {
             if (event.target.checked) {
                 set_moneda_pesos();
                 mostrar_botonera('valores-fpago-debito');
                 hide_cc_cbu();
                 $('#cbu-container').removeClass('hide-step')
+                $('#to_finish').removeClass('hide-step');
+                $('#paypal-container').addClass('hide-step')
+
                 $('#to_finish').html('CONFIRMAR')
             }
         })
@@ -251,6 +258,8 @@ $(function () {
                 mostrar_botonera('valores-fpago-credito');
                 hide_cc_cbu();
                 $('#cc-container').removeClass('hide-step')
+                $('#to_finish').removeClass('hide-step');
+                $('#paypal-container').addClass('hide-step')
                 $('to_finish').html('CONFIRMAR')
             }
         })
@@ -258,7 +267,6 @@ $(function () {
             console.log(datos_donacion)
             return datos_donacion
         }
-
         $("#chkrecibo").change(function (event) {
             if (event.target.checked) {
                 $('#recibo-nota').removeClass('hide-step')
@@ -277,6 +285,35 @@ $(function () {
                 datos_donacion['aumenta'] = '0';
             }
         })
+        window.paypal.Buttons({
+            style: {
+                layout:  'horizontal',
+                color:   'white',
+                shape:   'pill',
+                label:   'pay'
+            },
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: datos_donacion['monto_donacion']
+                        }
+                    }]
+                });
+                },
+            // This function captures the funds from the transaction.
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // This function shows a transaction success message to your buyer.
+                    console.log(details);
+                    console.log(details.payer.payer_id);
+                    user_paypal = details.payer.payer_id;
+                    datos_donante['gatewayuserid'] = user_paypal;
+                    $("#to_finish").click();
+                });
+            }
+        }).render('#paypal-button');
+
 
 
 

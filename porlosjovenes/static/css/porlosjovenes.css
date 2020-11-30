@@ -881,3 +881,12 @@ progress[value]::-webkit-progress-value {
     background: url('/static/img/loading.gif') 50% 50% no-repeat rgb(249,249,249);
     opacity: .8;
 }
+
+.paypal-container {
+    height: 40px;
+    width: 100px;
+    display: inline-block;
+    position: relative;
+    bottom: 0px;
+    top: 20px;
+}
