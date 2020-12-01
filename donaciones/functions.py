@@ -79,7 +79,7 @@ demo_compromise_data_unico = {
 
 def connect():
     try:
-        sf = Salesforce(username='hbrunaccitest@gmail.com', password='EFN688hb', security_token='aILgOewTl6uriYJVZ0xdL7V8', domain='test')
+        sf = Salesforce(username='hernanformnuevo@gmail.com', password='HBS1779hb', security_token='D0hUPrOaXzTQVWvPTKfIu40Ti', domain='test')
     except:
         return None
     return sf
@@ -228,7 +228,8 @@ def register_transaction(form_fields=None):
     return True
 
 def get_account_id():
-    return '0012f00000Tnr6ZAAR'
+    #return '0012f00000Tnr6ZAAR'
+    return  '001e000001ZybZOAAZ'
 
 def normalize_form_data(form_info):
     data = dict()
