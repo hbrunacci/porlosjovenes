@@ -1,5 +1,7 @@
 from simple_salesforce import Salesforce
 from datetime import datetime
+from .MP_functions import create_item_mp
+
 demo = {'tipo_donante': 'dona-unica',
         'forma_pago': 'fpago-credito',
         'monto_donacion': '17',
@@ -160,8 +162,8 @@ def process_new_compromise(compromise_data=None, contact_id=None):
 
 def get_forma_de_pago(pay_type):
     types_dict ={
-        'fpago-mercadopago':'MercadoPago',
-        'fpago-paypal':'Paypal',
+        'fpago-mercadopago':'Mercado Pago',
+        'fpago-paypal':'PayPal',
         'fpago-debito':'Débito en Cuenta',
         'fpago-credito':'Tarjeta de Crédito',
         'fpago-tdebito':'Tarjeta de Débito'
@@ -208,6 +210,7 @@ def get_record_type():
     return record_type_id
 
 def register_transaction(form_fields=None):
+    transaccion = dict()
     contact = dict()
     if not form_fields:
         return None
@@ -216,16 +219,22 @@ def register_transaction(form_fields=None):
         print('normalize')
         form_data = normalize_form_data(form_fields)
         print('contact')
-        contact_id = get_or_create_contact(sf_con, form_data.get('contact_info'))    ## verifico si el donante existe, sino lo creo
+        transaccion['contact_id'] = get_or_create_contact(sf_con, form_data.get('contact_info'))    ## verifico si el donante existe, sino lo creo
         print('compromiso')
-        compromise = update_or_create_compromise(sf_con, form_data.get('compromise_info'), contact_id)
+        transaccion['compromise'] = update_or_create_compromise(sf_con, form_data.get('compromise_info'), transaccion['contact_id'])
+        transaccion['result'] = True
+        transaccion['detail'] = ''
+        if form_fields.get('forma_pago') == 'fpago-mercadopago':
+            form_fields['external_id'] = transaccion['compromise'].get('id')
+            transaccion['mp_response'] = create_item_mp(form_fields)
 
     except Exception as e:
+        transaccion['result'] = False
+        transaccion['detail'] = e
         print(e)
         print('error registrando ')
-        return False
         #dump a archivo
-    return True
+    return transaccion
 
 def get_account_id():
     #return '0012f00000Tnr6ZAAR'
@@ -261,7 +270,6 @@ def get_last_compromise(sf_con, id_contact):
 
 def update_or_create_compromise(sf_con, data, contact_id):
     frecuency = data.get('Frecuencia__c')
-    print(frecuency)
     data['Donante__c'] = contact_id
     if frecuency == 'actualizacion':
         print('actualizando compromiso')
@@ -269,13 +277,13 @@ def update_or_create_compromise(sf_con, data, contact_id):
         if id_compromiso_actualizar:
             print('Actualizar compromiso')
             data['Monto_Forma_pago_modificado_form_web__c'] = True
-            sf_con.Compromiso__c.upsert(id_compromiso_actualizar,data)
+            return sf_con.Compromiso__c.upsert(id_compromiso_actualizar,data)
         else:
             print('no tiene compromisos para actualizar, se crea una nueva')
-            sf_con.Compromiso__c.create(data)
+            return sf_con.Compromiso__c.create(data)
     else:
         print('creando compromiso')
-        sf_con.Compromiso__c.create(data)
+        return sf_con.Compromiso__c.create(data)
 
 
 def generar_cuit(dni='00000000',sexo=''):

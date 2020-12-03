@@ -8,9 +8,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 from django.views.generic import RedirectView
 from home.views import (donacion_correcta,
                         donacion_enproceso)
-from donaciones.views import (procesar_pago,
-                              test_mp,
-                              generar_preference)
+from donaciones.views import (procesar_pago,test_mp,
+                              generar_preference, pago_aprobado, pago_rechazado, pago_pendiente)
 
 from search import views as search_views
 
@@ -22,8 +21,12 @@ urlpatterns = [
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.png')),
     url(r'^search/$', search_views.search, name='search'),
     url(r'^procesar-pago/$', procesar_pago.as_view(), name='procesar-pago'),
+    url(r'^pago-aprobado/$', pago_aprobado.as_view(), name='procesar-pago'),
+    url(r'^pago-rechazado/$', pago_rechazado.as_view(), name='procesar-pago'),
+    url(r'^pago-pendiente/$', pago_pendiente.as_view(), name='procesar-pago'),
+
+    url(r'^test_mp/$', test_mp.as_view(), name='test_mp'),
     url(r'^generar-preference/$', generar_preference.as_view(), name='generar-preference'),
-    url(r'^test-mp/$', test_mp, name='test-mp'),
     url(r'^donacion_correcta/$', donacion_correcta, name='donacion_correcta'),
     url(r'^donacion_enproceso/$', donacion_enproceso, name='donacion_enproceso'),
 

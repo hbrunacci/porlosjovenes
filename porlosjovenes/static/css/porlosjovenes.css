@@ -547,6 +547,14 @@ body {
     padding-bottom: 23px;
     padding-top: 4px;
 }
+.mercadopago {
+    width: 60% !important;
+    background: white;
+    color:#0097a5;
+    padding-bottom: 23px;
+    padding-top: 4px;
+}
+
 .logo-fpago-finish {
     width: 40%;
     position: relative;
@@ -569,7 +577,7 @@ body {
     height: 40px;
 }
 .hide-step {
-    display: none;
+    display: none !important;
 }
 
 .nota-piedonacion {

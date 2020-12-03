@@ -58,6 +58,7 @@ $(function () {
             }
 
             if (completo === true) {
+
                 $('#paso1').addClass('hide-step');
                 $('#paso2').removeClass('hide-step');
             }
@@ -79,6 +80,14 @@ $(function () {
                 $('#paso3').removeClass('hide-step');
             }
         });
+        function abrirpopup(url,ancho,alto){
+            //Ajustar horizontalmente
+            var x=(screen.width/2)-(ancho/2);
+            //Ajustar verticalmente
+            var y=(screen.height/2)-(alto/2);
+            window.open(url, 'popup', 'width=' + ancho + ', height=' + alto + ', left=' + x + ', top=' + y +'');
+        }
+
         $("#to_finish").click(function () {
             var completo = true;
             var datos_paso = check_campos_completos('paso3')
@@ -88,21 +97,17 @@ $(function () {
                 completo = false;
             }
             if (completo===true) {
-                if ($(this).hasClass('paypal')) {
-                    console.log('paypal')
-                    $('#paypal-button').click();
-                }
-                else if ($(this).hasClass('mercadopago')){
-                    console.log('mercadopago');
-                } else {
-                    $(".loader").css('display','block')
+                    $(".loader").css('display','block');
                     $.ajax('/procesar-pago/', {
                     type: 'POST',  // http method
                     data: get_form_data(),  // data to submit
                     success: function (data, status, xhr) {
                          $(".loader").fadeOut("slow");
-                         console.log('Procesado Correctamento')
-                         if ($('#dona-aumento').prop('checked')) {
+                         console.log(data);
+                         if (datos_donacion['forma_pago'] === 'fpago-mercadopago'){
+                             console.log(data['mp_response']['response']['init_point']);
+                             window.location.href = (data['mp_response']['response']['init_point']);
+                         } else if ($('#dona-aumento').prop('checked')) {
                             $('#graciasaumento').click()
                          } else {
                             $('#graciasfidelizados').click()
@@ -115,7 +120,6 @@ $(function () {
 
                     }
                 });
-                }
             }
         });
         $("#back_1").click(function () {
@@ -222,9 +226,10 @@ $(function () {
                 set_moneda_dolar();
                 mostrar_botonera('valores-fpago-paypal');
                 ff = statics_img + '/paypal.png';
-                hide_cc_cbu();
+                hide_cc_cbu();55555555
                 $('#to_finish').addClass('hide-step');
-                $('#paypal-container').removeClass('hide-step')
+                $('#to_finish').removeClass('mercadopago');
+                $('#paypal-container').removeClass('hide-step');
                 //$('#to_finish').html('FINALIZAR CON<img class="logo-fpago-finish" src=' + ff +' alt="paypal">')
             }
         })
@@ -234,10 +239,10 @@ $(function () {
                 mostrar_botonera('valores-fpago-mercadopago');
                 ff = statics_img + '/mercadopago.png';
                 hide_cc_cbu();
-                $('#to_finish').addClass('hide-step');
                 $('#paypal-container').addClass('hide-step')
-
-                //$('#to_finish').html('FINALIZAR CON<img class="logo-fpago-finish" src=' + ff +' alt="mercadopago">');
+                $('#to_finish').removeClass('hide-step');
+                $('#to_finish').addClass('mercadopago');
+                $('#to_finish').html('FINALIZAR CON<img class="logo-fpago-finish" src=' + ff +' alt="mercadopago">');
             }
         })
         $("#fpago-debito").change(function (event) {
@@ -246,9 +251,9 @@ $(function () {
                 mostrar_botonera('valores-fpago-debito');
                 hide_cc_cbu();
                 $('#cbu-container').removeClass('hide-step')
-                $('#to_finish').removeClass('hide-step');
                 $('#paypal-container').addClass('hide-step')
-
+                $('#to_finish').removeClass('mercadopago');
+                $('#to_finish').removeClass('hide-step');
                 $('#to_finish').html('CONFIRMAR')
             }
         })
@@ -258,9 +263,10 @@ $(function () {
                 mostrar_botonera('valores-fpago-credito');
                 hide_cc_cbu();
                 $('#cc-container').removeClass('hide-step')
-                $('#to_finish').removeClass('hide-step');
                 $('#paypal-container').addClass('hide-step')
-                $('to_finish').html('CONFIRMAR')
+                $('#to_finish').removeClass('mercadopago');
+                $('#to_finish').removeClass('hide-step');
+                $('#to_finish').html('CONFIRMAR')
             }
         })
         function get_form_data() {

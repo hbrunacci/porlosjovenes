@@ -295,13 +295,13 @@
                                     <span class="input-group-addon glyphicon glyphicon-credit-card campo"
                                           style="padding: 6px; top: 0px;" id="basic-addon1"></span>
                                     <input type="text" name="cc-number" maxlength="16" id='credit-card'
-                                           class="form-control input-sm redondear-derecha campo hide-step" placeholder="1234123412341234" style="height: auto" />
+                                           class="form-control input-sm redondear-derecha campo" placeholder="1234123412341234" style="height: auto" />
                                 </div>
                                 <div class="input-group hide-step" id="cbu-container" >
                                     <span class="input-group-addon glyphicon glyphicon-credit-card campo"
                                           style="padding: 6px; top: 0px;" id="basic-addon1"></span>
                                      <input type="text"  maxlength="22" name="cbu-number" id='cbu-number'
-                                            class="form-control input-sm redondear-derecha campo hide-step" placeholder="nro de CBU" style="height: auto" />
+                                            class="form-control input-sm redondear-derecha campo " placeholder="nro de CBU" style="height: auto" />
                                 </div>
 
 
@@ -391,8 +391,9 @@
 
 {% block extra_js %}
     <script>
-    var statics_img = '/static/img'
-    var datos_donacion ={}
+    var statics_img = '/static/img';
+    var datos_donacion = {};
+    var datos_mercadopago = {};
     </script>
 
     <script
