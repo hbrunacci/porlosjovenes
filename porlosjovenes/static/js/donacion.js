@@ -1,3 +1,19 @@
+$.fn.inputFilter = function(inputFilter) {
+    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  };
+
+
 $(function () {
 
     $('.main-menu').addClass('form-donacion');
@@ -104,13 +120,15 @@ $(function () {
                     success: function (data, status, xhr) {
                          $(".loader").fadeOut("slow");
                          console.log(data);
-                         if (datos_donacion['forma_pago'] === 'fpago-mercadopago'){
+                         if (datos_donacion['forma_pago'] === 'fpago-mercadopago') {
                              console.log(data['mp_response']['response']['init_point']);
                              window.location.href = (data['mp_response']['response']['init_point']);
-                         } else if ($('#dona-aumento').prop('checked')) {
-                            $('#graciasaumento').click()
+                         } else if ($('#dona-aumento').prop('checked') === 'true') {
+                             console.log('agradece aumento');
+                            agradecer_aumento();
                          } else {
-                            $('#graciasfidelizados').click()
+                            console.log('agradece donacion');
+                             agradecer_donacion();
                          }
 
                     },
@@ -226,7 +244,7 @@ $(function () {
                 set_moneda_dolar();
                 mostrar_botonera('valores-fpago-paypal');
                 ff = statics_img + '/paypal.png';
-                hide_cc_cbu();55555555
+                hide_cc_cbu();
                 $('#to_finish').addClass('hide-step');
                 $('#to_finish').removeClass('mercadopago');
                 $('#paypal-container').removeClass('hide-step');
@@ -276,10 +294,13 @@ $(function () {
         $("#chkrecibo").change(function (event) {
             if (event.target.checked) {
                 $('#recibo-nota').removeClass('hide-step')
+                $('#campo-cuit').removeClass('hide-step')
+                $('#input-cuit').attr('value',generarcuit())
                 datos_donacion['recibo'] = 'Sí';
             }
                 else {
                 $('#recibo-nota').addClass('hide-step')
+                $('#campo-cuit').addClass('hide-step')
                 datos_donacion['recibo'] = 'No';
             }
         })
@@ -457,6 +478,7 @@ $(function () {
             })
             datos_persona['sin_completar'] = sin_completar
             console.log(datos_persona);
+            console.log(generarcuit());
             return datos_persona;
         }
         if (paso === 'paso3') {
@@ -491,9 +513,7 @@ $(function () {
             datos_pago['cbunumber'] = $('#cbu-number').val();
             datos_pago['pay_company'] = $('#logo-tarjeta').attr('value');
             console.log($('#chkrecibo').prop('checked'))
-
             datos_pago['gatewayuserid'] = ''
-
             return datos_pago
         }
 
@@ -519,6 +539,69 @@ $(function () {
         dona_aumento.parent().addClass("hide-step")
         $('#dona-mensual').prop('checked', true);
     }
+
+    function agradecer_donacion() {
+        $('#marco-formulario').css('display','none');
+        $('#gracias_aumento_modal').css('display','none');
+        $('#gracias_fidelizados_modal').css('display','block');
+    }
+
+    function agradecer_aumento() {
+        $('#marco-formulario').css('display','none');
+        $('#gracias_fidelizados_modal').css('display','none');
+        $('#gracias_aumento_modal').css('display','block');
+    }
+
+    function generarcuit() {
+        genero = datos_donacion['genero'];
+        if (genero === 'masculino') {
+            tipo = 20;
+        } else {
+            tipo = 27;
+        }
+        console.log(tipo);
+        numero = parseInt(datos_donacion['documento']);
+        console.log(numero);
+        verificador = obtenerVerificador(tipo,numero);
+        console.log(verificador);
+        cuit = tipo*1000000000 + (numero*10) + verificador;
+        return cuit;
+    }
+
+    function obtenerVerificador(tipo, numero)
+    {
+        numero = tipo * 100000000 + numero;
+        var semillas = new Array(2, 3, 4, 5, 6, 7, 2, 3, 4, 5);
+        var suma = 0;
+        console.log(numero);
+        for(i = 0; i <= 9; ++i)
+        {
+            pila = Redondear(numero, i);
+            mascara = Redondear(numero, i + 1) * 10;
+            suma += (pila-mascara)*semillas[i];
+        }
+
+        temporal = suma % 11;
+        resultado = 11-temporal;
+
+        if(resultado === 11)
+        {
+            resultado = 0;
+        }
+        if(resultado === 10)
+        {
+            resultado = 9;
+        }
+        return resultado;
+    }
+
+    function Redondear(n, completar)
+    {
+        divisor = Math.pow(10, completar);
+        result = (Math.ceil((n + 0.01) / divisor)) -1;
+        return result;
+    }
+
     function getCookie(c_name){
     if (document.cookie.length > 0)
     {

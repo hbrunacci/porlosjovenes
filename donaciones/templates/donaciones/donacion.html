@@ -9,11 +9,11 @@
  {% image self.imagen_encabezado original as img_principal %}
     <div id='fondo_pantalla' class="container" style="width: 100%; display: block;
             background: transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
-        <div class="row" style="margin-bottom: 10px;">
+        <div class="row" style="margin-bottom: 10px; height: 530px;">
             <div id='encabezado_responsive' class="container" style="display: none;
                 background: transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
             </div>
-            <div class="formulario-marco pull-right">
+            <div class="formulario-marco pull-right" id="marco-formulario">
                 <div class="paso-uno"  id="paso1">
                     <div class="soy-donante ">
                         <div class=" donacion-seccion container-fluid">
@@ -129,10 +129,7 @@
                                 <button type="button" class="boton-paso" style="width: 60%" id="otrasformas" data-toggle="modal" data-target="#otras_formas_modal">
                                   OTRAS FORMAS DE COLABORAR
                                 </button>
-                                <button type="button" class="hide-step" style="width: 60%" id="graciasfidelizados" data-toggle="modal" data-target="#gracias_fidelizados_modal">
-                                </button>
-                                <button type="button" class="hide-step" style="width: 60%" id="graciasaumento" data-toggle="modal" data-target="#gracias_aumento_modal">
-                                </button>
+
 
                             <!-- Modal -->
                                 <div class="modal fade" id="otras_formas_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -304,7 +301,6 @@
                                             class="form-control input-sm redondear-derecha campo " placeholder="nro de CBU" style="height: auto" />
                                 </div>
 
-
                             </div>
                             <div class="col-md-2" > <img id="logo-tarjeta" style="display: none" class="logo-tarjeta" src="#" alt="MercadoPago"></div>
                         </div>
@@ -319,8 +315,14 @@
                                        name="chkrecibo">Quiero que me envien recibo de mi donación.
                                 <p class="recibo-nota hide-step" id="recibo-nota"> Si sos empresa, solicitá tu recibo a
                                     <strong>info@porlosjovenes.org </strong> informando el CUIT</p>
-
                             </div>
+                            <div class="col-md-5 hide-step" id="campo-cuit">
+                                <label class="input-group redondear-derecha redondear-izquierda ">
+                                    <span class="input-group-addon fas fa-address-card campo campo-icon" id="basic-addon1"></span>
+                                    <input class="form-control input-sm redondear-derecha campo " id="input-cuit" type="number" name="cuit"
+                                           max="99999999999" placeholder="20112223331" style="height: auto" />
+                                </label>
+                            </divclass>
                         </div>
                     </div>
                      <div class="botonera-pasos">
@@ -352,40 +354,27 @@
                     </div>
                 </div>
             </div>
+            <div class="marco-agradecimiento" id="gracias_fidelizados_modal" style="display: none">
+                                                <div class="encabezado-agradecimiento">
+                                                    {{ self.encabezado_agradecimiento_compromiso }}
+                                                </div>
+                                                <div class="texto-agradecimiento">
+                                                    {{ self.texto_agradecimiento_compromiso }}
+                                                </div>
+
+                                </div>
+            <div class="marco-agradecimiento" id="gracias_aumento_modal" style="display: none">
+                                                <div class="encabezado-agradecimiento">
+                                                    {{ self.encabezado_agradecimiento_aumento }}
+                                                </div>
+                                                <div class="texto-agradecimiento">
+                                                    {{ self.texto_agradecimiento_aumento }}
+                                                </div>
+                                </div>
+
         </div>
     </div>
-                                <div class="modal fade" id="gracias_fidelizados_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <div class="modal-title" id="exampleModalLabel">Gracias Fidelizados</div>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true" >X</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body" style="padding-bottom: 0">
-                                            </div>
-                                            <div class="modal-footer" style="padding: 0">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="gracias_aumento_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <div class="modal-title" id="exampleModalLabel">Gracias Aumento</div>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true" >X</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body" style="padding-bottom: 0">
-                                            </div>
-                                            <div class="modal-footer" style="padding: 0">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
 
 {% endblock content %}
 

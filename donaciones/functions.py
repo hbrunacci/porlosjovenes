@@ -142,11 +142,14 @@ def process_new_contact(contact_data={}):
 
 def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso = dict()
+    frecuencia = get_frecuencia(compromise_data.get('tipo_donante'))
+    fecha_primer_cobranza = datetime.today().date().__str__() \
+        if frecuencia == 'Esporádica' else datetime.today().date().replace(day=1).__str__()
     compromiso['Monto_en_pesos__c'] = compromise_data.get('monto_donacion')
-    compromiso['Frecuencia__c'] = get_frecuencia(compromise_data.get('tipo_donante'))
+    compromiso['Frecuencia__c'] = frecuencia
     compromiso['Estado__c'] = 'Activo'
     compromiso['Fecha_de_compromiso__c'] = datetime.today().date().__str__()
-    compromiso['Fecha_para_realizar_primer_cobranza__c'] = datetime.today().date().replace(day=1).__str__()
+    compromiso['Fecha_para_realizar_primer_cobranza__c'] = fecha_primer_cobranza
     compromiso['Canal_de_Ingreso__c'] = 'Web PJL'
     compromiso['Tipo_de_compromiso__c'] = None
     compromiso['Forma_de_Pago__c'] = get_forma_de_pago(compromise_data.get('forma_pago'))
@@ -286,7 +289,7 @@ def update_or_create_compromise(sf_con, data, contact_id):
         return sf_con.Compromiso__c.create(data)
 
 
-def generar_cuit(dni='00000000',sexo=''):
+def generar_cuit(dni='00000000', sexo=''):
     if sexo.upper()[0] == 'M':
         inicio = '20'
     else:

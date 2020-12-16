@@ -33,8 +33,21 @@ class DonacionPage(MetadataPageMixin, Page):
         on_delete=models.SET_NULL,
     )
 
-    soy_donante = models.CharField('Tipo de Donantes',max_length=10, choices=SOY_DONANTE, default='ambos')
+    soy_donante = models.CharField('Tipo de Donantes', max_length=10, choices=SOY_DONANTE, default='ambos')
     incremento_automatico = models.IntegerField(default=40)
+    encabezado_agradecimiento_compromiso = models.CharField('Encabezado agradecimiento compromiso',
+                                                            max_length=70,
+                                                            default="¡GRACIAS por tu colaboración!")
+    texto_agradecimiento_compromiso = models.CharField('Encabezado Agradecimiento compromiso', max_length=100,
+                                                       default='Es gracias a personas como vos que podemos '
+                                                               'acompañar a miles de jóvenes en todo el país.')
+    encabezado_agradecimiento_aumento = models.CharField('Encabezado agradecimiento aumento', max_length=70,
+                                                         default='¡GRACIAS por seguir apostando por los jóvenes '
+                                                                 'y por la educación!')
+    texto_agradecimiento_aumento = models.CharField('Encabezado Agradecimiento aumento', max_length=100,
+                                                    default='En breve nos pondremos en contacto con vos '
+                                                            'para aumentar tu colaboración.')
+
 
     content_panels = Page.content_panels + [
         FieldPanel('texto_encabezado'),
@@ -43,12 +56,16 @@ class DonacionPage(MetadataPageMixin, Page):
 
         FieldPanel('soy_donante'),
         FieldPanel('incremento_automatico'),
+        FieldPanel('encabezado_agradecimiento_compromiso'),
+        FieldPanel('texto_agradecimiento_compromiso'),
+        FieldPanel('encabezado_agradecimiento_aumento'),
+        FieldPanel('texto_agradecimiento_aumento'),
+
         MultiFieldPanel([
             InlinePanel('medios_pago', max_num=4)
         ], heading='Medios de Pago'
             , classname='collapsible'),
     ]
-
 
     class Meta:
         verbose_name = "Formulacio de Donacion"
