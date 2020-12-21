@@ -128,7 +128,7 @@ $(function () {
                             agradecer_aumento();
                          } else {
                             console.log('agradece donacion');
-                             agradecer_donacion();
+                            agradecer_donacion();
                          }
 
                     },
@@ -149,6 +149,7 @@ $(function () {
            $('#paso2').removeClass('hide-step');
            $('#paso3').addClass('hide-step');
         });
+
         paso1.click(function (event) {
             ///console.log(event.target.id);
             boton = event.target;
@@ -159,6 +160,17 @@ $(function () {
                 $(boton).addClass('boton-selected');
             }
         });
+
+        paso2.keyup(function (event) {
+            destino = event.target;
+            console.log(destino);
+            if (destino.name ==='documento') {
+                if (destino.value.length > 8) {
+                    destino.value = destino.value.slice(0,8);
+                }
+            }
+        });
+
         paso2.change(function (event) {
             objeto = event.target
             if (objeto.value.length > 0 )  {
@@ -169,6 +181,7 @@ $(function () {
                     $(objeto.parentElement.parentElement).removeClass('requerido');
                     $(objeto.parentElement.parentElement).addClass('completo');
                 }
+
             }
             else
             {
@@ -180,7 +193,6 @@ $(function () {
                    $(objeto.parentElement.parentElement).addClass('requerido');
                }
             }
-
 
         });
         paso3.change(function (event) {
@@ -291,6 +303,10 @@ $(function () {
             console.log(datos_donacion)
             return datos_donacion
         }
+        function isEmail(email) {
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return regex.test(email);
+        }
         $("#chkrecibo").change(function (event) {
             if (event.target.checked) {
                 $('#recibo-nota').removeClass('hide-step')
@@ -304,6 +320,7 @@ $(function () {
                 datos_donacion['recibo'] = 'No';
             }
         })
+
         $("#aumenta-auto").change(function (event) {
             console.log(event.target.value);
             if (event.target.checked) {
@@ -312,6 +329,7 @@ $(function () {
                 datos_donacion['aumenta'] = '0';
             }
         })
+
         window.paypal.Buttons({
             style: {
                 layout:  'horizontal',

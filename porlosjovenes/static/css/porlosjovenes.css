@@ -394,7 +394,7 @@ body {
 }
 
 .recibo-nota {
-    font-size: smaller;
+    font-size: 12px;
     width: 100%;
     padding: 5px;
     margin-bottom: 0px;
@@ -439,7 +439,7 @@ body {
     color: white;
     width: 19%;
     background: #0097a5;
-    border-radius: 4px;
+    border-radius: 5px;
     box-shadow: 0 0 1px black;
     border: 2px solid #0097a5;
     transition: 0.35s all;
@@ -447,17 +447,21 @@ body {
     text-transform: uppercase;
 
 }
+.boton-paso:hover {
+   background: white;
+   color: #0097a5;
+}
 .boton-donacion {
     margin: 8px 0px 0px 7px;
     text-align: center;
     font-weight: 700;
     font-size: 15px;
     height: 10px !important;
-    padding: 7px 7px 29px 7px;
+    padding: 5px 7px 29px 7px;
     color: white;
     width: 19%;
     background: #0097a5;
-    border-radius: 4px;
+    border-radius: 5px;
     box-shadow: 0 0 1px black;
     border: 2px solid #0097a5;
     transition: 0.35s all;
@@ -582,7 +586,7 @@ body {
 
 .nota-piedonacion {
     font-size: small;
-    text-align: justify;
+    text-align: center;
     margin: 10px 5px;
 }
 .logo-tarjeta {
@@ -636,6 +640,10 @@ progress[value]::-webkit-progress-value {
 }
 .requerido {
     border: 1px solid #f26649;
+}
+
+.requiere-comprobante {
+    padding: 1px 12px;
 }
 
 .completo {

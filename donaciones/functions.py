@@ -1,6 +1,7 @@
 from simple_salesforce import Salesforce
-from datetime import datetime
-from .MP_functions import create_item_mp
+from datetime import datetime, timedelta
+from dateutil.relativedelta import *
+from .MP_functions import create_item_mp,create_preaproval_mp
 
 demo = {'tipo_donante': 'dona-unica',
         'forma_pago': 'fpago-credito',
@@ -140,16 +141,35 @@ def process_new_contact(contact_data={}):
     new_contact['AccountId'] = get_account_id()
     return new_contact
 
+def is_mp(fpago):
+    return 'fpago-mercadopago' == get_forma_de_pago(fpago)
+
+
 def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso = dict()
     frecuencia = get_frecuencia(compromise_data.get('tipo_donante'))
-    fecha_primer_cobranza = datetime.today().date().__str__() \
-        if frecuencia == 'Esporádica' else datetime.today().date().replace(day=1).__str__()
+    fecha_fin = None
+    if frecuencia == 'Esporádica':
+        fecha_compromiso = datetime.today().date().__str__()
+        month_actual = datetime.today().today().month + 1
+        new_year = datetime.today().today().year + (month_actual // 12)
+        month_actual = month_actual % 12
+        nueva_fecha = F'01/{month_actual}/{new_year}'
+        new_fecha = datetime.strptime(nueva_fecha, '%d/%m/%Y')
+
+        fecha_primer_cobranza = new_fecha.date().__str__()
+        #fecha_fin = datetime.today().date().__str__()
+    else:
+        fecha_compromiso = datetime.today().date().__str__()
+        fecha_primer_cobranza = datetime.today().date().replace(day=1).__str__()
+
     compromiso['Monto_en_pesos__c'] = compromise_data.get('monto_donacion')
     compromiso['Frecuencia__c'] = frecuencia
-    compromiso['Estado__c'] = 'Activo'
-    compromiso['Fecha_de_compromiso__c'] = datetime.today().date().__str__()
+
+    compromiso['Estado__c'] = 'Pendiente' if is_mp(compromise_data.get('forma_pago')) else 'Activo'
+    compromiso['Fecha_de_compromiso__c'] = fecha_compromiso
     compromiso['Fecha_para_realizar_primer_cobranza__c'] = fecha_primer_cobranza
+    compromiso['Fecha_de_fin_de_compromiso__c'] = fecha_fin
     compromiso['Canal_de_Ingreso__c'] = 'Web PJL'
     compromiso['Tipo_de_compromiso__c'] = None
     compromiso['Forma_de_Pago__c'] = get_forma_de_pago(compromise_data.get('forma_pago'))
@@ -159,7 +179,7 @@ def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso['N_mero_de_la_Tarjeta__c'] = value
     compromiso['CBU__c'] = compromise_data.get('cbunumber')
     compromiso['Donante__c'] = contact_id
-    compromiso['Aumentar_40_anual_donaci_n__c'] = False if demo_compromise_data_unico.get('aumenta') == '0' else True
+    compromiso['Aumentar_40_anual_donaci_n__c'] = False if compromise_data.get('aumenta') == '0' else True
     return compromiso
 
 
@@ -187,7 +207,7 @@ def get_cc_company_value(cc_company_explicit):
     cc_companies = {
         'diners': 'Diners',
         'amex': 'American Express',
-        'master': 'Mastercard',
+        'mastercard': 'Mastercard',
         'visa': 'Visa',
         'visa_electron': 'Visa Electron (débito)'
     }
@@ -229,8 +249,10 @@ def register_transaction(form_fields=None):
         transaccion['detail'] = ''
         if form_fields.get('forma_pago') == 'fpago-mercadopago':
             form_fields['external_id'] = transaccion['compromise'].get('id')
-            transaccion['mp_response'] = create_item_mp(form_fields)
-
+            if form_fields.get('tipo_donante') == 'dona-mensual':
+                transaccion['mp_response'] = create_preaproval_mp(form_fields)
+            else:
+                transaccion['mp_response'] = create_item_mp(form_fields)
     except Exception as e:
         transaccion['result'] = False
         transaccion['detail'] = e
@@ -241,7 +263,7 @@ def register_transaction(form_fields=None):
 
 def get_account_id():
     #return '0012f00000Tnr6ZAAR'
-    return  '001e000001ZybZOAAZ'
+    return '001e000001ZybZOAAZ'
 
 def normalize_form_data(form_info):
     data = dict()
@@ -280,7 +302,7 @@ def update_or_create_compromise(sf_con, data, contact_id):
         if id_compromiso_actualizar:
             print('Actualizar compromiso')
             data['Monto_Forma_pago_modificado_form_web__c'] = True
-            return sf_con.Compromiso__c.upsert(id_compromiso_actualizar,data)
+            return sf_con.Compromiso__c.upsert(id_compromiso_actualizar, data)
         else:
             print('no tiene compromisos para actualizar, se crea una nueva')
             return sf_con.Compromiso__c.create(data)
