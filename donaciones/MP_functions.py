@@ -13,7 +13,11 @@ def create_preaproval_mp(datos_donacion):
             "frequency": 1,
             "frequency_type": "months"
           },
-        "back_url": "http://porlosjovenes.com/",
+        #"back_url": "http://porlosjovenes.org/",
+        'back_urls': {'failure': 'http://porlosjovenes.org/fail',
+                      'pending': 'http://porlosjovenes.org/pending',
+                      'success': 'http://porlosjovenes.org/success'
+                      },
         "collector_id": '',
         "external_reference": datos_donacion.get('external_id'),
         "payer_email": datos_donacion.get('email'),

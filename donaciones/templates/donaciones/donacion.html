@@ -321,22 +321,32 @@
                                     <input class="form-control input-sm redondear-derecha campo " id="input-cuit" type="number" name="cuit"
                                            max="99999999999" placeholder="20112223331" style="height: auto" />
                                 </label>
-                            </divclass>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label id='lbl-condicion' for="acepta-condicion" style="font-size: 13px; font-weight: 400">
+                                <input style="margin-right: 3px;" type="checkbox" name="chkaceptacondiciones" id="acepta-condicion">
+                                    He leído y acepto la
+                                <a href="https://porlosjovenes.org/static/img/politicas.f501d06f1930.pdf" target="_blank">
+                                        política de privacidad </a>
+                            </label>
+                        </div>
+
+
+                    </div>
+
+                    <div class="botonera-pasos">
+                        <div class="col-md-12" style="margin: 25px 0;">
+                            <div class="loader" style="display: none"></div>
+                            <a href="#" class="boton-paso" id='back_2' style="width: 25%" >VOLVER</a>
+                            <div class='paypal-container hide-step'
+                                 id="paypal-container"
+                                 style = "height: 40px; width: 100px">
+                                <div id='paypal-button'> </div>
+                            </div>
+                            <a  href="#" class="boton-paso" id='to_finish' style="width: 30%">CONFIRMAR</a>
                         </div>
                     </div>
-                     <div class="botonera-pasos">
-                         <div class="col-md-12" style="margin: 25px 0;">
-                             <div class="loader" style="display: none"></div>
-                             <a href="#" class="boton-paso" id='back_2' style="width: 25%" >VOLVER</a>
-                             <div class='paypal-container hide-step'
-                                  id="paypal-container"
-                                  style = "height: 40px; width: 100px">
-                                 <div id='paypal-button'> </div>
-
-                             </div>
-                             <a  href="#" class="boton-paso" id='to_finish' style="width: 30%">CONFIRMAR</a>
-                            </div>
-                     </div>
                     <div class="footer-paso">
                         <div class="col-md-12">
                             <p class="nota-piedonacion container-fluid">
@@ -355,22 +365,21 @@
             </div>
             </div>
             <div class="marco-agradecimiento" id="gracias_fidelizados_modal" style="display: none">
-                                                <div class="encabezado-agradecimiento">
-                                                    {{ self.encabezado_agradecimiento_compromiso }}
-                                                </div>
-                                                <div class="texto-agradecimiento">
-                                                    {{ self.texto_agradecimiento_compromiso }}
-                                                </div>
-
-                                </div>
+                <div class="encabezado-agradecimiento">
+                    {{ self.encabezado_agradecimiento_compromiso }}
+                </div>
+                <div class="texto-agradecimiento">
+                    {{ self.texto_agradecimiento_compromiso }}
+                </div>
+            </div>
             <div class="marco-agradecimiento" id="gracias_aumento_modal" style="display: none">
-                                                <div class="encabezado-agradecimiento">
-                                                    {{ self.encabezado_agradecimiento_aumento }}
-                                                </div>
-                                                <div class="texto-agradecimiento">
-                                                    {{ self.texto_agradecimiento_aumento }}
-                                                </div>
-                                </div>
+                <div class="encabezado-agradecimiento">
+                    {{ self.encabezado_agradecimiento_aumento }}
+                </div>
+                <div class="texto-agradecimiento">
+                    {{ self.texto_agradecimiento_aumento }}
+                </div>
+            </div>
 
     </div>
 

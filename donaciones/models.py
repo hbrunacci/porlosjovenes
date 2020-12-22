@@ -16,7 +16,8 @@ from instituciones.models import Instituciones, Institucion
 
 SOY_DONANTE = (('solo_si', 'Ya soy donante'),
                ('solo_no', 'No Soy donante'),
-               ('ambos','Ambos'),)
+               ('ambos', 'Ambos'),
+               )
 
 class DonacionPage(MetadataPageMixin, Page):
     template = 'donaciones/donacion.html'
@@ -48,12 +49,10 @@ class DonacionPage(MetadataPageMixin, Page):
                                                     default='En breve nos pondremos en contacto con vos '
                                                             'para aumentar tu colaboración.')
 
-
     content_panels = Page.content_panels + [
         FieldPanel('texto_encabezado'),
         ImageChooserPanel('imagen_encabezado',
                           heading='Imagen Superior'),
-
         FieldPanel('soy_donante'),
         FieldPanel('incremento_automatico'),
         FieldPanel('encabezado_agradecimiento_compromiso'),
@@ -102,13 +101,9 @@ class Medios_Pago(Orderable):
     ),
     moneda = models.CharField('Moneda', max_length=10, blank=False, null=False, choices=MONEDAS, default='pesos')
     monto_1 = models.IntegerField("Valor 1", blank=False, null=False)
-
     monto_2 = models.IntegerField("Valor 2", blank=False, null=False)
-
     monto_3 = models.IntegerField("Valor 3", blank=False, null=False)
-
     monto_4 = models.IntegerField("Valor 4", blank=False, null=False)
-
     permite_manual = models.BooleanField('Permite monto manual', default=True)
 
     content_panels = Page.content_panels + [
@@ -120,7 +115,6 @@ class Medios_Pago(Orderable):
         FieldPanel('monto_3'),
         FieldPanel('monto_4'),
         FieldPanel('permite_manual'),
-
     ]
 
     def get_currency_symbol(self):
