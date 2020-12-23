@@ -13,11 +13,8 @@ def create_preaproval_mp(datos_donacion):
             "frequency": 1,
             "frequency_type": "months"
           },
-        #"back_url": "http://porlosjovenes.org/",
-        'back_urls': {'failure': 'http://porlosjovenes.org/fail',
-                      'pending': 'http://porlosjovenes.org/pending',
-                      'success': 'http://porlosjovenes.org/success'
-                      },
+        "back_url": datos_donacion.get('web_agradecimiento_compromiso'),
+
         "collector_id": '',
         "external_reference": datos_donacion.get('external_id'),
         "payer_email": datos_donacion.get('email'),
@@ -25,7 +22,7 @@ def create_preaproval_mp(datos_donacion):
         "status": "pending"
     }
     response = mp.create_preapproval_payment(preaproval)
-    print(f'response_mp: {response}')
+    print(f'response_mp_month: {response}')
     return response
 
 def create_item_mp(datos_donacion):
@@ -54,15 +51,14 @@ def create_item_mp(datos_donacion):
                 }
             ],
             "installments": 1,
-
         },
-        'back_urls': {'failure': 'http://porlosjovenes.org/pago-rechazado',
-                      'pending': 'http://porlosjovenes.org/pago-pendiente',
-                      'success': 'http://porlosjovenes.org/pago-aprobado'
+        'back_urls': {'failure': datos_donacion.get('web_agradecimiento_aumento'),
+                      'pending': datos_donacion.get('web_agradecimiento_aumento'),
+                      'success': datos_donacion.get('web_agradecimiento_aumento'),
                       },
         "notification_url": "http://porlosjovenes.org/ipn"
     }
 
     response = mp.create_preference(preference)
-    print(f'response_mp: {response}')
+    print(f'response_mp_item: {response}')
     return response

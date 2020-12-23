@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+ {% image self.imagen_encabezado original as img_principal %}
+    <div id='fondo_pantalla' class="container" style="width: 100%; display: block;
+            background: transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
+        <div class="row" style="margin-bottom: 10px; height: 530px;">
+            <div class="marco-agradecimiento" id="gracias_fidelizados_modal" >
+                <div class="encabezado-agradecimiento">
+                    {{ self.encabezado_agradecimiento}}
+                </div>
+                <div class="texto-agradecimiento">
+                    {{ self.texto_agradecimiento }}
+                </div>
+            </div>
+
+    </div>
+
+
+{% endblock content %}

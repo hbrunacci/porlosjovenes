@@ -122,10 +122,10 @@ $(function () {
                              window.location.href = (data['mp_response']['response']['init_point']);
                          } else if ($('#dona-aumento').prop('checked') === 'true') {
                              console.log('agradece aumento');
-                            agradecer_aumento();
+                            window.location.href = datos_donacion['web_agradecimiento_aumento'];
                          } else {
                             console.log('agradece donacion');
-                            agradecer_donacion();
+                            window.location.href =datos_donacion['web_agradecimiento_compromiso'];
                          }
 
                     },
@@ -358,7 +358,7 @@ $(function () {
                     console.log(details);
                     console.log(details.payer.payer_id);
                     user_paypal = details.payer.payer_id;
-                    datos_donante['gatewayuserid'] = user_paypal;
+                    datos_donacion['gatewayuserid'] = user_paypal;
                     $("#to_finish").click();
                 });
             }
@@ -551,16 +551,7 @@ $(function () {
         $('#dona-mensual').prop('checked', true);
         campos_mensual();
     }
-    function agradecer_donacion() {
-        $('#marco-formulario').css('display','none');
-        $('#gracias_aumento_modal').css('display','none');
-        $('#gracias_fidelizados_modal').css('display','block');
-    }
-    function agradecer_aumento() {
-        $('#marco-formulario').css('display','none');
-        $('#gracias_fidelizados_modal').css('display','none');
-        $('#gracias_aumento_modal').css('display','block');
-    }
+
     function generarcuit() {
         genero = datos_donacion['genero'];
         if (genero === 'masculino') {
@@ -601,6 +592,13 @@ $(function () {
         }
         return resultado;
     }
+    function agradecer_donacion() {
+
+    }
+    function agradecer_aumento() {
+
+    }
+
     function Redondear(n, completar) {
         divisor = Math.pow(10, completar);
         result = (Math.ceil((n + 0.01) / divisor)) -1;

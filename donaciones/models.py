@@ -19,10 +19,54 @@ SOY_DONANTE = (('solo_si', 'Ya soy donante'),
                ('ambos', 'Ambos'),
                )
 
+class AgradecimientoPage(MetadataPageMixin, Page):
+    template = 'donaciones/gracias.html'
+    subpage_types = []
+
+    imagen_encabezado = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=True,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+
+    encabezado_agradecimiento= models.CharField('Encabezado agradecimiento',
+                                                            max_length=70,
+                                                            default="¡GRACIAS por tu colaboración!")
+    texto_agradecimiento= models.CharField('Texto agradecimiento', max_length=100,
+                                                       default='Es gracias a personas como vos que podemos '
+                                                               'acompañar a miles de jóvenes en todo el país.')
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('imagen_encabezado',
+                          heading='Imagen Superior'),
+        FieldPanel('encabezado_agradecimiento'),
+        FieldPanel('texto_agradecimiento'),
+    ]
+
+    class Meta:
+        verbose_name = "Pagina Agradeciemiento"
+        verbose_name_plural = "Paginas de Agradecimiento"
+
+    def get_meta_url(self):
+        return 'https://porlosjovenes.org%s' % self.url
+
+    def get_meta_title(self):
+        return self.seo_title or self.title
+
+    def get_meta_description(self):
+        return self.search_description
+
+    def get_meta_image(self):
+        image = self.search_image
+        return image
+
+
 class DonacionPage(MetadataPageMixin, Page):
     template = 'donaciones/donacion.html'
     subpage_types = []
-    max_count = 1
+
 
     texto_encabezado = RichTextField(default='')
 
@@ -34,20 +78,24 @@ class DonacionPage(MetadataPageMixin, Page):
         on_delete=models.SET_NULL,
     )
 
+
     soy_donante = models.CharField('Tipo de Donantes', max_length=10, choices=SOY_DONANTE, default='ambos')
     incremento_automatico = models.IntegerField(default=40)
-    encabezado_agradecimiento_compromiso = models.CharField('Encabezado agradecimiento compromiso',
-                                                            max_length=70,
-                                                            default="¡GRACIAS por tu colaboración!")
-    texto_agradecimiento_compromiso = models.CharField('Encabezado Agradecimiento compromiso', max_length=100,
-                                                       default='Es gracias a personas como vos que podemos '
-                                                               'acompañar a miles de jóvenes en todo el país.')
-    encabezado_agradecimiento_aumento = models.CharField('Encabezado agradecimiento aumento', max_length=70,
-                                                         default='¡GRACIAS por seguir apostando por los jóvenes '
-                                                                 'y por la educación!')
-    texto_agradecimiento_aumento = models.CharField('Encabezado Agradecimiento aumento', max_length=100,
-                                                    default='En breve nos pondremos en contacto con vos '
-                                                            'para aumentar tu colaboración.')
+
+    agradecimiento_compromiso = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+    agradecimiento_aumento = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('texto_encabezado'),
@@ -55,10 +103,8 @@ class DonacionPage(MetadataPageMixin, Page):
                           heading='Imagen Superior'),
         FieldPanel('soy_donante'),
         FieldPanel('incremento_automatico'),
-        FieldPanel('encabezado_agradecimiento_compromiso'),
-        FieldPanel('texto_agradecimiento_compromiso'),
-        FieldPanel('encabezado_agradecimiento_aumento'),
-        FieldPanel('texto_agradecimiento_aumento'),
+        FieldPanel('agradecimiento_compromiso'),
+        FieldPanel('agradecimiento_aumento'),
 
         MultiFieldPanel([
             InlinePanel('medios_pago', max_num=4)

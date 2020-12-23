@@ -374,7 +374,7 @@
             </div>
             <div class="marco-agradecimiento" id="gracias_aumento_modal" style="display: none">
                 <div class="encabezado-agradecimiento">
-                    {{ self.encabezado_agradecimiento_aumento }}
+                    {{ self.agradecimiento_aumento }}
                 </div>
                 <div class="texto-agradecimiento">
                     {{ self.texto_agradecimiento_aumento }}
@@ -390,14 +390,19 @@
     <script>
     var statics_img = '/static/img';
     var datos_donacion = {};
+
     var datos_mercadopago = {};
+
+    datos_donacion['web_agradecimiento_aumento'] = 'http://porlosjovenes.org{{ self.agradecimiento_aumento.url }}';
+    datos_donacion['web_agradecimiento_compromiso'] = 'http://porlosjovenes.org{{ self.agradecimiento_compromiso.url }}';
+    console.log(datos_donacion['web_agradecimiento_aumento']);
     </script>
 
     <script
     src="https://www.paypal.com/sdk/js?client-id=AUBgXAeZ8qwzfGSHKkSmdYM0x7avxaMtiVoTT1-9zJxODyKWaroPP9R1VhEC1RxpM-ZjW9-FkIgtkzyW">
     </script>
-<script type="text/javascript" src="{% static 'js/jquery.payform.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/donacion.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.payform.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/donacion.js' %}"></script>
 
     <script>
     $('#myModal').on('shown.bs.modal', function () {
@@ -405,7 +410,5 @@
     })
     </script>
 
-    <script>
-    </script>
 
 {% endblock %}
