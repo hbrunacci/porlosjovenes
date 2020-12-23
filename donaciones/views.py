@@ -38,6 +38,15 @@ class procesar_pago(APIView):
         result = register_transaction(data)
         return Response(result)
 
+    def get(self, request):
+        data = request.GET
+        data = dict(data)
+        for key in data.keys():
+            data[key] = data[key][0]
+        print(data)
+        result = register_transaction(data)
+        return Response(result)
+
 
 class pago_aprobado(APIView):
     authentication_classes = []
@@ -53,7 +62,7 @@ class pago_aprobado(APIView):
 
 
     def get(self, request):
-        data = request.POST
+        data = request.GET
         data = dict(data)
         for key in data.keys():
             data[key] = data[key][0]
@@ -74,15 +83,39 @@ class pago_rechazado(APIView):
 
 
     def get(self, request):
-        data = request.POST
+        data = request.GET
         data = dict(data)
         for key in data.keys():
             data[key] = data[key][0]
         print(data)
         return Response('')
 
-
 class pago_pendiente(APIView):
+    authentication_classes = []
+
+
+permission_classes = []
+
+
+def post(self, request):
+    data = request.POST
+    data = dict(data)
+    for key in data.keys():
+        data[key] = data[key][0]
+    print(data)
+    return Response('')
+
+
+def get(self, request):
+    data = request.GET
+    data = dict(data)
+    for key in data.keys():
+        data[key] = data[key][0]
+    print(data)
+    return Response('')
+
+
+class notificacion(APIView):
     authentication_classes = []
     permission_classes = []
 
@@ -94,11 +127,11 @@ class pago_pendiente(APIView):
         print(data)
         return Response('')
 
-
     def get(self, request):
-        data = request.POST
+        data = request.GET
         data = dict(data)
         for key in data.keys():
             data[key] = data[key][0]
         print(data)
         return Response('')
+

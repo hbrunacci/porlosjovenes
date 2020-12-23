@@ -9,7 +9,7 @@ from django.views.generic import RedirectView
 from home.views import (donacion_correcta,
                         donacion_enproceso)
 from donaciones.views import (procesar_pago,test_mp,
-                              generar_preference, pago_aprobado, pago_rechazado, pago_pendiente)
+                              generar_preference, pago_aprobado, pago_rechazado, pago_pendiente,notificacion)
 
 from search import views as search_views
 
@@ -21,9 +21,10 @@ urlpatterns = [
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.png')),
     url(r'^search/$', search_views.search, name='search'),
     url(r'^procesar-pago/$', procesar_pago.as_view(), name='procesar-pago'),
-    url(r'^pago-aprobado/$', pago_aprobado.as_view(), name='procesar-pago'),
-    url(r'^pago-rechazado/$', pago_rechazado.as_view(), name='procesar-pago'),
-    url(r'^pago-pendiente/$', pago_pendiente.as_view(), name='procesar-pago'),
+    url(r'^pago-aprobado/$', pago_aprobado.as_view(), name='procesar-pago-aprobado'),
+    url(r'^pago-rechazado/$', pago_rechazado.as_view(), name='procesar-pago-rechazado'),
+    url(r'^pago-pendiente/$', pago_pendiente.as_view(), name='procesar-pago-pendiente'),
+    url(r'^ipn/$', notificacion.as_view(), name='procesar-notificacion'),
 
     url(r'^test_mp/$', test_mp.as_view(), name='test_mp'),
     url(r'^generar-preference/$', generar_preference.as_view(), name='generar-preference'),

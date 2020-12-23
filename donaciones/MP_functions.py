@@ -56,9 +56,9 @@ def create_item_mp(datos_donacion):
             "installments": 1,
 
         },
-        'back_urls': {'failure': 'http://porlosjovenes.org/fail',
-                      'pending': 'http://porlosjovenes.org/pending',
-                      'success': 'http://porlosjovenes.org/success'
+        'back_urls': {'failure': 'http://porlosjovenes.org/pago-rechazado',
+                      'pending': 'http://porlosjovenes.org/pago-pendiente',
+                      'success': 'http://porlosjovenes.org/pago-aprobado'
                       },
         "notification_url": "http://porlosjovenes.org/ipn"
     }
