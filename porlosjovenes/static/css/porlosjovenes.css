@@ -887,6 +887,11 @@ progress[value]::-webkit-progress-value {
     right: -14px;
 }
 
+.falta_condiciones {
+    top: -6px;
+    right: -19px;
+}
+
 .loader {
     position: fixed;
     left: 0px;

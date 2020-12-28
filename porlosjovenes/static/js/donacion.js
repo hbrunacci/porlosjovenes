@@ -38,6 +38,7 @@ $(function () {
         $('#acepta-condicion').click(function (event) {
             if  ($('#acepta-condicion').prop('checked')) {
                 $('#lbl-condicion').removeClass('requerido');
+                $('#alerta_aceptacondiciones').addClass('hide-step');
             }
         });
         $("#to_2").click(function () {
@@ -137,6 +138,7 @@ $(function () {
                 });
                 } else {
                     $('#lbl-condicion').addClass('requerido');
+                    $('#alerta_aceptacondiciones').removeClass('hide-step');
                 }
 
             }
@@ -206,13 +208,13 @@ $(function () {
                 valor = objeto.value;
                 card_name = $.payform.parseCardType(valor);
                 if ( $.inArray(card_name, ["visa", "mastercard", "amex", "diners"]) !== -1 )   {
-                    $('#logo-tarjeta').css('display','block');
+                    $('#logo-tarjeta').removeClass('hide-step');
                     card_img_src = statics_img + '/' + card_name +'.png';
                     $('#logo-tarjeta').attr('src', card_img_src);
                     $('#logo-tarjeta').attr('value', card_name);
                 }
                 else {
-                    $('#logo-tarjeta').css('display','none');
+                    $('#logo-tarjeta').addClass('hide-step');
                 }
             }
         });
@@ -380,8 +382,12 @@ $(function () {
         $('#telefono label').addClass('requerido');
     }
     function hide_cc_cbu() {
+        $('#logo-tarjeta').attr('value','');
+        $('#cbu-number').attr('value','');
+        $('#credit-card').attr('value','');
         $('#cbu-container').addClass('hide-step');
         $('#cc-container').addClass('hide-step');
+        $('#logo-tarjeta').addClass('hide-step');
         $('#alerta_datostarjeta').addClass('hide-step');
         $('#alerta_datoscbu').addClass('hide-step');
     }
