@@ -344,7 +344,22 @@ $(function () {
                 shape:   'pill',
                 label:   'pay'
             },
-            createOrder: function(data, actions) {
+            onInit: function(data, actions) {
+                // Disable the buttons
+                actions.disable();
+
+      // Listen for changes to the checkbox
+            $('#acepta-condicion').change(function(e){
+            if( ($('#acepta-condicion').prop('checked'))){
+                actions.enable();
+            } else {
+                actions.disable();
+            }
+            });
+            },
+            // onClick is called when the button is clicked
+            onClick: function() {},
+        createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
@@ -354,7 +369,7 @@ $(function () {
                 });
                 },
             // This function captures the funds from the transaction.
-            onApprove: function(data, actions) {
+        onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
                     // This function shows a transaction success message to your buyer.
                     console.log(details);
