@@ -301,6 +301,7 @@ def update_or_create_compromise(sf_con, data, contact_id):
         id_compromiso_actualizar = get_last_compromise(sf_con, contact_id)
         if id_compromiso_actualizar:
             print('Actualizar compromiso')
+            data['Monto_o_modificado__c'] = True
             data['Monto_Forma_pago_modificado_form_web__c'] = True
             return sf_con.Compromiso__c.upsert(id_compromiso_actualizar, data)
         else:

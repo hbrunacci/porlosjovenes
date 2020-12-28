@@ -318,7 +318,7 @@ $(function () {
             if (event.target.checked) {
                 $('#recibo-nota').removeClass('hide-step')
                 $('#campo-cuit').removeClass('hide-step')
-                $('#input-cuit').attr('value',generarcuit())
+                //$('#input-cuit').attr('value',generarcuit())
                 datos_donacion['recibo'] = 'Sí';
             }
                 else {
