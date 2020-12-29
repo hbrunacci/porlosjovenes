@@ -249,7 +249,7 @@
                         style= "margin-bottom: -15px; text-align: end;">
                             <label class="input-group redondear-derecha redondear-izquierda">
                                 <span class="input-group-addon far fa-calendar-alt campo campo-icon" id="basic-addon1"></span>
-                                <input type="date" name="fnacimiento" class="form-control input-sm redondear-derecha campo" placeholder="Fecha de nacimiento" style="line-height: 17px;height: auto" />
+                                <input type="date" id='fnacimiento' name="fnacimiento" max="2002-01-01" step="1" class="form-control input-sm redondear-derecha campo" placeholder="Fecha de nacimiento" style="line-height: 17px;height: auto" />
                             </label>
                             <span style="font-size: 10px; position: relative; top: -6px;">Ej: 01/01/2000</span>
                         </div>
@@ -339,13 +339,13 @@
                     <div class="botonera-pasos">
                         <div class="col-md-12" style="margin: 25px 0;">
                             <div class="loader" style="display: none"></div>
-                            <a href="#" class="boton-paso" id='back_2' style="width: 25%" >VOLVER</a>
+                            <a href="#" class="boton-paso" id='back_2' style="width: 32%" >VOLVER</a>
                             <div class='paypal-container hide-step'
                                  id="paypal-container"
                                  style = "height: 40px; width: 100px">
                                 <div id='paypal-button'> </div>
                             </div>
-                            <a  href="#" class="boton-paso" id='to_finish' style="width: 30%">CONFIRMAR</a>
+                            <a  href="#" class="boton-paso" id='to_finish' style="width: 40%">CONFIRMAR</a>
                         </div>
                     </div>
                     <div class="footer-paso">

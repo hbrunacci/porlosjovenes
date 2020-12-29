@@ -17,14 +17,17 @@ $.fn.inputFilter = function(inputFilter) {
 $(function () {
     $('.main-menu').addClass('form-donacion');
     $(document).ready(function() {
+        var fecha = new Date();
+        fecha.setFullYear(fecha.getFullYear()-18);
         $(function () {
             $.ajaxSetup({
                 headers: { "X-CSRFToken": getCookie("csrftoken") }
             });
         });
-        var paso1= $('#paso1')
-        var paso2= $('#paso2')
-        var paso3= $('#paso3')
+        $('#fnacimiento').attr('max',fecha.getFullYear()+'-'+fecha.getMonth()+'-'+fecha.getDate());
+        var paso1= $('#paso1');
+        var paso2= $('#paso2');
+        var paso3= $('#paso3');
         //var datos_donacion = {};
         datos_donacion['recibo'] = 'No';
         datos_donacion['aumenta'] = '0';

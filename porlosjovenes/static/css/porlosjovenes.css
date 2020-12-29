@@ -445,10 +445,11 @@ body {
     transition: 0.35s all;
     display: inline-block;
     text-transform: uppercase;
-
 }
+
 .boton-paso:hover {
    background: white;
+    color: #0097a5;
    color: #0097a5;
 }
 .boton-donacion {
@@ -580,9 +581,7 @@ body {
     text-align: center;
     height: 40px;
 }
-.hide-step {
-    display: none !important;
-}
+
 
 .nota-piedonacion {
     font-size: small;
@@ -603,7 +602,8 @@ body {
 .boton-paso#otrasformas {
     width: 60%;
     font-size: 12px;
-    padding: 0px 7px 18px 7px;
+    padding: 2px 5px 18px 7px;
+    margin-bottom: 5px;
 }
 progress[value]::-webkit-progress-value {
   background-image:
@@ -939,4 +939,8 @@ progress[value]::-webkit-progress-value {
     border-radius: 12px;
     margin-top: 100px;
     height: 250px;
+}
+
+.hide-step {
+    display: none !important;
 }
