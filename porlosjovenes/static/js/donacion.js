@@ -15,10 +15,7 @@ $.fn.inputFilter = function(inputFilter) {
 
 
 $(function () {
-
     $('.main-menu').addClass('form-donacion');
-
-
     $(document).ready(function() {
         $(function () {
             $.ajaxSetup({
@@ -227,12 +224,20 @@ $(function () {
         // Tipo Donante
         $("#sidonante").change(function (event) {
             if (event.target.checked) {
-                $("#dona-aumento").parent().removeClass("hide-step")
+                $("#dona-aumento").parent().removeClass("hide-step");
+            }
+            if (('#fpago-paypal').checked) {
+                ocultar_aumento_donacion();
+                ocultar_donacion_mensual();
             }
         })
         $("#nodonante").change(function (event) {
             if (event.target.checked) {
                 ocultar_aumento_donacion();
+            }
+            if (('#fpago-paypal').checked) {
+                ocultar_aumento_donacion();
+                ocultar_donacion_mensual();
             }
         })
         //tipo-donacion
@@ -240,6 +245,7 @@ $(function () {
             if (event.target.checked) {
                 $('#aumenta-auto').parent().removeClass('hide-step')
                 $('#nota-aumento').parent().removeClass('hide-step')
+                oculta_paypal();
                 campos_aumento();
             }
         })
@@ -247,6 +253,7 @@ $(function () {
             if (event.target.checked) {
                 $('#aumenta-auto').parent().removeClass('hide-step')
                 $('#nota-aumento').parent().addClass('hide-step')
+                oculta_paypal()
                 campos_mensual()
             }
         })
@@ -254,6 +261,7 @@ $(function () {
             if (event.target.checked) {
                 $('#aumenta-auto').parent().addClass('hide-step')
                 $('#nota-aumento').parent().addClass('hide-step')
+                muestra_paypal()
                 campos_unica()
             }
         })
@@ -261,6 +269,7 @@ $(function () {
         $("#fpago-paypal").change(function (event) {
             if (event.target.checked) {
                 ocultar_aumento_donacion()
+                ocultar_donacion_mensual()
                 set_moneda_dolar();
                 mostrar_botonera('valores-fpago-paypal');
                 ff = statics_img + '/paypal.png';
@@ -270,10 +279,12 @@ $(function () {
                 $('#paypal-container').removeClass('hide-step');
                 //$('#to_finish').html('FINALIZAR CON<img class="logo-fpago-finish" src=' + ff +' alt="paypal">')
             }
+
         })
         $("#fpago-mercadopago").change(function (event) {
             if (event.target.checked) {
-                ocultar_aumento_donacion()
+                ocultar_aumento_donacion();
+                mostrar_donacion_mensual();
                 set_moneda_pesos();
                 mostrar_botonera('valores-fpago-mercadopago');
                 ff = statics_img + '/mercadopago.png';
@@ -287,6 +298,8 @@ $(function () {
         $("#fpago-debito").change(function (event) {
             if (event.target.checked) {
                 set_moneda_pesos();
+                mostrar_donacion_mensual();
+                mostrar_aumento_donacion();
                 mostrar_botonera('valores-fpago-debito');
                 hide_cc_cbu();
                 $('#cbu-container').removeClass('hide-step')
@@ -299,15 +312,17 @@ $(function () {
         $("#fpago-credito").change(function (event) {
             if (event.target.checked) {
                 set_moneda_pesos();
+                mostrar_donacion_mensual();
+                mostrar_aumento_donacion();
                 mostrar_botonera('valores-fpago-credito');
                 hide_cc_cbu();
-                $('#cc-container').removeClass('hide-step')
-                $('#paypal-container').addClass('hide-step')
+                $('#cc-container').removeClass('hide-step');
+                $('#paypal-container').addClass('hide-step');
                 $('#to_finish').removeClass('mercadopago');
                 $('#to_finish').removeClass('hide-step');
-                $('#to_finish').html('CONFIRMAR')
+                $('#to_finish').html('CONFIRMAR');
             }
-        })
+        });
         function get_form_data() {
             console.log(datos_donacion)
             return datos_donacion
@@ -560,18 +575,44 @@ $(function () {
         $('#simbolo-moneda').html('$');
         $('#nota_moneda').html('*Montos en PESOS ARGENTINOS (ARS)');
     }
+
     function mostrar_botonera(botonera) {
         $("[id^=valores-]").each(function() {
             $(this).addClass('hide-step');
         });
         $('#'+botonera).removeClass('hide-step');
     }
+
+    function mostrar_aumento_donacion() {
+        $("#dona-aumento").parent().removeClass("hide-step");
+    }
+
+    function mostrar_donacion_mensual() {
+        $("#dona-mensual").parent().removeClass("hide-step");
+    }
+
     function ocultar_aumento_donacion() {
         var dona_aumento = $("#dona-aumento");
         dona_aumento.parent().addClass("hide-step")
         $('#dona-mensual').prop('checked', true);
         campos_mensual();
     }
+    function ocultar_donacion_mensual() {
+        $("#dona-mensual").parent().addClass("hide-step");
+        $('#dona-unica').prop('checked', true);
+        campos_unica();
+    }
+    function oculta_paypal() {
+        $('#fpago-paypal').parent().addClass('hide-step');
+        $('#fpago-mensual').prop('checked',true);
+    }
+
+    function muestra_paypal() {
+        $('#fpago-paypal').parent().removeClass('hide-step');
+    }
+
+
+
 
     function generarcuit() {
         genero = datos_donacion['genero'];
