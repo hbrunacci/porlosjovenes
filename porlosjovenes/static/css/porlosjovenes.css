@@ -475,7 +475,7 @@ body {
 }
 .boton-donacion:hover {
    background: white;
-   color: #0097a5;
+   color: #0097a5 !important;
 }
 
 #tipodonacion {
@@ -599,7 +599,7 @@ body {
 }
 
 .boton-paso#otrasformas {
-    width: 60%;
+    width: 70%;
     font-size: 12px;
     padding: 2px 5px 18px 7px;
     margin-bottom: 5px;
