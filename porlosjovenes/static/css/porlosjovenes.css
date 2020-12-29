@@ -755,10 +755,12 @@ progress[value]::-webkit-progress-value {
     #nota_moneda {
         text-align: center;
         font-size: 11px;
+        margin: auto;
+        width: 100%;
     }
     .otro-monto {
         padding-right: 0;
-        width: 75%;
+        float: none;
     /* align-items: center; */
         margin: auto;
     }
