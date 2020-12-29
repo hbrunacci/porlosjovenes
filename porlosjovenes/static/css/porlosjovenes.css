@@ -449,7 +449,6 @@ body {
 
 .boton-paso:hover {
    background: white;
-    color: #0097a5;
    color: #0097a5;
 }
 .boton-donacion {
@@ -470,8 +469,8 @@ body {
     text-transform: uppercase;
 }
 .boton-selected {
-   background: #00464c;
-    border: 2px solid #00464c;
+   background: #00464c !important;
+   border: 2px solid #00464c !important;
    color: white !important;
 }
 .boton-donacion:hover {
