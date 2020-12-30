@@ -46,9 +46,11 @@
                         <div class="donacion-titulo" style="padding-right: 6px; padding-left: 6px!important">QUIERO DONAR</div>
                         <div class="alerta falta_frecuencia hide-step" id="alerta_falta_frecuencia">Falta indicar la frecuencia           </div>
                             <div class="input-group"  id="tipodonacion">
+                                {% if self.tipo_donacion == '0' %}
                                 <label class="radio-inline" >
                                     <input type="radio" name="optdonacion" id="dona-mensual" >Mensual
                                 </label>
+                                {% endif %}
                                 <label class="radio-inline">
                                     <input type="radio" name="optdonacion" id="dona-unica">Por única vez
                                 </label>
@@ -330,7 +332,7 @@
                                 <a href="https://porlosjovenes.org/static/img/politicas.f501d06f1930.pdf" target="_blank">
                                         política de privacidad </a>
                             </label>
-                            <div class="alerta falta_condiciones hide-step" id="alerta_aceptacondiciones">Falta aceptar las condiciones</div>
+                            <div class="alerta falta_condiciones hide-step" id="alerta_aceptacondiciones">Falta que aceptes la política de privacidad.</div>
                         </div>
 
 
