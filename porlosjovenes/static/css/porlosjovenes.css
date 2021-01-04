@@ -841,10 +841,6 @@ progress[value]::-webkit-progress-value {
 
 
 
-.hide-step {
-    display: none !important;
-}
-
 
 @media only screen and (max-width: 450px) {
 
@@ -890,7 +886,7 @@ progress[value]::-webkit-progress-value {
     #tipodonacion {
         text-align: left;
         width: auto;
-        margin-left: 120px;
+        margin: auto;
     }
     #tipodonacion label{
         display: block;
@@ -899,7 +895,7 @@ progress[value]::-webkit-progress-value {
     #forma_pago {
         text-align: left;
         width: auto;
-        margin-left: 100px;
+        margin: auto;
     }
     .opt-fpago {
         display: block !important;
@@ -910,7 +906,19 @@ progress[value]::-webkit-progress-value {
         width: 75%;
         margin: auto;
         margin-bottom: 6px;
+        padding: 3px 7px 29px 7px;
     }
+    .boton-paso {
+            padding: 1px 7px 27px 7px;
+    }
+
+    .boton-paso#otrasformas {
+        width: 70%;
+        font-size: 12px;
+        padding: 5px 5px 18px 5px;
+        margin-bottom: 5px;
+    }
+
     #nota_moneda {
         text-align: center;
         font-size: 11px;
@@ -970,3 +978,9 @@ progress[value]::-webkit-progress-value {
     }
 
 }
+
+
+.hide-step {
+    display: none !important;
+}
+
