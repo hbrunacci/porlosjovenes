@@ -1,7 +1,7 @@
 from simple_salesforce import Salesforce
 from datetime import datetime, timedelta
 from dateutil.relativedelta import *
-from .MP_functions import create_item_mp,create_preaproval_mp
+from .MP_functions import create_item_mp, create_preaproval_mp
 
 demo = {'tipo_donante': 'dona-unica',
         'forma_pago': 'fpago-credito',
@@ -142,6 +142,7 @@ def process_new_contact(contact_data={}):
     new_contact['AccountId'] = get_account_id()
     return new_contact
 
+
 def is_mp(fpago):
     return 'fpago-mercadopago' == get_forma_de_pago(fpago)
 
@@ -162,11 +163,12 @@ def process_new_compromise(compromise_data=None, contact_id=None):
         #fecha_fin = datetime.today().date().__str__()
     else:
         fecha_compromiso = datetime.today().date().__str__()
-        fecha_primer_cobranza = datetime.today().date().replace(day=1).__str__()
-
+        if get_forma_de_pago(compromise_data.get('forma_pago')) == 'fpago-debito':
+            fecha_primer_cobranza = datetime.today().date().__str__()
+        else:
+            fecha_primer_cobranza = datetime.today().date().replace(day=1).__str__()
     compromiso['Monto_en_pesos__c'] = compromise_data.get('monto_donacion')
     compromiso['Frecuencia__c'] = frecuencia
-
     compromiso['Estado__c'] = 'Pendiente' if is_mp(compromise_data.get('forma_pago')) else 'Activo'
     compromiso['Fecha_de_compromiso__c'] = fecha_compromiso
     compromiso['Fecha_para_realizar_primer_cobranza__c'] = fecha_primer_cobranza
@@ -185,13 +187,13 @@ def process_new_compromise(compromise_data=None, contact_id=None):
 
 
 def get_forma_de_pago(pay_type):
-    types_dict ={
-        'fpago-mercadopago':'Mercado Pago',
-        'fpago-paypal':'PayPal',
-        'fpago-debito':'Débito en Cuenta',
-        'fpago-credito':'Tarjeta de Crédito',
-        'fpago-tdebito':'Tarjeta de Débito'
-                 }
+    types_dict = {
+        'fpago-mercadopago': 'Mercado Pago',
+        'fpago-paypal': 'PayPal',
+        'fpago-debito': 'Débito en Cuenta',
+        'fpago-credito': 'Tarjeta de Crédito',
+        'fpago-tdebito': 'Tarjeta de Débito'
+    }
     response = types_dict.get(pay_type)
     return response
 

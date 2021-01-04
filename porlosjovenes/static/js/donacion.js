@@ -515,7 +515,6 @@ $(function () {
                 if (!hasClass(foo, 'hide-step')) {
                     sin_completar++;
                     }
-
             });
             $(".completo input").each(function (index) {
                 foo = $(this)[0]

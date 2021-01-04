@@ -850,14 +850,18 @@ progress[value]::-webkit-progress-value {
     }
 
     .marco-agradecimiento {
-    border: 1px solid;
-    width: 95%;
-    margin: auto;
-    background: white;
-    opacity: 90%;
-    border-radius: 12px;
-    margin-top: 100px;
-    height: 250px;
+        border: 1px solid;
+        width: 95%;
+        margin: auto;
+        background: white;
+        opacity: 90%;
+        border-radius: 12px;
+        margin-top: 100px;
+        height: 250px;
+    }
+
+    #genero.input-group {
+        display: inline-flex;
     }
 
     .texto-agradecimiento {
@@ -947,12 +951,13 @@ progress[value]::-webkit-progress-value {
         height: 420px;
     }
     .campo-option {
-                margin: auto;
+        margin: auto;
+        display: inline-flex;
     }
     .campo-option label {
         display: block;
         font-size: small;
-        margin: auto !important;
+
     }
     .redondear-derecha {
         border-radius: 4px;

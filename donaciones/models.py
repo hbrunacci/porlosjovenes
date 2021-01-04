@@ -14,10 +14,21 @@ from modelcluster.fields import ParentalKey
 from home.models import Noticia, Noticias, SponsorClass
 from instituciones.models import Instituciones, Institucion
 
-SOY_DONANTE = (('solo_si', 'Ya soy donante'),
-               ('solo_no', 'No Soy donante'),
-               ('ambos', 'Ambos'),
-               )
+SOY_DONANTE = (
+    ('solo_si', 'Ya soy donante'),
+    ('solo_no', 'No Soy donante'),
+    ('ambos', 'Ambos'),
+)
+
+TIPO_DONACION = (
+    ('0','Todas'),
+    ('1', 'Solo Mensual'),
+    ('2', 'Solo Esporáico'),
+    ('3', 'Solo Aumento'),
+    ('4', 'Mensual - Esporádico'),
+    ('5', 'Mensual - Aumento'),
+    ('6', 'Solo Mensual'),
+)
 
 class AgradecimientoPage(MetadataPageMixin, Page):
     template = 'donaciones/gracias.html'
@@ -80,6 +91,7 @@ class DonacionPage(MetadataPageMixin, Page):
 
 
     soy_donante = models.CharField('Tipo de Donantes', max_length=10, choices=SOY_DONANTE, default='ambos')
+    tipo_donacion = models.CharField('Tipo de Donacion', max_length=20, choices=TIPO_DONACION, default='0')
     incremento_automatico = models.IntegerField(default=40)
 
     agradecimiento_compromiso = models.ForeignKey(
