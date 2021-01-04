@@ -549,7 +549,6 @@ $(function () {
                 }
             }
             if (!$('#cbu-container').hasClass('hide-step')) {
-                console.log('cbu-number-check');
                 len_field = $('#cbu-number').val().length;
                 if (len_field < 22) {
                     $('#alerta_datoscbu').removeClass('hide-step');
@@ -558,14 +557,13 @@ $(function () {
                 {
                     $('#alerta_datoscbu').addClass('hide-step');
                     datos_pago['sin_completar_step3'] = 0
-
                 }
             }
             datos_pago['cardNumber'] = $('#credit-card').val();
             datos_pago['cbunumber'] = $('#cbu-number').val();
             datos_pago['pay_company'] = $('#logo-tarjeta').attr('value');
-            console.log($('#chkrecibo').prop('checked'))
             datos_pago['gatewayuserid'] = ''
+            datos_pago['cuit'] = $('#input-cuit').val();
             return datos_pago
         }
 

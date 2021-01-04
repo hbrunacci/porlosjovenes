@@ -136,7 +136,8 @@ def process_new_contact(contact_data={}):
     new_contact['OtherState'] = contact_data.get('estado')
     new_contact['OtherPostalCode'] = contact_data.get('cpostal')
     new_contact['Birthdate'] = contact_data.get('fnacimiento')
-    new_contact['Cuit_Cuil__c'] = generar_cuit(new_contact['N_mero_de_Documento__c'],new_contact['Sexo__c'])
+    #    new_contact['Cuit_Cuil__c'] = generar_cuit(new_contact['N_mero_de_Documento__c'],new_contact['Sexo__c'])
+    new_contact['Cuit_Cuil__c'] = contact_data.get('cuit')
     new_contact['RecordTypeId'] = get_record_type()
     new_contact['AccountId'] = get_account_id()
     return new_contact
