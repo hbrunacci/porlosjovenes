@@ -473,6 +473,7 @@ body {
    border: 2px solid #00464c !important;
    color: white !important;
 }
+
 .boton-selected#otrovalor {
     background: white !important;
     color: #00464c !important;
@@ -482,6 +483,11 @@ body {
 .boton-donacion:hover {
    background: white;
    color: #0097a5 !important;
+}
+
+
+.boton-selected:hover {
+    color: white !important;
 }
 
 #tipodonacion {
