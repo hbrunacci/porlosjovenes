@@ -607,7 +607,7 @@ body {
 .boton-paso#otrasformas {
     width: 70%;
     font-size: 12px;
-    padding: 2px 5px 18px 7px;
+    padding: 2px 7px 19px 7px;
     margin-bottom: 5px;
 }
 progress[value]::-webkit-progress-value {
