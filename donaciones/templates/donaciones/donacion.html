@@ -95,7 +95,7 @@
                         <div class="  container-fluid"     style="font-size: small;">
                             <div class="alerta falta_monto hide-step" id="alerta_falta_monto">Falta indicar qué monto querés donar. </div>
                             {% for forma in self.medios_pago.all %}
-                                <div class="col-md-12 botonera {% if forloop.counter0 > 0 %} hide-step {% endif %}" id="valores-{{ forma.nombre_medio }}"><a href="#" class="boton-donacion valor" value="{{ forma.monto_1 }}" id="valor-{{ forma.nombre_medio }}-1" > {{ forma.get_currency_symbol }} {{ forma.monto_1 }}</a>
+                                <div class="col-md-12 botonera {% if forloop.counter0 > 0 %} hide-step {% endif %}" id="valores-{{ forma.nombre_medio }}"><a href="" class="boton-donacion valor" value="{{ forma.monto_1 }}" id="valor-{{ forma.nombre_medio }}-1" > {{ forma.get_currency_symbol }} {{ forma.monto_1 }}</a>
                                     <a href="#" class="boton-donacion valor" value="{{ forma.monto_2 }}" id="valor-{{ forma.nombre_medio }}-2" > {{ forma.get_currency_symbol }} {{ forma.monto_2 }}</a>
                                     <a href="#" class="boton-donacion valor" value="{{ forma.monto_3 }}" id="valor-{{ forma.nombre_medio }}-3" > {{ forma.get_currency_symbol }} {{ forma.monto_3 }}</a>
                                     <a href="#" class="boton-donacion valor" value="{{ forma.monto_4 }}" id="valor-{{ forma.nombre_medio }}-4" > {{ forma.get_currency_symbol }} {{ forma.monto_4 }}</a>
@@ -119,7 +119,7 @@
                     </div>
                     <div class="botonera-pasos">
                         <div class="col-md-12">
-                            <a href="#" class="boton-paso" id='to_2' style="width: 30%" >SIGUIENTE</a>
+                            <a href="" class="boton-paso" id='to_2' style="width: 30%" >SIGUIENTE</a>
                         </div>
                     </div>
                     <div class="footer-paso">
@@ -265,8 +265,8 @@
 
                     <div class="botonera-pasos" style="margin: 16px 0px">
                         <div class="col-md-12">
-                            <a href="#" class="boton-paso" id='back_1' style="width: 30%">VOLVER</a>
-                            <a href="#" class="boton-paso" id='to_3' style="width: 30%" >SIGUIENTE</a>
+                            <a href="" class="boton-paso" id='back_1' style="width: 30%">VOLVER</a>
+                            <a href="" class="boton-paso" id='to_3' style="width: 30%" >SIGUIENTE</a>
                         </div>
                     </div>
                     <div class="footer-paso"  style="height: 30px; margin: 12px 0px;margin-top: 40px;">
@@ -341,13 +341,13 @@
                     <div class="botonera-pasos">
                         <div class="col-md-12" style="margin: 25px 0;">
                             <div class="loader" style="display: none"></div>
-                            <a href="#" class="boton-paso" id='back_2' style="width: 32%" >VOLVER</a>
+                            <a href="" class="boton-paso" id='back_2' style="width: 32%" >VOLVER</a>
                             <div class='paypal-container hide-step'
                                  id="paypal-container"
                                  style = "height: 40px; width: 100px">
                                 <div id='paypal-button'> </div>
                             </div>
-                            <a  href="#" class="boton-paso" id='to_finish' style="width: 40%">CONFIRMAR</a>
+                            <a  href="" class="boton-paso" id='to_finish' style="width: 40%">CONFIRMAR</a>
                         </div>
                     </div>
                     <div class="footer-paso">
