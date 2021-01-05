@@ -151,22 +151,21 @@ def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso = dict()
     frecuencia = get_frecuencia(compromise_data.get('tipo_donante'))
     fecha_fin = None
-    if frecuencia == 'Esporádica':
-        fecha_compromiso = datetime.today().date().__str__()
+    fecha_compromiso = datetime.today().date().__str__()
+
+    if get_forma_de_pago(compromise_data.get('forma_pago')) == 'fpago-debito':
         month_actual = datetime.today().today().month + 1
         new_year = datetime.today().today().year + (month_actual // 12)
         month_actual = month_actual % 12
         nueva_fecha = F'01/{month_actual}/{new_year}'
         new_fecha = datetime.strptime(nueva_fecha, '%d/%m/%Y')
-
         fecha_primer_cobranza = new_fecha.date().__str__()
-        #fecha_fin = datetime.today().date().__str__()
     else:
-        fecha_compromiso = datetime.today().date().__str__()
-        if get_forma_de_pago(compromise_data.get('forma_pago')) == 'fpago-debito':
+        if frecuencia == 'Esporádica':
             fecha_primer_cobranza = datetime.today().date().__str__()
         else:
             fecha_primer_cobranza = datetime.today().date().replace(day=1).__str__()
+
     compromiso['Monto_en_pesos__c'] = compromise_data.get('monto_donacion')
     compromiso['Frecuencia__c'] = frecuencia
     compromiso['Estado__c'] = 'Pendiente' if is_mp(compromise_data.get('forma_pago')) else 'Activo'
