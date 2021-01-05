@@ -42,12 +42,11 @@ class AgradecimientoPage(MetadataPageMixin, Page):
         on_delete=models.SET_NULL,
     )
 
-    encabezado_agradecimiento= models.CharField('Encabezado agradecimiento',
-                                                            max_length=70,
+    encabezado_agradecimiento = RichTextField(null=False, blank=False,
                                                             default="¡GRACIAS por tu colaboración!")
-    texto_agradecimiento= models.CharField('Texto agradecimiento', max_length=100,
-                                                       default='Es gracias a personas como vos que podemos '
-                                                               'acompañar a miles de jóvenes en todo el país.')
+    texto_agradecimiento = RichTextField(null=False, blank=False,
+                                         default='Es gracias a personas como vos que podemos '
+                                                 'acompañar a miles de jóvenes en todo el país.')
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('imagen_encabezado',
