@@ -449,7 +449,7 @@ body {
 
 .boton-paso:hover {
    background: white;
-   color: #0097a5;
+   color: #0097a5 !important;
 }
 .boton-donacion {
     margin: 8px 0px 0px 7px;
@@ -509,6 +509,7 @@ body {
 .botonera {
     text-align: center;
     margin-bottom: 12px;
+    margin-top: 6px;
 }
 
 .otro-monto-add {
