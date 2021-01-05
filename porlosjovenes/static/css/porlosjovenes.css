@@ -821,22 +821,28 @@ progress[value]::-webkit-progress-value {
 .encabezado-agradecimiento {
     text-align: center;
     font-size: 22px;
-    padding: 50px 20px 10px 20px;
+    padding: 20px;
+    padding-top: 30px;
     font-weight: 300;
     color: #1190a2;
 }
 
 .texto-agradecimiento {
     text-align: center;
-    padding: 10px 110px;
+    padding: 0px 50px;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.7;
 }
 
+.wrapper_background {
+    margin-bottom: 10px;
+    height: 530px;
+}
+
 .marco-agradecimiento {
     border: 1px solid;
-    width: 33%;
+    width: 400px;
     margin: auto;
     background: white;
     opacity: 90%;
@@ -845,6 +851,17 @@ progress[value]::-webkit-progress-value {
     height: 250px;
 }
 
+.encabezado-agradecimiento .rich-text p {
+    font-size: 30px;
+    margin: -15px;
+}
+
+@media only screen and (max-width: 640px) {
+
+    .marco-agradecimiento {
+        width: 400px;
+    }
+}
 
 
 
@@ -861,14 +878,17 @@ progress[value]::-webkit-progress-value {
     }
 
     .marco-agradecimiento {
-        border: 1px solid;
-        width: 95%;
+        border: 0px solid;
+        width: 100%;
         margin: auto;
         background: white;
-        opacity: 90%;
-        border-radius: 12px;
-        margin-top: 100px;
+        opacity: 100%;
+        border-radius: 0px;
         height: 250px;
+    }
+    .wrapper_background {
+        margin-bottom: 10px;
+        height: auto;
     }
 
     #genero.input-group {
@@ -877,8 +897,8 @@ progress[value]::-webkit-progress-value {
 
     .texto-agradecimiento {
     text-align: center;
-    padding: 25px 50px;
-    font-size: 14px;
+    padding: 10px 50px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.7;
     }
@@ -994,6 +1014,8 @@ progress[value]::-webkit-progress-value {
     }
 
 }
+
+
 
 
 .hide-step {

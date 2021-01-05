@@ -7,15 +7,18 @@
 {% block content %}
 
  {% image self.imagen_encabezado original as img_principal %}
-    <div id='fondo_pantalla' class="container" style="width: 100%; display: block;
+    <div id='fondo_pantalla' class="container " style="width: 100%; display: block;
             background: transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
-        <div class="row" style="margin-bottom: 10px; height: 530px;">
+        <div class="row wrapper_background">
+            <div id='encabezado_responsive' class="container" style="display: none;
+                background: transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
+            </div>
             <div class="marco-agradecimiento" id="gracias_fidelizados_modal" >
                 <div class="encabezado-agradecimiento">
-                    {{ self.encabezado_agradecimiento}}
+                    {{ self.encabezado_agradecimiento|richtext}}
                 </div>
                 <div class="texto-agradecimiento">
-                    {{ self.texto_agradecimiento }}
+                    {{ self.texto_agradecimiento|richtext }}
                 </div>
             </div>
 
