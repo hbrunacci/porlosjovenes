@@ -153,8 +153,10 @@ $(function () {
         });
         paso1.click(function (event) {
             ///console.log(event.target.id);
+
             boton = event.target;
             if (hasClass(boton, 'valor')) {
+                event.preventDefault();
                 $('.valor').each(function () {
                     $(this).removeClass('boton-selected');
                 })
@@ -338,7 +340,6 @@ $(function () {
             if (event.target.checked) {
                 $('#recibo-nota').removeClass('hide-step')
                 $('#campo-cuit').removeClass('hide-step')
-                //$('#input-cuit').attr('value',generarcuit())
                 datos_donacion['recibo'] = 'Sí';
             }
                 else {
@@ -529,7 +530,6 @@ $(function () {
             })
             datos_persona['sin_completar'] = sin_completar
             console.log(datos_persona);
-            console.log(generarcuit());
             return datos_persona;
         }
         if (paso === 'paso3') {
