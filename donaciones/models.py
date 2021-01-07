@@ -27,7 +27,6 @@ TIPO_DONACION = (
     ('3', 'Solo Aumento'),
     ('4', 'Mensual - Esporádico'),
     ('5', 'Mensual - Aumento'),
-    ('6', 'Solo Mensual'),
 )
 
 class AgradecimientoPage(MetadataPageMixin, Page):
@@ -113,6 +112,7 @@ class DonacionPage(MetadataPageMixin, Page):
         ImageChooserPanel('imagen_encabezado',
                           heading='Imagen Superior'),
         FieldPanel('soy_donante'),
+        FieldPanel('tipo_donacion'),
         FieldPanel('incremento_automatico'),
         FieldPanel('agradecimiento_compromiso'),
         FieldPanel('agradecimiento_aumento'),
@@ -139,6 +139,22 @@ class DonacionPage(MetadataPageMixin, Page):
     def get_meta_image(self):
         image = self.search_image
         return image
+
+    def show_mensual(self):
+        if self.tipo_donacion in ['0', '1', '4', '5']:
+            return True
+        return False
+
+    def show_esporadico(self):
+        if self.tipo_donacion in ['0', '2', '4']:
+            return True
+        return False
+
+    def show_aumento(self):
+        if self.tipo_donacion in ['0', '3', '5']:
+            return True
+        return False
+
 
 class Medios_Pago(Orderable):
     MONEDAS = (('pesos', 'PESOS'), ('dolares', 'DOLARES'))

@@ -46,18 +46,22 @@
                         <div class="donacion-titulo" style="padding-right: 6px; padding-left: 6px!important">QUIERO DONAR</div>
                         <div class="alerta falta_frecuencia hide-step" id="alerta_falta_frecuencia">Falta indicar la frecuencia           </div>
                             <div class="input-group"  id="tipodonacion">
-                                {% if self.tipo_donacion == '0' %}
+                                {% if self.show_mensual %}
                                 <label class="radio-inline" >
                                     <input type="radio" name="optdonacion" id="dona-mensual" >Mensual
                                 </label>
                                 {% endif %}
+                                {% if self.show_esporadico %}
                                 <label class="radio-inline">
                                     <input type="radio" name="optdonacion" id="dona-unica">Por única vez
                                 </label>
+                                {% endif %}
+                                {% if self.show_aumento %}
                                 <label class="radio-inline" style="{% if self.soy_donante == 'solo_no' %} display:None {% endif %}
                                     ">
                                     <input type="radio" name="optdonacion" id="dona-aumento">Aumentar mi donación
                                 </label>
+                                {% endif %}
                             </div>
                             <div class="nota-aumento">
                                 <label for="aumenta-auto">
