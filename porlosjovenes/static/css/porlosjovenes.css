@@ -875,7 +875,15 @@ progress[value]::-webkit-progress-value {
 
     .modal-content {
         font-size: 12px;
-        width: 390px;
+        width: 328px;
+        min-height: 370px;
+    }
+
+    modal-body {
+    position: relative;
+    padding: 15px;
+    height: 222px;
+    font-size: 11px;
     }
 
     .footer-taxes p {
@@ -994,7 +1002,6 @@ progress[value]::-webkit-progress-value {
     .campo-option label {
         display: block;
         font-size: small;
-
     }
     .redondear-derecha {
         border-radius: 4px;
@@ -1005,12 +1012,11 @@ progress[value]::-webkit-progress-value {
     #nombre {
         margin-right: 15px;
     }
-
     #apellido {
         margin-right: 14px;
     }
     #cpostal {
-       right: 0px;
+       right: 0;
     }
     #encabezado_responsive {
             width: 100%;
