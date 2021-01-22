@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: 'galano';
-    src:url("https://porlosjovenes.org/static/fonts/galanogrotesque.otf") format("truetype");
+    src:url("../fonts/galanogrotesque.otf") format("truetype");
     font-display: swap;
     font-weight: normal;
     font-style: normal;
