@@ -137,7 +137,8 @@ def process_new_contact(contact_data={}):
     new_contact['OtherPostalCode'] = contact_data.get('cpostal')
     new_contact['Birthdate'] = contact_data.get('fnacimiento')
     #    new_contact['Cuit_Cuil__c'] = generar_cuit(new_contact['N_mero_de_Documento__c'],new_contact['Sexo__c'])
-    new_contact['Cuit_Cuil__c'] = contact_data.get('cuit')
+    if not contact_data.get('cuit') == '':
+        new_contact['Cuit_Cuil__c'] = contact_data.get('cuit')
     new_contact['RecordTypeId'] = get_record_type()
     new_contact['AccountId'] = get_account_id()
     return new_contact
@@ -243,6 +244,7 @@ def register_transaction(form_fields=None):
         sf_con = connect()
         print('normalize')
         form_data = normalize_form_data(form_fields)
+        print(form_data)
         print('contact')
         transaccion['contact_id'] = get_or_create_contact(sf_con, form_data.get('contact_info'))    ## verifico si el donante existe, sino lo creo
         print('compromiso')
