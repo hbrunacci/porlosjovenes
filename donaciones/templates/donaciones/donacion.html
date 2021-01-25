@@ -18,18 +18,18 @@
                     <div class="soy-donante ">
                         <div class=" donacion-seccion container-fluid" style=" padding: 10px;">
                             <div id="tipodonante">
-                              <div class="col-xs-5" style="padding-left: 11px;">YA SOY DONANTE</div>
-                                  <div class="alerta falta_tdonante hide-step" id="alerta_falta_tdonante">Decinos si ya sos donante.</div>
-
+                                <div class="col-xs-6" style="padding-left: 2px;">YA SOY DONANTE
+                                    <div class="alerta falta_tdonante hide-step" id="alerta_falta_tdonante">Decinos si ya sos donante.</div>
+                                </div>
                                     {% if self.soy_donante == 'ambos' %}
-                                    <label class="col-md-3 radio-inline" >
+                                    <label class="col-md-2 radio-inline" >
                                         <input type="radio" name="optdonante" id="sidonante" >Si
                                     </label>
-                                    <label class="col-md-3 radio-inline" >
+                                    <label class="col-md-2 radio-inline" >
                                         <input type="radio" name="optdonante" id="nodonante" >No
                                     </label>
                                     {% elif self.soy_donante == 'solo_no' %}
-                                    <label class="col-md-3 radio-inline" >
+                                    <label class="col-md-2 radio-inline" >
                                         <input type="radio" name="optdonante" id="nodonante" >No
                                     </label>
                                     {% elif self.soy_donante == 'solo_si' %}
@@ -37,7 +37,6 @@
                                         <input type="radio" name="optdonante" id="sidonante" >Si
                                     </label>
                                     {% endif %}
-
                             </div>
                         </div>
                     </div>
@@ -123,7 +122,7 @@
                     </div>
                     <div class="botonera-pasos">
                         <div class="col-md-12">
-                            <a href="#" class="boton-paso" id='to_2' style="width: 30%" >SIGUIENTE</a>
+                            <a href="#" class="boton-paso" id='to_2' style="width: 33%" >SIGUIENTE</a>
                         </div>
                     </div>
                     <div class="footer-paso">
@@ -270,7 +269,7 @@
                     <div class="botonera-pasos" style="margin: 16px 0px">
                         <div class="col-md-12">
                             <a href="#" class="boton-paso" id='back_1' style="width: 30%">VOLVER</a>
-                            <a href="#" class="boton-paso" id='to_3' style="width: 30%" >SIGUIENTE</a>
+                            <a href="#" class="boton-paso" id='to_3' style="width: 33%" >SIGUIENTE</a>
                         </div>
                     </div>
                     <div class="footer-paso"  style="height: 30px; margin: 12px 0px;margin-top: 40px;">

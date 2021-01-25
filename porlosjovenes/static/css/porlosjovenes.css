@@ -774,8 +774,8 @@ progress[value]::-webkit-progress-value {
 }
 
 .falta_tdonante {
-    top: 16px;
-    left: -157px;
+    top: -7px;
+    left: -1px;
 }
 .falta_frecuencia {
     top: -12px;
@@ -835,7 +835,7 @@ progress[value]::-webkit-progress-value {
 
 .texto-agradecimiento {
     text-align: center;
-    padding: 0px 50px;
+    padding: 0 50px;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.7;
@@ -923,7 +923,7 @@ progress[value]::-webkit-progress-value {
         border-radius: 0;
         align-content: end;
         min-height: 470px;
-        background: rgb(255, 255, 255, 1);
+        background: rgb(255, 255, 255);
         margin-bottom: 0;
         margin-top: 0;
         margin-right: 0;
@@ -958,13 +958,13 @@ progress[value]::-webkit-progress-value {
         padding: 3px 7px 29px 7px;
     }
     .boton-paso {
-            padding: 1px 7px 27px 7px;
+            padding: 1px 7px 25px 7px;
     }
 
     .boton-paso#otrasformas {
-        width: 70%;
+        width: 85%;
         font-size: 12px;
-        padding: 3px 5px 18px 5px;
+        padding: 1px 5px 18px 5px;
         margin-bottom: 5px;
     }
 
@@ -1025,7 +1025,16 @@ progress[value]::-webkit-progress-value {
             height: 160px;
     }
 
+    .boton-paso.mercadopago {
+        color: #0097a5 !important;
+        font-size: 14px;
+        padding: 4px 7px 23px 7px;
+    }
+
 }
+
+
+
 
 
 
