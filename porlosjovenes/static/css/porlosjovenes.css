@@ -578,9 +578,9 @@ body {
 }
 
 .logo-fpago-finish {
-    width: 40%;
+    width: 35%;
     position: relative;
-    top: -3px;
+    top: -1px;
     margin-left: 5px;
 }
 
@@ -1027,7 +1027,7 @@ progress[value]::-webkit-progress-value {
 
     .boton-paso.mercadopago {
         color: #0097a5 !important;
-        font-size: 14px;
+        font-size: 12px;
         padding: 4px 7px 23px 7px;
     }
 
