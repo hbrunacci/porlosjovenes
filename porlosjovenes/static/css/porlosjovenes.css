@@ -874,8 +874,8 @@ progress[value]::-webkit-progress-value {
 @media only screen and (max-width: 450px) {
 
     .modal-content {
-        font-size: 12px;
-        width: 328px;
+        font-size: 10px;
+        width: 100%;
         min-height: 370px;
     }
 
