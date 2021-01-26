@@ -31,9 +31,12 @@ $(function () {
         //var datos_donacion = {};
         datos_donacion['recibo'] = 'No';
         datos_donacion['aumenta'] = '0';
-        paso1.removeClass('hide-step');
-        paso2.addClass('hide-step');
-        paso3.addClass('hide-step');
+        //paso1.removeClass('hide-step');
+        //paso2.addClass('hide-step');
+        //paso3.addClass('hide-step');
+        paso1.slideDown();
+        paso2.slideUp();
+        paso3.slideUp();
         set_requeridos();
         $('#acepta-condicion').click(function (event) {
             if  ($('#acepta-condicion').prop('checked')) {
@@ -57,7 +60,6 @@ $(function () {
                 $('#alerta_falta_tdonante').removeClass('hide-step');
             } else {
                 datos_donacion['tipo_donante'] = tipo_donante
-
             }
             if (tipo_donacion === '0'){
                 completo = false;
@@ -65,7 +67,6 @@ $(function () {
             } else {
                 datos_donacion['tipo_donante'] = tipo_donacion
             }
-
             if (forma_pago === '0'){
                 completo = false;
                 $('#alerta_falta_fpago').removeClass('hide-step');
@@ -80,8 +81,11 @@ $(function () {
             }
 
             if (completo === true) {
-                $('#paso1').addClass('hide-step');
-                $('#paso2').removeClass('hide-step');
+                $('#paso1').slideUp( "slow", function() {
+                    $('#paso2').slideDown("slow");
+                });
+                //$('#paso1').addClass('hide-step');
+                //$('#paso2').removeClass('hide-step');
             }
 
         });
@@ -97,8 +101,9 @@ $(function () {
 
             if (completo === true) {
                 $.extend(true,datos_donacion,datos_paso);
-                $('#paso2').addClass('hide-step');
-                $('#paso3').removeClass('hide-step');
+                $('#paso2').slideUp( "slow", function() {
+                    $('#paso3').slideDown("slow");
+                });
             }
         });
         $("#to_finish").click(function () {
@@ -144,16 +149,20 @@ $(function () {
             }
         });
         $("#back_1").click(function () {
-            $('#paso1').removeClass('hide-step');
-            $('#paso2').addClass('hide-step');
+            $('#paso2').slideUp( "slow", function() {
+                    $('#paso1').slideDown("slow");
+            });
+
+
         });
         $("#back_2").click(function () {
-           $('#paso2').removeClass('hide-step');
-           $('#paso3').addClass('hide-step');
+           $('#paso3').slideUp( "slow", function() {
+               $('#paso2').slideDown("slow");
+           });
         });
+
         paso1.click(function (event) {
             ///console.log(event.target.id);
-
             boton = event.target;
             if (hasClass(boton, 'valor')) {
                 event.preventDefault();

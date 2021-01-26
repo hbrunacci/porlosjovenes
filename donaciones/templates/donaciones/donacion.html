@@ -14,7 +14,7 @@
                 background: transparent url('{{ img_principal.url }}') center center no-repeat; background-size: cover;">
             </div>
             <div class="formulario-marco pull-right" id="marco-formulario">
-                <div class="paso-uno"  id="paso1">
+                <div class="container-fluid paso-uno"  id="paso1" style="display: none">
                     <div class="soy-donante ">
                         <div class=" donacion-seccion container-fluid" style=" padding: 10px;">
                             <div id="tipodonante">
@@ -131,7 +131,7 @@
                                 <div class="progress-bar progress-bar-pjl progress-bar-striped active" style="width:33%;"></div>
                             </div>
                             <div class="col-md-12" style="text-align: center;">
-                                <button type="button" class="boton-paso" id="otrasformas" data-toggle="modal" data-target="#otras_formas_modal">
+                                <button type="button" style="margin: 0px;" class="boton-paso" id="otrasformas" data-toggle="modal" data-target="#otras_formas_modal">
                                   OTRAS FORMAS DE COLABORAR
                                 </button>
 
@@ -188,7 +188,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="paso-dos hide-step" id="paso2">
+                <div class="container-fluid paso-dos" id="paso2"  style="display: none">
                     <div class="datos-persona container-fluid grupo-campos">
                         <div class="col-sm-12 contenedor-campo" style="text-align: left">
                             TUS DATOS DE CONTACTO
@@ -221,7 +221,7 @@
                                 <label class="radio-inline campo ">
                                     <input id="femenino" type="radio" name="optradio" >Femenino
                                 </label>
-                                <label class="radio-inline campo" style="margin-left: 35px;">
+                                <label class="radio-inline campo" style="margin-left: 30px;">
                                     <input id="masculino" type="radio" name="optradio">Masculino
                                 </label>
                             </div>
@@ -280,7 +280,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="paso-tres hide-step" id="paso3">
+                <div class="container-fluid paso-tres" id="paso3"  style="display: none">
                     <div class="datos-cobro" id="datos-cobro" >
                         <div class=" donacion-seccion container-fluid">
                             <div class="container-fluid contenedor-campo">

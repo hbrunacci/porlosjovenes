@@ -56,6 +56,24 @@ button, html, input, select, textarea {
   background-color: rgba(0,0,0,0.1);
 }
 
+.paso-dos {
+    position: absolute;
+    z-index: 4;
+    margin-right: 5%;
+}
+
+.paso-tres {
+    position: absolute;
+    z-index: 8;
+    margin-right: 5%;
+}
+
+.paso-uno {
+    position: absolute;
+    z-index: 12;
+    margin-right: 5%;
+}
+
 .blog-list li {
   list-style: none;
 }
@@ -363,7 +381,7 @@ body {
     border-color: azure;
     border-radius: 1%;
     align-content: end;
-    min-height: 470px;
+    min-height: 500px;
     background: rgb(255, 255, 255, 0.7);
     margin-bottom: 15px;
     margin-top: 10px;
@@ -509,6 +527,7 @@ body {
     margin: 4px 0px;
     font-weight: 400;
     float: none;
+    padding-left: 5px;
 }
 
 .botonera {
@@ -586,7 +605,7 @@ body {
 
 .footer-paso {
     text-align: center;
-    margin-top: 16px;
+    margin-top: 4px;
 }
 
 #tipodonante {
@@ -964,7 +983,7 @@ progress[value]::-webkit-progress-value {
     .boton-paso#otrasformas {
         width: 85%;
         font-size: 12px;
-        padding: 1px 5px 18px 5px;
+        padding: 0px 5px 20px 5px;
         margin-bottom: 5px;
     }
 
