@@ -94,7 +94,7 @@ $(function () {
             $('#alerta_datosdonante').addClass('hide-step');
             var datos_paso = check_campos_completos('paso2')
             if (datos_paso['sin_completar'] > 0) {
-                console.log('incompleto')
+                //console.log('incompleto')
                 $('#alerta_datosdonante').removeClass('hide-step');
                 completo = false;
             }
@@ -111,7 +111,7 @@ $(function () {
             var datos_paso = check_campos_completos('paso3')
             $.extend(true,datos_donacion,datos_paso);
             if (datos_paso['sin_completar_step3'] > 0) {
-                console.log('incompleto')
+                //console.log('incompleto')
                 completo = false;
             }
             if (completo===true) {
@@ -122,21 +122,21 @@ $(function () {
                     data: get_form_data(),  // data to submit
                     success: function (data, status, xhr) {
                          $(".loader").fadeOut("slow");
-                         console.log(data);
+                         //console.log(data);
                          if (datos_donacion['forma_pago'] === 'fpago-mercadopago') {
-                             console.log(data['mp_response']['response']['init_point']);
+                             //console.log(data['mp_response']['response']['init_point']);
                              window.location.href = (data['mp_response']['response']['init_point']);
-                         } else if ($('#dona-aumento').prop('checked') === 'true') {
-                             console.log('agradece aumento');
+                         } else if (datos_donacion['tipo_donante'] === 'dona-aumento') {
+                             //console.log('agradece aumento');
                             window.location.href = datos_donacion['web_agradecimiento_aumento'];
                          } else {
-                            console.log('agradece donacion');
+                            //console.log('agradece donacion');
                             window.location.href =datos_donacion['web_agradecimiento_compromiso'];
                          }
 
                     },
                     error: function (jqXhr, textStatus, errorMessage) {
-                        console.log('Error procesando')
+                        //console.log('Error procesando')
                         $(".loader").fadeOut("slow");
 
                     }
@@ -162,7 +162,7 @@ $(function () {
         });
 
         paso1.click(function (event) {
-            ///console.log(event.target.id);
+            /////console.log(event.target.id);
             boton = event.target;
             if (hasClass(boton, 'valor')) {
                 event.preventDefault();
@@ -174,7 +174,7 @@ $(function () {
         });
         paso2.keyup(function (event) {
             destino = event.target;
-            console.log(destino);
+            //console.log(destino);
             if (destino.name ==='documento') {
                 if (destino.value.length > 8) {
                     destino.value = destino.value.slice(0,8);
@@ -338,7 +338,7 @@ $(function () {
             }
         });
         function get_form_data() {
-            console.log(datos_donacion)
+            //console.log(datos_donacion)
             return datos_donacion
         }
         function isEmail(email) {
@@ -358,7 +358,7 @@ $(function () {
             }
         })
         $("#aumenta-auto").change(function (event) {
-            console.log(event.target.value);
+            //console.log(event.target.value);
             if (event.target.checked) {
                 datos_donacion['aumenta'] = event.target.value;
             } else {
@@ -400,8 +400,8 @@ $(function () {
         onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
                     // This function shows a transaction success message to your buyer.
-                    console.log(details);
-                    console.log(details.payer.payer_id);
+                    //console.log(details);
+                    //console.log(details.payer.payer_id);
                     user_paypal = details.payer.payer_id;
                     datos_donacion['gatewayuserid'] = user_paypal;
                     $("#to_finish").click();
@@ -538,14 +538,14 @@ $(function () {
                 }
             })
             datos_persona['sin_completar'] = sin_completar
-            console.log(datos_persona);
+            //console.log(datos_persona);
             return datos_persona;
         }
         if (paso === 'paso3') {
             var datos_pago = {}
             datos_pago['sin_completar_step3'] = 0
             if (!$('#cc-container').hasClass('hide-step')) {
-                console.log('cc-number-check');
+                //console.log('cc-number-check');
                 len_field = $('#credit-card').val().length;
                 if (len_field < 16) {
                     $('#alerta_datostarjeta').removeClass('hide-step');
@@ -630,11 +630,11 @@ $(function () {
         } else {
             tipo = 27;
         }
-        console.log(tipo);
+        //console.log(tipo);
         numero = parseInt(datos_donacion['documento']);
-        console.log(numero);
+        //console.log(numero);
         verificador = obtenerVerificador(tipo,numero);
-        console.log(verificador);
+        //console.log(verificador);
         cuit = tipo*1000000000 + (numero*10) + verificador;
         return cuit;
     }
@@ -642,7 +642,7 @@ $(function () {
         numero = tipo * 100000000 + numero;
         var semillas = new Array(2, 3, 4, 5, 6, 7, 2, 3, 4, 5);
         var suma = 0;
-        console.log(numero);
+        //console.log(numero);
         for(i = 0; i <= 9; ++i)
         {
             pila = Redondear(numero, i);
