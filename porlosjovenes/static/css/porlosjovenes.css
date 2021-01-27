@@ -271,6 +271,11 @@ body {
   right: 10px;
 }
 
+.checkbox-inline+.checkbox-inline, .radio-inline+.radio-inline {
+    margin-top: 0;
+    margin-left: 5px;
+}
+
 @media only screen and (max-width:768px) {
     .carousel-control {
         display: none;
