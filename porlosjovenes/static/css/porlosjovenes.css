@@ -918,14 +918,13 @@ progress[value]::-webkit-progress-value {
         width: 100%;
     }
 
-
     .modal-content {
         font-size: 10px;
         width: 100%;
         min-height: 370px;
     }
 
-    modal-body {
+    .modal-body {
     position: relative;
     padding: 15px;
     height: 222px;
