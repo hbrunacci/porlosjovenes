@@ -33,7 +33,6 @@ demo1 = {'tipo_donante': 'dona-unica',
          'cbunumber': '1212312312312312312312',
          'gatewayuserid': ''}
 
-
 demo_compromiso = 'Id_contacto__c', '0032f00000JYkbq'
 
 demo_compromise_data_mensual = {
@@ -87,6 +86,7 @@ def connect():
         return None
     return sf
 
+
 def search_contact(sf=None, field=None, id=None):
     if sf:
         try:
@@ -95,6 +95,7 @@ def search_contact(sf=None, field=None, id=None):
             print('Error en la busqueda')
             return None
         return result
+
 
 def is_a_contact(sf_con=None, contact_data=None):
     try:
@@ -145,7 +146,7 @@ def process_new_contact(contact_data={}):
 
 
 def is_mp(fpago):
-    return 'fpago-mercadopago' == get_forma_de_pago(fpago)
+    return 'fpago-mercadopago' == fpago
 
 
 def process_new_compromise(compromise_data=None, contact_id=None):
@@ -169,7 +170,8 @@ def process_new_compromise(compromise_data=None, contact_id=None):
 
     compromiso['Monto_en_pesos__c'] = compromise_data.get('monto_donacion')
     compromiso['Frecuencia__c'] = frecuencia
-    compromiso['Estado__c'] = 'Pendiente' if is_mp(compromise_data.get('forma_pago')) else 'Activo'
+    #compromiso['Estado__c'] = 'Pendiente' if is_mp(compromise_data.get('forma_pago')) else 'Activo'
+    compromiso['Estado__c'] = 'Activo'
     compromiso['Fecha_de_compromiso__c'] = fecha_compromiso
     compromiso['Fecha_para_realizar_primer_cobranza__c'] = fecha_primer_cobranza
     compromiso['Fecha_de_fin_de_compromiso__c'] = fecha_fin
@@ -197,14 +199,16 @@ def get_forma_de_pago(pay_type):
     response = types_dict.get(pay_type)
     return response
 
+
 def get_frecuencia(frecuency):
-    types_dict ={
-        'dona-unica':'Esporádica',
-        'dona-mensual':'Mensual',
-        'dona-aumento':'Mensual'
+    types_dict = {
+        'dona-unica': 'Esporádica',
+        'dona-mensual': 'Mensual',
+        'dona-aumento': 'Mensual'
         }
     response = types_dict.get(frecuency)
     return response
+
 
 def get_cc_company_value(cc_company_explicit):
     cc_companies = {
@@ -219,21 +223,26 @@ def get_cc_company_value(cc_company_explicit):
 
 ## recibo el dato del formulario
 
+
 def generate_contact(data=None):
     contact = {}
     return contact
+
 
 def update_compromise(data=None):
     response = False
     return response
 
+
 def generate_new_compromise(data=None):
     response = False
     return response
 
+
 def get_record_type():
     record_type_id = '01261000000ir1SAAQ'
     return record_type_id
+
 
 def register_transaction(form_fields=None):
     transaccion = dict()

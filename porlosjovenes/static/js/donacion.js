@@ -124,13 +124,13 @@ $(function () {
                          $(".loader").fadeOut("slow");
                          //console.log(data);
                          if (datos_donacion['forma_pago'] === 'fpago-mercadopago') {
-                             //console.log(data['mp_response']['response']['init_point']);
+                             console.log(data['mp_response']['response']['init_point']);
                              window.location.href = (data['mp_response']['response']['init_point']);
                          } else if (datos_donacion['tipo_donante'] === 'dona-aumento') {
-                             //console.log('agradece aumento');
+                             console.log('agradece aumento');
                             window.location.href = datos_donacion['web_agradecimiento_aumento'];
                          } else {
-                            //console.log('agradece donacion');
+                            console.log('agradece donacion');
                             window.location.href =datos_donacion['web_agradecimiento_compromiso'];
                          }
 
@@ -240,18 +240,24 @@ $(function () {
             if (event.target.checked) {
                 $("#dona-aumento").parent().removeClass("hide-step");
             }
-            if (('#fpago-paypal').checked) {
+            if ($('#fpago-paypal').checked) {
                 ocultar_aumento_donacion();
                 ocultar_donacion_mensual();
+            }
+            if ($('#fpago-mercadopago').checked) {
+                ocultar_aumento_donacion();
             }
         })
         $("#nodonante").change(function (event) {
             if (event.target.checked) {
                 ocultar_aumento_donacion();
             }
-            if (('#fpago-paypal').checked) {
+            if ($('#fpago-paypal').checked) {
                 ocultar_aumento_donacion();
                 ocultar_donacion_mensual();
+            }
+            if ($('#fpago-mercadopago').checked) {
+                ocultar_aumento_donacion();
             }
         })
         //tipo-donacion
@@ -603,26 +609,21 @@ $(function () {
     function ocultar_aumento_donacion() {
         var dona_aumento = $("#dona-aumento");
         dona_aumento.parent().addClass("hide-step")
-        $('#dona-mensual').prop('checked', true);
+        dona_aumento.prop('checked', false);
         campos_mensual();
     }
     function ocultar_donacion_mensual() {
-        $("#dona-mensual").parent().addClass("hide-step");
-        $('#dona-unica').prop('checked', true);
+        var dona_mensual = $("#dona-mensual")
+        dona_mensual.parent().addClass("hide-step");
+        dona_mensual.prop('checked', false);
         campos_unica();
     }
     function oculta_paypal() {
         $('#fpago-paypal').parent().addClass('hide-step');
-        $('#fpago-mensual').prop('checked',true);
     }
-
     function muestra_paypal() {
         $('#fpago-paypal').parent().removeClass('hide-step');
     }
-
-
-
-
     function generarcuit() {
         genero = datos_donacion['genero'];
         if (genero === 'masculino') {

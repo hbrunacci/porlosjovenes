@@ -29,7 +29,7 @@ def create_item_mp(datos_donacion):
     preference = {
         "items": [
             {
-                "title": "Donacíon Por los Jovenes",
+                "title": "Donación Por los Jovenes",
                 "quantity": 1,
                 "currency_id": "ARS",
                 "unit_price": int(datos_donacion.get('monto_donacion'))
@@ -52,13 +52,32 @@ def create_item_mp(datos_donacion):
             ],
             "installments": 1,
         },
-        'back_urls': {'failure': datos_donacion.get('web_agradecimiento_aumento'),
-                      'pending': datos_donacion.get('web_agradecimiento_aumento'),
-                      'success': datos_donacion.get('web_agradecimiento_aumento'),
+        'back_urls': {'failure': get_url('failure', datos_donacion),
+                      'pending': get_url('pending', datos_donacion),
+                      'success': get_url('success', datos_donacion),
                       },
         "notification_url": "http://porlosjovenes.org/ipn"
     }
 
     response = mp.create_preference(preference)
     print(f'response_mp_item: {response}')
+    return response
+
+
+def get_url(status, datos_donacion):
+    frecuencia = get_frecuencia(datos_donacion.get('tipo_donante'))
+    if frecuencia == 'Aumento':
+        url = datos_donacion.get('web_agradecimiento_aumento')
+    else:
+        url = datos_donacion.get('web_agradecimiento_compromiso')
+    return url
+
+
+def get_frecuencia(frecuency):
+    types_dict = {
+        'dona-unica': 'Esporádica',
+        'dona-mensual': 'Mensual',
+        'dona-aumento': 'Aumento'
+        }
+    response = types_dict.get(frecuency)
     return response
