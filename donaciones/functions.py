@@ -170,8 +170,8 @@ def process_new_compromise(compromise_data=None, contact_id=None):
 
     compromiso['Monto_en_pesos__c'] = compromise_data.get('monto_donacion')
     compromiso['Frecuencia__c'] = frecuencia
-    #compromiso['Estado__c'] = 'Pendiente' if is_mp(compromise_data.get('forma_pago')) else 'Activo'
-    compromiso['Estado__c'] = 'Activo'
+    compromiso['Estado__c'] = 'Pendiente' if is_mp(compromise_data.get('forma_pago')) else 'Activo'
+    #compromiso['Estado__c'] = 'Activo'
     compromiso['Fecha_de_compromiso__c'] = fecha_compromiso
     compromiso['Fecha_para_realizar_primer_cobranza__c'] = fecha_primer_cobranza
     compromiso['Fecha_de_fin_de_compromiso__c'] = fecha_fin
@@ -318,13 +318,13 @@ def evaluate_compromises(compromises, data):
 def process_the_increase(sf_con, data):
     compromises = get_compromises(sf_con, data.get('Donante__c'))
     compromiso_actualizar = evaluate_compromises(compromises, data)
+    data['Frecuencia__c'] = 'Mensual'
     if compromiso_actualizar:
         print('Actualizar compromiso')
         if not compromiso_actualizar.get('Forma_de_Pago__c') == data.get('Forma_de_Pago__c'):
             data['Forma_de_pago_modificado_web__c'] = True
         if not compromiso_actualizar.get('Monto_en_pesos__c') == data.get('Monto_en_pesos__c'):
-            data['Monto_o_modificado__c'] = True
-        data['Frecuencia__c'] = 'Mensual'
+            data['Monto_modificado_web__c'] = True
         return compromiso_actualizar, data
     else:
         print('no tiene compromisos para actualizar, se crea una nueva')
