@@ -107,7 +107,7 @@ class notificacion(APIView):
         for key in data.keys():
             data[key] = data[key][0]
         print(data)
-        return Response('')
+        return HttpResponse('')
 
     def get(self, request):
         data = request.GET
@@ -115,5 +115,5 @@ class notificacion(APIView):
         for key in data.keys():
             data[key] = data[key][0]
         print(data)
-        return Response('')
+        return HttpResponse('')
 

@@ -56,7 +56,7 @@ def create_item_mp(datos_donacion):
                       'pending': get_url('pending', datos_donacion),
                       'success': get_url('success', datos_donacion),
                       },
-        "notification_url": "http://porlosjovenes.org/ipn"
+        "notification_url": "https://porlosjovenes.org/ipn"
     }
 
     response = mp.create_preference(preference)
