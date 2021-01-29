@@ -204,7 +204,7 @@ def get_frecuencia(frecuency):
     types_dict = {
         'dona-unica': 'Esporádica',
         'dona-mensual': 'Mensual',
-        'dona-aumento': 'Mensual'
+        'dona-aumento': 'Aumento'
         }
     response = types_dict.get(frecuency)
     return response
@@ -300,23 +300,46 @@ def get_or_create_contact(sf_con, data=None):
         return None
     return contact.get('id')
 
-def get_last_compromise(sf_con, id_contact):
+def get_compromises(sf_con, id_contact):
     res = None
-    string_sql = F"SELECT  Id FROM Compromiso__c WHERE Donante__c = '{id_contact}' order by Id desc limit 1"
+    fields = "Id,IsDeleted,LastModifiedDate,Donante__c,Canal_de_Ingreso__c,Forma_de_Pago__c,Monto_en_pesos__c,Monto_pr_ximo_cobro__c,N_mero_de_la_Tarjeta__c,Tipo_de_tarjeta__c,Aumentar_40_anual_donaci_n__c,Monto_o_modificado__c,Monto_modificado_web__c,Forma_de_pago_modificado_web__c"
+
+    string_sql = F"SELECT {fields} FROM Compromiso__c WHERE Donante__c = '{id_contact}' order by Id Desc"
     rest = sf_con.query(string_sql)
-    return rest['records'][0]['Id']
+    return rest['records']
+
+def evaluate_compromises(compromises, data):
+    for compromise in compromises:
+        if data['Forma_de_Pago__c'] == compromise['Forma_de_Pago__c'] and \
+                compromise['N_mero_de_la_Tarjeta__c'][-4:] == data['N_mero_de_la_Tarjeta__c'][-4:]:
+            return compromise
+
+
+def process_the_increase(sf_con, data):
+    compromises = get_compromises(sf_con, data.get('Donante__c'))
+    compromiso_actualizar = evaluate_compromises(compromises, data)
+    if compromiso_actualizar:
+        print('Actualizar compromiso')
+        if not compromiso_actualizar.get('Forma_de_Pago__c') == data.get('Forma_de_Pago__c'):
+            data['Forma_de_pago_modificado_web__c'] = True
+        if not compromiso_actualizar.get('Monto_en_pesos__c') == data.get('Monto_en_pesos__c'):
+            data['Monto_o_modificado__c'] = True
+        data['Frecuencia__c'] = 'Mensual'
+        return compromiso_actualizar, data
+    else:
+        print('no tiene compromisos para actualizar, se crea una nueva')
+        return None, data
+
+
 
 def update_or_create_compromise(sf_con, data, contact_id):
     frecuency = data.get('Frecuencia__c')
     data['Donante__c'] = contact_id
-    if frecuency == 'actualizacion':
-        print('actualizando compromiso')
-        id_compromiso_actualizar = get_last_compromise(sf_con, contact_id)
+    if frecuency == 'Aumento':
+        print('Evaluando que compromiso aumentar ')
+        id_compromiso_actualizar, data = process_the_increase(sf_con, data)
         if id_compromiso_actualizar:
-            print('Actualizar compromiso')
-            data['Monto_o_modificado__c'] = True
-            data['Monto_Forma_pago_modificado_form_web__c'] = True
-            return sf_con.Compromiso__c.upsert(id_compromiso_actualizar, data)
+            return sf_con.Compromiso__c.upsert(id_compromiso_actualizar.get('Id'), data)
         else:
             print('no tiene compromisos para actualizar, se crea una nueva')
             return sf_con.Compromiso__c.create(data)
