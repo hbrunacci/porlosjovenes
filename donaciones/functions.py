@@ -302,7 +302,7 @@ def get_or_create_contact(sf_con, data=None):
 
 def get_compromises(sf_con, id_contact):
     res = None
-    fields = "Id,IsDeleted,LastModifiedDate,Donante__c,Canal_de_Ingreso__c,Forma_de_Pago__c,Monto_en_pesos__c,Monto_pr_ximo_cobro__c,N_mero_de_la_Tarjeta__c,Tipo_de_tarjeta__c,Aumentar_40_anual_donaci_n__c,Monto_o_modificado__c,Monto_modificado_web__c,Forma_de_pago_modificado_web__c"
+    fields = "Id,IsDeleted,LastModifiedDate,Donante__c,Canal_de_Ingreso__c,Forma_de_Pago__c,Monto_en_pesos__c,CBU__c,Monto_pr_ximo_cobro__c,N_mero_de_la_Tarjeta__c,Tipo_de_tarjeta__c,Aumentar_40_anual_donaci_n__c,Monto_o_modificado__c,Monto_modificado_web__c,Forma_de_pago_modificado_web__c"
 
     string_sql = F"SELECT {fields} FROM Compromiso__c WHERE Donante__c = '{id_contact}' order by Id Desc"
     rest = sf_con.query(string_sql)
@@ -310,9 +310,15 @@ def get_compromises(sf_con, id_contact):
 
 def evaluate_compromises(compromises, data):
     for compromise in compromises:
-        if data['Forma_de_Pago__c'] == compromise['Forma_de_Pago__c'] and \
-                compromise['N_mero_de_la_Tarjeta__c'][-4:] == data['N_mero_de_la_Tarjeta__c'][-4:]:
-            return compromise
+        if data['Forma_de_Pago__c'] == 'Tarjeta de Crédito':
+            if data['Forma_de_Pago__c'] == compromise['Forma_de_Pago__c'] \
+                    and compromise['N_mero_de_la_Tarjeta__c'][-4:] == data['N_mero_de_la_Tarjeta__c'][-4:]:
+                return compromise
+        if data['Forma_de_Pago__c'] == 'Débito en Cuenta':
+            if data['Forma_de_Pago__c'].upper() == compromise['Forma_de_Pago__c'].upper()\
+                    and compromise['CBU__c'] == data['CBU__c']:
+                return compromise
+
 
 
 def process_the_increase(sf_con, data):
@@ -320,12 +326,12 @@ def process_the_increase(sf_con, data):
     compromiso_actualizar = evaluate_compromises(compromises, data)
     data['Frecuencia__c'] = 'Mensual'
     if compromiso_actualizar:
-        if not compromiso_actualizar.get('Forma_de_Pago__c') == data.get('Forma_de_Pago__c'):
+        if not compromiso_actualizar.get('Forma_de_Pago__c').upper() == data.get('Forma_de_Pago__c').upper():
             data['Forma_de_pago_modificado_web__c'] = True
-        if not compromiso_actualizar.get('Monto_en_pesos__c') > data.get('Monto_en_pesos__c'):
+        if not float(compromiso_actualizar.get('Monto_en_pesos__c')) > float(data.get('Monto_en_pesos__c')):
             data['Monto_modificado_web__c'] = True
 
-        if compromiso_actualizar.get('Monto_en_pesos__c') <= data.get('Monto_en_pesos__c'):
+        if float(compromiso_actualizar.get('Monto_en_pesos__c')) < float(data.get('Monto_en_pesos__c')):
             print('Actualizar compromiso')
             if not compromiso_actualizar.get('Monto_en_pesos__c') == data.get('Monto_en_pesos__c'):
                 data['Monto_modificado_web__c'] = True
