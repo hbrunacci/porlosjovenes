@@ -76,7 +76,6 @@ class DonacionPage(MetadataPageMixin, Page):
     template = 'donaciones/donacion.html'
     subpage_types = []
 
-
     texto_encabezado = RichTextField(default='')
 
     imagen_encabezado = models.ForeignKey(
@@ -117,10 +116,8 @@ class DonacionPage(MetadataPageMixin, Page):
         FieldPanel('agradecimiento_compromiso'),
         FieldPanel('agradecimiento_aumento'),
 
-        MultiFieldPanel([
-            InlinePanel('medios_pago', max_num=4)
-        ], heading='Medios de Pago'
-            , classname='collapsible'),
+        MultiFieldPanel([InlinePanel('medios_pago', max_num=4)], heading='Medios de Pago', classname='collapsible'),
+        MultiFieldPanel([InlinePanel('otros_medios', max_num=6)], heading='Otras formas de colaborar', classname='collapsible'),
     ]
 
     class Meta:
@@ -156,12 +153,32 @@ class DonacionPage(MetadataPageMixin, Page):
         return False
 
 
+class Otros_Medios(Orderable):
+    TIPOS_CUENTA = (('cta_cte_pesos', 'Cta. Cte. $'),
+                    ('cta_cte_dolar', 'Cta. Cte. u$s'),
+                    ('caja_ahorro', 'Caja Ahorro'))
+
+    page = ParentalKey('DonacionPage', related_name='otros_medios')
+    nombre_banco = models.CharField("Banco", max_length=20, blank=False, null=False)
+    tipo_cta = models.CharField("Tipo de cta", max_length=20, blank=False, null=False, choices=TIPOS_CUENTA)
+    nro_cta = models.CharField("Numero de cuenta", max_length=20, blank=False, null=False)
+    nro_cbu = models.CharField("Numero CBU", max_length=20, blank=False, null=False)
+
+
+content_panels = Page.content_panels + [
+        FieldPanel('nombre_banco'),
+        FieldPanel('tipo_cta'),
+        FieldPanel('nro_cta'),
+        FieldPanel('nro_cbu'),
+    ]
+
+
 class Medios_Pago(Orderable):
     MONEDAS = (('pesos', 'PESOS'), ('dolares', 'DOLARES'))
     MEDIOS_PAGO = (('fpago-debito', 'Debito en Cta'),
-                 ('fpago-credito', 'Tarjeta Credito'),
-                 ('fpago-paypal', 'Paypal'),
-                 ('fpago-mercadopago', 'MercadoPago'))
+                   ('fpago-credito', 'Tarjeta Credito'),
+                   ('fpago-paypal', 'Paypal'),
+                   ('fpago-mercadopago', 'MercadoPago'))
 
     page = ParentalKey('DonacionPage', related_name='medios_pago')
     nombre_medio = models.CharField("Nombre Medio de Pago", max_length=20, blank=False, null=False, choices=MEDIOS_PAGO)
