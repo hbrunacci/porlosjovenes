@@ -243,6 +243,15 @@ def get_record_type():
     record_type_id = '01261000000ir1SAAQ'
     return record_type_id
 
+def set_active_compromise(id_compromise):
+    try:
+        sf_con = connect()
+        data = {'Estado__c': 'Activo'}
+        print('Activando Compromiso')
+        sf_con.Compromiso__c.upsert(id_compromise, data)
+
+    except Exception as e:
+        print(f'Error {e}')
 
 def register_transaction(form_fields=None):
     transaccion = dict()
@@ -251,10 +260,8 @@ def register_transaction(form_fields=None):
         return None
     try:
         sf_con = connect()
-        print('normalize')
         form_data = normalize_form_data(form_fields)
         print(form_data)
-        print('contact')
         transaccion['contact_id'] = get_or_create_contact(sf_con, form_data.get('contact_info'))    ## verifico si el donante existe, sino lo creo
         print('compromiso')
         transaccion['compromise'] = update_or_create_compromise(sf_con, form_data.get('compromise_info'), transaccion['contact_id'])
@@ -299,6 +306,15 @@ def get_or_create_contact(sf_con, data=None):
         print('error en inscripcion')
         return None
     return contact.get('id')
+
+def get_compromise(sf_con, id_compromise):
+    try:
+        compromise = sf_con.Compromiso__c.get(id_compromise)
+    except Exception as e:
+        compromise = None
+        print(f"Error: {e}")
+    return compromise
+
 
 def get_compromises(sf_con, id_contact):
     res = None

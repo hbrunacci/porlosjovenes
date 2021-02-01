@@ -14,6 +14,9 @@ from modelcluster.fields import ParentalKey
 from home.models import Noticia, Noticias, SponsorClass
 from instituciones.models import Instituciones, Institucion
 
+
+from donaciones.functions import set_active_compromise
+
 SOY_DONANTE = (
     ('solo_si', 'Ya soy donante'),
     ('solo_no', 'No Soy donante'),
@@ -70,6 +73,13 @@ class AgradecimientoPage(MetadataPageMixin, Page):
     def get_meta_image(self):
         image = self.search_image
         return image
+
+    def serve(self, request, *args, **kwargs):
+        if "external_reference" in request.GET:
+            print('MP approved')
+            set_active_compromise(request.GET['external_reference'])
+            return super().serve(request)
+        return super().serve(request)
 
 
 class DonacionPage(MetadataPageMixin, Page):
