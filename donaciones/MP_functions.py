@@ -13,6 +13,7 @@ def create_preaproval_mp(datos_donacion):
             "frequency": 1,
             "frequency_type": "months"
           },
+        "auto_return": 'approved',
         "back_url": datos_donacion.get('web_agradecimiento_compromiso'),
 
         "collector_id": '',
@@ -36,6 +37,7 @@ def create_item_mp(datos_donacion):
             }, ],
         "external_reference": datos_donacion.get('external_id'),
         "binary_mode": True,
+        "auto_return": 'approved',
         "payment_methods": {
             "excluded_payment_types": [
                 {
