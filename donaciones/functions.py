@@ -383,7 +383,6 @@ def update_or_create_compromise(sf_con, data, contact_id):
         print('Evaluando que compromiso aumentar ')
         id_compromiso_actualizar, data = process_the_increase(sf_con, data)
         if id_compromiso_actualizar:
-            data['Monto_o_modificado__c'] = True
             print(data)
             return sf_con.Compromiso__c.upsert(id_compromiso_actualizar.get('Id'), data)
         else:
