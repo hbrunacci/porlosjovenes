@@ -263,7 +263,7 @@ def register_transaction(form_fields=None):
         form_data = normalize_form_data(form_fields)
         print(form_data)
         transaccion['contact_id'] = get_or_create_contact(sf_con, form_data.get('contact_info'))    ## verifico si el donante existe, sino lo creo
-        print('compromiso')
+        print('Creando o Actualizando Compromiso')
         transaccion['compromise'] = update_or_create_compromise(sf_con, form_data.get('compromise_info'), transaccion['contact_id'])
         transaccion['result'] = True
         transaccion['detail'] = ''
@@ -331,18 +331,20 @@ def get_compromises(sf_con, id_contact):
 def evaluate_compromises(compromises, data):
     for compromise in compromises:
         if data['Forma_de_Pago__c'] == 'Tarjeta de Crédito':
+            print(f"Compromiso con TC: {compromise['N_mero_de_la_Tarjeta__c']} ")
             if data['Forma_de_Pago__c'] == compromise['Forma_de_Pago__c'] \
                     and compromise['N_mero_de_la_Tarjeta__c'][-4:] == data['N_mero_de_la_Tarjeta__c'][-4:]:
+                print('Compromiso encontrado TC')
                 return compromise, data
             else:
-                data['Forma_de_pago_modificado_web__c'] = True
                 return None, data
         if data['Forma_de_Pago__c'] == 'Débito en Cuenta':
+            print(f"Compromiso con DEC: {compromise['CBU__c']} ")
             if data['Forma_de_Pago__c'].upper() == compromise['Forma_de_Pago__c'].upper()\
                     and compromise['CBU__c'] == data['CBU__c']:
+                print('Compromiso encontrado DEC')
                 return compromise, data
             else:
-                data['Forma_de_pago_modificado_web__c'] = True
                 return None, data
 
 
@@ -352,6 +354,7 @@ def process_the_increase(sf_con, data):
     compromises = get_compromises(sf_con, data.get('Donante__c'))
     compromiso_actualizar = None
     if len(compromises) > 0:
+        print(f'Se encontraron {len(compromises)} compromisos activos')
         compromiso_actualizar, data = evaluate_compromises(compromises, data)
     data['Frecuencia__c'] = 'Mensual'
     if compromiso_actualizar:
@@ -363,10 +366,11 @@ def process_the_increase(sf_con, data):
 
         if float(compromiso_actualizar.get('Monto_en_pesos__c')) < float(data.get('Monto_en_pesos__c')):
             print('Actualizar compromiso')
+            data['Fecha_de_compromiso__c'] = compromiso_actualizar['Fecha_de_compromiso__c']
+            data['Fecha_para_realizar_primer_cobranza__c'] = \
+                compromiso_actualizar['Fecha_para_realizar_primer_cobranza__c']
             if not compromiso_actualizar.get('Monto_en_pesos__c') == data.get('Monto_en_pesos__c'):
                 data['Monto_modificado_web__c'] = True
-                data['Fecha_de_compromiso__c'] = compromiso_actualizar['Fecha_de_compromiso__c']
-                data['Fecha_para_realizar_primer_cobranza__c'] = compromiso_actualizar['Fecha_para_realizar_primer_cobranza__c']
             return compromiso_actualizar, data
         else:
             return None, data

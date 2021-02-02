@@ -2,8 +2,9 @@ from datetime import datetime, timedelta
 import mercadopago
 import json
 
-mp = mercadopago.MP("TEST-3388812963877314-121814-96dcedce51f3659f1075b43de5036cfa-690014102")
-#mp = mercadopago.MP("TEST-636861273927234-081719-db8d85a01403b156347ea23682f2d702-11760947")
+# mp = mercadopago.MP("TEST-3388812963877314-121814-96dcedce51f3659f1075b43de5036cfa-690014102")
+# mp = mercadopago.MP("TEST-4274548783684625-120112-49412d5bd55556b298d64da45f843d6e-486091909")
+mp = mercadopago.MP("TEST-3493217052506790-020218-c47af1f3374711042909569090f4f1fb-710016242")
 
 def create_preaproval_mp(datos_donacion):
     preaproval = {
