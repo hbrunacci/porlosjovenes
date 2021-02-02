@@ -175,7 +175,7 @@ def process_new_compromise(compromise_data=None, contact_id=None):
     compromiso['Fecha_de_compromiso__c'] = fecha_compromiso
     compromiso['Fecha_para_realizar_primer_cobranza__c'] = fecha_primer_cobranza
     compromiso['Fecha_de_fin_de_compromiso__c'] = fecha_fin
-    compromiso['Canal_de_Ingreso__c'] = 'Web PJL'
+    compromiso['Canal_de_Ingreso__c'] = 'Web PLJ'
     compromiso['Tipo_de_compromiso__c'] = None
     compromiso['Forma_de_Pago__c'] = get_forma_de_pago(compromise_data.get('forma_pago'))
     compromiso['Tipo_de_tarjeta__c'] = get_cc_company_value(compromise_data.get('pay_company'))
