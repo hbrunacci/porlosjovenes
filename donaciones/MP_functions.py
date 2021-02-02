@@ -20,8 +20,7 @@ def create_preaproval_mp(datos_donacion):
         "collector_id": '',
         "external_reference": datos_donacion.get('external_id'),
         "payer_email": datos_donacion.get('email'),
-        "reason": "Donación mensual Por los jóvenes",
-        "status": "pending"
+        "reason": "Donación mensual Por los jóvenes"
     }
     response = mp.create_preapproval_payment(preaproval)
     print(f'response_mp_month: {response}')
