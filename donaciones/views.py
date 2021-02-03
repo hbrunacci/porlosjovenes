@@ -109,7 +109,7 @@ class notificacion(APIView):
         print(request.data)
         body_unicode = request.data
         body = json.loads(body_unicode)
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         if body_unicode:
             data = body.get('content')
             data = dict(data)
