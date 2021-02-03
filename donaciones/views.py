@@ -7,6 +7,7 @@ from django.http import (
     HttpResponse, HttpResponseGone, HttpResponseNotAllowed,
     HttpResponsePermanentRedirect, HttpResponseRedirect,
 )
+import json
 
 from .MP_functions import create_item_mp
 from django.views.generic import TemplateView, RedirectView
@@ -102,18 +103,20 @@ class notificacion(APIView):
     permission_classes = []
 
     def post(self, request):
-        data = request.POST
-        data = dict(data)
-        for key in data.keys():
-            data[key] = data[key][0]
-        print(f'request: {data}')
+        body_unicode = request.body.decode('utf-8')
+        if body_unicode:
+            body = json.loads(body_unicode)
+            data = body.get('content')
+            data = dict(data)
+            print(f'request: {data}')
         return HttpResponse('')
 
     def get(self, request):
-        data = request.GET
-        data = dict(data)
-        for key in data.keys():
-            data[key] = data[key][0]
-        print(f'request: {data}')
+        body_unicode = request.body.decode('utf-8')
+        if body_unicode:
+            body = json.loads(body_unicode)
+            data = body.get('content')
+            data = dict(data)
+            print(f'request: {data}')
         return HttpResponse('')
 
