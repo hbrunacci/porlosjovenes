@@ -16,7 +16,7 @@ def create_preaproval_mp(datos_donacion):
           },
         "auto_return": 'approved',
         "back_url": datos_donacion.get('web_agradecimiento_compromiso'),
-
+        "notification_url": "https://porlosjovenes.org/ipn/",
         "collector_id": '',
         "external_reference": datos_donacion.get('external_id'),
         "payer_email": datos_donacion.get('email'),
@@ -58,7 +58,7 @@ def create_item_mp(datos_donacion):
                       'pending': get_url('pending', datos_donacion),
                       'success': get_url('success', datos_donacion),
                       },
-        "notification_url": "https://porlosjovenes.org/ipn"
+        "notification_url": "https://porlosjovenes.org/ipn/"
     }
 
     response = mp.create_preference(preference)

@@ -337,6 +337,7 @@ def evaluate_compromises(compromises, data):
                 print('Compromiso encontrado TC')
                 return compromise, data
             else:
+                data['Forma_de_pago_modificado_web__c'] = True
                 return None, data
         if data['Forma_de_Pago__c'] == 'Débito en Cuenta':
             print(f"Compromiso con DEC: {compromise['CBU__c']} ")
@@ -345,6 +346,7 @@ def evaluate_compromises(compromises, data):
                 print('Compromiso encontrado DEC')
                 return compromise, data
             else:
+                data['Forma_de_pago_modificado_web__c'] = True
                 return None, data
 
 
