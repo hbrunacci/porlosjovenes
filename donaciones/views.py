@@ -103,6 +103,8 @@ class notificacion(APIView):
     permission_classes = []
 
     def post(self, request):
+        print('IPN recived')
+        print(request)
         body_unicode = request.body.decode('utf-8')
         if body_unicode:
             body = json.loads(body_unicode)
@@ -112,6 +114,8 @@ class notificacion(APIView):
         return HttpResponse('')
 
     def get(self, request):
+        print('IPN recived')
+        print(request)
         body_unicode = request.body.decode('utf-8')
         if body_unicode:
             body = json.loads(body_unicode)
