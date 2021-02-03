@@ -106,8 +106,8 @@ class notificacion(APIView):
 
     def post(self, request):
         print('post IPN recived')
-        print(request.data)
         body_unicode = request.data.decode('utf-8')
+        print(body_unicode)
         if body_unicode:
             body = json.loads(body_unicode)
             data = body.get('content')
