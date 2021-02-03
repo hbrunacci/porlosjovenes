@@ -106,15 +106,8 @@ class notificacion(APIView):
 
     def post(self, request):
         print('post IPN received')
-        print(request.data)
-        body_unicode = request.data
-        body = json.loads(body_unicode)
-        #import pdb; pdb.set_trace()
-        if body_unicode:
-            data = body.get('content')
-            data = dict(data)
-            print(f'request: {data}')
-            get_mp_transaccion_info(data['resource'])
+        print(request.data['resource'])
+        get_mp_transaccion_info(request.data['resource'])
         return HttpResponse('')
 
     def get(self, request):
