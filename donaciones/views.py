@@ -113,6 +113,7 @@ class notificacion(APIView):
             data = body.get('content')
             data = dict(data)
             print(f'request: {data}')
+            get_mp_transaccion_info(data['resource'])
         return HttpResponse('')
 
     def get(self, request):
