@@ -105,11 +105,12 @@ class notificacion(APIView):
     permission_classes = []
 
     def post(self, request):
-        print('post IPN recived')
+        print('post IPN received')
         print(request.data)
         body_unicode = request.data
+        body = json.loads(body_unicode)
+        import pdb; pdb.set_trace()
         if body_unicode:
-            body = json.loads(body_unicode)
             data = body.get('content')
             data = dict(data)
             print(f'request: {data}')
@@ -117,14 +118,8 @@ class notificacion(APIView):
         return HttpResponse('')
 
     def get(self, request):
-        print('get IPN recived')
+        print('get IPN received')
 
-        body_unicode = request.data.decode('utf-8')
-        if body_unicode:
-            body = json.loads(body_unicode)
-            data = body.get('content')
-            data = dict(data)
-            print(f'request: {data}')
         return HttpResponse('')
 
 
