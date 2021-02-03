@@ -1,7 +1,8 @@
 from simple_salesforce import Salesforce
 from datetime import datetime, timedelta
 from dateutil.relativedelta import *
-from .MP_functions import create_item_mp, create_preaproval_mp
+import requests
+from .MP_functions import create_item_mp, create_preaproval_mp, token
 
 demo = {'tipo_donante': 'dona-unica',
         'forma_pago': 'fpago-credito',
@@ -431,3 +432,11 @@ def calcular_digito_cuit(cuit):
     return aux
 
 
+def get_mp_transaccion_info(url):
+    header = {'Authorization': 'Bearer ' + token}
+    data = requests.get(url, headers=header)
+    data = dict(data.json())
+    if data.get('collection'):
+        external_id = data['collection']['external_reference']
+        print(external_id)
+        set_active_compromise(external_id)

@@ -8,8 +8,10 @@ from django.http import (
     HttpResponsePermanentRedirect, HttpResponseRedirect,
 )
 import json
+import requests
 
-from .MP_functions import create_item_mp
+from .functions import create_item_mp, get_mp_transaccion_info
+
 from django.views.generic import TemplateView, RedirectView
 
 class test_mp(TemplateView):
@@ -115,12 +117,13 @@ class notificacion(APIView):
 
     def get(self, request):
         print('IPN recived')
-        print(request.data)
-        body_unicode = request.body.decode('utf-8')
+
+        body_unicode = request.data.decode('utf-8')
         if body_unicode:
             body = json.loads(body_unicode)
             data = body.get('content')
             data = dict(data)
             print(f'request: {data}')
         return HttpResponse('')
+
 

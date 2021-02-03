@@ -1,10 +1,10 @@
 from datetime import datetime, timedelta
 import mercadopago
 import json
+import requests
 
-# mp = mercadopago.MP("TEST-3388812963877314-121814-96dcedce51f3659f1075b43de5036cfa-690014102")
-# mp = mercadopago.MP("TEST-4274548783684625-120112-49412d5bd55556b298d64da45f843d6e-486091909")
-mp = mercadopago.MP("TEST-3493217052506790-020218-c47af1f3374711042909569090f4f1fb-710016242")
+token = "TEST-3493217052506790-020218-c47af1f3374711042909569090f4f1fb-710016242"
+mp = mercadopago.MP(token)
 
 def create_preaproval_mp(datos_donacion):
     preaproval = {
@@ -73,6 +73,9 @@ def get_url(status, datos_donacion):
     else:
         url = datos_donacion.get('web_agradecimiento_compromiso')
     return url
+
+
+
 
 
 def get_frecuencia(frecuency):
