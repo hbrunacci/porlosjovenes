@@ -82,7 +82,9 @@ demo_compromise_data_unico = {
 
 def connect():
     try:
-        sf = Salesforce(username='hernanformnuevo@gmail.com', password='HBS1779hb', security_token='D0hUPrOaXzTQVWvPTKfIu40Ti', domain='test')
+        sf = Salesforce(username='usuarioconexion@gmail.com', password='m9HHbx4UUSgJ3yD',
+                        security_token='5lQLjWZzkbIWo4Qy5f0rpmEec')
+        # sf = Salesforce(username='hernanformnuevo@gmail.com', password='HBS1779hb', security_token='D0hUPrOaXzTQVWvPTKfIu40Ti', domain='test')
     except:
         return None
     return sf
@@ -242,6 +244,7 @@ def generate_new_compromise(data=None):
 
 def get_record_type():
     record_type_id = '01261000000ir1SAAQ'
+
     return record_type_id
 
 def set_active_compromise(id_compromise):
@@ -283,8 +286,9 @@ def register_transaction(form_fields=None):
     return transaccion
 
 def get_account_id():
-    #return '0012f00000Tnr6ZAAR'
-    return '001e000001ZybZOAAZ'
+    # return '001e000001ZybZOAAZ'
+    return '00161000018ckykAAA'
+
 
 def normalize_form_data(form_info):
     data = dict()
@@ -438,5 +442,7 @@ def get_mp_transaccion_info(url):
     data = dict(data.json())
     if data.get('collection'):
         external_id = data['collection']['external_reference']
-        print(external_id)
-        set_active_compromise(external_id)
+        if len(external_id) == 18:
+            print(f'{datetime.today()} Actualizando compromiso {external_id}')
+            set_active_compromise(external_id)
+

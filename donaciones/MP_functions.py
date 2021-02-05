@@ -3,7 +3,8 @@ import mercadopago
 import json
 import requests
 
-token = "TEST-3493217052506790-020218-c47af1f3374711042909569090f4f1fb-710016242"
+# token = "TEST-3493217052506790-020218-c47af1f3374711042909569090f4f1fb-710016242"
+token = "APP_USR-4274548783684625-120112-f6e5a9f05b4f650fcbb210688791a930-486091909"
 mp = mercadopago.MP(token)
 
 def create_preaproval_mp(datos_donacion):
