@@ -329,7 +329,7 @@ def get_compromises(sf_con, id_contact):
     res = None
     fields = "Id,IsDeleted,LastModifiedDate,Donante__c,Canal_de_Ingreso__c,Forma_de_Pago__c," \
              "Monto_en_pesos__c,CBU__c,Monto_pr_ximo_cobro__c,N_mero_de_la_Tarjeta__c,Tipo_de_tarjeta__c," \
-             "Aumentar_40_anual_donaci_n__c,Monto_o_modificado__c,Monto_modificado_web__c," \
+             "Aumentar_40_anual_donaci_n__c,Monto_modificado_web__c," \
              "Forma_de_pago_modificado_web__c,Fecha_de_compromiso__c,Fecha_para_realizar_primer_cobranza__c"
 
 

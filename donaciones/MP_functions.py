@@ -69,12 +69,15 @@ def create_item_mp(datos_donacion):
 
 def get_url(status, datos_donacion):
     frecuencia = get_frecuencia(datos_donacion.get('tipo_donante'))
-    if frecuencia == 'Aumento':
-        url = datos_donacion.get('web_agradecimiento_aumento')
+    if status == 'success':
+        if frecuencia == 'Aumento':
+            url = datos_donacion.get('web_agradecimiento_aumento')
+        else:
+            url = datos_donacion.get('web_agradecimiento_compromiso')
     else:
-        url = datos_donacion.get('web_agradecimiento_compromiso')
-    return url
+        url ='https://porlosjovenes.org'
 
+    return url
 
 
 
