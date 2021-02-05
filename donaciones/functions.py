@@ -4,6 +4,8 @@ from dateutil.relativedelta import *
 import requests
 from .MP_functions import create_item_mp, create_preaproval_mp, token
 
+owner_id = '0054N000004xFllQAE'
+
 demo = {'tipo_donante': 'dona-unica',
         'forma_pago': 'fpago-credito',
         'monto_donacion': '17',
@@ -35,6 +37,7 @@ demo1 = {'tipo_donante': 'dona-unica',
          'gatewayuserid': ''}
 
 demo_compromiso = 'Id_contacto__c', '0032f00000JYkbq'
+
 
 demo_compromise_data_mensual = {
 'apellido':'Brunacci',
@@ -301,7 +304,8 @@ def get_or_create_contact(sf_con, data=None):
         contact_id = is_a_contact(sf_con, data)
         if contact_id:
             print('udpate_contact')
-            sf_con.Contact.upsert(contact_id,data)
+            data['OwnerId'] = owner_id
+            sf_con.Contact.upsert(contact_id, data)
             return contact_id
         else:
             print('create contact')
