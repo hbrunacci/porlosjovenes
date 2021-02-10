@@ -729,6 +729,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
     return ((ref = cardFromNumber(num)) != null ? ref.type : void 0) || null;
   };
+  payform.parseCard = function(num) {
+    var ref;
+    if (!num) {
+      return null;
+    }
+    return ((ref = cardFromNumber(num)) != null ? ref : void 0) || null;
+  };
+
   payform.formatCardNumber = function(num) {
     var card, groups, ref, upperLength;
     num = replaceFullWidthChars(num);

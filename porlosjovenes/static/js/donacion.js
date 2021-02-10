@@ -218,7 +218,9 @@ $(function () {
             if (objeto.id === 'credit-card') {
                 valor = objeto.value;
                 card_name = $.payform.parseCardType(valor);
-                if ( $.inArray(card_name, ["visa", "mastercard", "amex", "diners"]) !== -1 )   {
+                card = $.payform.parseCard(valor);
+                console.log(card);
+                if ( $.inArray(card_name, ["visa", "mastercard", "amex", "dinersclub"]) !== -1 )   {
                     $('#logo-tarjeta').removeClass('hide-step');
                     card_img_src = statics_img + '/' + card_name +'.png';
                     $('#logo-tarjeta').attr('src', card_img_src);
@@ -230,6 +232,19 @@ $(function () {
             }
         });
         $("#credit-card").keypress(function (e) {
+                valor = $("#credit-card").val();
+                card_name = $.payform.parseCardType(valor);
+                card = $.payform.parseCard(valor);
+                $("#credit-card").attr('maxlenght',card.length[0]);
+                if ( $.inArray(card_name, ["visa", "mastercard", "amex", "dinersclub"]) !== -1 )   {
+                    $('#logo-tarjeta').removeClass('hide-step');
+                    card_img_src = statics_img + '/' + card_name +'.png';
+                    $('#logo-tarjeta').attr('src', card_img_src);
+                    $('#logo-tarjeta').attr('value', card_name);
+                }
+                else {
+                    $('#logo-tarjeta').addClass('hide-step');
+                }
             return !((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0));
         });
         $("#cbu-number").keypress(function (e) {
