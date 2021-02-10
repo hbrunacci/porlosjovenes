@@ -575,7 +575,7 @@ $(function () {
                 //console.log('cc-number-check');
                 card_field = $('#credit-card');
                 len_field = card_field.val().length;
-                if (len_field < card_field.maxLength()) {
+                if (len_field < card_field.attr('maxLength')) {
                     $('#alerta_datostarjeta').removeClass('hide-step');
                     datos_pago['sin_completar_step3'] = 1
                 } else
