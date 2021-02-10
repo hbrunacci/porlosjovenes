@@ -218,7 +218,7 @@ def get_frecuencia(frecuency):
 
 def get_cc_company_value(cc_company_explicit):
     cc_companies = {
-        'diners': 'Diners',
+        'dinersclub': 'Diners',
         'amex': 'American Express',
         'mastercard': 'Mastercard',
         'visa': 'Visa',

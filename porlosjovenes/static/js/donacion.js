@@ -235,7 +235,6 @@ $(function () {
                 valor = $("#credit-card").val();
                 card_name = $.payform.parseCardType(valor);
                 card = $.payform.parseCard(valor);
-                $("#credit-card").attr('maxlenght',card.length[0]);
                 if ( $.inArray(card_name, ["visa", "mastercard", "amex", "dinersclub"]) !== -1 )   {
                     $('#logo-tarjeta').removeClass('hide-step');
                     card_img_src = statics_img + '/' + card_name +'.png';
@@ -245,6 +244,13 @@ $(function () {
                 else {
                     $('#logo-tarjeta').addClass('hide-step');
                 }
+                if (card_name === 'amex') {
+                     $("#credit-card").attr('maxlength',15)
+                } else
+                {
+                     $("#credit-card").attr('maxlength',16)
+                }
+
             return !((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0));
         });
         $("#cbu-number").keypress(function (e) {
@@ -567,8 +573,9 @@ $(function () {
             datos_pago['sin_completar_step3'] = 0
             if (!$('#cc-container').hasClass('hide-step')) {
                 //console.log('cc-number-check');
-                len_field = $('#credit-card').val().length;
-                if (len_field < 16) {
+                card_field = $('#credit-card');
+                len_field = card_field.val().length;
+                if (len_field < card_field.maxLength()) {
                     $('#alerta_datostarjeta').removeClass('hide-step');
                     datos_pago['sin_completar_step3'] = 1
                 } else
