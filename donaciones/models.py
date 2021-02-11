@@ -49,10 +49,12 @@ class AgradecimientoPage(MetadataPageMixin, Page):
     texto_agradecimiento = RichTextField(null=False, blank=False,
                                          default='Es gracias a personas como vos que podemos '
                                                  'acompañar a miles de jóvenes en todo el país.')
+    evento_trackeo = models.TextField(verbose_name='evento', max_length=20, blank=False, null=False)
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('imagen_encabezado',
                           heading='Imagen Superior'),
+        FieldPanel('evento_trackeo'),
         FieldPanel('encabezado_agradecimiento'),
         FieldPanel('texto_agradecimiento'),
     ]

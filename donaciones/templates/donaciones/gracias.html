@@ -21,7 +21,18 @@
                     {{ self.texto_agradecimiento|richtext }}
                 </div>
             </div>
+        </div>
     </div>
 
 
 {% endblock content %}
+
+{% block extra_js %}
+    <script>
+        console.log('evento:' + '{{self.evento_trackeo}}');
+        ga('send', 'event', 'purchase', '{{self.evento_trackeo}}', '0');
+        fbq('track', 'Donate', '{{self.evento_trackeo}}');
+
+
+    </script>
+{% endblock extra_js %}
