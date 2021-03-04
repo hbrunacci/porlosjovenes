@@ -29,10 +29,11 @@
 
 {% block extra_js %}
     <script>
-        console.log('evento:' + '{{self.evento_trackeo}}');
-        ga('send', 'event', 'purchase', '{{self.evento_trackeo}}', '0');
+        local_url = window.location.href;
+        const tipo_donante = new URLSearchParams(window.location.search)
+        console.log('evento:' + '{{self.evento_trackeo}}'
+            + ' tipo donante:' + tipo_donante.get('tipo-donante').toString() );
+        ga('send', 'event', 'purchase', '{{self.evento_trackeo}}', tipo_donante.get('tipo-donante').toString() );
         fbq('track', 'Donate', '{{self.evento_trackeo}}');
-
-
     </script>
 {% endblock extra_js %}

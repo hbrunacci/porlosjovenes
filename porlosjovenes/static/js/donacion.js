@@ -28,12 +28,8 @@ $(function () {
         var paso1= $('#paso1');
         var paso2= $('#paso2');
         var paso3= $('#paso3');
-        //var datos_donacion = {};
         datos_donacion['recibo'] = 'No';
         datos_donacion['aumenta'] = '0';
-        //paso1.removeClass('hide-step');
-        //paso2.addClass('hide-step');
-        //paso3.addClass('hide-step');
         paso1.slideDown();
         paso2.slideUp();
         paso3.slideUp();
@@ -59,7 +55,7 @@ $(function () {
                 completo = false;
                 $('#alerta_falta_tdonante').removeClass('hide-step');
             } else {
-                datos_donacion['tipo_donante'] = tipo_donante
+                datos_donacion['donante'] = tipo_donante
             }
             if (tipo_donacion === '0'){
                 completo = false;
@@ -116,6 +112,11 @@ $(function () {
             }
             if (completo===true) {
                 if  ($('#acepta-condicion').prop('checked')) {
+                    web_ag_au = datos_donacion['web_agradecimiento_aumento'];
+                    web_ag_com = datos_donacion['web_agradecimiento_compromiso'];
+                    donante = '?tipo-donante=' + datos_donacion['donante'].toString();
+                    datos_donacion['web_agradecimiento_aumento'] = web_ag_au + donante;
+                    datos_donacion['web_agradecimiento_compromiso'] = web_ag_com + donante;
                     $(".loader").css('display','block');
                     $.ajax('/procesar-pago/', {
                     type: 'POST',  // http method
@@ -128,10 +129,10 @@ $(function () {
                              window.location.href = (data['mp_response']['response']['init_point']);
                          } else if (datos_donacion['tipo_donante'] === 'dona-aumento') {
                              console.log('agradece aumento');
-                            window.location.href = datos_donacion['web_agradecimiento_aumento'];
+                             window.location.href = datos_donacion['web_agradecimiento_aumento'];
                          } else {
                             console.log('agradece donacion');
-                            window.location.href =datos_donacion['web_agradecimiento_compromiso'];
+                            window.location.href = datos_donacion['web_agradecimiento_compromiso'];
                          }
 
                     },

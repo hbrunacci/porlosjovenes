@@ -80,7 +80,8 @@ class AgradecimientoPage(MetadataPageMixin, Page):
         if "external_reference" in request.GET:
             print('MP approved')
             set_active_compromise(request.GET['external_reference'])
-            return super().serve(request)
+        if "tipo_donante" in request.GET:
+            print('Tipo_donante' + request.GET['external_reference'])
         return super().serve(request)
 
 
@@ -175,7 +176,6 @@ class Otros_Medios(Orderable):
     tipo_cta = models.CharField("Tipo de cta", max_length=20, blank=False, null=False, choices=TIPOS_CUENTA)
     nro_cta = models.CharField("Numero de cuenta", max_length=20, blank=False, null=False)
     nro_cbu = models.CharField("Numero CBU", max_length=20, blank=False, null=False)
-
 
 content_panels = Page.content_panels + [
         FieldPanel('nombre_banco'),
